@@ -9,12 +9,14 @@ from primaryschool.locale import sys_lang_code
 
 resource_path = os.path.abspath(os.path.dirname(__file__))
 
+material_dir_names = ['imgs', 'audios', 'fonts']
 material_filess = []
 for root, _, files in os.walk(project_path, topdown=False):
-    if root.endswith('imgs') or root.endswith('audios') \
-            or root.endswith('fonts'):
-        for name in files:
-            material_filess.append(os.path.join(root, name))
+    for n in material_dir_names:
+        if root.endswith(n):
+            for name in files:
+                material_filess.append(os.path.join(root, name))
+
 material_filess = sorted(material_filess, key=len)
 
 font_path = os.path.join(resource_path, 'fonts')
