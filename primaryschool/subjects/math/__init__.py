@@ -16,5 +16,5 @@ class MathGame(SubjectGame):
 
 
 def start(win):
-    print(win.difficulty_index,win.subject_index)
+    MathGame(win)
     pass

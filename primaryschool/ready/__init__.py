@@ -21,6 +21,7 @@ class Win():
         self.win = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.win.get_size()
         self.menu_theme = pygame_menu.themes.THEME_BLUE
+        self.menu_theme.title_font = font_path
 
         self.menu = pygame_menu.Menu(
             _('Primary School'), self.w_width, self.w_height,
@@ -38,7 +39,6 @@ class Win():
     def render(self):
 
         self.win.fill((255, 255, 255))
-        self.menu_theme.title_font = font_path
         self.menu.add.text_input(
             _('Name :'), default=_('_name_'),
             font_name=font_path)

@@ -12,5 +12,5 @@ class EnglishGame(SubjectGame):
     pass
 
 def start(win):
-    print(win.difficulty_index,win.subject_index)
+    EnglishGame(win)
     pass

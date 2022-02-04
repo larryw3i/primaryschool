@@ -23,6 +23,6 @@ def list_subjects():
 
 class SubjectGame():
     def __init__(self,win):
-        print(win.difficulty,win.subject)
+        print(win.difficulty_index,win.subject_index)
         pass
     

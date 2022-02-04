@@ -16,5 +16,5 @@ class YuwenGame(SubjectGame):
 
 
 def start(win):
-    print(win.difficulty_index,win.subject_index)
+    YuwenGame(win)
     pass
