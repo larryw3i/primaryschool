@@ -12,10 +12,8 @@ update_gitignore(){
 }
 
 _xgettext(){
-    xgettext -v -j -L Python --output=funing/locale/$app_name.pot \
+    xgettext -v -j -L Python --output=$app_name/locale/$app_name.pot \
     $(find $app_name/ -name "*.py")
-    xgettext -v -j -L glade --output=funing/locale/$app_name.pot \
-    $(find $app_name/ui -name "*.ui")
 
     for _po in $(find $app_name/locale/ -name "*.po"); do
         msgmerge -U -v $_po $app_name/locale/$app_name.pot
@@ -24,7 +22,7 @@ _xgettext(){
 
 _msgfmt(){
     for _po in $(find $app_name/locale -name "*.po"); do
-        echo -e "$_po ${_po/.po/.mo}"
+        echo -e "$_po --> ${_po/.po/.mo}"
         msgfmt -v -o ${_po/.po/.mo} $_po
     done
 }
@@ -57,15 +55,15 @@ bdist(){
 }
 
 bdist_deb(){
-    rm -rf deb_dist/  dist/  $app_name.egg-info/ funing-0.2.48.tar.gz
+    rm -rf deb_dist/  dist/  $app_name.egg-info/ $app_name*.tar.gz
     python3 setup.py --command-packages=stdeb.command bdist_deb
 }
 
 _i_test(){
     bdist
-    pip3 uninstall funing -y
+    pip3 uninstall $app_name -y
     pip3 install dist/*.whl
-    funing
+    $app_name
 }
 
 
@@ -85,15 +83,20 @@ cat_bt(){
     echo $app_name.sh; cat -bt $app_name.sh
     echo $app_name.py; cat -bt $app_name.py
     echo setup.py;  cat -bt setup.py
-    for f in $(find $app_name/ -name "*.py" -o -name "*.ui")
+    for f in $(find $app_name/ -name "*.py" -o)
     do
         echo $f
         cat -bt $f
     done
 }
 
+test(){
+    python3 $app_name.py test
+}
+
 tu(){       twine_upload;       }
 ugi(){      update_gitignore;   }
+tst(){      test;               }
 
 gita(){     git_add;            }
 bd(){       bdist;              }

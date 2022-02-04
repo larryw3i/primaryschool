@@ -1,0 +1,81 @@
+#: primaryschool/subjects/yuwen/__init__.py:7
+msgid "math"
+msgstr "math"
+
+#: primaryschool/subjects/math/__init__.py:6
+#: primaryschool/subjects/math/__init__.py:7
+msgid "yuwen"
+msgstr "yuwen"
+
+#: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
+msgid "Primary School"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:37 primaryschool/ready/__init__.py:42
+msgid "Name :"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:45
+msgid "Subject"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:52
+#: primaryschool/ready/__init__.py:53
+msgid "Difficulty :"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:54
+msgid "Hard"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43
+msgid "middle"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:55
+msgid "Easy"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:55
+#: primaryschool/ready/__init__.py:60
+msgid "Play"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:57
+#: primaryschool/ready/__init__.py:62
+msgid "Quit"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:46
+msgid "Select an option"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:54
+msgid "Crazy"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:55
+msgid "Middle"
+msgstr ""
+
+#: primaryschool/subjects/english/__init__.py:8
+msgid "English"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:50
+msgid "Select an Subject"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:58
+msgid "Select an difficulty"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:42
+msgid "_name_"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:45
+msgid "Subject :"
+msgstr ""

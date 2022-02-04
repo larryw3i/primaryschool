@@ -17,6 +17,9 @@ requirements = [
     ), (
         'PyYAML', '', 'https://github.com/yaml/pyyaml',
         'MIT', 'https://github.com/yaml/pyyaml/blob/master/LICENSE'
+    ), (
+        'pygame-menu', '', 'https://github.com/ppizarror/pygame-menu',
+        'MIT', 'hhttps://github.com/ppizarror/pygame-menu/blob/master/LICENSE'
     ), ],
     [(  # dev
         'isort', '', 'https://github.com/pycqa/isort',

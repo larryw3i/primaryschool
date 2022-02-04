@@ -14,8 +14,13 @@ for arg in argv:
         from primaryschool.settings import get_requirements_dev_u
         os.system('pip3 install -U ' + get_requirements_dev_u())
 
+    if arg == 'test':
+        import tests
+
 if len(argv) == 0:
-    import re, sys
+    import re
+    import sys
+
     from primaryschool import victory
     if __name__ == '__main__':
         sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
