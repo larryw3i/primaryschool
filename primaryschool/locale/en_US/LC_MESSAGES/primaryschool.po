@@ -8,10 +8,12 @@ msgid "yuwen"
 msgstr "yuwen"
 
 #: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
+#: primaryschool/ready/__init__.py:28
 msgid "Primary School"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:37 primaryschool/ready/__init__.py:42
+#: primaryschool/ready/__init__.py:43
 msgid "Name :"
 msgstr ""
 
@@ -20,7 +22,7 @@ msgid "Subject"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:52
-#: primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:54
 msgid "Difficulty :"
 msgstr ""
 
@@ -39,12 +41,12 @@ msgid "Easy"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:55
-#: primaryschool/ready/__init__.py:60
+#: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:62
 msgid "Play"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:57
-#: primaryschool/ready/__init__.py:62
+#: primaryschool/ready/__init__.py:62 primaryschool/ready/__init__.py:66
 msgid "Quit"
 msgstr ""
 
@@ -61,6 +63,7 @@ msgid "Middle"
 msgstr ""
 
 #: primaryschool/subjects/english/__init__.py:8
+#: primaryschool/subjects/english/__init__.py:9
 msgid "English"
 msgstr ""
 
@@ -72,10 +75,19 @@ msgstr ""
 msgid "Select an difficulty"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:42
+#: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
 msgid "_name_"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:45
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:46
 msgid "Subject :"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/__init__.py:8
+#, fuzzy
+msgid "Yuwen"
+msgstr "yuwen"
+
+#: primaryschool/subjects/math/__init__.py:8
+msgid "Math"
 msgstr ""

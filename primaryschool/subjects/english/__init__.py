@@ -8,8 +8,10 @@ from primaryschool.subjects import *
 
 name = _("English")
 
+
 class EnglishGame(SubjectGame):
     pass
+
 
 def start(win):
     EnglishGame(win)

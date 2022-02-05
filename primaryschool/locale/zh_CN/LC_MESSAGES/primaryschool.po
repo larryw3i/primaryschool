@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 23:44+0800\n"
-"PO-Revision-Date: 2022-02-04 23:45+0800\n"
+"POT-Creation-Date: 2022-02-05 22:37+0800\n"
+"PO-Revision-Date: 2022-02-05 22:37+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -26,10 +26,12 @@ msgid "yuwen"
 msgstr "语文"
 
 #: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
+#: primaryschool/ready/__init__.py:28
 msgid "Primary School"
 msgstr "小学的游戏"
 
 #: primaryschool/ready/__init__.py:37 primaryschool/ready/__init__.py:42
+#: primaryschool/ready/__init__.py:43
 msgid "Name :"
 msgstr "姓名 :"
 
@@ -38,7 +40,7 @@ msgid "Subject"
 msgstr "学科"
 
 #: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:52
-#: primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:54
 msgid "Difficulty :"
 msgstr "难度 :"
 
@@ -57,12 +59,12 @@ msgid "Easy"
 msgstr "简单"
 
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:55
-#: primaryschool/ready/__init__.py:60
+#: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:62
 msgid "Play"
 msgstr "开始"
 
 #: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:57
-#: primaryschool/ready/__init__.py:62
+#: primaryschool/ready/__init__.py:62 primaryschool/ready/__init__.py:66
 msgid "Quit"
 msgstr "退出"
 
@@ -79,6 +81,7 @@ msgid "Middle"
 msgstr "中等"
 
 #: primaryschool/subjects/english/__init__.py:8
+#: primaryschool/subjects/english/__init__.py:9
 msgid "English"
 msgstr "英语"
 
@@ -90,10 +93,18 @@ msgstr "选择科目"
 msgid "Select an difficulty"
 msgstr "选择难度"
 
-#: primaryschool/ready/__init__.py:42
+#: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
 msgid "_name_"
 msgstr "小学"
 
-#: primaryschool/ready/__init__.py:45
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:46
 msgid "Subject :"
 msgstr "学科 :"
+
+#: primaryschool/subjects/yuwen/__init__.py:8
+msgid "Yuwen"
+msgstr "语文"
+
+#: primaryschool/subjects/math/__init__.py:8
+msgid "Math"
+msgstr "数学"

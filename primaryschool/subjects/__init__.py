@@ -9,8 +9,8 @@ subject_path = os.path.abspath(os.path.dirname(__file__))
 
 
 def list_subjects():
-    subjects_t =[]
-    subjects= []
+    subjects_t = []
+    subjects = []
     for p in os.listdir(subject_path):
         if p.startswith('__'):
             continue
@@ -18,11 +18,10 @@ def list_subjects():
             f'primaryschool.subjects.{p}')
         subjects_t.append(subject.name)
         subjects.append(p)
-    return subjects_t,subjects
+    return subjects_t, subjects
 
 
 class SubjectGame():
-    def __init__(self,win):
-        print(win.difficulty_index,win.subject_index)
+    def __init__(self, win):
+        print(win.difficulty_index, win.subject_index)
         pass
-    
