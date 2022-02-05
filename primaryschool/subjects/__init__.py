@@ -5,6 +5,7 @@ import sys
 
 from primaryschool.locale import _
 
+
 subject_path = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -24,4 +25,6 @@ def list_subjects():
 class SubjectGame():
     def __init__(self, win):
         print(win.difficulty_index, win.subject_index)
+        
+    def update():
         pass

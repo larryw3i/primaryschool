@@ -22,7 +22,8 @@ class Menu(pygame_menu.Menu):
 
 
         super().__init__(self.title,self.win.w_width, self.win.w_height,
-            theme=pygame_menu.themes.THEME_BLUE)
+            theme=self.menu_theme,
+            onclose=pygame_menu.events.BACK)
         
         self.add_widgets()
     
@@ -78,13 +79,11 @@ class Win():
         self.w_width, self.w_height = self.surface.get_size()
 
         self.difficulty_index = 2
-        self.subject_index = 2
+        self.subject_index = 0
 
         self.subjects_t, self.subjects = list_subjects()
         self.difficulties = ['Crazy', 'Hard', 'Middle', 'Easy']
         self.difficulties_t = [_(d) for d in self.difficulties]
-
-        self.running = True
 
         self.menu = Menu(self)
         self.menu.mainloop(self.surface)
@@ -101,20 +100,6 @@ class Win():
         _subject_.start(self)
         pass
     
-
-    def update(self):
-        while self.running:
-            events = pygame.event.get()
-            for event in events:
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    self.running = False
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        pass
-                    pass
-
-            pygame.display.update()
 
 def go():
     Win()
