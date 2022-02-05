@@ -20,7 +20,10 @@ requirements = [
     ), (
         'pygame-menu', '', 'https://github.com/ppizarror/pygame-menu',
         'MIT', 'hhttps://github.com/ppizarror/pygame-menu/blob/master/LICENSE'
-    ), ],
+    ), (
+        'xpinyin', '', 'https://github.com/lxneng/xpinyin',
+        'BSD', 'https://github.com/lxneng/xpinyin/blob/master/setup.py#L37'
+    )],
     [(  # dev
         'isort', '', 'https://github.com/pycqa/isort',
         'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'

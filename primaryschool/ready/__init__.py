@@ -20,13 +20,12 @@ class Menu(pygame_menu.Menu):
         self.menu_theme.title_font = font_path
         self.title = _('Primary School')
 
+        super().__init__(self.title, self.win.w_width, self.win.w_height,
+                         theme=self.menu_theme,
+                         onclose=pygame_menu.events.BACK)
 
-        super().__init__(self.title,self.win.w_width, self.win.w_height,
-            theme=self.menu_theme,
-            onclose=pygame_menu.events.BACK)
-        
         self.add_widgets()
-    
+
     def add_widgets(self):
         self.add.text_input(
             _('Name :'), default=_('_name_'),
@@ -57,8 +56,6 @@ class Menu(pygame_menu.Menu):
             _('Quit'),
             pygame_menu.events.EXIT,
             font_name=font_path)
-    
-
 
     def set_difficulty(self, value, difficulty):
         self.win.difficulty_index = difficulty
@@ -92,14 +89,13 @@ class Win():
         self.surface.fill((255, 255, 255))
         pygame.display.update()
 
-
     def start_the_game(self):
         _subject = self.subjects[self.subject_index]
         _subject_ = importlib.import_module(
             'primaryschool.subjects.' + _subject)
         _subject_.start(self)
         pass
-    
+
 
 def go():
     Win()
