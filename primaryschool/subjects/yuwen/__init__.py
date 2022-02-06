@@ -20,17 +20,12 @@ class YuwenGame(SubjectGame):
     def __init__(self, win):
         super().__init__(win)
         self.win = win
-        self.menu = self.win.menu._menu
-        self.menu.set_title(_('Yuwen'))
-        self.menu.clear()
+        self.main_menu = self.win.main_menu
 
-        self.s_width, self.s_height = self.menu.get_size(inner=True)
-        self.surface = pygame.Surface((self.s_width, self.s_height))
-        self.surface.fill((0, 0, 255))
+        self.surface = self.win.surface
+        self.running = True
 
-        self.p = Pinyin()
-
-        self.menu.add.surface(self.surface, border_width=0, padding=(0, 0))
+        self.run()
 
     def get_pinyin(self, zh_str):
         return self.p.get_pinyin(zh_str, '')
@@ -40,6 +35,22 @@ class YuwenGame(SubjectGame):
 
     def get_rand_by_grade(self, n):
         pass
+
+    def run(self):
+
+        while self.running:
+            events = pygame.event.get()
+            for e in events:
+                if e.type == pygame.QUIT:
+                    exit()
+                elif e.type == pygame.KEYDOWN:
+                    if e.key == pygame.K_ESCAPE:
+                        self.main_menu._menu.enable()
+                        return
+            if self.main_menu._menu.is_enabled():
+                self.main_menu._menu.update(events)
+            self.surface.fill((0, 0, 0))
+            pygame.display.flip()
 
 
 def start(win):
