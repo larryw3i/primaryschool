@@ -20,7 +20,7 @@ class YuwenGame(SubjectGame):
     def __init__(self, win):
         super().__init__(win)
         self.win = win
-        self.menu = self.win.menu
+        self.menu = self.win.menu._menu
         self.menu.set_title(_('Yuwen'))
         self.menu.clear()
 
@@ -33,7 +33,7 @@ class YuwenGame(SubjectGame):
         self.menu.add.surface(self.surface, border_width=0, padding=(0, 0))
 
     def get_pinyin(self, zh_str):
-        return self.p.get_pinyin(zh_str '')
+        return self.p.get_pinyin(zh_str, '')
 
     def get_rand_zh_str(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
