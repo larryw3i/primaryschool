@@ -98,7 +98,6 @@ class MainMenu():
         self._menu = default_menu(self.win, self.title)
         self.play_menu = PlayMenu(self.win)
         self.about_menu = AboutMenu(self.win)
-        
 
         self.add_widgets()
 
@@ -119,36 +118,40 @@ class Win():
         self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.surface.get_size()
 
+        self.FPS = 30
+        self.clock = pygame.time.Clock()
 
         self.difficulty = 2
         self.subject = 0
 
-
         self.subjects = get_subjects()
-        self.difficulties = [ _('Crazy'), _('Hard'), _('Middle'), _('Easy')]
+        self.difficulties = [_('Crazy'), _('Hard'), _('Middle'), _('Easy')]
 
         self.main_menu = MainMenu(self)
 
     def clear_screen(self):
         self.surface.fill((255, 255, 255))
         pygame.display.update()
-    
-    def get_difficulty_by_index(self,index=-1):
+
+    def get_difficulty_by_index(self, index=-1):
         index = self.difficulty if index == -1 else index
         return self.difficulties[index]
 
-    def get_subject_by_index(self,index=-1):
+    def get_subject_by_index(self, index=-1):
         index = self.subject if index == -1 else index
         return self.subjects[index]
 
     def run(self):
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                exit()
-        if self.main_menu._menu.is_enabled():
-            self.main_menu._menu.mainloop(self.surface)
-        pygame.display.flip()
+        
+        while self.running:
+            self.clock.tick(self.FPS)
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    exit()
+            if self.main_menu._menu.is_enabled():
+                self.main_menu._menu.mainloop(self.surface)
+            pygame.display.flip()
 
 
 def go():

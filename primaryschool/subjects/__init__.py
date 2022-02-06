@@ -16,7 +16,7 @@ def get_subjects():
         subject = importlib.import_module(
             f'primaryschool.subjects.{p}')
         subjects.append(p)
-    return  subjects
+    return subjects
 
 
 class SubjectGame():
