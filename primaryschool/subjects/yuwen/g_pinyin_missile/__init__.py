@@ -29,6 +29,12 @@ class WordSurface():
 
     def set_dest(self, dest):
         self.dest = dest
+    
+    def get_w(self):
+        return self.dest[0]
+
+    def get_h(self):
+        return self.dest[1]
 
     def add_dest(self, _add):
         self.dest[0] += _add[0]
@@ -39,6 +45,7 @@ class WordSurface():
         
     def copy(self):
         new_word_surface = copy.copy(self)
+        new_word_surface.surface = self.surface.copy()
         return new_word_surface
 
 
@@ -80,38 +87,44 @@ class PinyinMissile(SubjectGame):
         self.word_surface_font_color = (255, 255, 255)
         self.words = self.get_w_by_index((5, 0, 0))
         self.word_surfaces = self.get_word_surfaces()
-        self.word_surfaces_len = len(self.get_word_surfaces())
+        self.word_surfaces_len = len(self.word_surfaces)
         self.used_word_surfaces = []
 
         self.frame_counter = 0
 
         self.run()
 
-    def get_word_surfaces(self) -> List[WordSurface]:
+    def get_random_word_surface_dest(self,word_surface):
+        w,_ = word_surface.get_size()
+        return [random.randint(0, self.w_width - w), 0]
+
+    def get_word_surfaces(self):
         word_surfaces=[]
         for w in self.words:
-            word_surface = self.word_surface_font.render(
+            _surface = self.word_surface_font.render(
                 w, True, self.word_surface_font_color)
-            size = word_surface.get_size()
-            dest = [random.randint(0, self.w_width - size[0]), 0]
+            dest = self.get_random_word_surface_dest(_surface)
             pinyin = self.get_pinyin(w)
             word_surfaces.append(
-                WordSurface(w, word_surface, dest, pinyin))
+                WordSurface(w, _surface, dest, pinyin))
         return word_surfaces
 
     def get_pinyin(self, zh_str):
         return self.p.get_pinyin(zh_str, '')
     
-    def get_rand_w(self, n):
+    def get_rand_word(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
     def get_w_by_index(self, n: Tuple[int, int, int] = (0, 0, 0)):
         return zh_c[n[0]][n[1]] if n[2] == 0 else zh_c[n[0]][n[1]][0:n[2]]
-
+    
     def get_random_word_surface(self):
-        random_word_surface = self.word_surfaces[
+        random_ws = self.word_surfaces[
             random.randint(0, self.word_surfaces_len - 1)]
-        return random_word_surface.copy()
+        _random_ws = random_ws.copy()
+        _random_ws.set_dest(\
+        self.get_random_word_surface_dest(_random_ws.surface))
+        return _random_ws
 
     def update_word_surface(self):
         if self.frame_counter >= self.word_surface_interval:
@@ -121,14 +134,15 @@ class PinyinMissile(SubjectGame):
 
         for w in self.used_word_surfaces:
             w.add_dest((0, self.m_speed))
-            size = w.surface.get_size()
+            _,h = w.surface.get_size()
 
-            if w.dest[1] + size[1] >= self.w_height:
+            if w.get_h() + h >= self.w_height:
                 self.used_word_surfaces.remove(w)
                 continue
 
             if w.pinyin == self._input:
                 self._input = ''
+                self._update_input()
                 self.used_word_surfaces.remove(w)
                 continue
 
@@ -147,11 +161,11 @@ class PinyinMissile(SubjectGame):
             self._input, True, self.input_font_color)
 
     def update_input(self):
-        size = self.input_surface.get_size()
+        w,h = self.input_surface.get_size()
         self.surface.blit(
             self.input_surface,
-            (self.w_width_of_2 - size[0] / 2,
-             self.w_height - size[1]))
+            (self.w_width_of_2 - w / 2,
+             self.w_height - h))
 
     def ascii_not_symbol(self, code):
         return 48 <= code <= 57 or 65 <= code <= 90 or 97 <= code <= 122
