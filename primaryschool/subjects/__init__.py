@@ -14,14 +14,14 @@ def get_subjects():
 
 def get_subjects_t():
     return [
-        importlib.import_module(f'primaryschool.subjects.{m}').name \
-            for m in get_subjects()
+        importlib.import_module(f'primaryschool.subjects.{m}').name
+        for m in get_subjects()
     ]
 
 
 class SubjectGame():
     def __init__(self, win):
-        print(win.subject,win.difficulty, win.game)
+        print(win.subject, win.difficulty, win.game)
 
     def update():
         pass

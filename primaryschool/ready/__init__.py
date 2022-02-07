@@ -10,7 +10,7 @@ from pygame_menu.widgets import *
 
 from primaryschool.locale import _
 from primaryschool.resource import font_path
-from primaryschool.subjects import get_subjects,get_subjects_t, subject_path
+from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
 
 def default_menu(win, title, **kwargs):
@@ -41,7 +41,7 @@ class PlayMenu():
         # index
         self.difficulty = self.win.difficulty
         self.subject = self.win.subject
-        self.subject_game=self.win.game
+        self.subject_game = self.win.game
 
         # subjects, game, difficulties.
         self.subjects = self.win.subjects
@@ -68,7 +68,7 @@ class PlayMenu():
             placeholder=_('Select a Subject'),
             onchange=self.set_subject
         )
-        self.game_dropselect =self._menu.add.dropselect(
+        self.game_dropselect = self._menu.add.dropselect(
             title=_('Game :'),
             items=[(g, index) for index, g in enumerate(
                 self.get_subject_games_t())],
@@ -93,7 +93,7 @@ class PlayMenu():
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=font_path)
-    
+
     def update_game_dropselect(self):
         self.game_dropselect.update_items(
             [(g, index) for index, g in enumerate(
@@ -102,7 +102,7 @@ class PlayMenu():
     def get_subject_games(self):
         game_path = os.path.join(subject_path, self.subjects[self.subject])
         self.subject_games = [d for d in os.listdir(game_path)
-                                  if d.startswith('g_')]
+                              if d.startswith('g_')]
         return ['null'] if len(self.subject_games) < 1 \
             else self.subject_games
 
@@ -121,7 +121,7 @@ class PlayMenu():
         _subject = self.subjects[self.subject]
         _subject_game = self.subject_games[self.subject_game]
         _game_ = importlib.import_module(
-            f'primaryschool.subjects.{_subject}.{_subject_game}' )
+            f'primaryschool.subjects.{_subject}.{_subject_game}')
         _game_.play(self.win)
         pass
 
@@ -181,7 +181,7 @@ class Win():
 
         self.subject_games = []
         self.subject_games_t = []
-        self.game=0
+        self.game = 0
 
         self.main_menu = MainMenu(self)
 
