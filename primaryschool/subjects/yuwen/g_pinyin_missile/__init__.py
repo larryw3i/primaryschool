@@ -35,6 +35,24 @@ class Word():
     def get_rand_word(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
+class Wave():
+    def __init__(self,win):
+        self.win = win
+        self.intercept_interval = \
+        self.win.wordsurfaces_manager.intercept_interval
+        self.surface = self.win.surface
+        self.w_height = self.win.w_height
+        self.w_height_of_2 = self.win.w_height_of_2
+        self.w_width_of_2 = self.win.w_width_of_2
+        self.w_centrex_y = self.win.w_centrex_y
+        self.color = (0,255,0)        
+    
+    def draw(self,frame_counter):
+        if frame_counter == self.intercept_interval:return
+        _radius = self.w_height/(self.intercept_interval-frame_counter)
+        pygame.draw.circle(self.surface,self.color,\
+        self.w_centrex_y,_radius,width = 3)
+
 
 class InputSurface():
     def __init__(self, win):
@@ -77,7 +95,8 @@ class WordSurfacesManager():
         self.count = self.count()
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 1.2 * self.win.FPS
+        self.interval = 1 * self.win.FPS
+        self.intercept_interval = 0.2 * self.win.FPS
         self.moving_speed = 1
 
     def get_surfaces(self):
@@ -93,24 +112,33 @@ class WordSurfacesManager():
         return random_ws.copy()
 
     def blit(self):
-        if self.frame_counter % self.interval == 0:
+        if self.frame_counter >= self.interval:
             ws = self.get_random_surface()
             self.moving_surfaces.append(ws)
             self.frame_counter = 0
 
         for w in self.moving_surfaces:
-            w.add_dest((0, self.moving_speed))
 
-            if w.arrived():
-                self.moving_surfaces.remove(w)
+            if w.intercepted:
+                if w.intercept_frame_counter >= self.intercept_interval:
+                    self.moving_surfaces.remove(w)
+                self.win.wave.draw(w.intercept_frame_counter)
+                self.win.surface.blit(w.surface, w.dest)
+                w.intercept_frame_counter += 1
                 continue
 
             if w.intercept(self.win._input):
                 self.win._input = ''
                 self.win.input_surface._update()
+                self.win.surface.blit(w.surface, w.dest)
+                continue
+            
+
+            if w.arrived():
                 self.moving_surfaces.remove(w)
                 continue
 
+            w.add_dest((0, self.moving_speed))
             self.win.surface.blit(w.surface, w.dest)
 
         self.frame_counter += 1
@@ -126,6 +154,8 @@ class WordSurface():
         self.size = self.get_size()
         self.dest = self.get_random_dest()
         self.pinyin = self.get_pinyin()
+        self.intercepted = False
+        self.intercept_frame_counter = 0
 
     def arrived(self):
         return self.get_y() + self.get_h() >= \
@@ -154,7 +184,8 @@ class WordSurface():
         self.dest[1] += _add[1]
 
     def intercept(self, _pinyin):
-        return _pinyin == self.pinyin
+        self.intercepted = _pinyin == self.pinyin
+        return self.intercepted
 
     def get_pinyin(self):
         return pinyin.get_pinyin(self.word, '')
@@ -185,6 +216,7 @@ class PinyinMissile(SubjectGame):
         self.w_height = self.win.w_height
         self.w_height_of_2 = self.win.w_height_of_2
         self.w_width_of_2 = self.win.w_width_of_2
+        self.w_centrex_y = self.win.w_centrex_y
         self.running = True
         self.FPS = self.win.FPS
         self.clock = self.win.clock
@@ -192,8 +224,8 @@ class PinyinMissile(SubjectGame):
         self.main_menu = self.win.main_menu
 
         self.surface = self.win.surface
-
         self.wall_surface = WallSurface(self)
+
 
         self._input = ''
         self.input_surface = InputSurface(self)
@@ -203,6 +235,8 @@ class PinyinMissile(SubjectGame):
         self.words = self.word.get_cn_ps_words((5, 0, 0))
         self.wordsurfaces_manager = WordSurfacesManager(self)
         self.word_surfaces = self.wordsurfaces_manager.get_surfaces()
+
+        self.wave = Wave(self)
 
     def ascii_not_symbol(self, code):
         return 48 <= code <= 57 or 65 <= code <= 90 or 97 <= code <= 122
@@ -241,7 +275,8 @@ class PinyinMissile(SubjectGame):
             self.wordsurfaces_manager.blit()
             self.input_surface.blit()
 
-            pygame.display.flip()
+
+            pygame.display.update()
 
 
 def play(win):
