@@ -13,21 +13,13 @@ from primaryschool.resource import font_path
 from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
 
-def default_menu(win, title, **kwargs):
-
-    theme = pygame_menu.themes.THEME_BLUE.copy()
-    theme.title_font = font_path
-    return pygame_menu.Menu(title, win.w_width, win.w_height,
-                            theme=theme, **kwargs)
-
-
 class AboutMenu():
 
     def __init__(self, win):
 
         self.win = win
         self.title = _('Play Game')
-        self._menu = default_menu(self.win, self.title)
+        self._menu = self.win.get_default_menu(self.title)
 
 
 class PlayMenu():
@@ -36,20 +28,20 @@ class PlayMenu():
         self.win = win
         self.title = _('Play Game')
 
-        self._menu = default_menu(self.win, self.title)
+        self._menu = self.win.get_default_menu(self.title)
 
         # index
         self.difficulty = self.win.difficulty
         self.subject = self.win.subject
-        self.subject_game = self.win.game
+        self.subject_game = self.win.subject_game
 
         # subjects, game, difficulties.
         self.subjects = self.win.subjects
         self.difficulties = self.win.difficulties
         self.subjects_t = self.win.subjects_t
         self.difficulties_t = self.win.difficulties_t
-        self.subject_games = []
-        self.subject_games_t = []
+        self.subject_games = self.get_subject_games()
+        self.subject_games_t = self.get_subject_games_t()
 
         self.game_dropselect = ...
 
@@ -71,9 +63,9 @@ class PlayMenu():
         self.game_dropselect = self._menu.add.dropselect(
             title=_('Game :'),
             items=[(g, index) for index, g in enumerate(
-                self.get_subject_games_t())],
+                self.subject_games_t)],
             font_name=font_path,
-            default=self.subject_game or None,
+            default=self.subject_game if len(self.subject_games) > 0 else None,
             placeholder=_('Select a game'),
             onchange=self.set_game
         )
@@ -98,6 +90,7 @@ class PlayMenu():
         self.game_dropselect.update_items(
             [(g, index) for index, g in enumerate(
                 self.get_subject_games_t())])
+        self.game_dropselect.set_default_value(0)
 
     def get_subject_games(self):
         game_path = os.path.join(subject_path, self.subjects[self.subject])
@@ -107,9 +100,12 @@ class PlayMenu():
             else self.subject_games
 
     def get_subject_games_t(self):
-        _subject = self.subjects[self.subject]
+
         if len(self.subject_games) < 1:
             self.get_subject_games()
+
+        _subject = self.subjects[self.subject]
+
         trans = []
         for s in self.subject_games:
             _g = importlib.import_module(
@@ -141,7 +137,7 @@ class MainMenu():
     def __init__(self, win):
         self.win = win
         self.title = _('Primary School')
-        self._menu = default_menu(self.win, self.title)
+        self._menu = self.win.get_default_menu(self.title)
         self.play_menu = PlayMenu(self.win)
         self.about_menu = AboutMenu(self.win)
 
@@ -166,6 +162,7 @@ class Win():
 
         self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.surface.get_size()
+        self.w_width_of_2, self.w_height_of_2 = self.w_width / 2, self.w_height / 2
 
         self.FPS = 30
         self.clock = pygame.time.Clock()
@@ -181,9 +178,16 @@ class Win():
 
         self.subject_games = []
         self.subject_games_t = []
-        self.game = 0
+        self.subject_game = 0
 
         self.main_menu = MainMenu(self)
+
+    def get_default_menu(self, title, **kwargs):
+
+        theme = pygame_menu.themes.THEME_BLUE.copy()
+        theme.title_font = font_path
+        return pygame_menu.Menu(title, self.w_width, self.w_height,
+                                theme=theme, **kwargs)
 
     def clear_screen(self):
         self.surface.fill((255, 255, 255))

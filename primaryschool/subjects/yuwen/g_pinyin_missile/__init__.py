@@ -15,38 +15,164 @@ from xpinyin import Pinyin
 from primaryschool.locale import _
 from primaryschool.resource import font_path, get_font
 from primaryschool.subjects import *
-from primaryschool.subjects.yuwen.words import c as zh_c
+from primaryschool.subjects.yuwen.words import cn_ps_c
 
 name = _('pinyin missile')
 
 
+pinyin = Pinyin()
+default_font = get_font(50)
+
+
+class Word():
+
+    def __init__(self):
+        pass
+
+    def get_cn_ps_words(self, n: Tuple[int, int, int] = (0, 0, 0)):
+        return cn_ps_c[n[0]][n[1]] if n[2] == 0 else zh_c[n[0]][n[1]][0:n[2]]
+
+    def get_rand_word(self, n):
+        return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
+
+
+class InputSurface():
+    def __init__(self, win):
+        self.win = win
+        self.font = default_font
+        self.font_color = (200, 22, 98)
+        self.surface = None
+        self.frame_counter = 0
+
+    def _update(self):
+        self.surface = self.font.render(
+            self.win._input, False, self.font_color)
+
+    def blit(self):
+        if self.surface is None:
+            return
+        w, h = self.surface.get_size()
+        self.win.surface.blit(
+            self.surface,
+            (self.win.w_width_of_2 - w / 2,
+             self.win.w_height - h))
+
+
+class WallSurface():
+    def __init__(self, win):
+        self.win = win
+        self.h = self.win.w_height / 20
+        self.surface = pygame.Surface((self.win.w_width, self.h))
+        self.color = (255, 200, 99)
+
+    def blit(self):
+        self.surface.fill(self.color)
+        self.win.surface.blit(self.surface, (0, self.win.w_height - self.h))
+
+
+class WordSurfacesManager():
+    def __init__(self, win, frame_counter=0):
+        self.win = win
+        self.surfaces = self.get_surfaces()
+        self.count = self.count()
+        self.moving_surfaces = []
+        self.frame_counter = frame_counter
+        self.interval = 1.2 * self.win.FPS
+        self.moving_speed = 1
+
+    def get_surfaces(self):
+        assert len(self.win.words) > 0
+        return [WordSurface(self.win, w) for w in self.win.words]
+
+    def count(self):
+        return len(self.surfaces)
+
+    def get_random_surface(self):
+        random_ws = self.surfaces[
+            random.randint(0, self.count - 1)]
+        return random_ws.copy()
+
+    def blit(self):
+        if self.frame_counter % self.interval == 0:
+            ws = self.get_random_surface()
+            self.moving_surfaces.append(ws)
+            self.frame_counter = 0
+
+        for w in self.moving_surfaces:
+            w.add_dest((0, self.moving_speed))
+
+            if w.arrived():
+                self.moving_surfaces.remove(w)
+                continue
+
+            if w.intercept(self.win._input):
+                self.win._input = ''
+                self.win.input_surface._update()
+                self.moving_surfaces.remove(w)
+                continue
+
+            self.win.surface.blit(w.surface, w.dest)
+
+        self.frame_counter += 1
+
+
 class WordSurface():
-    def __init__(self, word, surface, dest=(0, 0), pinyin=''):
+    def __init__(self, win, word):
+        self.win = win
         self.word = word
-        self.surface = surface
-        self.dest = dest
-        self.pinyin = pinyin
+        self.font = default_font
+        self.font_color = (200, 22, 98)
+        self.surface = self.get_surface()
+        self.size = self.get_size()
+        self.dest = self.get_random_dest()
+        self.pinyin = self.get_pinyin()
+
+    def arrived(self):
+        return self.get_y() + self.get_h() >= \
+            self.win.w_height - self.win.wall_surface.h
+
+    def get_surface(self):
+        return self.font.render(self.word, False, self.font_color)
 
     def set_dest(self, dest):
         self.dest = dest
 
-    def get_w(self):
+    def get_x(self):
         return self.dest[0]
 
-    def get_h(self):
+    def get_y(self):
         return self.dest[1]
+
+    def get_w(self):
+        return self.size[0]
+
+    def get_h(self):
+        return self.size[1]
 
     def add_dest(self, _add):
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
 
-    def compare_pinyin(self, _pinyin):
+    def intercept(self, _pinyin):
         return _pinyin == self.pinyin
 
+    def get_pinyin(self):
+        return pinyin.get_pinyin(self.word, '')
+
+    def get_size(self):
+        return self.surface.get_size()
+
+    def set_random_dest(self):
+        self.dest = self.get_random_dest()
+
+    def get_random_dest(self):
+        return [random.randint(0, self.win.w_width - self.get_w()), 0]
+
     def copy(self):
-        new_word_surface = copy.copy(self)
-        new_word_surface.surface = self.surface.copy()
-        return new_word_surface
+        _new = copy.copy(self)
+        _new.surface = self.surface.copy()
+        _new.set_random_dest()
+        return _new
 
 
 class PinyinMissile(SubjectGame):
@@ -56,116 +182,27 @@ class PinyinMissile(SubjectGame):
 
         # window
         self.w_width = self.win.w_width
-        self.w_width_of_2 = self.win.w_width / 2
         self.w_height = self.win.w_height
-        self.w_height_of_2 = self.win.w_height / 2
-
-        self.main_menu = self.win.main_menu
-        self.p = Pinyin()
-
-        self.surface = self.win.surface
-        self.wall_surface = pygame.Surface((self.w_width, self.w_height / 20))
-        self.wall_surface_size = self.wall_surface.get_size()
-
+        self.w_height_of_2 = self.win.w_height_of_2
+        self.w_width_of_2 = self.win.w_width_of_2
         self.running = True
         self.FPS = self.win.FPS
         self.clock = self.win.clock
 
+        self.main_menu = self.win.main_menu
+
+        self.surface = self.win.surface
+
+        self.wall_surface = WallSurface(self)
+
         self._input = ''
-        self.input_font = get_font(50)
-        self.input_font_color = (200, 22, 98)
-        self.input_surface = self.input_font.render(
-            '', 1, self.input_font_color)
-
-        self.m_speed = 1
-
-        self.scale_size = 1.5
+        self.input_surface = InputSurface(self)
 
         # word surface
-        self.word_surface_interval = 1.2 * self.FPS
-        self.word_surface_font = get_font(50)
-        self.word_surface_font_color = (255, 255, 255)
-        self.words = self.get_w_by_index((5, 0, 0))
-        self.word_surfaces = self.get_word_surfaces()
-        self.word_surfaces_len = len(self.word_surfaces)
-        self.used_word_surfaces = []
-
-        self.frame_counter = 0
-
-        self.run()
-
-    def get_random_word_surface_dest(self, word_surface):
-        w, _ = word_surface.get_size()
-        return [random.randint(0, self.w_width - w), 0]
-
-    def get_word_surfaces(self):
-        word_surfaces = []
-        for w in self.words:
-            _surface = self.word_surface_font.render(
-                w, True, self.word_surface_font_color)
-            dest = self.get_random_word_surface_dest(_surface)
-            pinyin = self.get_pinyin(w)
-            word_surfaces.append(
-                WordSurface(w, _surface, dest, pinyin))
-        return word_surfaces
-
-    def get_pinyin(self, zh_str):
-        return self.p.get_pinyin(zh_str, '')
-
-    def get_rand_word(self, n):
-        return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
-
-    def get_w_by_index(self, n: Tuple[int, int, int] = (0, 0, 0)):
-        return zh_c[n[0]][n[1]] if n[2] == 0 else zh_c[n[0]][n[1]][0:n[2]]
-
-    def get_random_word_surface(self):
-        random_ws = self.word_surfaces[
-            random.randint(0, self.word_surfaces_len - 1)]
-        _random_ws = random_ws.copy()
-        _random_ws.set_dest(
-            self.get_random_word_surface_dest(_random_ws.surface))
-        return _random_ws
-
-    def update_word_surface(self):
-        if self.frame_counter >= self.word_surface_interval:
-            ws = self.get_random_word_surface()
-            self.used_word_surfaces.append(ws)
-            self.frame_counter = 0
-
-        for w in self.used_word_surfaces:
-            w.add_dest((0, self.m_speed))
-            _, h = w.surface.get_size()
-
-            if w.get_h() + h >= self.w_height:
-                self.used_word_surfaces.remove(w)
-                continue
-
-            if w.pinyin == self._input:
-                self._input = ''
-                self._update_input()
-                self.used_word_surfaces.remove(w)
-                continue
-
-            self.surface.blit(w.surface, w.dest)
-
-        self.frame_counter += 1
-
-    def update_wall(self):
-        self.wall_surface.fill((255, 200, 99))
-        self.surface.blit(self.wall_surface,
-                          (0, self.w_height - self.wall_surface_size[1]))
-
-    def _update_input(self, _input=''):
-        self._input += _input
-        self.input_surface = self.input_font.render(
-            self._input, True, self.input_font_color)
-
-    def update_input(self):
-        w, h = self.input_surface.get_size()
-        self.surface.blit(
-            self.input_surface,
-            (self.w_width_of_2 - w / 2,
-             self.w_height - h))
+        self.word = Word()
+        self.words = self.word.get_cn_ps_words((5, 0, 0))
+        self.wordsurfaces_manager = WordSurfacesManager(self)
+        self.word_surfaces = self.wordsurfaces_manager.get_surfaces()
 
     def ascii_not_symbol(self, code):
         return 48 <= code <= 57 or 65 <= code <= 90 or 97 <= code <= 122
@@ -181,10 +218,11 @@ class PinyinMissile(SubjectGame):
                     return
                 elif e.key == pygame.K_BACKSPACE:
                     self._input = self._input[0:-1]
-                    self._update_input()
+                    self.input_surface._update()
                     return
                 elif self.ascii_not_symbol(e.key):
-                    self._update_input(pygame.key.name(e.key))
+                    self._input += pygame.key.name(e.key)
+                    self.input_surface._update()
                     return
 
     def run(self):
@@ -199,14 +237,13 @@ class PinyinMissile(SubjectGame):
             if self.main_menu._menu.is_enabled():
                 self.main_menu._menu.update(events)
 
-            self.update_wall()
-            self.update_word_surface()
-
-            self.update_input()
+            self.wall_surface.blit()
+            self.wordsurfaces_manager.blit()
+            self.input_surface.blit()
 
             pygame.display.flip()
 
 
 def play(win):
-    PinyinMissile(win)
+    PinyinMissile(win).run()
     pass

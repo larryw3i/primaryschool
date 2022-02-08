@@ -14,6 +14,5 @@ from xpinyin import Pinyin
 from primaryschool.locale import _
 from primaryschool.resource import font_path, get_font
 from primaryschool.subjects import *
-from primaryschool.subjects.yuwen.words import c as zh_c
 
 name = _('Yuwen')
