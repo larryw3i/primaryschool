@@ -9,7 +9,7 @@ from pygame.locals import *
 from pygame_menu.widgets import *
 
 from primaryschool.locale import _
-from primaryschool.resource import font_path
+from primaryschool.resource import font, font_path
 from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
 
@@ -50,12 +50,12 @@ class PlayMenu():
     def add_widgets(self):
         self._menu.add.text_input(
             _('Name :'), default=_('_name_'),
-            font_name=font_path)
+            font_name=self.win.font_path)
         self._menu.add.dropselect(
             title=_('Subject :'),
             items=[(name, index)
                    for index, name in enumerate(self.subjects_t)],
-            font_name=font_path,
+            font_name=self.win.font_path,
             default=self.subject,
             placeholder=_('Select a Subject'),
             onchange=self.set_subject
@@ -64,7 +64,7 @@ class PlayMenu():
             title=_('Game :'),
             items=[(g, index) for index, g in enumerate(
                 self.subject_games_t)],
-            font_name=font_path,
+            font_name=self.win.font_path,
             default=self.subject_game if len(self.subject_games) > 0 else None,
             placeholder=_('Select a game'),
             onchange=self.set_game
@@ -72,7 +72,7 @@ class PlayMenu():
         self._menu.add.dropselect(
             title=_('Difficulty :'),
             items=[(d, index) for index, d in enumerate(self.difficulties_t)],
-            font_name=font_path,
+            font_name=self.win.font_path,
             default=self.difficulty,
             placeholder=_('Select a difficulty'),
             onchange=self.set_difficulty
@@ -80,11 +80,11 @@ class PlayMenu():
         self._menu.add.button(
             _('Play'),
             self.start_the_game,
-            font_name=font_path)
+            font_name=self.win.font_path)
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
-            font_name=font_path)
+            font_name=self.win.font_path)
 
     def update_game_dropselect(self):
         self.game_dropselect.update_items(
@@ -145,26 +145,25 @@ class MainMenu():
 
     def add_widgets(self):
         self._menu.add.button(_('Play'), self.play_menu._menu,
-                              font_name=font_path,)
+                              font_name=self.win.font_path,)
         self._menu.add.button(_('About'), self.about_menu._menu,
-                              font_name=font_path,)
+                              font_name=self.win.font_path,)
         self._menu.add.button(_('Quit'), pygame_menu.events.EXIT,
-                              font_name=font_path,)
+                              font_name=self.win.font_path,)
 
 
 class Win():
     def __init__(self):
 
         pygame.init()
-        pygame.font.init()
 
         self.running = True
 
         self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2, self.w_height_of_2 = self.w_width / 2, \
-        self.w_height / 2
-        self.w_centrex_y = [self.w_width_of_2,self.w_height]
+            self.w_height / 2
+        self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
         self.clock = pygame.time.Clock()
 
@@ -181,12 +180,15 @@ class Win():
         self.subject_games_t = []
         self.subject_game = 0
 
+        self.font_path = font_path
+        self.font = font
+
         self.main_menu = MainMenu(self)
 
     def get_default_menu(self, title, **kwargs):
 
         theme = pygame_menu.themes.THEME_BLUE.copy()
-        theme.title_font = font_path
+        theme.title_font = self.font
         return pygame_menu.Menu(title, self.w_width, self.w_height,
                                 theme=theme, **kwargs)
 
