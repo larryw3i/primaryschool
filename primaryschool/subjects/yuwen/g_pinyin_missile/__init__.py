@@ -11,12 +11,12 @@ from pygame.locals import *
 from xpinyin import Pinyin
 
 from primaryschool.locale import _
-from primaryschool.resource import font, font_path,get_font_path
+from primaryschool.resource import (default_font, default_font_path,
+                                    get_default_font, get_font_path)
 from primaryschool.subjects import *
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
 name = _('pinyin missile')
-
 
 pinyin = Pinyin()
 
@@ -66,10 +66,13 @@ class InputSurface():
     def __init__(self, pm):
         self.pm = pm
         self.win = self.pm.win
-        self.font = self.win.font
+        self.font_size = 55
+        self.font = get_default_font(self.font_size)
         self.font_color = (200, 22, 98)
         self.surface = None
         self.frame_counter = 0
+
+        self.font.set_bold(True)
 
     def _update(self):
         self.surface = self.font.render(
@@ -101,10 +104,10 @@ class WallSurface():
 class WordSurfacesManager():
     def __init__(self, pm, frame_counter=0):
         self.pm = pm
-        self.lang_code = 'zh_CN'
-        self.font_path = get_font_path(self.lang_code,show_not_found=True)
         self.font_size = 50
-        self.font = pygame.font.Font(self.font_path,self.font_size)
+        self.lang_code = 'zh_CN'
+        self.font_path = get_font_path(self.lang_code, show_not_found=True)
+        self.font = pygame.font.Font(self.font_path, self.font_size)
         self.win = self.pm.win
         self.surfaces = self.get_surfaces()
         self.count = self.count()
@@ -115,16 +118,16 @@ class WordSurfacesManager():
         self.moving_speed = 1
         self.intercepted_color = (20, 100, 100, 80)
 
-    def set_font_size(self,size):
-        assert isinstance(size,int)
+    def set_font_size(self, size):
+        assert isinstance(size, int)
         self.font_size = size
 
     def get_font_size(self):
-        return self.font_size 
+        return self.font_size
 
     def get_surfaces(self):
         assert len(self.pm.words) > 0
-        return [WordSurface(self.pm,self, w) for w in self.pm.words]
+        return [WordSurface(self.pm, self, w) for w in self.pm.words]
 
     def count(self):
         return len(self.surfaces)
@@ -176,7 +179,7 @@ class WordSurface():
         self.manager = _manager
         self.word = word
         self.font_color = (200, 22, 98)
-        self.font=self.manager.font
+        self.font = self.manager.font
         self.circle_color = (100, 20, 25, 20)
         self.circle_width = 4
         self.surface = self.get_surface()

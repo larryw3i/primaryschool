@@ -9,7 +9,7 @@ from pygame.locals import *
 from pygame_menu.widgets import *
 
 from primaryschool.locale import _
-from primaryschool.resource import font, font_path
+from primaryschool.resource import default_font, default_font_path
 from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
 
@@ -180,8 +180,8 @@ class Win():
         self.subject_games_t = []
         self.subject_game = 0
 
-        self.font_path = font_path
-        self.font = font
+        self.font_path = default_font_path
+        self.font = default_font
 
         self.main_menu = MainMenu(self)
 
@@ -214,6 +214,7 @@ class Win():
                     exit()
             if self.main_menu._menu.is_enabled():
                 self.main_menu._menu.mainloop(self.surface)
+
             pygame.display.flip()
 
 

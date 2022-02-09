@@ -10,6 +10,8 @@ from primaryschool.locale import _, sys_lang_code
 resource_path = os.path.abspath(os.path.dirname(__file__))
 project_font_path = os.path.join(resource_path, 'fonts')
 
+pygame.font.init()
+
 
 class Resource():
     def __init__(self):
@@ -67,16 +69,20 @@ class Resource():
         }
 
 
-pygame.font.init()
-
 r = Resource()
-font_path = r.get_font_path()
-font = pygame.font.Font(font_path, r.default_font_size)
+default_font_path = r.get_font_path()
+
+
+def get_default_font(size=None):
+    return pygame.font.Font(default_font_path, size or r.default_font_size)
 
 
 def get_font_path(lang_code, show_not_found=False):
-    return r.get_font_path(lang_code, show_not_found=False)
+    return r.get_font_path(lang_code, show_not_found)
 
 
 def get_material(name):
     return r.get_material(name)
+
+
+default_font = get_default_font()
