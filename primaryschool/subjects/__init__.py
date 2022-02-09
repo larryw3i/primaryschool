@@ -21,7 +21,8 @@ def get_subjects_t():
 
 class SubjectGame():
     def __init__(self, win):
-        print(win.subject, win.difficulty, win.subject_game)
+        # print(win.subject, win.difficulty, win.subject_game)
+        ...
 
     def update():
         pass
