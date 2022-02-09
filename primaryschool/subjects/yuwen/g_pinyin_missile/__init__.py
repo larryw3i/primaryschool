@@ -45,13 +45,21 @@ class Wave():
         self.w_height_of_2 = self.win.w_height_of_2
         self.w_width_of_2 = self.win.w_width_of_2
         self.w_centrex_y = self.win.w_centrex_y
-        self.color = (0,255,0)        
+        self.color = (0,255,0,20)  
+        self.width = 5     
+    
+    def set_color(self,color):
+        self.color = color
+
+    def set_width(self,width):
+        assert isinstance(width,int)
+        self.width = widgets
     
     def draw(self,frame_counter):
         if frame_counter == self.intercept_interval:return
         _radius = self.w_height/(self.intercept_interval-frame_counter)
         pygame.draw.circle(self.surface,self.color,\
-        self.w_centrex_y,_radius,width = 3)
+        self.w_centrex_y,_radius,width = self.width)
 
 
 class InputSurface():
@@ -124,6 +132,7 @@ class WordSurfacesManager():
                     self.moving_surfaces.remove(w)
                 self.win.wave.draw(w.intercept_frame_counter)
                 self.win.surface.blit(w.surface, w.dest)
+                w.circle()
                 w.intercept_frame_counter += 1
                 continue
 
@@ -150,12 +159,21 @@ class WordSurface():
         self.word = word
         self.font = default_font
         self.font_color = (200, 22, 98)
+        self.circle_color = (0,0,255,20)
+        self.circle_width = 4
         self.surface = self.get_surface()
         self.size = self.get_size()
         self.dest = self.get_random_dest()
         self.pinyin = self.get_pinyin()
         self.intercepted = False
         self.intercept_frame_counter = 0
+
+    def set_circle_color(self,color):        
+        self.circle_color = color
+
+    def set_circle_width(self,width):
+        assert isinstance(width,int)
+        self.circle_width = width
 
     def arrived(self):
         return self.get_y() + self.get_h() >= \
@@ -182,6 +200,17 @@ class WordSurface():
     def add_dest(self, _add):
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
+    
+    def get_circle_center(self):
+        return [self.get_x()+self.get_w()/2,self.get_y()+self.get_h()/2]
+
+    def get_circle_radius(self):
+        return self.get_w()/2
+    
+    def circle(self):
+        pygame.draw.circle(self.win.surface,self.circle_color,\
+        self.get_circle_center(),self.get_circle_radius(),\
+        width = self.circle_width)
 
     def intercept(self, _pinyin):
         self.intercepted = _pinyin == self.pinyin
