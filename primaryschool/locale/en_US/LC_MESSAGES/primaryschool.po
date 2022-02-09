@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 05:31+0800\n"
+"POT-Creation-Date: 2022-02-09 19:45+0800\n"
 "PO-Revision-Date: 2022-02-07 04:35+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -28,13 +28,14 @@ msgstr "yuwen"
 #: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
 #: primaryschool/ready/__init__.py:28 primaryschool/ready/__init__.py:97
 #: primaryschool/ready/__init__.py:107 primaryschool/ready/__init__.py:110
-#: primaryschool/ready/__init__.py:133
+#: primaryschool/ready/__init__.py:133 primaryschool/ready/__init__.py:139
 msgid "Primary School"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:37 primaryschool/ready/__init__.py:42
 #: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:51
 #: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:58
+#: primaryschool/ready/__init__.py:52
 msgid "Name :"
 msgstr ""
 
@@ -68,7 +69,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:72 primaryschool/ready/__init__.py:105
 #: primaryschool/ready/__init__.py:82 primaryschool/ready/__init__.py:115
 #: primaryschool/ready/__init__.py:118 primaryschool/ready/__init__.py:87
-#: primaryschool/ready/__init__.py:141
+#: primaryschool/ready/__init__.py:141 primaryschool/ready/__init__.py:81
+#: primaryschool/ready/__init__.py:147
 msgid "Play"
 msgstr ""
 
@@ -76,6 +78,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:62 primaryschool/ready/__init__.py:66
 #: primaryschool/ready/__init__.py:107 primaryschool/ready/__init__.py:119
 #: primaryschool/ready/__init__.py:122 primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:151
 msgid "Quit"
 msgstr ""
 
@@ -110,18 +113,19 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
 #: primaryschool/ready/__init__.py:51 primaryschool/ready/__init__.py:53
-#: primaryschool/ready/__init__.py:58
+#: primaryschool/ready/__init__.py:58 primaryschool/ready/__init__.py:52
 msgid "_name_"
 msgstr "ps"
 
 #: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:46
 #: primaryschool/ready/__init__.py:54 primaryschool/ready/__init__.py:56
-#: primaryschool/ready/__init__.py:61
+#: primaryschool/ready/__init__.py:61 primaryschool/ready/__init__.py:55
 msgid "Subject :"
 msgstr ""
 
 #: primaryschool/subjects/yuwen/__init__.py:8
 #: primaryschool/subjects/yuwen/__init__.py:19
+#: primaryschool/subjects/yuwen/__init__.py:18
 msgid "Yuwen"
 msgstr "Yuwen"
 
@@ -130,16 +134,18 @@ msgid "Math"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:37
+#: primaryschool/ready/__init__.py:21
 msgid "Play Game"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:76 primaryschool/ready/__init__.py:86
-#: primaryschool/ready/__init__.py:91
+#: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:85
 msgid "Return to main menu"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:106 primaryschool/ready/__init__.py:117
 #: primaryschool/ready/__init__.py:120 primaryschool/ready/__init__.py:143
+#: primaryschool/ready/__init__.py:149
 msgid "About"
 msgstr ""
 
@@ -156,13 +162,23 @@ msgid "Select a game"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:78 primaryschool/ready/__init__.py:83
+#: primaryschool/ready/__init__.py:77
 msgid "Select a difficulty"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:111
+#: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:114
 msgid "null"
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:18
 msgid "pinyin missile"
+msgstr ""
+
+#: primaryschool/resource/__init__.py:40
+msgid "No font found"
+msgstr ""
+
+#: primaryschool/resource/__init__.py:41
+#, python-format
+msgid "Could not find font of %s."
 msgstr ""
