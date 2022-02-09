@@ -16,10 +16,10 @@ setuptools.setup(
     author_email=app_author_email,
     maintainer=app_maintainer,
     maintainer_email=app_maintainer_email,
-    description="primary school knowledge games",
+    description=app_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/larryw3i/primaryschool",
+    url=app_url,
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

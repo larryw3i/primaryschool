@@ -1,29 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# larry <larryw3i@163.com>, 2022.
-#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: unnamed project\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-09 22:53+0800\n"
-"PO-Revision-Date: 2022-02-07 04:35+0800\n"
-"Last-Translator: larry <larryw3i@163.com>\n"
-"Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
-"Language: zh_CHS\n"
+"POT-Creation-Date: 2022-02-09 22:54+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 40.0\n"
 
 #: primaryschool/subjects/yuwen/__init__.py:7
 msgid "math"
-msgstr "math"
+msgstr ""
 
 #: primaryschool/subjects/math/__init__.py:6
 #: primaryschool/subjects/math/__init__.py:7
 msgid "yuwen"
-msgstr "yuwen"
+msgstr ""
 
 #: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
 #: primaryschool/ready/__init__.py:28 primaryschool/ready/__init__.py:97
@@ -126,7 +127,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:84
 #: primaryschool/ready/__init__.py:85
 msgid "_name_"
-msgstr "ps"
+msgstr ""
 
 #: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:46
 #: primaryschool/ready/__init__.py:54 primaryschool/ready/__init__.py:56
@@ -140,7 +141,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/__init__.py:19
 #: primaryschool/subjects/yuwen/__init__.py:18
 msgid "Yuwen"
-msgstr "Yuwen"
+msgstr ""
 
 #: primaryschool/subjects/math/__init__.py:8
 msgid "Math"

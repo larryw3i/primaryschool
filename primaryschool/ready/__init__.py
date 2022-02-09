@@ -9,17 +9,50 @@ from pygame.locals import *
 from pygame_menu.widgets import *
 
 from primaryschool.locale import _
-from primaryschool.resource import default_font, default_font_path
+from primaryschool.resource import (default_font, default_font_path,
+                                    get_default_font)
+from primaryschool.settings import *
 from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
+
+app_description =_( "primary school knowledge games" )
 
 class AboutMenu():
 
     def __init__(self, win):
 
         self.win = win
-        self.title = _('Play Game')
+        self.title = _('About')
         self._menu = self.win.get_default_menu(self.title)
+        self.app_name_font = get_default_font(50)
+        self.app_version_font = get_default_font(20)
+        self.app_description_font = get_default_font(22)
+        self.app_url_font = get_default_font(20)
+        self.app_author_font = get_default_font(22)
+        self.app_contributors_font = self.app_author_font
+
+        self.add_widgets()
+
+    def add_widgets(self):
+        self._menu.add.label(app_name, max_char=-1,
+                             font_name=self.app_name_font)
+        self._menu.add.label(app_version, max_char=-1,
+                             font_name=self.app_version_font)
+        self._menu.add.label(app_description, max_char=-1,
+                             font_name=self.app_description_font)
+        self._menu.add.url(app_url, font_name=self.app_url_font)
+        self._menu.add.label(_('Author'), max_char=-1,
+                             font_name=get_default_font(32))
+        self._menu.add.label(app_author, max_char=-1,
+                             font_name=self.app_author_font)
+        self._menu.add.label(_('Contributors'), max_char=-1,
+                             font_name=get_default_font(32))
+        self._menu.add.label('\n'.join(app_contributors[1:]),
+                             max_char=-1, font_name=self.app_contributors_font)
+        self._menu.add.button(
+            _('Return to main menu'),
+            pygame_menu.events.BACK,
+            font_name=self.win.font_path)
 
 
 class PlayMenu():
