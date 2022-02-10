@@ -12,7 +12,7 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font)
 from primaryschool.settings import *
-from primaryschool.subjects import subjects, games
+from primaryschool.subjects import games, subjects
 
 app_description_t = _("app_description_t")
 
@@ -63,7 +63,7 @@ class PlayMenu():
         self.games = self.win.games
 
         self.subject_index = self.get_default_subject_index()
-        self.game_index = self.games[0].difficulty
+        self.game_index = 0
         self.difficulty_index = 0
 
         self.title = _('Play Game')
@@ -90,7 +90,7 @@ class PlayMenu():
             title=_('Game :'),
             items=[(g.name_t, index) for index, g in enumerate(self.games)],
             font_name=self.win.font_path,
-            default=0,
+            default=self.game_index,
             placeholder=_('Select a game'),
             onchange=self.set_game
         )
@@ -100,7 +100,7 @@ class PlayMenu():
             items=[(d[1], index) for index, d in
                    enumerate(self.games[0].difficulties)],
             font_name=self.win.font_path,
-            default=games[0].difficulty,
+            default=self.difficulty_index,
             placeholder=_('Select a difficulty'),
             onchange=self.set_difficulty
         )
@@ -125,16 +125,7 @@ class PlayMenu():
         self.game_dropselect.set_default_value(0)
 
     def start_the_game(self):
-        self.get_game_is_on().play(self.win)
-
-    def games_off(self):
-        for g in self.games:
-            g.on = False
-
-    def get_game_is_on(self):
-        for g in self.games:
-            if g.on:
-                return g
+        self.games[self.game_index].play(self.win)
 
     def set_difficulty(self, value, index):
         self.difficulty_index = index

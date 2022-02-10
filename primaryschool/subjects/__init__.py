@@ -42,18 +42,10 @@ class Game():
         self.module = import_module(self.module_str)
         self.name = self.get_name()
         self.name_t = self.get_name_t()
-        self.difficulty = 0
         self.difficulties = self.get_difficulties()
 
-    def get_difficulty(self):
-        return self.difficulty
-
-    def set_difficulty(self, difficulty):
-        self.difficulty = difficulty
-
     def get_difficulties(self):
-        self.difficulties = self.module.difficulties
-        
+        return self.module.difficulties
 
     def get_name_t(self):
         return self.module.name_t
@@ -61,9 +53,11 @@ class Game():
     def get_name(self):
         return self.module_str.split('.')[-1]
 
-    def play(self):
-        self.on = True
-        self.module.play()
+    def play(self,win):
+        from primaryschool.ready import Win
+        assert isinstance(win,Win)
+        
+        self.module.play(win)
 
 
 class Subject():
@@ -94,5 +88,4 @@ class SubjectGame():
 
 subjects = [Subject(n) for n in subject_names]
 
-games = sum([s.games for s in subjects],[])
-
+games = sum([s.games for s in subjects], [])
