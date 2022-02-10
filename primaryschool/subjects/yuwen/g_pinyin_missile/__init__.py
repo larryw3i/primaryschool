@@ -65,7 +65,7 @@ class Word():
             words = cn_ps_c[6:16]
         elif g == 14:
             words = cn_ps_c[0:16]
-        return sum(words, [])[0:20]
+        return sum(words, [])[0:10]
 
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
@@ -257,7 +257,7 @@ class InfoSurface():
         self.surface = self.win.surface
         self.game_info_dest = (10, 10)
         self.game_info = name_t + \
-            ' (' + difficulties[self.win.difficulty_index] + ')'
+            '/' + difficulties[self.win.difficulty_index]
         self.game_info_color = (255, 0, 255, 10)
         self.font_size = 25
         self.font = get_default_font(self.font_size)
@@ -268,7 +268,7 @@ class InfoSurface():
         self.datetime_diff_font_size = 50
         self.datetime_diff_font = get_default_font(
             self.datetime_diff_font_size)
-        self.datetime_diff_font_color = (200, 50, 20)
+        self.datetime_diff_font_color = ...
 
         self.font = get_default_font(self.font_size)
 
@@ -281,11 +281,12 @@ class InfoSurface():
 
         self.score_surface = ...
         self.datetime_diff_surface = ...
+        self.greeting_surface = ...
 
         self.end_time = self.win.end_time = None
 
     def get_score_font_color(self):
-        return (255, 20, 0) if self._pass else (20, 255, 0)
+        return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
         return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') +\
@@ -320,11 +321,20 @@ class InfoSurface():
         self._pass = self.score > 60
         return self._pass
 
+    def get_greeting(self):
+        return _('Success!') if self._pass \
+            else _('Practice makes perfect, keep trying!')
+
     def get_score_str(self):
-        return (
-            _('Success!') if self._pass
-            else _('Practice makes perfect, keep trying')) + '\n' +\
-            _('Score: ') + str(self.score)
+        return _('Score: ') + str(self.score)
+
+    def get_greeting_dest(self):
+        _w, _h = self.greeting_surface.get_size()
+        _, _s_h = self.score_surface.get_size()
+        return [
+            self.win.w_width_of_2 - _w / 2,
+            self.win.w_height_of_2 - _h - _s_h
+        ]
 
     def get_score_surface_dest(self):
         _w, _h = self.score_surface.get_size()
@@ -344,18 +354,30 @@ class InfoSurface():
         self.score = self.get_score()
         self.get_score_pass()
 
+        self.greeting_surface = self.score_font.render(
+            self.get_greeting(),
+            False,
+            self.get_score_font_color()
+        )
+
         self.score_surface = self.score_font.render(
             self.get_score_str(),
             False,
             self.get_score_font_color())
+
         self.datetime_diff_surface = self.datetime_diff_font.render(
             self.get_datetime_diff_str(),
             False,
-            self.datetime_diff_font_color)
+            self.get_score_font_color())
+
+        self.surface.blit(
+            self.greeting_surface,
+            self.get_greeting_dest())
 
         self.surface.blit(
             self.score_surface,
             self.get_score_surface_dest())
+
         self.surface.blit(
             self.datetime_diff_surface,
             self.get_datetime_diff_surface_dest())

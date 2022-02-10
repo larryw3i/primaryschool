@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 02:09+0800\n"
-"PO-Revision-Date: 2022-02-11 02:10+0800\n"
+"POT-Creation-Date: 2022-02-11 02:54+0800\n"
+"PO-Revision-Date: 2022-02-11 02:55+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -379,28 +379,42 @@ msgstr "六年级（下）"
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
 msgid "win: "
 msgstr "胜利: "
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
 msgid "lose: "
 msgstr "失败: "
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:266
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:291
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
 msgid "remain: "
 msgstr "剩余: "
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:268
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:295
 msgid "total: "
 msgstr "总共: "
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:305
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:307
 msgid "Cost: "
 msgstr "耗时: "
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:318
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:329
 msgid "Score: "
 msgstr "分数: "
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:325
+msgid "Success!"
+msgstr "挑战成功!"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:326
+msgid "Practice makes perfect, keep trying!"
+msgstr "再加把劲! 努力!"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 02:09+0800\n"
+"POT-Creation-Date: 2022-02-11 02:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -380,28 +380,42 @@ msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
 msgid "win: "
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
 msgid "lose: "
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:266
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:291
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
 msgid "remain: "
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:268
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:295
 msgid "total: "
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:305
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:307
 msgid "Cost: "
 msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:318
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:329
 msgid "Score: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:325
+msgid "Success!"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:326
+msgid "Practice makes perfect, keep trying!"
 msgstr ""
