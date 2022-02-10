@@ -129,15 +129,15 @@ class PlayMenu():
         self.games[self.game_index].play(self.win)
 
     def set_difficulty(self, value, index):
-        self.difficulty_index=self.win.difficulty_index = index
+        self.difficulty_index = self.win.difficulty_index = index
 
     def set_subject(self, item, index):
-        self.subject_index=self.win.subject_index = index
+        self.subject_index = self.win.subject_index = index
         self.game_index = 0
         self.update_game_dropselect()
 
     def set_game(self, item, index):
-        self.game_index=self.win.game_index = index
+        self.game_index = self.win.game_index = index
 
 
 class MainMenu():

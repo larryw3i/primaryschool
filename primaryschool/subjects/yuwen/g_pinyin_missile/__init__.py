@@ -2,6 +2,7 @@ import copy
 import os
 import random
 import sys
+from datetime import datetime
 from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
 import pygame
@@ -42,13 +43,15 @@ pinyin = Pinyin()
 
 class Word():
 
-    def __init__(self):
+    def __init__(self, pm):
+        self.pm = pm
+        self.win = self.pm.win
         self.rand_word_count = 50
         pass
 
     def get_words(self, g: int):
         if g == 15:
-            return self.get_rand_words(50)
+            return self.get_rand_words(250)
         if 0 <= g < 15:
             return self.get_cn_ps_words(g)
 
@@ -62,7 +65,7 @@ class Word():
             words = cn_ps_c[6:16]
         elif g == 14:
             words = cn_ps_c[0:16]
-        return sum(words, [])
+        return sum(words, [])[0:20]
 
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
@@ -168,7 +171,7 @@ class WordSurfacesManager():
         self.win = self.pm.win
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 1 * self.pm.FPS
+        self.interval = 1.5 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
         self.moving_speed = 1
         self.intercepted_color = (175, 10, 175, 100)
@@ -179,7 +182,6 @@ class WordSurfacesManager():
         self.font_path = get_font_path(self.lang_code, show_not_found=True)
         self.font = pygame.font.Font(self.font_path, self.font_size)
         self.surfaces = self.get_surfaces()
-        self.count = self.count()
 
     def set_font_size(self, size):
         assert isinstance(size, int)
@@ -200,11 +202,21 @@ class WordSurfacesManager():
             random.randint(0, self.count - 1)]
         return random_ws.copy()
 
+    def pop_surface(self):
+        return self.surfaces.pop()
+
+    def add_moving_surfaces(self):
+        ws = self.pop_surface()
+        self.moving_surfaces.append(ws)
+        self.frame_counter = 0
+
     def blit(self):
-        if self.frame_counter >= self.interval:
-            ws = self.get_random_surface()
-            self.moving_surfaces.append(ws)
-            self.frame_counter = 0
+        if len(self.surfaces) > 0:
+            if len(self.moving_surfaces) < 1:
+                self.add_moving_surfaces()
+
+            if self.frame_counter >= self.interval:
+                self.add_moving_surfaces()
 
         for w in self.moving_surfaces:
 
@@ -224,10 +236,12 @@ class WordSurfacesManager():
                 self.pm._input = ''
                 self.pm.input_surface._update()
                 self.pm.surface.blit(w.surface, w.dest)
+                self.pm.win_count += 1
                 continue
 
             if w.arrived():
                 self.moving_surfaces.remove(w)
+                self.pm.lose_count += 1
                 continue
 
             w.add_dest((0, self.moving_speed))
@@ -248,10 +262,103 @@ class InfoSurface():
         self.font_size = 25
         self.font = get_default_font(self.font_size)
 
-    def blit(self):
-        game_info_surface = self.font.render(
+        self.score_font_size = 66
+        self.score_font = get_default_font(self.score_font_size)
+
+        self.datetime_diff_font_size = 50
+        self.datetime_diff_font = get_default_font(
+            self.datetime_diff_font_size)
+        self.datetime_diff_font_color = (200, 50, 20)
+
+        self.font = get_default_font(self.font_size)
+
+        self.game_info_surface = self.font.render(
             self.game_info, False, self.game_info_color)
-        self.surface.blit(game_info_surface, self.game_info_dest)
+
+        self.score = 0
+        self._pass = False
+        self.win_info_surface = ...
+
+        self.score_surface = ...
+        self.datetime_diff_surface = ...
+
+        self.end_time = self.win.end_time = None
+
+    def get_score_font_color(self):
+        return (255, 20, 0) if self._pass else (20, 255, 0)
+
+    def get_win_info(self):
+        return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') +\
+            str(self.pm.lose_count) + '|' + _('remain: ') +\
+            str(self.pm.wordsurfaces_manager.count()) + '|' +\
+            _('total: ') + str(self.pm.word_count)
+
+    def get_win_info_dest(self):
+        _w, _ = self.win_info_surface.get_size()
+        return [self.win.w_width - _w, 0]
+
+    def get_datetime_diff_str(self):
+        if self.end_time is None:
+            self.end_time = self.win.end_time = datetime.now()
+        diff = self.end_time - self.pm.start_time
+        _h, _rem = divmod(diff.seconds, 3600)
+        _min, _sec = divmod(_rem, 60)
+        return _('Cost: ') + f'{_h}:{_min}:{_sec}'
+
+    def blit(self):
+        self.win_info_surface = self.font.render(
+            self.get_win_info(), False, self.game_info_color)
+
+        self.surface.blit(self.game_info_surface, self.game_info_dest)
+        self.surface.blit(self.win_info_surface, self.get_win_info_dest())
+
+    def get_score(self):
+        self.score = int(100 * self.pm.win_count / self.pm.word_count)
+        return self.score
+
+    def get_score_pass(self):
+        self._pass = self.score > 60
+        return self._pass
+
+    def get_score_str(self):
+        return (
+            _('Success!') if self._pass
+            else _('Practice makes perfect, keep trying')) + '\n' +\
+            _('Score: ') + str(self.score)
+
+    def get_score_surface_dest(self):
+        _w, _h = self.score_surface.get_size()
+        return [
+            self.win.w_width_of_2 - _w / 2,
+            self.win.w_height_of_2 - _h
+        ]
+
+    def get_datetime_diff_surface_dest(self):
+        _w, _h = self.datetime_diff_surface.get_size()
+        return [
+            self.win.w_width_of_2 - _w / 2,
+            self.win.w_height_of_2 + _h
+        ]
+
+    def score_blit(self):
+        self.score = self.get_score()
+        self.get_score_pass()
+
+        self.score_surface = self.score_font.render(
+            self.get_score_str(),
+            False,
+            self.get_score_font_color())
+        self.datetime_diff_surface = self.datetime_diff_font.render(
+            self.get_datetime_diff_str(),
+            False,
+            self.datetime_diff_font_color)
+
+        self.surface.blit(
+            self.score_surface,
+            self.get_score_surface_dest())
+        self.surface.blit(
+            self.datetime_diff_surface,
+            self.get_datetime_diff_surface_dest())
 
 
 class WordSurface():
@@ -340,7 +447,7 @@ class WordSurface():
                            width=self.circle_width)
 
     def intercept(self, _pinyin):
-        self.intercepted = _pinyin == self.pinyin
+        self.intercepted = self.pinyin in _pinyin
         return self.intercepted
 
     def get_pinyin(self):
@@ -391,14 +498,21 @@ class PinyinMissile(SubjectGame):
         self.input_surface = InputSurface(self)
 
         # word surface
-        self.word = Word()
+        self.word = Word(self)
         self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager = WordSurfacesManager(self)
         self.word_surfaces = self.wordsurfaces_manager.get_surfaces()
 
         self.wave = Wave(self)
 
+        self.win_count = 0
+        self.lose_count = 0
+        self.word_count = len(self.words)
+
         self.print_game_info()
+
+        self.start_time = datetime.now()
+        self.end_time = None
 
     def print_game_info(self):
         print(
@@ -440,10 +554,13 @@ class PinyinMissile(SubjectGame):
             if self.main_menu._menu.is_enabled():
                 self.main_menu._menu.update(events)
 
-            self.info_surface.blit()
-            self.wall_surface.blit()
-            self.wordsurfaces_manager.blit()
-            self.input_surface.blit()
+            if self.win_count + self.lose_count < self.word_count:
+                self.info_surface.blit()
+                self.wall_surface.blit()
+                self.wordsurfaces_manager.blit()
+                self.input_surface.blit()
+            else:
+                self.info_surface.score_blit()
 
             pygame.display.update()
 
