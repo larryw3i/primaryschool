@@ -14,9 +14,9 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
-from primaryschool.subjects.yuwen.words import cn_ps_c
+from primaryschool.subjects.s_yuwen.words import cn_ps_c
 
-name = _('pinyin missile')
+name_t = _('pinyin missile')
 
 difficulties = [
     (0, _('Grade 1')),
@@ -25,8 +25,16 @@ difficulties = [
     (3, _('Grade 4')),
     (4, _('Grade 5')),
     (5, _('Grade 6')),
-    (6, _('Low level')),
-    (7, _('High level')),
+    (6, _('Grade 1')),
+    (7, _('Grade 2')),
+    (8, _('Grade 3')),
+    (9, _('Grade 4')),
+    (10, _('Grade 5')),
+    (11, _('Grade 6')),
+    (12, _('Low level')),
+    (13, _('High level')),
+    (14, _('All grades')),
+    (15, _('All Chinese characters')),
 ]
 
 pinyin = Pinyin()

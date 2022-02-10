@@ -12,7 +12,7 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font)
 from primaryschool.settings import *
-from primaryschool.subjects import Subject
+from primaryschool.subjects import subjects, games
 
 app_description_t = _("app_description_t")
 
@@ -59,22 +59,15 @@ class PlayMenu():
     def __init__(self, win):
 
         self.win = win
-        self.title = _('Play Game')
-
-        self._menu = self.win.get_default_menu(self.title)
-
-        # index
-        self.difficulty = self.win.difficulty
-        self.subject = self.win.subject
-        self.subject_game = self.win.subject_game
-
-        # subjects, game, difficulties.
         self.subjects = self.win.subjects
-        self.difficulties = self.win.difficulties
-        self.subjects_t = self.win.subjects_t
-        self.difficulties_t = self.win.difficulties_t
-        self.subject_games = self.get_subject_games()
-        self.subject_games_t = self.get_subject_games_t()
+        self.games = self.win.games
+
+        self.subject_index = self.get_default_subject_index()
+        self.game_index = self.games[0].difficulty
+        self.difficulty_index = 0
+
+        self.title = _('Play Game')
+        self._menu = self.win.get_default_menu(self.title)
 
         self.game_dropselect = ...
 
@@ -84,86 +77,75 @@ class PlayMenu():
         self._menu.add.text_input(
             _('Name :'), default=_('_name_'),
             font_name=self.win.font_path)
+
         self._menu.add.dropselect(
             title=_('Subject :'),
-            items=[(name, index)
-                   for index, name in enumerate(self.subjects_t)],
+            items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
             font_name=self.win.font_path,
-            default=self.subject,
+            default=self.get_default_subject_index(),
             placeholder=_('Select a Subject'),
             onchange=self.set_subject
         )
         self.game_dropselect = self._menu.add.dropselect(
             title=_('Game :'),
-            items=[(g, index) for index, g in enumerate(
-                self.subject_games_t)],
+            items=[(g.name_t, index) for index, g in enumerate(self.games)],
             font_name=self.win.font_path,
-            default=self.subject_game if len(self.subject_games) > 0 else None,
+            default=0,
             placeholder=_('Select a game'),
             onchange=self.set_game
         )
+        
         self._menu.add.dropselect(
             title=_('Difficulty :'),
-            items=[(d, index) for index, d in enumerate(self.difficulties_t)],
+            items=[(d[1], index) for index, d in
+                   enumerate(self.games[0].difficulties)],
             font_name=self.win.font_path,
-            default=self.difficulty,
+            default=games[0].difficulty,
             placeholder=_('Select a difficulty'),
             onchange=self.set_difficulty
         )
+
         self._menu.add.button(
             _('Play'),
             self.start_the_game,
             font_name=self.win.font_path)
+
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.win.font_path)
 
+    def get_default_subject_index(self):
+        return self.subjects.index(self.games[0].subject)
+
     def update_game_dropselect(self):
         self.game_dropselect.update_items(
-            [(g, index) for index, g in enumerate(
-                self.get_subject_games_t())])
+            [(g.name_t, index) for index, g in enumerate(
+                self.subjects[self.subject_index].games)])
         self.game_dropselect.set_default_value(0)
 
-    def get_subject_games(self):
-        game_path = os.path.join(subject_path, self.subjects[self.subject])
-        self.subject_games = [d for d in os.listdir(game_path)
-                              if d.startswith('g_')]
-        return ['null'] if len(self.subject_games) < 1 \
-            else self.subject_games
-
-    def get_subject_games_t(self):
-
-        if len(self.subject_games) < 1:
-            self.get_subject_games()
-
-        _subject = self.subjects[self.subject]
-
-        trans = []
-        for s in self.subject_games:
-            _g = importlib.import_module(
-                f'primaryschool.subjects.{_subject}.{s}')
-            trans.append(_g.name)
-        return [_('null')] if len(trans) < 1 else trans
-
     def start_the_game(self):
-        _subject = self.subjects[self.subject]
-        _subject_game = self.subject_games[self.subject_game]
-        _game_ = importlib.import_module(
-            f'primaryschool.subjects.{_subject}.{_subject_game}')
-        _game_.play(self.win)
-        pass
+        self.get_game_is_on().play(self.win)
 
-    def set_difficulty(self, value, difficulty):
-        self.difficulty = difficulty
+    def games_off(self):
+        for g in self.games:
+            g.on = False
 
-    def set_subject(self, value, subject):
-        self.subject = subject
-        self.get_subject_games()
+    def get_game_is_on(self):
+        for g in self.games:
+            if g.on:
+                return g
+
+    def set_difficulty(self, value, index):
+        self.difficulty_index = index
+
+    def set_subject(self, item, index):
+        self.subject_index = index
+        self.game_index = 0
         self.update_game_dropselect()
 
-    def set_game(self, value, subject_game):
-        self.subject_game = subject_game
+    def set_game(self, item, index):
+        self.game_index = index
 
 
 class MainMenu():
@@ -200,18 +182,12 @@ class Win():
         self.FPS = 30
         self.clock = pygame.time.Clock()
 
-        self.difficulty = 2
-        self.subject = Subject()
-        self.subjects = self.subject.get_subjects()
-        
-        self.difficulties = ['Crazy', 'Hard', 'Middle', 'Easy']
+        self.subjects = subjects
+        self.games = games
 
-        self.subjects_t = get_subjects_t()
-        self.difficulties_t = [_(d) for d in self.difficulties]
-
-        self.subject_games = []
-        self.subject_games_t = []
-        self.subject_game = 0
+        self.subject_index = ...
+        self.game_index = ...
+        self.difficulty_index = ...
 
         self.font_path = default_font_path
         self.font = default_font
@@ -228,14 +204,6 @@ class Win():
     def clear_screen(self):
         self.surface.fill((255, 255, 255))
         pygame.display.update()
-
-    def get_difficulty_by_index(self, index=-1):
-        index = self.difficulty if index == -1 else index
-        return self.difficulties[index]
-
-    def get_subject_by_index(self, index=-1):
-        index = self.subject if index == -1 else index
-        return self.subjects[index]
 
     def run(self):
 

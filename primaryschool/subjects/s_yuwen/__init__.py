@@ -15,4 +15,4 @@ from primaryschool.locale import _
 from primaryschool.resource import *
 from primaryschool.subjects import *
 
-name = _('Yuwen')
+name_t = _('Yuwen')

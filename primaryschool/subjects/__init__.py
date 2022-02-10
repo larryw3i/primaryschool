@@ -6,99 +6,82 @@ from importlib import import_module
 from primaryschool.locale import _
 
 subject_module_prefix = 'primaryschool.subjects.'
-subject_path = os.path.abspath(os.path.dirname(__file__))
+subject_dir_path = os.path.abspath(os.path.dirname(__file__))
+
+
+def get_subject_names():
+    subjects = []
+    for _subject in os.listdir(subject_dir_path):
+        if not _subject.startswith('s_'):
+            continue
+        subjects.append(_subject)
+    return subjects
+
+
+subject_names = get_subject_names()
+
 
 def get_game_modules():
     modules = []
-    for _subject in os.listdir(subject_path):
-        _subject_path = os.path.join(subject_path, _subject)
-        if not _subject_path.startswith('s_'):
-            continue
+    for _subject_name in subject_names:
+        _subject_path = os.path.join(subject_dir_path, _subject_name)
         for _game in os.listdir(_subject_path):
             if not _game.startswith('g_'):
                 continue
-            modules.append(f'{subject_module_prefix+_subject}.{_game}')
+            modules.append(f'{subject_module_prefix+_subject_name}.{_game}')
     return modules
+
 
 game_modules = get_game_modules()
 
-def get_subjects():
-    return [p for p in os.listdir(subject_path) if not p.startswith('__')]
-
-
-def get_subjects_t():
-    return [
-        import_module(f'primaryschool.subjects.{m}').name
-        for m in get_subjects()
-    ]
-
-
-
 
 class Game():
-    def __init__(self,module_str):
+    def __init__(self, module_str, subject):
         self.module_str = module_str
+        self.subject = subject
         self.module = import_module(self.module_str)
         self.name = self.get_name()
         self.name_t = self.get_name_t()
-        self.difficulties = self.get_difficulties() 
-    
+        self.difficulty = 0
+        self.difficulties = self.get_difficulties()
+
+    def get_difficulty(self):
+        return self.difficulty
+
+    def set_difficulty(self, difficulty):
+        self.difficulty = difficulty
+
     def get_difficulties(self):
         self.difficulties = self.module.difficulties
-    
+        
+
     def get_name_t(self):
-        return self.module.name
+        return self.module.name_t
 
     def get_name(self):
         return self.module_str.split('.')[-1]
-    
+
     def play(self):
+        self.on = True
         self.module.play()
 
+
 class Subject():
-    def __init__(self):
-        self.subjects = self.get_subjects()
-        self.game_modules = self.get_game_modules()
-        self.default_game = 
+    def __init__(self, name):
+        self.name = name
+        self.module = import_module(subject_module_prefix + name)
+        self.name_t = self.get_name_t()
+        self.games = self.get_games()
 
-    def get_game_modules(self):
-        modules = []
-        for _subject in os.listdir(subject_path):
-            _subject_path = os.path.join(subject_path, _subject)
-            if not os.path.isdir(_subject_path):
-                continue
-            if _subject_path.startswith('_'):
-                continue
-            for _game in os.listdir(_subject_path):
-                if not _game.startswith('g_'):
-                    continue
-                modules.append(
-                    (_game,f'{subject_module_prefix+_subject}.{_game}'))
-        return modules
-
-    def get_subjects(self):
-        subjects = []
-        for m in self.game_modules:
-            _subject = m.split('.')[-2]
-            _subject_t = import_module(
-                subject_module_prefix + _subject).name
-            subjects.append(_subject, _subject_t)
-        return subjects
-
-    def get_difficulties_by_game(self, game_name):
-        for m in self.game_modules:
-            if m.endswith(game_name):
-                return import_module(m).difficulties
-
-    def get_games_by_subject(self, subject_name):
+    def get_games(self):
         games = []
-        for m in self.game_modules:
-            _subject = m.split('.')[-2]
-            _game = m.split('.')[-1]
-            if _subject == subject_name:
-                _game_t = import_module(m).name
-                games.append((_game, _game_t, m))
+        for g in game_modules:
+            if g.startswith(subject_module_prefix + self.name):
+                games.append(Game(g, self))
         return games
+
+    def get_name_t(self):
+        return self.module.name_t
 
 
 class SubjectGame():
@@ -107,3 +90,9 @@ class SubjectGame():
 
     def update():
         pass
+
+
+subjects = [Subject(n) for n in subject_names]
+
+games = sum([s.games for s in subjects],[])
+

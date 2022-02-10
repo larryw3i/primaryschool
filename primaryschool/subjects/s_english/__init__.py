@@ -6,7 +6,7 @@ import sys
 from primaryschool.locale import _
 from primaryschool.subjects import *
 
-name = _("English")
+name_t = _("English")
 
 
 class EnglishGame(SubjectGame):
