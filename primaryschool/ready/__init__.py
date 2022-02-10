@@ -12,9 +12,9 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font)
 from primaryschool.settings import *
-from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
+from primaryschool.subjects import Subject
 
-app_description = _("primary school knowledge games")
+app_description_t = _("app_description_t")
 
 
 class AboutMenu():
@@ -38,7 +38,7 @@ class AboutMenu():
                              font_name=self.app_name_font)
         self._menu.add.label(app_version, max_char=-1,
                              font_name=self.app_version_font)
-        self._menu.add.label(app_description, max_char=-1,
+        self._menu.add.label(app_description_t, max_char=-1,
                              font_name=self.app_description_font)
         self._menu.add.url(app_url, font_name=self.app_url_font)
         self._menu.add.label(_('Author'), max_char=-1,
@@ -201,9 +201,9 @@ class Win():
         self.clock = pygame.time.Clock()
 
         self.difficulty = 2
-        self.subject = 0
-
-        self.subjects = get_subjects()
+        self.subject = Subject()
+        self.subjects = self.subject.get_subjects()
+        
         self.difficulties = ['Crazy', 'Hard', 'Middle', 'Easy']
 
         self.subjects_t = get_subjects_t()

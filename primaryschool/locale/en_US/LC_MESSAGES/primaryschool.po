@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-09 22:53+0800\n"
-"PO-Revision-Date: 2022-02-07 04:35+0800\n"
+"POT-Creation-Date: 2022-02-10 16:03+0800\n"
+"PO-Revision-Date: 2022-02-10 16:04+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -226,3 +226,7 @@ msgstr ""
 #: primaryschool/settings.py:12 primaryschool/ready/__init__.py:18
 msgid "primary school knowledge games"
 msgstr ""
+
+#: primaryschool/ready/__init__.py:17
+msgid "app_description_t"
+msgstr "primary school knowledge games"

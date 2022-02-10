@@ -18,6 +18,17 @@ from primaryschool.subjects.yuwen.words import cn_ps_c
 
 name = _('pinyin missile')
 
+difficulties = [
+    (0, _('Grade 1')),
+    (1, _('Grade 2')),
+    (2, _('Grade 3')),
+    (3, _('Grade 4')),
+    (4, _('Grade 5')),
+    (5, _('Grade 6')),
+    (6, _('Low level')),
+    (7, _('High level')),
+]
+
 pinyin = Pinyin()
 
 
@@ -47,17 +58,22 @@ class Wave():
         self.color = (0, 255, 0, 20)
         self.width = 5
 
+        self.max_radius = self.get_max_radius()
+
     def set_color(self, color):
         self.color = color
+
+    def get_max_radius(self):
+        return (self.w_height**2 + self.w_width_of_2**2)**0.5
 
     def set_width(self, width):
         assert isinstance(width, int)
         self.width = widgets
 
     def draw(self, frame_counter):
-        if frame_counter == self.intercept_interval:
+        if frame_counter >= self.intercept_interval:
             return
-        _radius = self.w_height / (self.intercept_interval - frame_counter)
+        _radius = self.max_radius / (self.intercept_interval - frame_counter)
         pygame.draw.circle(self.surface, self.color,
                            self.w_centrex_y, _radius, width=self.width)
 
@@ -95,13 +111,31 @@ class WallSurface():
         self.h = self.pm.w_height / 20
         self.surface = pygame.Surface((self.pm.w_width, self.h))
         self.color = (255, 200, 99)
+        self.emitter_radius = self.h / 2
+        self.emitter_color = None
+
+        self.center = self.get_center()
+
+    def set_emitter_color(self, color=(255, 0, 0, 50)):
+        self.emitter_color = color
+
+    def get_emitter_color(self):
+        return self.emitter_color
 
     def get_center(self):
-        return [self.win.w_width_of_2, self.win.w_height - self.h]
+        return [self.win.w_width_of_2, self.win.w_height - self.h / 2]
+
+    def draw_emitter(self):
+        self.emitter_color = self.set_emitter_color() \
+            if self.pm.wordsurfaces_manager is None \
+            else self.pm.wordsurfaces_manager.laser_color
+        pygame.draw.circle(self.win.surface, self.emitter_color,
+                           self.center, self.emitter_radius)
 
     def blit(self):
         self.surface.fill(self.color)
         self.pm.surface.blit(self.surface, (0, self.pm.w_height - self.h))
+        self.draw_emitter()
 
 
 class WordSurfacesManager():
@@ -111,10 +145,10 @@ class WordSurfacesManager():
         self.moving_surfaces = []
         self.frame_counter = frame_counter
         self.interval = 1 * self.pm.FPS
-        self.intercept_interval = 0.2 * self.pm.FPS
+        self.intercept_interval = 0.3 * self.pm.FPS
         self.moving_speed = 1
-        self.intercepted_color = (20, 100, 100, 80)
-        self.laser_color = (255, 0, 0)
+        self.intercepted_color = (175, 10, 175, 100)
+        self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
         self.font_size = 50
         self.lang_code = 'zh_CN'
@@ -200,7 +234,6 @@ class WordSurface():
         self.center = self.get_center()
         self.pinyin = self.get_pinyin()
 
-
     def set_circle_color(self, color):
         self.circle_color = color
 
@@ -233,6 +266,7 @@ class WordSurface():
     def add_dest(self, _add):
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
+        self.center = self.get_center()
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -246,7 +280,7 @@ class WordSurface():
         assert self.wall_surface is not None
         pygame.draw.line(
             self.win.surface, self.laser_color,
-            self.wall_surface.get_center(), self.get_center(),
+            self.wall_surface.center, self.center,
             self.laser_width)
 
     def get_center(self):
@@ -260,7 +294,7 @@ class WordSurface():
 
     def circle(self):
         pygame.draw.circle(self.pm.surface, self.circle_color,
-                           self.get_center(), self.get_circle_radius(),
+                           self.center, self.get_circle_radius(),
                            width=self.circle_width)
 
     def intercept(self, _pinyin):
