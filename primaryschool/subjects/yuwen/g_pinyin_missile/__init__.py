@@ -96,6 +96,9 @@ class WallSurface():
         self.surface = pygame.Surface((self.pm.w_width, self.h))
         self.color = (255, 200, 99)
 
+    def get_center(self):
+        return [self.win.w_width_of_2, self.win.w_height - self.h]
+
     def blit(self):
         self.surface.fill(self.color)
         self.pm.surface.blit(self.surface, (0, self.pm.w_height - self.h))
@@ -104,19 +107,21 @@ class WallSurface():
 class WordSurfacesManager():
     def __init__(self, pm, frame_counter=0):
         self.pm = pm
-        self.font_size = 50
-        self.lang_code = 'zh_CN'
-        self.font_path = get_font_path(self.lang_code, show_not_found=True)
-        self.font = pygame.font.Font(self.font_path, self.font_size)
         self.win = self.pm.win
-        self.surfaces = self.get_surfaces()
-        self.count = self.count()
         self.moving_surfaces = []
         self.frame_counter = frame_counter
         self.interval = 1 * self.pm.FPS
         self.intercept_interval = 0.2 * self.pm.FPS
         self.moving_speed = 1
         self.intercepted_color = (20, 100, 100, 80)
+        self.laser_color = (255, 0, 0)
+        self.laser_width = 2
+        self.font_size = 50
+        self.lang_code = 'zh_CN'
+        self.font_path = get_font_path(self.lang_code, show_not_found=True)
+        self.font = pygame.font.Font(self.font_path, self.font_size)
+        self.surfaces = self.get_surfaces()
+        self.count = self.count()
 
     def set_font_size(self, size):
         assert isinstance(size, int)
@@ -153,6 +158,7 @@ class WordSurfacesManager():
                     w.word, False, self.intercepted_color)
                 self.pm.surface.blit(w.surface, w.dest)
                 w.circle()
+                w.draw_laser_line()
                 w.intercept_frame_counter += 1
                 continue
 
@@ -177,17 +183,23 @@ class WordSurface():
         self.pm = pm
         self.win = self.pm.win
         self.manager = _manager
+        self.wall_surface = None
         self.word = word
         self.font_color = (200, 22, 98)
         self.font = self.manager.font
         self.circle_color = (100, 20, 25, 20)
         self.circle_width = 4
+        self.intercepted = False
+        self.intercept_frame_counter = 0
+        self.laser_color = self.manager.laser_color
+        self.laser_width = self.manager.laser_width
+
         self.surface = self.get_surface()
         self.size = self.get_size()
         self.dest = self.get_random_dest()
+        self.center = self.get_center()
         self.pinyin = self.get_pinyin()
-        self.intercepted = False
-        self.intercept_frame_counter = 0
+
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -222,21 +234,33 @@ class WordSurface():
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
 
-    def get_circle_center(self):
+    def set_laser_color(self, laser_color):
+        self.laser_color = laser_color
+
+    def get_laser_color():
+        return self.laser_color
+
+    def draw_laser_line(self):
+        if self.wall_surface is None:
+            self.wall_surface = self.pm.wall_surface
+        assert self.wall_surface is not None
+        pygame.draw.line(
+            self.win.surface, self.laser_color,
+            self.wall_surface.get_center(), self.get_center(),
+            self.laser_width)
+
+    def get_center(self):
         return [
-            self.get_x() +
-            self.get_w() /
-            2,
-            self.get_y() +
-            self.get_h() /
-            2]
+            self.get_x() + self.get_w() / 2,
+            self.get_y() + self.get_h() / 2
+        ]
 
     def get_circle_radius(self):
         return self.get_w() / 2
 
     def circle(self):
         pygame.draw.circle(self.pm.surface, self.circle_color,
-                           self.get_circle_center(), self.get_circle_radius(),
+                           self.get_center(), self.get_circle_radius(),
                            width=self.circle_width)
 
     def intercept(self, _pinyin):

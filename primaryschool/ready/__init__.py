@@ -14,8 +14,8 @@ from primaryschool.resource import (default_font, default_font_path,
 from primaryschool.settings import *
 from primaryschool.subjects import get_subjects, get_subjects_t, subject_path
 
+app_description = _("primary school knowledge games")
 
-app_description =_( "primary school knowledge games" )
 
 class AboutMenu():
 

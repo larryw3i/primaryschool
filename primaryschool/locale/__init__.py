@@ -4,7 +4,6 @@ import locale
 import os
 import sys
 
-
 sys_lang_code = locale.getdefaultlocale()[0]
 locale_path = os.path.abspath(os.path.dirname(__file__))
 locale_langcodes =  \

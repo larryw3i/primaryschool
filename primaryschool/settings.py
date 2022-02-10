@@ -2,7 +2,6 @@
 import os
 import sys
 
-
 app_name = 'primaryschool'
 app_version = '0.0.2'
 app_author = 'larryw3i'
