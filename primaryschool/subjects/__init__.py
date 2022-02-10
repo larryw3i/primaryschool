@@ -12,7 +12,10 @@ subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 def get_subject_names():
     subjects = []
     for _subject in os.listdir(subject_dir_path):
-        if not _subject.startswith('s_'):
+        _subject_path = os.path.join(subject_dir_path, _subject)
+        if not os.path.isdir(_subject_path):
+            continue
+        if _subject.startswith('_'):
             continue
         subjects.append(_subject)
     return subjects
@@ -53,10 +56,10 @@ class Game():
     def get_name(self):
         return self.module_str.split('.')[-1]
 
-    def play(self,win):
+    def play(self, win):
         from primaryschool.ready import Win
-        assert isinstance(win,Win)
-        
+        assert isinstance(win, Win)
+
         self.module.play(win)
 
 

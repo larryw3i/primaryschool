@@ -14,27 +14,27 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
-from primaryschool.subjects.s_yuwen.words import cn_ps_c
+from primaryschool.subjects.yuwen.words import cn_ps_c
 
 name_t = _('pinyin missile')
 
 difficulties = [
-    (0, _('Grade 1.1')),
-    (1, _('Grade 1.2')),
-    (2, _('Grade 2.1')),
-    (3, _('Grade 2.2')),
-    (4, _('Grade 3.1')),
-    (5, _('Grade 3.2')),
-    (6, _('Grade 4.1')),
-    (7, _('Grade 4.2')),
-    (8, _('Grade 5.1')),
-    (9, _('Grade 5.2')),
-    (10, _('Grade 6.1')),
-    (11, _('Grade 6.2')),
-    (12, _('Low level')),
-    (13, _('High level')),
-    (14, _('All grades')),
-    (15, _('All Chinese characters')),
+    _('Grade 1.1'),  # 0
+    _('Grade 1.2'),  # 1
+    _('Grade 2.1'),  # 2
+    _('Grade 2.2'),  # 3
+    _('Grade 3.1'),  # 4
+    _('Grade 3.2'),  # 5
+    _('Grade 4.1'),  # 6
+    _('Grade 4.2'),  # 7
+    _('Grade 5.1'),  # 8
+    _('Grade 5.2'),  # 9
+    _('Grade 6.1'),  # 10
+    _('Grade 6.2'),  # 11
+    _('Low level'),  # 12
+    _('High level'),  # 13
+    _('All grades'),  # 14
+    _('All Chinese characters'),  # 15
 ]
 
 pinyin = Pinyin()
@@ -43,12 +43,28 @@ pinyin = Pinyin()
 class Word():
 
     def __init__(self):
+        self.rand_word_count = 50
         pass
 
-    def get_cn_ps_words(self, n: Tuple[int, int, int] = (0, 0, 0)):
-        return cn_ps_c[n[0]][n[1]] if n[2] == 0 else zh_c[n[0]][n[1]][0:n[2]]
+    def get_words(self, g: int):
+        if g == 15:
+            return self.get_rand_words(50)
+        if 0 <= g < 15:
+            return self.get_cn_ps_words(g)
 
-    def get_rand_word(self, n):
+    def get_cn_ps_words(self, g: int):
+        words = []
+        if g < 12:
+            words = cn_ps_c[g]
+        elif g == 12:
+            words = cn_ps_c[0:6]
+        elif g == 13:
+            words = cn_ps_c[6:16]
+        elif g == 14:
+            words = cn_ps_c[0:16]
+        return sum(words, [])
+
+    def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
 
@@ -220,6 +236,24 @@ class WordSurfacesManager():
         self.frame_counter += 1
 
 
+class InfoSurface():
+    def __init__(self, pm):
+        self.pm = pm
+        self.win = pm.win
+        self.surface = self.win.surface
+        self.game_info_dest = (10, 10)
+        self.game_info = name_t + \
+            ' (' + difficulties[self.win.difficulty_index] + ')'
+        self.game_info_color = (255, 0, 255, 10)
+        self.font_size = 25
+        self.font = get_default_font(self.font_size)
+
+    def blit(self):
+        game_info_surface = self.font.render(
+            self.game_info, False, self.game_info_color)
+        self.surface.blit(game_info_surface, self.game_info_dest)
+
+
 class WordSurface():
     def __init__(self, pm, _manager, word):
         self.pm = pm
@@ -343,21 +377,35 @@ class PinyinMissile(SubjectGame):
         self.FPS = self.win.FPS
         self.clock = self.win.clock
 
-        self.main_menu = self.win.main_menu
+        self.subject_index = self.win.subject_index
+        self.game_index = self.win.game_index
+        self.difficulty_index = self.win.difficulty_index
 
+        self.main_menu = self.win.main_menu
         self.surface = self.win.surface
-        self.wall_surface = WallSurface(self)
 
         self._input = ''
+        self.font = get_default_font(45)
+        self.info_surface = InfoSurface(self)
+        self.wall_surface = WallSurface(self)
         self.input_surface = InputSurface(self)
 
         # word surface
         self.word = Word()
-        self.words = self.word.get_cn_ps_words((5, 0, 0))
+        self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager = WordSurfacesManager(self)
         self.word_surfaces = self.wordsurfaces_manager.get_surfaces()
 
         self.wave = Wave(self)
+
+        self.print_game_info()
+
+    def print_game_info(self):
+        print(
+            self.win.subjects[self.subject_index].name_t,
+            self.win.games[self.game_index].name_t,
+            difficulties[self.difficulty_index]
+        )
 
     def ascii_not_symbol(self, code):
         return 48 <= code <= 57 or 65 <= code <= 90 or 97 <= code <= 122
@@ -392,6 +440,7 @@ class PinyinMissile(SubjectGame):
             if self.main_menu._menu.is_enabled():
                 self.main_menu._menu.update(events)
 
+            self.info_surface.blit()
             self.wall_surface.blit()
             self.wordsurfaces_manager.blit()
             self.input_surface.blit()

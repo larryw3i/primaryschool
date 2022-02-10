@@ -62,9 +62,10 @@ class PlayMenu():
         self.subjects = self.win.subjects
         self.games = self.win.games
 
-        self.subject_index = self.get_default_subject_index()
-        self.game_index = 0
-        self.difficulty_index = 0
+        self.win.subject_index = self.get_default_subject_index()
+        self.subject_index = self.win.subject_index
+        self.game_index = self.win.game_index
+        self.difficulty_index = self.win.difficulty_index
 
         self.title = _('Play Game')
         self._menu = self.win.get_default_menu(self.title)
@@ -94,10 +95,10 @@ class PlayMenu():
             placeholder=_('Select a game'),
             onchange=self.set_game
         )
-        
+
         self._menu.add.dropselect(
             title=_('Difficulty :'),
-            items=[(d[1], index) for index, d in
+            items=[(d, index) for index, d in
                    enumerate(self.games[0].difficulties)],
             font_name=self.win.font_path,
             default=self.difficulty_index,
@@ -128,15 +129,15 @@ class PlayMenu():
         self.games[self.game_index].play(self.win)
 
     def set_difficulty(self, value, index):
-        self.difficulty_index = index
+        self.difficulty_index=self.win.difficulty_index = index
 
     def set_subject(self, item, index):
-        self.subject_index = index
+        self.subject_index=self.win.subject_index = index
         self.game_index = 0
         self.update_game_dropselect()
 
     def set_game(self, item, index):
-        self.game_index = index
+        self.game_index=self.win.game_index = index
 
 
 class MainMenu():
@@ -176,9 +177,9 @@ class Win():
         self.subjects = subjects
         self.games = games
 
-        self.subject_index = ...
-        self.game_index = ...
-        self.difficulty_index = ...
+        self.subject_index = 0
+        self.game_index = 0
+        self.difficulty_index = 0
 
         self.font_path = default_font_path
         self.font = default_font

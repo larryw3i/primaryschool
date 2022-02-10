@@ -1,4 +1,8 @@
 
-from . import resource
+from primaryschool.subjects.yuwen.g_pinyin_missile import Word
 
-from . import subjects
+word = Word()
+for i in range(0,14):
+    words = word.get_words(i)
+    assert isinstance(words,list)
+    assert len(words) > 0 
