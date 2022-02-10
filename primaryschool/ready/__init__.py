@@ -126,6 +126,8 @@ class PlayMenu():
         self.game_dropselect.set_default_value(0)
 
     def start_the_game(self):
+        if self.game_index >= len(self.games):
+            return
         self.games[self.game_index].play(self.win)
 
     def set_difficulty(self, value, index):
@@ -145,8 +147,8 @@ class MainMenu():
         self.win = win
         self.title = _('Primary School')
         self._menu = self.win.get_default_menu(self.title)
-        self.play_menu = PlayMenu(self.win)
-        self.about_menu = AboutMenu(self.win)
+        self.play_menu = self.win.play_menu
+        self.about_menu = self.win.about_menu
 
         self.add_widgets()
 
@@ -184,6 +186,8 @@ class Win():
         self.font_path = default_font_path
         self.font = default_font
 
+        self.play_menu = PlayMenu(self)
+        self.about_menu = AboutMenu(self)
         self.main_menu = MainMenu(self)
 
     def get_default_menu(self, title, **kwargs):

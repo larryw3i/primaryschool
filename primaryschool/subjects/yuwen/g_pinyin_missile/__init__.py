@@ -65,7 +65,7 @@ class Word():
             words = cn_ps_c[6:16]
         elif g == 14:
             words = cn_ps_c[0:16]
-        return sum(words, [])[0:10]
+        return sum(words, [])
 
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
@@ -511,6 +511,7 @@ class PinyinMissile(SubjectGame):
         self.difficulty_index = self.win.difficulty_index
 
         self.main_menu = self.win.main_menu
+        self.play_menu = self.win.play_menu
         self.surface = self.win.surface
 
         self._input = ''
@@ -552,7 +553,7 @@ class PinyinMissile(SubjectGame):
                 exit()
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
-                    self.main_menu._menu.enable()
+                    self.play_menu._menu.enable()
                     self.running = not self.running
                     return
                 elif e.key == pygame.K_BACKSPACE:
@@ -565,6 +566,9 @@ class PinyinMissile(SubjectGame):
                     return
 
     def run(self):
+        
+        self.play_menu._menu.disable()
+        self.play_menu._menu.full_reset()
 
         while self.running:
             self.clock.tick(self.FPS)
@@ -575,6 +579,9 @@ class PinyinMissile(SubjectGame):
             self.handle_events(events)
             if self.main_menu._menu.is_enabled():
                 self.main_menu._menu.update(events)
+
+            if self.play_menu._menu.is_enabled():
+                self.play_menu._menu.update(events)
 
             if self.win_count + self.lose_count < self.word_count:
                 self.info_surface.blit()
