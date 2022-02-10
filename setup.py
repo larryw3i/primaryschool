@@ -12,9 +12,9 @@ long_description = open("README.md", "r", encoding="utf-8").read()
 setuptools.setup(
     name=app_name,
     version=app_version,
-    author=app_author[0],
+    author=app_author,
     author_email=app_author_email,
-    maintainer=app_maintainer[0],
+    maintainer=app_maintainer,
     maintainer_email=app_maintainer_email,
     description=app_description,
     long_description=long_description,
