@@ -1,8 +1,8 @@
 
 
-import pickle
 import importlib
 import os
+import pickle
 import threading
 
 import pygame
@@ -20,37 +20,12 @@ from primaryschool.subjects import games, subjects
 app_description_t = _("app_description_t")
 
 
-class GameData():
-    def __init__(self, win):
-        self.win = win
-
-    def get_game_file_path(self):
-        return os.path.join(
-            user_data_dir_path,
-            self.win.games[self.win.game_index].module_str + '.pkl'
-        )
-
-    def has_prev_game(self):
-        return os.path.exists(
-            self.get_game_file_path()
-        )
-
-    def save_the_game(self):
-        with open(self.get_game_file_path(), 'wb') as f:
-            pickle.dump(self.win, f)
-
-    def load_the_game(self):
-        with open(self.get_game_file_path(), 'rb') as f:
-            self.win = pickle.load(f)
-
-
 class SaveMenu():
 
     def __init__(self, win):
 
         self.win = win
         self.surface = self.win.surface
-        self.game_data = self.win.game_data or None
         self.title = _('Save game?')
         self._menu = self.win.get_default_menu(self.title)
         self.save = False
@@ -76,9 +51,10 @@ class SaveMenu():
         self.win.main_menu._menu.mainloop(self.surface)
 
     def save_the_game(self):
-        if self.game_data is None:
-            self.game_data = self.win.game_data
-        self.game_data.save_the_game()
+        if len(self.win.games) - 1 < self.win.game_index:
+            return
+        _game = self.win.games[self.win.game_index]
+        _game.save(self.win)
 
     def continue_the_game(self):
         self._menu.disable()
@@ -136,6 +112,7 @@ class PlayMenu():
         self._menu = self.win.get_default_menu(self.title)
 
         self.game_dropselect = ...
+        self.continue_button = ...
 
     def add_widgets(self):
         self._menu.add.text_input(
@@ -174,16 +151,25 @@ class PlayMenu():
             self.start_the_game,
             font_name=self.win.font_path)
 
-        if self.win.game_data.has_prev_game():
-            self._menu.add.button(
-                _('Continue'),
-                self.start_prev_game,
-                font_name=self.win.font_path)
+        self.continue_button = self._menu.add.button(
+            _('Continue'),
+            self.start_prev_game,
+            font_name=self.win.font_path)
+        self.update_continue_button()
 
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.win.font_path)
+
+    def update_continue_button(self):
+        if len(self.games) - 1 < self.game_index:
+            return
+        _game = self.games[self.game_index]
+        if _game.has_prev():
+            self.continue_button.show()
+        else:
+            self.continue_button.hide()
 
     def get_default_subject_index(self):
         return self.subjects.index(self.games[0].subject)
@@ -195,13 +181,16 @@ class PlayMenu():
         self.game_dropselect.set_default_value(0)
 
     def start_prev_game(self):
-        self.win = self.win.game_data.load_the_game()
-        self.start_the_game()
+        if len(self.games) - 1 < self.game_index:
+            return
+        _game = self.games[self.game_index]
+        _game.load(self.win)
 
     def start_the_game(self):
         if self.game_index >= len(self.games):
             return
-        self.games[self.game_index].play(self.win)
+        _game = self.games[self.game_index]
+        _game.play(self.win)
 
     def set_difficulty(self, value, index):
         self.difficulty_index = self.win.difficulty_index = index
@@ -256,8 +245,6 @@ class Win():
 
         self.font_path = default_font_path
         self.font = default_font
-
-        self.game_data = GameData(self)
 
         self.play_menu = PlayMenu(self)
         self.about_menu = AboutMenu(self)

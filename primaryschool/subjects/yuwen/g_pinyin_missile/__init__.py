@@ -15,6 +15,7 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
+from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
 name_t = _('pinyin missile')
@@ -491,9 +492,9 @@ class WordSurface():
         return _new
 
 
-class PinyinMissile(SubjectGame):
+class PinyinMissile(GameBase):
     def __init__(self, win):
-        super().__init__(win)
+        
         self.win = win
 
         # window
@@ -567,7 +568,13 @@ class PinyinMissile(SubjectGame):
                     self.input_surface._update()
                     return
 
-    def run(self):
+    def load(self):
+        ...
+
+    def save(self):
+        ...
+
+    def start(self):
 
         self.play_menu._menu.disable()
         self.play_menu._menu.full_reset()
@@ -596,6 +603,5 @@ class PinyinMissile(SubjectGame):
             pygame.display.update()
 
 
-def play(win):
-    PinyinMissile(win).run()
-    pass
+def enjoy(win):
+    return PinyinMissile(win)

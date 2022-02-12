@@ -4,6 +4,8 @@ import sys
 from importlib import import_module
 
 from primaryschool.locale import _
+from primaryschool.dirs import *
+
 
 subject_module_prefix = 'primaryschool.subjects.'
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
@@ -43,6 +45,7 @@ class Game():
         self.module_str = module_str
         self.subject = subject
         self.module = import_module(self.module_str)
+        self._game = None
         self.name = self.get_name()
         self.name_t = self.get_name_t()
         self.difficulties = self.get_difficulties()
@@ -56,11 +59,34 @@ class Game():
     def get_name(self):
         return self.module_str.split('.')[-1]
 
-    def play(self, win):
+    def get_game(self, win):
         from primaryschool.ready import Win
         assert isinstance(win, Win)
+        self._game = self.module.enjoy(win)
+        return self._game
 
-        self.module.play(win)
+    def play(self, win):
+        _game = self.get_game(win)
+        _game.start()
+
+    def save(self, win):
+        _game = self.get_game(win)
+        _game.save()
+
+    def load(self, win):
+        _game = self.get_game(win)
+        _game.load()
+
+    def get_prev_file_path(self):
+        return os.path.join(
+            user_data_dir_path,
+            self.module_str + '.pkl'
+        )
+
+    def has_prev(self):
+        return os.path.exists(
+            self.get_prev_file_path()
+        )
 
 
 class Subject():
