@@ -2,12 +2,14 @@
 
 import importlib
 import os
+import threading
 
 import pygame
 import pygame_menu
 from pygame.locals import *
 from pygame_menu.widgets import *
 
+from primaryschool.dirs import *
 from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font)
@@ -15,6 +17,57 @@ from primaryschool.settings import *
 from primaryschool.subjects import games, subjects
 
 app_description_t = _("app_description_t")
+
+
+class GameData():
+    def __init__(self, win):
+        self.win = win
+
+    def get_game_file_path(self):
+        return os.path.join(
+            user_data_dir_path,
+            self.win.games[self.win.game_index].module_str + '.pkl'
+        )
+
+    def has_prev_game(self):
+        return os.path.exists(
+            self.get_game_file_path()
+        )
+
+    def save_the_game(self):
+        with open(self.get_game_file_path(), 'wb') as f:
+            pickle.dump(self.win, f)
+
+    def load_the_game(self):
+        with open(self.get_game_file_path(), 'rb') as f:
+            self.win = pickle.load(f)
+
+
+class SaveMenu():
+
+    def __init__(self, win):
+
+        self.win = win
+        self.game_data = self.win.game_data or None
+        self.title = _('Save game?')
+        self._menu = self.win.get_default_menu(self.title)
+        self.save = False
+
+    def add_widgets(self):
+
+        self._menu.add.button(
+            _('Save'),
+            self.save_the_game,
+            font_name=self.win.font_path)
+        self._menu.add.button(
+            _('Return to main menu'),
+            pygame_menu.events.BACK,
+            font_name=self.win.font_path)
+
+    def save_the_game(self):
+        if self.game_data is None:
+            self.game_data = self.win.game_data
+        self.game_data.save_the_game()
 
 
 class AboutMenu():
@@ -31,7 +84,6 @@ class AboutMenu():
         self.app_author_font = get_default_font(22)
         self.app_contributors_font = self.app_author_font
 
-        self.add_widgets()
 
     def add_widgets(self):
         self._menu.add.label(app_name, max_char=-1,
@@ -72,8 +124,6 @@ class PlayMenu():
 
         self.game_dropselect = ...
 
-        self.add_widgets()
-
     def add_widgets(self):
         self._menu.add.text_input(
             _('Name :'), default=_('_name_'),
@@ -111,6 +161,12 @@ class PlayMenu():
             self.start_the_game,
             font_name=self.win.font_path)
 
+        if self.win.game_data.has_prev_game():
+            self._menu.add.button(
+                _('Continue'),
+                self.start_prev_game,
+                font_name=self.win.font_path)
+
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
@@ -124,6 +180,10 @@ class PlayMenu():
             [(g.name_t, index) for index, g in enumerate(
                 self.subjects[self.subject_index].games)])
         self.game_dropselect.set_default_value(0)
+
+    def start_prev_game(self):
+        self.win = self.win.game_data.load_the_game()
+        self.start_the_game()
 
     def start_the_game(self):
         if self.game_index >= len(self.games):
@@ -150,12 +210,11 @@ class MainMenu():
         self.play_menu = self.win.play_menu
         self.about_menu = self.win.about_menu
 
-        self.add_widgets()
 
     def add_widgets(self):
-        self._menu.add.button(_('Play'), self.play_menu._menu,
+        self._menu.add.button(_('Play'), self.win.play_menu._menu,
                               font_name=self.win.font_path,)
-        self._menu.add.button(_('About'), self.about_menu._menu,
+        self._menu.add.button(_('About'), self.win.about_menu._menu,
                               font_name=self.win.font_path,)
         self._menu.add.button(_('Quit'), pygame_menu.events.EXIT,
                               font_name=self.win.font_path,)
@@ -186,9 +245,20 @@ class Win():
         self.font_path = default_font_path
         self.font = default_font
 
+        self.game_data = GameData(self)
+
         self.play_menu = PlayMenu(self)
         self.about_menu = AboutMenu(self)
+        self.save_menu = SaveMenu(self)
         self.main_menu = MainMenu(self)
+
+        self.add_widgets()
+    
+    def add_widgets(self):
+        self.play_menu.add_widgets()
+        self.about_menu.add_widgets()
+        self.save_menu.add_widgets()
+        self.main_menu.add_widgets()
 
     def get_default_menu(self, title, **kwargs):
 

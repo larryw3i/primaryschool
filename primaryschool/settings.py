@@ -15,28 +15,37 @@ app_contributors = [
     '',
 ]
 
+
 requirements = [
     # product
-    [(  # ('requirement_name','version','project_url','License','license_url')
-        'pygame', '', 'https://github.com/pygame/pygame',
-        'LGPL v2', 'https://github.com/pygame/pygame/blob/main/docs/LGPL.txt'
-    ), (
-        'PyYAML', '', 'https://github.com/yaml/pyyaml',
-        'MIT', 'https://github.com/yaml/pyyaml/blob/master/LICENSE'
-    ), (
-        'pygame-menu', '', 'https://github.com/ppizarror/pygame-menu',
-        'MIT', 'hhttps://github.com/ppizarror/pygame-menu/blob/master/LICENSE'
-    ), (
-        'xpinyin', '', 'https://github.com/lxneng/xpinyin',
-        'BSD', 'https://github.com/lxneng/xpinyin/blob/master/setup.py#L37'
-    )],
-    [(  # dev
-        'isort', '', 'https://github.com/pycqa/isort',
-        'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
-    ), (
-        'autopep8', '', 'https://github.com/hhatto/autopep8',
-        'MIT', 'https://github.com/hhatto/autopep8/blob/master/LICENSE'
-    )]
+    [  # ('requirement_name','version','project_url','License','license_url')
+        (
+            'pygame', '', 'https://github.com/pygame/pygame',
+            'LGPL v2', 'https://github.com/pygame/pygame/blob/main/docs/LGPL.txt'
+        ),
+        (
+            'pygame-menu', '', 'https://github.com/ppizarror/pygame-menu',
+            'MIT', 'hhttps://github.com/ppizarror/pygame-menu/blob/master/LICENSE'
+        ),
+        (
+            'xpinyin', '', 'https://github.com/lxneng/xpinyin',
+            'BSD', 'https://github.com/lxneng/xpinyin/blob/master/setup.py#L37'
+        ),
+        (
+            'appdirs', '', 'https://github.com/ActiveState/appdirs',
+            'MIT', 'https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt'
+        ),
+    ],
+    [
+        (  # dev
+            'isort', '', 'https://github.com/pycqa/isort',
+            'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
+        ),
+        (
+            'autopep8', '', 'https://github.com/hhatto/autopep8',
+            'MIT', 'https://github.com/hhatto/autopep8/blob/master/LICENSE'
+        )
+    ]
 ]
 
 
