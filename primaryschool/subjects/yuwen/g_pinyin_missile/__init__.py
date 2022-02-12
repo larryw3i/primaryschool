@@ -555,7 +555,8 @@ class PinyinMissile(SubjectGame):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
-                    self.running = not self.running
+                    self.save_menu._menu.mainloop(self.surface)
+                    # self.running = not self.running
                     return
                 elif e.key == pygame.K_BACKSPACE:
                     self._input = self._input[0:-1]

@@ -1,5 +1,6 @@
 
 
+import pickle
 import importlib
 import os
 import threading
@@ -48,6 +49,7 @@ class SaveMenu():
     def __init__(self, win):
 
         self.win = win
+        self.surface = self.win.surface
         self.game_data = self.win.game_data or None
         self.title = _('Save game?')
         self._menu = self.win.get_default_menu(self.title)
@@ -56,18 +58,30 @@ class SaveMenu():
     def add_widgets(self):
 
         self._menu.add.button(
-            _('Save'),
+            _('Save and return'),
             self.save_the_game,
             font_name=self.win.font_path)
         self._menu.add.button(
-            _('Return to main menu'),
-            pygame_menu.events.BACK,
+            _('Continue'),
+            self.continue_the_game,
             font_name=self.win.font_path)
+        self._menu.add.button(
+            _('Return to main menu'),
+            self.to_main_menu,
+            font_name=self.win.font_path)
+
+    def to_main_menu(self):
+        self.win.main_menu._menu.full_reset()
+        self.win.main_menu._menu.enable()
+        self.win.main_menu._menu.mainloop(self.surface)
 
     def save_the_game(self):
         if self.game_data is None:
             self.game_data = self.win.game_data
         self.game_data.save_the_game()
+
+    def continue_the_game(self):
+        self._menu.disable()
 
 
 class AboutMenu():
@@ -83,7 +97,6 @@ class AboutMenu():
         self.app_url_font = get_default_font(20)
         self.app_author_font = get_default_font(22)
         self.app_contributors_font = self.app_author_font
-
 
     def add_widgets(self):
         self._menu.add.label(app_name, max_char=-1,
@@ -210,7 +223,6 @@ class MainMenu():
         self.play_menu = self.win.play_menu
         self.about_menu = self.win.about_menu
 
-
     def add_widgets(self):
         self._menu.add.button(_('Play'), self.win.play_menu._menu,
                               font_name=self.win.font_path,)
@@ -253,7 +265,7 @@ class Win():
         self.main_menu = MainMenu(self)
 
         self.add_widgets()
-    
+
     def add_widgets(self):
         self.play_menu.add_widgets()
         self.about_menu.add_widgets()
