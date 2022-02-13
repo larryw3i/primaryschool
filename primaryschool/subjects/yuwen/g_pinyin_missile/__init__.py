@@ -494,7 +494,7 @@ class WordSurface():
 
 class PinyinMissile(GameBase):
     def __init__(self, win):
-        
+
         self.win = win
 
         # window
@@ -557,7 +557,6 @@ class PinyinMissile(GameBase):
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
                     self.save_menu._menu.mainloop(self.surface)
-                    # self.running = not self.running
                     return
                 elif e.key == pygame.K_BACKSPACE:
                     self._input = self._input[0:-1]
@@ -575,10 +574,6 @@ class PinyinMissile(GameBase):
         ...
 
     def start(self):
-
-        self.play_menu._menu.disable()
-        self.play_menu._menu.full_reset()
-
         while self.running:
             self.clock.tick(self.FPS)
 

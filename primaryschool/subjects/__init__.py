@@ -3,9 +3,8 @@ import os
 import sys
 from importlib import import_module
 
-from primaryschool.locale import _
 from primaryschool.dirs import *
-
+from primaryschool.locale import _
 
 subject_module_prefix = 'primaryschool.subjects.'
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
@@ -62,11 +61,17 @@ class Game():
     def get_game(self, win):
         from primaryschool.ready import Win
         assert isinstance(win, Win)
-        self._game = self.module.enjoy(win)
-        return self._game
+        try:
+            self._game = self.module.enjoy(win)
+            return self._game
+        except e:
+            print(e)
+            pass
 
     def play(self, win):
         _game = self.get_game(win)
+        self.win.play_menu._menu.disable()
+        self.win.play_menu._menu.full_reset()
         _game.start()
 
     def save(self, win):
@@ -117,4 +122,4 @@ class SubjectGame():
 
 subjects = [Subject(n) for n in subject_names]
 
-games = sum([s.games for s in subjects], [])
+all_games = sum([s.games for s in subjects], [])

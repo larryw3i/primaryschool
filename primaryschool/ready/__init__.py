@@ -101,17 +101,25 @@ class PlayMenu():
 
         self.win = win
         self.subjects = self.win.subjects
-        self.games = self.win.games
+        self.all_games = self.win.all_games
 
-        self.win.subject_index = self.get_default_subject_index()
-        self.subject_index = self.win.subject_index
+        self.subject_games = self.subjects[0].games
+
+        self.subject_index = self.win.subject_index \
+            = self.get_default_subject_index()
         self.game_index = self.win.game_index
         self.difficulty_index = self.win.difficulty_index
+
 
         self.title = _('Play Game')
         self._menu = self.win.get_default_menu(self.title)
 
+        self.subject = ...
+        self.game = ...
+        self.difficulty = ...
+
         self.game_dropselect = ...
+        self.difficulty_dropselect = ...
         self.continue_button = ...
 
     def add_widgets(self):
@@ -136,7 +144,7 @@ class PlayMenu():
             onchange=self.set_game
         )
 
-        self._menu.add.dropselect(
+        self.difficulty_dropselect = self._menu.add.dropselect(
             title=_('Difficulty :'),
             items=[(d, index) for index, d in
                    enumerate(self.games[0].difficulties)],
@@ -175,10 +183,19 @@ class PlayMenu():
         return self.subjects.index(self.games[0].subject)
 
     def update_game_dropselect(self):
+
         self.game_dropselect.update_items(
             [(g.name_t, index) for index, g in enumerate(
                 self.subjects[self.subject_index].games)])
         self.game_dropselect.set_default_value(0)
+
+    def update_difficulty_dropselect(self):
+        _subject = self.subjects[self.subject_index]
+        _game = _subject.games[0]
+        self.difficulty_dropselect.update_items(
+            [(g.name_t, index) for index, g in enumerate(
+                _game.difficulties)])
+        self.difficulty_dropselect.set_default_value(0)
 
     def start_prev_game(self):
         if len(self.games) - 1 < self.game_index:
@@ -193,15 +210,26 @@ class PlayMenu():
         _game.play(self.win)
 
     def set_difficulty(self, value, index):
-        self.difficulty_index = self.win.difficulty_index = index
+        self.set_difficulty_index(index)
 
     def set_subject(self, item, index):
-        self.subject_index = self.win.subject_index = index
-        self.game_index = 0
-        self.update_game_dropselect()
+        self.set_subject_index(index)
 
     def set_game(self, item, index):
-        self.game_index = self.win.game_index = index
+        self.set_game_index(index)
+
+    def set_game_index(self, index=0):
+        self.game_index = self.game_index = index
+        self.update_game_dropselect()
+        self.set_difficulty_index()
+
+    def set_subject_index(self, index):
+        self.subject_index = self.win.subject_index = index
+        self.set_game_index()
+
+    def set_difficulty_index(self, index=0):
+        self.difficulty_index = self.win.difficulty_index = index
+        self.update_difficulty_dropselect()
 
 
 class MainMenu():
@@ -237,7 +265,7 @@ class Win():
         self.clock = pygame.time.Clock()
 
         self.subjects = subjects
-        self.games = games
+        self.all_games = all_games
 
         self.subject_index = 0
         self.game_index = 0
