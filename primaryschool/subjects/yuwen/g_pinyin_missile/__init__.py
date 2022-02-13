@@ -9,7 +9,7 @@ import pygame
 import pygame_menu
 from pygame.key import key_code
 from pygame.locals import *
-from pygame.dirs import *
+from primaryschool.dirs import *
 from xpinyin import Pinyin
 
 from primaryschool.locale import _
@@ -185,7 +185,7 @@ class WordSurfacesManager():
         self.lang_code = 'zh_CN'
         self.font_path = get_font_path(self.lang_code, show_not_found=True)
         self.font = pygame.font.Font(self.font_path, self.font_size)
-        self.surfaces = self.get_surfaces()
+        self.surfaces = []
 
     def set_font_size(self, size):
         assert isinstance(size, int)
@@ -193,10 +193,15 @@ class WordSurfacesManager():
 
     def get_font_size(self):
         return self.font_size
+    
+    def set_surfaces(self):
+        assert len(self.pm.words) > 0
+        self.surfaces = [WordSurface(self.pm, self, w) for w in self.pm.words]
 
     def get_surfaces(self):
-        assert len(self.pm.words) > 0
-        return [WordSurface(self.pm, self, w) for w in self.pm.words]
+        if not self.surfaces:
+            self.set_surfaces()
+        return self.surfaces
 
     def count(self):
         return len(self.surfaces)
@@ -213,6 +218,17 @@ class WordSurfacesManager():
         ws = self.pop_surface()
         self.moving_surfaces.append(ws)
         self.frame_counter = 0
+    
+    def save(self,_copy):
+        _copy['0x0'] = [s.word for s in self.surfaces]
+        _copy['0x1'] = [(s.word,s.dest) for ms in self.moving_surfaces]
+        return _copy
+
+    def load(self,_copy):
+        for w in _copy['0x0']:
+            self.surfaces.append(WordSurface(self.pm,self,w))
+        for w,d in _copy['0x1']:
+            self.moving_surfaces.append(WordSurface(self.pm,self,w,d))
 
     def blit(self):
         if len(self.surfaces) > 0:
@@ -388,7 +404,7 @@ class InfoSurface():
 
 
 class WordSurface():
-    def __init__(self, pm, _manager, word):
+    def __init__(self, pm, _manager, word,dest=None):
         self.pm = pm
         self.win = self.pm.win
         self.manager = _manager
@@ -405,7 +421,7 @@ class WordSurface():
 
         self.surface = self.get_surface()
         self.size = self.get_size()
-        self.dest = self.get_random_dest()
+        self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
         self.pinyin = self.get_pinyin()
 
@@ -509,6 +525,7 @@ class PinyinMissile(GameBase):
         self.running = True
         self.FPS = self.win.FPS
         self.clock = self.win.clock
+        self._load = False
 
         self.subject = self.win.subject
         self.subject_index = self.win.subject_index
@@ -530,7 +547,6 @@ class PinyinMissile(GameBase):
         self.word = Word(self)
         self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager = WordSurfacesManager(self)
-        self.word_surfaces = self.wordsurfaces_manager.get_surfaces()
 
         self.wave = Wave(self)
 
@@ -570,12 +586,25 @@ class PinyinMissile(GameBase):
                     return
 
     def load(self):
-        ...
+        self._load=True
+        with open(self.copy_path,'rb') as f:
+            _copy = pickle.load(f)        
+        self.wordsurfaces_manager.load(_copy)
+        self.start()
 
     def save(self):
-        ...
+        _copy = {}
+        self.wordsurfaces_manager.save(_copy)
+        with open(self.copy_path,'wb') as f:
+            # Warning:
+            # The pickle module is not secure. Only unpickle data you trust. 
+            pickle.dump(_copy,f)
 
     def start(self):
+
+        if not self._load:
+            self.wordsurfaces_manager.set_surfaces()
+
         while self.running:
             self.clock.tick(self.FPS)
 
