@@ -506,6 +506,7 @@ class PinyinMissile(GameBase):
         self.FPS = self.win.FPS
         self.clock = self.win.clock
 
+        self.subject = self.win.subject
         self.subject_index = self.win.subject_index
         self.subject_game_index = self.win.subject_game_index
         self.difficulty_index = self.win.difficulty_index
@@ -539,11 +540,7 @@ class PinyinMissile(GameBase):
         self.end_time = None
 
     def print_game_info(self):
-        print(
-            self.win.subjects[self.subject_index].name_t,
-            self.win.games[self.subject_game_index].name_t,
-            difficulties[self.difficulty_index]
-        )
+        print(self.subject.name_t,name_t,difficulties[self.difficulty_index])
 
     def ascii_not_symbol(self, code):
         return 48 <= code <= 57 or 65 <= code <= 90 or 97 <= code <= 122
