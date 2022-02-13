@@ -18,25 +18,24 @@ from primaryschool.subjects import *
 from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
-name_t = _('pinyin missile')
+name_t = _('Mind hunter')
 
 difficulties = [
-    _('Grade 1.1'),  # 0
-    _('Grade 1.2'),  # 1
-    _('Grade 2.1'),  # 2
-    _('Grade 2.2'),  # 3
-    _('Grade 3.1'),  # 4
-    _('Grade 3.2'),  # 5
-    _('Grade 4.1'),  # 6
-    _('Grade 4.2'),  # 7
-    _('Grade 5.1'),  # 8
-    _('Grade 5.2'),  # 9
-    _('Grade 6.1'),  # 10
-    _('Grade 6.2'),  # 11
-    _('Low level'),  # 12
-    _('High level'),  # 13
-    _('All grades'),  # 14
-    _('All Chinese characters'),  # 15
+    _('< 10 + 10'),  # 0
+    _('< 50 + 50'),  # 1
+    _('< 100 + 100'),  # 2
+    _('< 10 - 10'),  # 3
+    _('< 50 - 50'),  # 4
+    _('< 100 - 100'),  # 5
+    _('< 10 * 10'),  # 6
+    _('< 50 * 50'),  # 7
+    _('< 100 * 100'),  # 8
+    _('< 10 / 10'),  # 9
+    _('< 50 / 50'),  # 10
+    _('< 100 / 100'),  # 11
+    _('< 10 ? 10'),  # 12
+    _('< 50 ? 50'),  # 13
+    _('< 100 ? 100'),  # 14
 ]
 
 pinyin = Pinyin()
