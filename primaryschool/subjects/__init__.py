@@ -54,7 +54,7 @@ class Game():
     def play(self, win):
         win.play_menu._menu.disable()
         win.play_menu._menu.full_reset()
-        self.get_game(win).start()
+        self.get_game(win).play()
 
     def save(self, win):
         self.get_game(win).save()

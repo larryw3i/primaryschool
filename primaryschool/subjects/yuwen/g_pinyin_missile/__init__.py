@@ -3,7 +3,7 @@ import os
 import pickle
 import random
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
 import pygame
@@ -20,6 +20,7 @@ from primaryschool.subjects import *
 from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
+# primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
 name_t = _('pinyin missile')
@@ -322,7 +323,7 @@ class InfoSurface():
     def get_datetime_diff_str(self):
         if self.end_time is None:
             self.end_time = self.win.end_time = datetime.now()
-        diff = self.end_time - self.pm.start_time
+        diff = (self.end_time - self.pm.start_time) + self.pm.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
         return _('Cost: ') + f'{_h}:{_min}:{_sec}'
@@ -559,6 +560,7 @@ class PinyinMissile(GameBase):
 
         self.print_game_info()
 
+        self.last_timedelta = timedelta(0)
         self.start_time = datetime.now()
         self.end_time = None
 
@@ -575,7 +577,9 @@ class PinyinMissile(GameBase):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
+                    self.last_timedelta += datetime.now()-self.start_time
                     self.save_menu._menu.mainloop(self.surface)
+                    self.start_time = datetime.now()
                     return
                 elif e.key == pygame.K_BACKSPACE:
                     self._input = self._input[0:-1]
@@ -593,7 +597,7 @@ class PinyinMissile(GameBase):
                 _copy = pickle.load(f)
             self.wordsurfaces_manager.load(_copy)
             self.word_count, self.win_count, self.lose_count = _copy['0x2']
-            self.start_time = _copy['0x3']
+            self.last_timedelta = _copy['0x3']
             self.start()
         except e:
             print(e)
@@ -602,7 +606,8 @@ class PinyinMissile(GameBase):
         _copy = {}
         self.wordsurfaces_manager.save(_copy)
         _copy['0x2'] = (self.word_count, self.win_count, self.lose_count)
-        _copy['0x3'] = self.start_time
+        _copy['0x3'] = (datetime.now() - self.start_time) + self.last_timedelta
+
         # https://docs.python.org/3/library/pickle.html?highlight=pickle
         # Warning:
         # The pickle module is not secure. Only unpickle data you trust.
@@ -613,6 +618,12 @@ class PinyinMissile(GameBase):
 
         if not self._load:
             self.wordsurfaces_manager.set_surfaces()
+
+    def play(self):
+        self._load = False
+        self.wordsurfaces_manager.surfaces = []
+        self.wordsurfaces_manager.set_surfaces()
+        self.start()
 
     def start(self):
 
