@@ -18,6 +18,8 @@ from primaryschool.subjects import *
 from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
+module_str = __name__
+
 name_t = _('Mind hunter')
 
 difficulties = [

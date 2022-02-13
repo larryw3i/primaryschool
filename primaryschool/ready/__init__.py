@@ -173,10 +173,10 @@ class PlayMenu():
         self.start_the_game()
 
     def continue_btn_onreturn(self):
-        self.start_prev_game()
+        self.start_copied_game()
 
     def update_continue_button(self):
-        if self.subject_game.has_prev():
+        if self.subject_game.has_copy():
             self.continue_button.show()
         else:
             self.continue_button.hide()
@@ -193,7 +193,7 @@ class PlayMenu():
                 self.subject_game.difficulties)])
         self.difficulty_dropselect.set_default_value(self.difficulty_index)
 
-    def start_prev_game(self):
+    def start_copied_game(self):
         self.subject_game.load(self.win)
 
     def start_the_game(self):

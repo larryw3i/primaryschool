@@ -9,6 +9,7 @@ import pygame
 import pygame_menu
 from pygame.key import key_code
 from pygame.locals import *
+from pygame.dirs import *
 from xpinyin import Pinyin
 
 from primaryschool.locale import _
@@ -17,6 +18,8 @@ from primaryschool.resource import (default_font, default_font_path,
 from primaryschool.subjects import *
 from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
+
+module_str = __name__
 
 name_t = _('pinyin missile')
 
@@ -534,6 +537,8 @@ class PinyinMissile(GameBase):
         self.win_count = 0
         self.lose_count = 0
         self.word_count = len(self.words)
+
+        self.copy_path = get_copy_path(module_str)
 
         self.print_game_info()
 
