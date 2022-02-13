@@ -5,7 +5,7 @@ import os
 
 from appdirs import AppDirs
 
-from primaryschool.settings import app_author, app_name,app_version
+from primaryschool.settings import app_author, app_name, app_version
 
 _dirs = AppDirs(app_name, app_author)
 
@@ -22,4 +22,4 @@ for d in [
 
 
 def get_copy_path(module_str):
-    return os.path.join(user_data_dir_path, module_str) + '.{app_version}.pkl'
+    return os.path.join(user_data_dir_path, module_str) + f'.{app_version}.pkl'
