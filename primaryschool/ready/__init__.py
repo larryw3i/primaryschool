@@ -100,24 +100,26 @@ class PlayMenu():
     def __init__(self, win):
 
         self.win = win
+        self.title = _('Play Game')
+        self._menu = self.win.get_default_menu(self.title)
+
         self.subjects = self.win.subjects
         self.all_games = self.win.all_games
 
         self.subject_games = self.subjects[0].games
 
-        self.subject_index = self.win.subject_index \
-            = self.get_default_subject_index()
+        self.subject_index = self.win.subject_index = \
+            self.get_default_subject_index()
         self.game_index = self.win.game_index
+        self.subject_game_index = 0
         self.difficulty_index = self.win.difficulty_index
-
-
-        self.title = _('Play Game')
-        self._menu = self.win.get_default_menu(self.title)
 
         self.subject = ...
         self.game = ...
+        self.subject_game = ...
         self.difficulty = ...
 
+        self.subject_dropselect = ...
         self.game_dropselect = ...
         self.difficulty_dropselect = ...
         self.continue_button = ...
@@ -127,31 +129,32 @@ class PlayMenu():
             _('Name :'), default=_('_name_'),
             font_name=self.win.font_path)
 
-        self._menu.add.dropselect(
+        self.subject_dropselect = self._menu.add.dropselect(
             title=_('Subject :'),
             items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
             font_name=self.win.font_path,
-            default=self.get_default_subject_index(),
+            default=0,
             placeholder=_('Select a Subject'),
-            onchange=self.set_subject
+            onchange=self.subject_dropselect_onchange
         )
         self.game_dropselect = self._menu.add.dropselect(
             title=_('Game :'),
-            items=[(g.name_t, index) for index, g in enumerate(self.games)],
+            items=[(g.name_t, index) for index, g in enumerate(\
+                self.subject_games)],
             font_name=self.win.font_path,
-            default=self.game_index,
+            default=0,
             placeholder=_('Select a game'),
-            onchange=self.set_game
+            onchange=self.game_dropselect_onchange
         )
 
         self.difficulty_dropselect = self._menu.add.dropselect(
             title=_('Difficulty :'),
             items=[(d, index) for index, d in
-                   enumerate(self.games[0].difficulties)],
+                   enumerate(self.subject_games[0].difficulties)],
             font_name=self.win.font_path,
-            default=self.difficulty_index,
+            default=0,
             placeholder=_('Select a difficulty'),
-            onchange=self.set_difficulty
+            onchange=self.difficulty_dropselect_onchange
         )
 
         self._menu.add.button(
@@ -171,19 +174,15 @@ class PlayMenu():
             font_name=self.win.font_path)
 
     def update_continue_button(self):
-        if len(self.games) - 1 < self.game_index:
+        if len(self.all_games) - 1 < self.game_index:
             return
-        _game = self.games[self.game_index]
+        _game = self.all_games[self.game_index]
         if _game.has_prev():
             self.continue_button.show()
         else:
             self.continue_button.hide()
 
-    def get_default_subject_index(self):
-        return self.subjects.index(self.games[0].subject)
-
     def update_game_dropselect(self):
-
         self.game_dropselect.update_items(
             [(g.name_t, index) for index, g in enumerate(
                 self.subjects[self.subject_index].games)])
@@ -209,23 +208,26 @@ class PlayMenu():
         _game = self.games[self.game_index]
         _game.play(self.win)
 
-    def set_difficulty(self, value, index):
+    def difficulty_dropselect_onchange(self, value, index):
         self.set_difficulty_index(index)
 
-    def set_subject(self, item, index):
+    def subject_dropselect_onchange(self, item, index):
         self.set_subject_index(index)
 
-    def set_game(self, item, index):
-        self.set_game_index(index)
+    def game_dropselect_onchange(self, item, index):
+        self.set_subject_game_index(index)
 
-    def set_game_index(self, index=0):
-        self.game_index = self.game_index = index
-        self.update_game_dropselect()
+    def set_subject_game_index(self, index=0):
+        self.subject_game_index = self.win.subject_game_index = index
+        self.subject_game = self.subject_games[self.subject_game_index]
+        self.update_continue_button()
         self.set_difficulty_index()
 
-    def set_subject_index(self, index):
+    def set_subject_index(self, index=0):
         self.subject_index = self.win.subject_index = index
-        self.set_game_index()
+        self.subject = self.subjects[self.subject_index]
+        self.set_subject_game_index()
+        self.update_game_dropselect()
 
     def set_difficulty_index(self, index=0):
         self.difficulty_index = self.win.difficulty_index = index
@@ -269,6 +271,7 @@ class Win():
 
         self.subject_index = 0
         self.game_index = 0
+        self.subject_game_index = 0
         self.difficulty_index = 0
 
         self.font_path = default_font_path

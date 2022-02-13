@@ -10,34 +10,29 @@ subject_module_prefix = 'primaryschool.subjects.'
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 
 
-def get_subject_names():
-    subjects = []
+def get_subject_tree():
+    subject_names = []
+    game_modules = []
     for _subject in os.listdir(subject_dir_path):
         _subject_path = os.path.join(subject_dir_path, _subject)
+
         if not os.path.isdir(_subject_path):
             continue
         if _subject.startswith('_'):
             continue
-        subjects.append(_subject)
-    return subjects
 
-
-subject_names = get_subject_names()
-
-
-def get_game_modules():
-    modules = []
-    for _subject_name in subject_names:
-        _subject_path = os.path.join(subject_dir_path, _subject_name)
+        no_game = True
         for _game in os.listdir(_subject_path):
             if not _game.startswith('g_'):
                 continue
-            modules.append(f'{subject_module_prefix+_subject_name}.{_game}')
-    return modules
+            no_game = False
+            game_modules.append(subject_module_prefix+_subject+'.'+_game)
+        # Subject without game is ignored.
+        if not no_game:
+            subject_names.append(_subject)
+    return subject_names,game_modules
 
-
-game_modules = get_game_modules()
-
+subject_names,game_modules = get_subject_tree()
 
 class Game():
     def __init__(self, module_str, subject):
@@ -48,7 +43,7 @@ class Game():
         self.name = self.get_name()
         self.name_t = self.get_name_t()
         self.difficulties = self.get_difficulties()
-
+    
     def get_difficulties(self):
         return self.module.difficulties
 
