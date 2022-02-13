@@ -51,10 +51,9 @@ class SaveMenu():
         self.win.main_menu._menu.mainloop(self.surface)
 
     def save_the_game(self):
-        if len(self.win.games) - 1 < self.win.game_index:
-            return
-        _game = self.win.games[self.win.game_index]
-        _game.save(self.win)
+        self.win.subject_game.save(self.win)
+        self._menu.disable()
+        self.to_main_menu()
 
     def continue_the_game(self):
         self._menu.disable()
@@ -211,13 +210,14 @@ class PlayMenu():
 
     def set_subject_index(self, index=0):
         self.subject_index = self.win.subject_index = index
-        self.subject = self.subjects[self.subject_index]
+        self.subject = self.win.subject = self.subjects[self.subject_index]
         self.set_subject_game_index()
         self.update_subject_game_dropselect()
 
     def set_subject_game_index(self, index=0):
         self.subject_game_index = self.win.subject_game_index = index
-        self.subject_game = self.subject.games[self.subject_game_index]
+        self.subject_game = self.win.subject_game = \
+            self.subject.games[self.subject_game_index]
         self.update_continue_button()
         self.set_difficulty_index()
 

@@ -64,11 +64,8 @@ class Game():
         win.play_menu._menu.full_reset()
         self.get_game(win).load()
 
-    def get_copy_path(self):
-        return os.path.join(user_data_dir_path, self.module_str + '.pkl')
-
     def has_copy(self):
-        return os.path.exists(self.get_copy_path())
+        return os.path.exists(get_copy_path(self.module_str))
 
 
 class Subject():

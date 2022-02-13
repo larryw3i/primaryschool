@@ -1,5 +1,6 @@
 import copy
 import os
+import pickle
 import random
 import sys
 from datetime import datetime
@@ -9,9 +10,9 @@ import pygame
 import pygame_menu
 from pygame.key import key_code
 from pygame.locals import *
-from primaryschool.dirs import *
 from xpinyin import Pinyin
 
+from primaryschool.dirs import *
 from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
@@ -193,7 +194,7 @@ class WordSurfacesManager():
 
     def get_font_size(self):
         return self.font_size
-    
+
     def set_surfaces(self):
         assert len(self.pm.words) > 0
         self.surfaces = [WordSurface(self.pm, self, w) for w in self.pm.words]
@@ -218,17 +219,17 @@ class WordSurfacesManager():
         ws = self.pop_surface()
         self.moving_surfaces.append(ws)
         self.frame_counter = 0
-    
-    def save(self,_copy):
+
+    def save(self, _copy):
         _copy['0x0'] = [s.word for s in self.surfaces]
-        _copy['0x1'] = [(s.word,s.dest) for ms in self.moving_surfaces]
+        _copy['0x1'] = [(ms.word, ms.dest) for ms in self.moving_surfaces]
         return _copy
 
-    def load(self,_copy):
+    def load(self, _copy):
         for w in _copy['0x0']:
-            self.surfaces.append(WordSurface(self.pm,self,w))
-        for w,d in _copy['0x1']:
-            self.moving_surfaces.append(WordSurface(self.pm,self,w,d))
+            self.surfaces.append(WordSurface(self.pm, self, w))
+        for w, d in _copy['0x1']:
+            self.moving_surfaces.append(WordSurface(self.pm, self, w, d))
 
     def blit(self):
         if len(self.surfaces) > 0:
@@ -404,7 +405,7 @@ class InfoSurface():
 
 
 class WordSurface():
-    def __init__(self, pm, _manager, word,dest=None):
+    def __init__(self, pm, _manager, word, dest=None):
         self.pm = pm
         self.win = self.pm.win
         self.manager = _manager
@@ -586,24 +587,36 @@ class PinyinMissile(GameBase):
                     return
 
     def load(self):
-        self._load=True
-        with open(self.copy_path,'rb') as f:
-            _copy = pickle.load(f)        
-        self.wordsurfaces_manager.load(_copy)
-        self.start()
+        try:
+            self._load = True
+            with open(self.copy_path, 'rb') as f:
+                _copy = pickle.load(f)
+            self.wordsurfaces_manager.load(_copy)
+            self.word_count, self.win_count, self.lose_count = _copy['0x2']
+            self.start_time = _copy['0x3']
+            self.start()
+        except e:
+            print(e)
 
     def save(self):
         _copy = {}
         self.wordsurfaces_manager.save(_copy)
-        with open(self.copy_path,'wb') as f:
-            # Warning:
-            # The pickle module is not secure. Only unpickle data you trust. 
-            pickle.dump(_copy,f)
+        _copy['0x2'] = (self.word_count, self.win_count, self.lose_count)
+        _copy['0x3'] = self.start_time
+        # https://docs.python.org/3/library/pickle.html?highlight=pickle
+        # Warning:
+        # The pickle module is not secure. Only unpickle data you trust.
+        with open(self.copy_path, 'wb') as f:
+            pickle.dump(_copy, f)
 
-    def start(self):
+    def _start(self):
 
         if not self._load:
             self.wordsurfaces_manager.set_surfaces()
+
+    def start(self):
+
+        self._start()
 
         while self.running:
             self.clock.tick(self.FPS)
