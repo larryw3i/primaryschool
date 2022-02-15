@@ -211,7 +211,9 @@ class WordSurfacesManager():
         self.win = self.mh.win
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 1.9 * self.mh.FPS
+        self.difficulty_index_p1  = self.mh.difficulty_index+1
+        self.interval = 1.8 * self.mh.FPS # * \
+            # (self.difficulty_index_p1 + 5) / len(difficulties)
         self.intercept_interval = 0.3 * self.mh.FPS
         self.moving_speed = 1
         self.intercepted_color = (175, 10, 175, 100)
@@ -617,7 +619,9 @@ class MindHunter(GameBase):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
+                    self.last_timedelta += datetime.now() - self.start_time
                     self.save_menu._menu.mainloop(self.surface)
+                    self.start_time = datetime.now()
                     return
                 elif e.key == pygame.K_BACKSPACE:
                     self._input = self._input[0:-1]

@@ -577,7 +577,7 @@ class PinyinMissile(GameBase):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
-                    self.last_timedelta += datetime.now()-self.start_time
+                    self.last_timedelta += datetime.now() - self.start_time
                     self.save_menu._menu.mainloop(self.surface)
                     self.start_time = datetime.now()
                     return

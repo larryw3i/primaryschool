@@ -1,10 +1,10 @@
 
-from abc import ABC, abstractmethod
 import copy
 import os
 import pickle
 import random
 import sys
+from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
@@ -19,8 +19,6 @@ from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
-from primaryschool.subjects._templates_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
@@ -45,6 +43,26 @@ difficulties = [
     _('All grades'),  # 14
     _('All Chinese characters'),  # 15
 ]
+
+
+class GameBase(ABC):
+    @abstractmethod
+    def __init__(self):
+        ...
+
+    @abstractmethod
+    def save(self):
+
+        ...
+
+    @abstractmethod
+    def load(self):
+
+        ...
+
+    @abstractmethod
+    def play(self):
+        ...
 
 
 class Word():
@@ -577,7 +595,7 @@ class PinyinMissile(GameBase):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
-                    self.last_timedelta += datetime.now()-self.start_time
+                    self.last_timedelta += datetime.now() - self.start_time
                     self.save_menu._menu.mainloop(self.surface)
                     self.start_time = datetime.now()
                     return
@@ -651,7 +669,6 @@ class PinyinMissile(GameBase):
                 self.info_surface.score_blit()
 
             pygame.display.update()
-
 
 
 class ShootingBase(GameBase):
@@ -718,7 +735,7 @@ class ShootingBase(GameBase):
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     self.save_menu._menu.enable()
-                    self.last_timedelta += datetime.now()-self.start_time
+                    self.last_timedelta += datetime.now() - self.start_time
                     self.save_menu._menu.mainloop(self.surface)
                     self.start_time = datetime.now()
                     return
@@ -792,24 +809,3 @@ class ShootingBase(GameBase):
                 self.info_surface.score_blit()
 
             pygame.display.update()
-
-
-
-class GameBase(ABC):
-    @abstractmethod
-    def __init__(self):
-        ...
-
-    @abstractmethod
-    def save(self):
-
-        ...
-
-    @abstractmethod
-    def load(self):
-
-        ...
-
-    @abstractmethod
-    def play(self):
-        ...
