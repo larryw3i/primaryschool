@@ -12,7 +12,7 @@ from pygame_menu.widgets import *
 from xpinyin import Pinyin
 
 from primaryschool.locale import _
-from primaryschool.resource import font_path, get_font
+from primaryschool.resource import *
 from primaryschool.subjects import *
 
-name = _('Yuwen')
+name_t = _('Yuwen')

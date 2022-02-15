@@ -1,4 +1,9 @@
 
-from . import resource
+b = ...
+def a():
+    b = 0
+def c():
+    print(b)
 
-from . import subjects
+def d():
+    print(b+3)
