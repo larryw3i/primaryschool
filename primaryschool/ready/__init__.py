@@ -14,7 +14,7 @@ from pygame_menu.widgets import *
 from primaryschool.dirs import *
 from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font,get_resource_path)
+                                    get_default_font, get_resource_path)
 from primaryschool.settings import *
 from primaryschool.subjects import subjects
 
@@ -285,10 +285,10 @@ class Win():
         self.main_menu.add_widgets()
 
     def get_default_menu(self, title, **kwargs):
-        img = BaseImage(get_resource_path('0x1.png'),\
-            pygame_menu.baseimage.IMAGE_MODE_FILL)
+        img = BaseImage(get_resource_path('0x1.png'),
+                        pygame_menu.baseimage.IMAGE_MODE_FILL)
         theme = pygame_menu.themes.THEME_BLUE.copy()
-        theme.title_font =theme.widget_font= self.font
+        theme.title_font = theme.widget_font = self.font
         theme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
         theme.background_color = img
         return pygame_menu.Menu(title, self.w_width, self.w_height,

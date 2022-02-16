@@ -572,8 +572,8 @@ class PinyinMissile(GameBase):
 
     def set_bg_img(self):
         self._bg_img = pygame.image.load(get_resource_path('0x4.png'))
-        self._bg_img = pygame.transform.scale(\
-            self._bg_img,(self.w_width,self.w_height))
+        self._bg_img = pygame.transform.scale(
+            self._bg_img, (self.w_width, self.w_height))
 
     def get_bg_img(self):
         if not self._bg_img:
@@ -647,8 +647,8 @@ class PinyinMissile(GameBase):
         while self.running:
             self.clock.tick(self.FPS)
 
-            self.surface.fill((0,0,0))
-            self.surface.blit(self.get_bg_img(),(0,0)) # (0, 0, 0))
+            self.surface.fill((0, 0, 0))
+            self.surface.blit(self.get_bg_img(), (0, 0))  # (0, 0, 0))
 
             events = pygame.event.get()
             self.handle_events(events)
