@@ -179,7 +179,7 @@ class WordSurfacesManager():
         self.frame_counter = frame_counter
         self.interval = 2.2 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
-        self.moving_speed = 1
+        self.moving_speed = 0.8
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
@@ -493,12 +493,12 @@ class WordSurface():
     def intercept(self, _pinyin):
         for p in self.pinyins:
             self.intercepted = p in _pinyin
-            if self.intercept:
-                return self.intercepted
+            if self.intercepted:
+                break
+        return self.intercepted
 
     def get_pinyins(self):
-        return pinyin.get_pinyins(
-            self.word, splitter=' ', tone_marks='numbers')
+        return pinyin.get_pinyins(self.word, tone_marks='numbers')
 
     def get_size(self):
         return self.surface.get_size()
