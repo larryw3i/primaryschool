@@ -8,6 +8,7 @@ import threading
 import pygame
 import pygame_menu
 from pygame.locals import *
+from pygame_menu.baseimage import BaseImage
 from pygame_menu.widgets import *
 
 from primaryschool.dirs import *

@@ -66,11 +66,11 @@ class Word():
         if g < 12:
             words = cn_ps_c[g]
         elif g == 12:
-            words = cn_ps_c[0:6]
+            words = sum(cn_ps_c[0:6], [])
         elif g == 13:
-            words = cn_ps_c[6:16]
+            words = sum(cn_ps_c[6:16], [])
         elif g == 14:
-            words = cn_ps_c[0:16]
+            words = sum(cn_ps_c[0:16], [])
         return sum(words, [])
 
     def get_rand_words(self, n):
@@ -177,7 +177,7 @@ class WordSurfacesManager():
         self.win = self.pm.win
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 1.5 * self.pm.FPS
+        self.interval = 2.2 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
         self.moving_speed = 1
         self.intercepted_color = (175, 10, 175, 100)
@@ -425,7 +425,7 @@ class WordSurface():
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
-        self.pinyin = self.get_pinyin()
+        self.pinyins = self.get_pinyins()
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -491,11 +491,14 @@ class WordSurface():
                            width=self.circle_width)
 
     def intercept(self, _pinyin):
-        self.intercepted = self.pinyin in _pinyin
-        return self.intercepted
+        for p in self.pinyins:
+            self.intercepted = p in _pinyin
+            if self.intercept:
+                return self.intercepted
 
-    def get_pinyin(self):
-        return pinyin.get_pinyin(self.word, '')
+    def get_pinyins(self):
+        return pinyin.get_pinyins(
+            self.word, splitter=' ', tone_marks='numbers')
 
     def get_size(self):
         return self.surface.get_size()
