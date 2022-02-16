@@ -66,8 +66,8 @@ class Resource():
                 self.get_sys_font_name_like('mono')),
             'zh_CN': pygame.font.match_font(
                 self.get_sys_font_name_like(
-                    'heiti' if sys.platform == 'darwin' else \
-                    'yahei' if sys.platform == 'win32' else \
+                    'heiti' if sys.platform == 'darwin' else
+                    'yahei' if sys.platform == 'win32' else
                     'cjk'
                 )
             ),

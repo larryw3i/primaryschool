@@ -211,9 +211,8 @@ class WordSurfacesManager():
         self.win = self.mh.win
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.difficulty_index_p1  = self.mh.difficulty_index+1
-        self.interval = 1.8 * self.mh.FPS # * \
-            # (self.difficulty_index_p1 + 5) / len(difficulties)
+        self.difficulty_index_p1 = self.mh.difficulty_index + 1
+        self.interval = 1.8 * self.mh.FPS
         self.intercept_interval = 0.3 * self.mh.FPS
         self.moving_speed = 1
         self.intercepted_color = (175, 10, 175, 100)
