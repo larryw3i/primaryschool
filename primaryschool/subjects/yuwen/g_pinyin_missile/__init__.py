@@ -647,8 +647,7 @@ class PinyinMissile(GameBase):
         while self.running:
             self.clock.tick(self.FPS)
 
-            self.surface.fill((0, 0, 0))
-            self.surface.blit(self.get_bg_img(), (0, 0))  # (0, 0, 0))
+            self.surface.blit(self.get_bg_img(), (0, 0))
 
             events = pygame.event.get()
             self.handle_events(events)
