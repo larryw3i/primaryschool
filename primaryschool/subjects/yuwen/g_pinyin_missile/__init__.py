@@ -15,7 +15,8 @@ from xpinyin import Pinyin
 from primaryschool.dirs import *
 from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font, get_font_path)
+                                    get_default_font, get_font_path,
+                                    get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._templates_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
@@ -567,6 +568,18 @@ class PinyinMissile(GameBase):
         self.start_time = datetime.now()
         self.end_time = None
 
+        self._bg_img = None
+
+    def set_bg_img(self):
+        self._bg_img = pygame.image.load(get_resource_path('0x4.png'))
+        self._bg_img = pygame.transform.scale(\
+            self._bg_img,(self.w_width,self.w_height))
+
+    def get_bg_img(self):
+        if not self._bg_img:
+            self.set_bg_img()
+        return self._bg_img
+
     def print_game_info(self):
         print(self.subject.name_t, name_t, difficulties[self.difficulty_index])
 
@@ -618,7 +631,6 @@ class PinyinMissile(GameBase):
             pickle.dump(_copy, f)
 
     def _start(self):
-
         if not self._load:
             self.wordsurfaces_manager.set_surfaces()
 
@@ -635,7 +647,8 @@ class PinyinMissile(GameBase):
         while self.running:
             self.clock.tick(self.FPS)
 
-            self.surface.fill((0, 0, 0))
+            self.surface.fill((0,0,0))
+            self.surface.blit(self.get_bg_img(),(0,0)) # (0, 0, 0))
 
             events = pygame.event.get()
             self.handle_events(events)
