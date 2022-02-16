@@ -7,8 +7,8 @@ import pygame
 from primaryschool import project_path
 from primaryschool.locale import _, sys_lang_code
 
-resource_path = os.path.abspath(os.path.dirname(__file__))
-project_font_path = os.path.join(resource_path, 'fonts')
+resource_dir_path = os.path.abspath(os.path.dirname(__file__))
+project_font_dir_path = os.path.join(resource_dir_path, 'fonts')
 
 pygame.font.init()
 
@@ -16,11 +16,11 @@ pygame.font.init()
 class Resource():
     def __init__(self):
 
-        self.default_font_size = 25
+        self.default_font_size = 50
         self.sys_font_names = pygame.font.get_fonts()
         self.locale_font_paths = self.get_locale_font_paths()
-        self.material_dir_names = ['imgs', 'audios', 'fonts']
-        self.material_file_names = self.get_material_file_names()
+        self.resource_dir_names = ['imgs', 'audios', 'fonts']
+        self.resource_paths = self.get_resource_paths()
 
     def get_sys_font_name_like(self, _like_name):
         for f in self.sys_font_names:
@@ -45,19 +45,21 @@ class Resource():
 
         return self.locale_font_paths['default']
 
-    def get_material_file_names(self):
-        material_file_names = []
-        for root, _, files in os.walk(project_path, topdown=False):
-            for n in self.material_dir_names:
-                if root.endswith(n):
+    def get_resource_paths(self):
+        resource_paths = []
+        for root, dirs, files in os.walk(resource_dir_path, topdown=False):
+            for n in self.resource_dir_names:
+                # imgs/xx_XX/xx.xx, for locale resources.
+                if (root.endswith(n) or root.split('/')[-2] == n) \
+                        and len(dirs) < 1:
                     for name in files:
-                        material_file_names.append(os.path.join(root, name))
-        return sorted(material_file_names, key=len)
+                        resource_paths.append(os.path.join(root, name))
+        return sorted(resource_paths, key=len)
 
-    def get_material(self, name):
-        for f in self.material_file_names:
-            locale_material = f'{sys_lang_code}/{name}'
-            if f.endswith(locale_material):
+    def get_resource_path(self, name):
+        assert '/' not in name
+        for f in self.resource_paths:
+            if f.endswith(name):
                 return f
 
     def get_locale_font_paths(self):
@@ -86,8 +88,8 @@ def get_font_path(lang_code, show_not_found=False):
     return r.get_font_path(lang_code, show_not_found)
 
 
-def get_material(name):
-    return r.get_material(name)
+def get_resource_path(name):
+    return r.get_resource_path(name)
 
 
 default_font = get_default_font()
