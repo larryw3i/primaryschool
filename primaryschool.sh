@@ -83,7 +83,7 @@ cat_bt(){
     echo $app_name.sh; cat -bt $app_name.sh
     echo $app_name.py; cat -bt $app_name.py
     echo setup.py;  cat -bt setup.py
-    for f in $(find $app_name/ -name "*.py")
+    for f in $(find $app_name/ -name "*.py" -o -name "*.po")
     do
         echo $f
         cat -bt $f

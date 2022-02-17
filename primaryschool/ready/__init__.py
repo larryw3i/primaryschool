@@ -146,6 +146,8 @@ class PlayMenu():
             placeholder=_('Select a difficulty'),
             onchange=self.on_difficulty_dropselect_change
         )
+        self.update_selection_box_width()
+
         self._menu.add.button(
             _('Play'),
             self.play_btn_onreturn,
@@ -159,6 +161,17 @@ class PlayMenu():
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.win.font_path)
+    
+    def update_selection_box_width(self):
+        for ds in [
+            self.subject_dropselect,
+            self.subject_game_dropselect,
+            self.difficulty_dropselect]:
+            ds._selection_box_width = max(
+                [b.get_width() for b in ds._option_buttons]
+            )+ds._selection_box_inflate[0]
+            ds._make_selection_drop()
+            ds.render()
 
     def play_btn_onreturn(self):
         self.start_the_game()
@@ -206,6 +219,7 @@ class PlayMenu():
         self.subject_games = self.win.subject_games = self.subject.games
         self.set_subject_game_index()
         self.update_subject_game_dropselect()
+        self.update_selection_box_width()
 
     def set_subject_game_index(self, index=0):
         self.subject_game_index = self.win.subject_game_index = index
