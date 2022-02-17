@@ -15,7 +15,7 @@ app_contributors = [
     '',
 ]
 
-
+install_prefix = 'python -m pip install '
 requirements = [
     # product
     [  # ('requirement_name','version','project_url','License','license_url')
@@ -65,6 +65,11 @@ def get_requirements_product():
     return install_requires
 
 
+def install_requirements_product():
+    requirements_product = get_requirements_product()
+    os.system(install_prefix + requirements_product)
+
+
 def get_requirements_dev():
     install_requires = ''
     for r in requirements:
@@ -73,9 +78,19 @@ def get_requirements_dev():
     return install_requires
 
 
+def install_requirements_dev():
+    requirements_dev = get_requirements_dev()
+    os.system(install_prefix + requirements_dev)
+
+
 def get_requirements_dev_u():
-    install_requires = ''
+    install_requires = '-U'
     for r in requirements:
         for _r in r:
             install_requires += ' ' + _r[0]
     return install_requires
+
+
+def install_requirements_dev_u():
+    requirements_dev_u = get_requirements_dev_u()
+    os.system(install_prefix + requirements_dev_u)

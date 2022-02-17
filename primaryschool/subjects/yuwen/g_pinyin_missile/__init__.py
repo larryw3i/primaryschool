@@ -24,7 +24,7 @@ from primaryschool.subjects.yuwen.words import cn_ps_c
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
-name_t = _('pinyin missile')
+name_t = _('Pinyin Missile')
 
 difficulties = [
     _('Grade 1.1'),  # 0
@@ -312,10 +312,10 @@ class InfoSurface():
         return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
-        return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') +\
-            str(self.pm.lose_count) + '|' + _('remain: ') +\
-            str(self.pm.wordsurfaces_manager.count()) + '|' +\
-            _('total: ') + str(self.pm.word_count)
+        return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') \
+            + str(self.pm.lose_count) + '|' + _('remain: ') \
+            + str(self.pm.wordsurfaces_manager.count()) + '|' \
+            + _('total: ') + str(self.pm.word_count)
 
     def get_win_info_dest(self):
         _w, _ = self.win_info_surface.get_size()

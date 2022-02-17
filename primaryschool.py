@@ -7,12 +7,12 @@ argv = sys.argv[1:]
 for arg in argv:
 
     if arg == 'req_dev':
-        from primaryschool.settings import get_requirements_dev
-        os.system('pip3 install ' + get_requirements_dev())
+        from primaryschool.settings import install_requirements_dev
+        install_requirements_dev()
 
     if arg == 'req_dev_u':
-        from primaryschool.settings import get_requirements_dev_u
-        os.system('pip3 install -U ' + get_requirements_dev_u())
+        from primaryschool.settings import install_requirements_dev_u
+        install_requirements_dev_u()
 
     if arg == 'test':
         import tests
