@@ -487,9 +487,10 @@ class WordSurface():
         return self.get_w() / 2
 
     def circle(self):
-        pygame.draw.circle(self.pm.surface, self.circle_color,
-                           self.center, self.get_circle_radius(),
-                           width=self.circle_width)
+        pygame.draw.circle(
+            self.pm.surface, self.circle_color,
+            self.center, self.get_circle_radius(),
+            width=self.circle_width)
 
     def intercept(self, _pinyin):
         for p in self.pinyins:
@@ -570,8 +571,9 @@ class PinyinMissile(GameBase):
 
         self._bg_img = None
 
-    def set_bg_img(self):
-        self._bg_img = pygame.image.load(get_resource_path('0x4.png'))
+    def set_bg_img(self, src_name=None):
+        self._bg_img = pygame.image.load(
+            get_resource_path(src_name if src_name else '0x4.png'))
         self._bg_img = pygame.transform.scale(
             self._bg_img, (self.w_width, self.w_height))
 
@@ -579,6 +581,9 @@ class PinyinMissile(GameBase):
         if not self._bg_img:
             self.set_bg_img()
         return self._bg_img
+
+    def blit_bg_img(self):
+        self.surface.blit(self.get_bg_img(), (0, 0))
 
     def print_game_info(self):
         print(self.subject.name_t, name_t, difficulties[self.difficulty_index])
@@ -605,6 +610,12 @@ class PinyinMissile(GameBase):
                     self._input += pygame.key.name(e.key)
                     self.input_surface._update()
                     return
+
+        if self.main_menu._menu.is_enabled():
+            self.main_menu._menu.update(events)
+
+        if self.play_menu._menu.is_enabled():
+            self.play_menu._menu.update(events)
 
     def load(self):
         try:
@@ -640,31 +651,24 @@ class PinyinMissile(GameBase):
         self.wordsurfaces_manager.set_surfaces()
         self.start()
 
+    def blit_game_surface(self):
+        if self.win_count + self.lose_count < self.word_count:
+            self.info_surface.blit()
+            self.wall_surface.blit()
+            self.wordsurfaces_manager.blit()
+            self.input_surface.blit()
+        else:
+            self.info_surface.score_blit()
+
     def start(self):
 
         self._start()
 
         while self.running:
             self.clock.tick(self.FPS)
-
-            self.surface.blit(self.get_bg_img(), (0, 0))
-
-            events = pygame.event.get()
-            self.handle_events(events)
-            if self.main_menu._menu.is_enabled():
-                self.main_menu._menu.update(events)
-
-            if self.play_menu._menu.is_enabled():
-                self.play_menu._menu.update(events)
-
-            if self.win_count + self.lose_count < self.word_count:
-                self.info_surface.blit()
-                self.wall_surface.blit()
-                self.wordsurfaces_manager.blit()
-                self.input_surface.blit()
-            else:
-                self.info_surface.score_blit()
-
+            self.blit_bg_img()
+            self.handle_events(pygame.event.get())
+            self.blit_game_surface()
             pygame.display.update()
 
 

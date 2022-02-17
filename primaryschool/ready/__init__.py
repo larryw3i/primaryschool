@@ -98,26 +98,20 @@ class AboutMenu():
 
 class PlayMenu():
     def __init__(self, win):
-
         self.win = win
         self.title = _('Play Game')
         self._menu = self.win.get_default_menu(self.title)
-
         self.subjects = self.win.subjects
-
         self.subject_games = self.win.subject_games
-
         self.subject_index = self.win.subject_index = 0
         self.subject_game_index = self.win.subject_game_index
         self.difficulty_index = self.win.difficulty_index
-
         self.subject = self.win.subject
         self.subject_game = self.win.subject_game
-
-        self.subject_dropselect = ...
-        self.subject_game_dropselect = ...
-        self.difficulty_dropselect = ...
-        self.continue_button = ...
+        self.subject_dropselect = None
+        self.subject_game_dropselect = None
+        self.difficulty_dropselect = None
+        self.continue_button = None
 
     def add_widgets(self):
         self._menu.add.text_input(
@@ -152,18 +146,15 @@ class PlayMenu():
             placeholder=_('Select a difficulty'),
             onchange=self.on_difficulty_dropselect_change
         )
-
         self._menu.add.button(
             _('Play'),
             self.play_btn_onreturn,
             font_name=self.win.font_path)
-
         self.continue_button = self._menu.add.button(
             _('Continue'),
             self.continue_btn_onreturn,
             font_name=self.win.font_path)
         self.update_continue_button()
-
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
@@ -212,6 +203,7 @@ class PlayMenu():
     def set_subject_index(self, index=0):
         self.subject_index = self.win.subject_index = index
         self.subject = self.win.subject = self.subjects[self.subject_index]
+        self.subject_games = self.win.subject_games = self.subject.games
         self.set_subject_game_index()
         self.update_subject_game_dropselect()
 
@@ -246,11 +238,8 @@ class MainMenu():
 
 class Win():
     def __init__(self):
-
         pygame.init()
-
         self.running = True
-
         self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2, self.w_height_of_2 = self.w_width / 2, \
@@ -258,21 +247,16 @@ class Win():
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
         self.clock = pygame.time.Clock()
-
         self.subjects = subjects
-
         self.subject_games = self.subjects[0].games
-
         self.subject_index = 0
         self.subject_game_index = 0
         self.difficulty_index = 0
-
         self.subject = self.subjects[0]
         self.subject_game = self.subject_games[0]
-
         self.font_path = default_font_path
         self.font = default_font
-
+        self.bg_img = None
         self.play_menu = PlayMenu(self)
         self.about_menu = AboutMenu(self)
         self.save_menu = SaveMenu(self)
@@ -284,13 +268,21 @@ class Win():
         self.save_menu.add_widgets()
         self.main_menu.add_widgets()
 
+    def set_bg_img(self, src_name=None):
+        self.bg_img = BaseImage(
+            get_resource_path(src_name if src_name else '0x1.png'),
+            pygame_menu.baseimage.IMAGE_MODE_FILL)
+
+    def get_bg_img(self):
+        if not self.bg_img:
+            self.set_bg_img()
+        return self.bg_img
+
     def get_default_menu(self, title, **kwargs):
-        img = BaseImage(get_resource_path('0x1.png'),
-                        pygame_menu.baseimage.IMAGE_MODE_FILL)
         theme = pygame_menu.themes.THEME_BLUE.copy()
         theme.title_font = theme.widget_font = self.font
         theme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
-        theme.background_color = img
+        theme.background_color = self.get_bg_img()
         return pygame_menu.Menu(title, self.w_width, self.w_height,
                                 theme=theme, **kwargs)
 
