@@ -673,8 +673,10 @@ class PinyinMissile(GameBase):
 
 class ShootingBase(GameBase):
 
-    def __init__(self, win):
+    def __init__(self, win, module_str, target):
         self.win = win
+        self.module_str = module_str
+        self.target = target
 
         # window
         self.w_width = self.win.w_width
@@ -714,9 +716,7 @@ class ShootingBase(GameBase):
         self.lose_count = 0
         self.word_count = len(self.words)
 
-        self.copy_path = get_copy_path(module_str)
-
-        self.print_game_info()
+        self.copy_path = get_copy_path(self.module_str)
 
         self.last_timedelta = timedelta(0)
         self.start_time = datetime.now()

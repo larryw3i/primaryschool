@@ -22,9 +22,7 @@ app_description_t = _("app_description_t")
 
 
 class SaveMenu():
-
     def __init__(self, win):
-
         self.win = win
         self.surface = self.win.surface
         self.title = _('Save game?')
@@ -61,7 +59,6 @@ class SaveMenu():
 
 
 class AboutMenu():
-
     def __init__(self, win):
 
         self.win = win
@@ -112,6 +109,7 @@ class PlayMenu():
         self.subject_game_dropselect = None
         self.difficulty_dropselect = None
         self.continue_button = None
+        self.selection_box_bgcolor = (255, 255, 255)
 
     def add_widgets(self):
         self._menu.add.text_input(
@@ -124,6 +122,7 @@ class PlayMenu():
             items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
             font_name=self.win.font_path,
             default=0,
+            selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a Subject'),
             onchange=self.on_subject_dropselect_change
         )
@@ -133,6 +132,7 @@ class PlayMenu():
                 self.subject_games)],
             font_name=self.win.font_path,
             default=0,
+            selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a game'),
             onchange=self.on_subject_game_dropselect_change
         )
@@ -143,6 +143,7 @@ class PlayMenu():
                    enumerate(self.subject_games[0].difficulties)],
             font_name=self.win.font_path,
             default=0,
+            selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a difficulty'),
             onchange=self.on_difficulty_dropselect_change
         )
@@ -189,19 +190,18 @@ class PlayMenu():
         self.subject_game_dropselect.update_items(
             [(g.name_t, index) for index, g in enumerate(
                 self.subject.games)])
-        self.subject_game_dropselect.set_default_value(0)
+        self.subject_game_dropselect.set_value(self.subject_game_index)
 
     def update_difficulty_dropselect(self):
         self.difficulty_dropselect.update_items(
             [(d, index) for index, d in enumerate(
                 self.subject_game.difficulties)])
-        self.difficulty_dropselect.set_default_value(self.difficulty_index)
+        self.difficulty_dropselect.set_value(self.difficulty_index)
 
     def start_copied_game(self):
         self.subject_game.load(self.win)
 
     def start_the_game(self):
-
         self.subject_game.play(self.win)
 
     def on_difficulty_dropselect_change(self, value, index):
@@ -242,12 +242,15 @@ class MainMenu():
         self.about_menu = self.win.about_menu
 
     def add_widgets(self):
-        self._menu.add.button(_('Play'), self.win.play_menu._menu,
-                              font_name=self.win.font_path,)
-        self._menu.add.button(_('About'), self.win.about_menu._menu,
-                              font_name=self.win.font_path,)
-        self._menu.add.button(_('Quit'), pygame_menu.events.EXIT,
-                              font_name=self.win.font_path,)
+        self._menu.add.button(
+            _('Play'), self.win.play_menu._menu,
+            font_name=self.win.font_path,)
+        self._menu.add.button(
+            _('About'), self.win.about_menu._menu,
+            font_name=self.win.font_path,)
+        self._menu.add.button(
+            _('Quit'), pygame_menu.events.EXIT,
+            font_name=self.win.font_path,)
 
 
 class Win():
@@ -282,9 +285,9 @@ class Win():
         self.save_menu.add_widgets()
         self.main_menu.add_widgets()
 
-    def set_bg_img(self, src_name=None):
+    def set_bg_img(self, src_name='0x1.png'):
         self.bg_img = BaseImage(
-            get_resource_path(src_name if src_name else '0x1.png'),
+            get_resource_path(src_name),
             pygame_menu.baseimage.IMAGE_MODE_FILL)
 
     def get_bg_img(self):
