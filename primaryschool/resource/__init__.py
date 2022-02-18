@@ -50,14 +50,14 @@ class Resource():
         for root, dirs, files in os.walk(resource_dir_path, topdown=False):
             for n in self.resource_dir_names:
                 # imgs/xx_XX/xx.xx, for locale resources.
-                if (root.endswith(n) or root.split('/')[-2] == n) \
+                if (root.endswith(n) or root.split(os.sep)[-2] == n) \
                         and len(dirs) < 1:
                     for name in files:
                         resource_paths.append(os.path.join(root, name))
         return sorted(resource_paths, key=len)
 
     def get_resource_path(self, name):
-        assert '/' not in name
+        assert os.sep not in name
         for f in self.resource_paths:
             if f.endswith(name):
                 return f
