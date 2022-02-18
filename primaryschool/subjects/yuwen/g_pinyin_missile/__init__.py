@@ -152,12 +152,12 @@ class WallSurface():
         self.flicker_counter = 0
         self.flicker_color = [self.color, (250, 0, 0)]
         self.flicker_color_step = (
-                (self.flicker_color[1][0] - self.flicker_color[0][0])
-                / self.flicker_interval,
-                (self.flicker_color[1][1] - self.flicker_color[0][1])
-                / self.flicker_interval,
-                (self.flicker_color[1][2] - self.flicker_color[0][2])
-                / self.flicker_interval,
+            (self.flicker_color[1][0] - self.flicker_color[0][0])
+            / self.flicker_interval,
+            (self.flicker_color[1][1] - self.flicker_color[0][1])
+            / self.flicker_interval,
+            (self.flicker_color[1][2] - self.flicker_color[0][2])
+            / self.flicker_interval,
         )
 
     def get_default_color(self):
@@ -168,15 +168,15 @@ class WallSurface():
         self.color = (
             min(
                 int(self.flicker_color[0][0]
-                + self.flicker_color_step[0] * self.flicker_counter),
+                    + self.flicker_color_step[0] * self.flicker_counter),
                 255),
             min(
                 int(self.flicker_color[0][1]
-                + self.flicker_color_step[1] * self.flicker_counter),
+                    + self.flicker_color_step[1] * self.flicker_counter),
                 255),
             min(
                 int(self.flicker_color[0][2]
-                + self.flicker_color_step[2] * self.flicker_counter),
+                    + self.flicker_color_step[2] * self.flicker_counter),
                 255)
         )
         if self.flicker_counter >= self.flicker_interval:
@@ -465,22 +465,22 @@ class WordSurface():
         self.tip_height = None
         self.bg_color = None
 
-    def set_tip_height(self,height = 50):
-        self.tip_height=height
-    
+    def set_tip_height(self, height=50):
+        self.tip_height = height
+
     def get_tip_height(self):
         if not self.tip_height:
             self.set_tip_height()
         return self.tip_height
-    
-    def set_bg_color(self,color=(20,10,200,100)):
+
+    def set_bg_color(self, color=(20, 10, 200, 100)):
         self.bg_color = color
 
     def get_bg_color(self):
         if not self.bg_color:
             self.set_bg_color()
         return self.bg_color
-    
+
     def blit(self):
         self.draw_bg()
         self.pm.surface.blit(self.surface, self.dest)
@@ -498,25 +498,25 @@ class WordSurface():
 
     def get_tip_dest(self):
         return (
-            self.get_x()+self.get_w()/2,
-            self.get_y()+self.get_h()+self.get_tip_height()
+            self.get_x() + self.get_w() / 2,
+            self.get_y() + self.get_h() + self.get_tip_height()
         )
-    
+
     def get_bg_points(self):
         return [
-            (self.get_x(),self.get_y()),
-            (self.get_x()+self.get_w(),self.get_y()),
-            (self.get_x()+self.get_w(),self.get_y()+self.get_h()),
+            (self.get_x(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
             self.get_tip_dest(),
-            (self.get_x(),self.get_y()+self.get_h())
+            (self.get_x(), self.get_y() + self.get_h())
         ]
 
     def draw_bg(self):
-        pygame.draw.polygon(\
+        pygame.draw.polygon(
             self.win.surface,
             self.get_bg_color(),
             self.get_bg_points())
-        
+
     def get_surface(self):
         _render = self.font.render(self.word, False, self.font_color)
         return _render
