@@ -161,15 +161,15 @@ class PlayMenu():
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.win.font_path)
-    
+
     def update_selection_box_width(self):
         for ds in [
-            self.subject_dropselect,
-            self.subject_game_dropselect,
-            self.difficulty_dropselect]:
+                self.subject_dropselect,
+                self.subject_game_dropselect,
+                self.difficulty_dropselect]:
             ds._selection_box_width = max(
                 [b.get_width() for b in ds._option_buttons]
-            )+ds._selection_box_inflate[0]
+            ) + ds._selection_box_inflate[0]
             ds._make_selection_drop()
             ds.render()
 

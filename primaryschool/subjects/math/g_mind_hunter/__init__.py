@@ -358,7 +358,7 @@ class InfoSurface():
     def get_datetime_diff_str(self):
         if self.end_time is None:
             self.end_time = self.win.end_time = datetime.now()
-        diff = self.end_time - self.pm.start_time + self.pm.last_timedelta
+        diff = self.end_time - self.mh.start_time + self.mh.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
         return _('Cost: ') + f'{_h}:{_min}:{_sec}'
