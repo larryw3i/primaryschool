@@ -53,12 +53,12 @@ class Word():
     def __init__(self, pm):
         self.pm = pm
         self.win = self.pm.win
-        self.rand_word_count = 50
+        self.rand_word_count = 70
         pass
 
     def get_words(self, g: int):
         if g == 15:
-            return self.get_rand_words(250)
+            return self.get_rand_words(self.rand_word_count)
         if 0 <= g < 15:
             return self.get_cn_ps_words(g)
 
@@ -302,8 +302,7 @@ class WordSurfacesManager():
                     self.pm.lose_count += 1
                     continue
 
-            w.add_dest((0, self.moving_speed))
-            w.blit()
+            w.add_dest((0, self.moving_speed), blit=True)
 
         self.frame_counter += 1
 
@@ -536,10 +535,14 @@ class WordSurface():
     def get_h(self):
         return self.size[1]
 
-    def add_dest(self, _add):
-        self.dest[0] += _add[0]
-        self.dest[1] += _add[1]
+    def add_dest(self, _add, blit=False):
+        if self.dest[0] < self.win.w_width:
+            self.dest[0] += _add[0]
+        if self.dest[1] < self.win.w_height:
+            self.dest[1] += _add[1]
         self.center = self.get_center()
+        if blit:
+            self.blit()
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -599,9 +602,7 @@ class WordSurface():
 
 class PinyinMissile(GameBase):
     def __init__(self, win):
-
         self.win = win
-
         # window
         self.w_width = self.win.w_width
         self.w_height = self.win.w_height
@@ -612,42 +613,32 @@ class PinyinMissile(GameBase):
         self.FPS = self.win.FPS
         self.clock = self.win.clock
         self._load = False
-
         self.subject = self.win.subject
         self.subject_index = self.win.subject_index
         self.subject_game_index = self.win.subject_game_index
         self.difficulty_index = self.win.difficulty_index
-
         self.main_menu = self.win.main_menu
         self.play_menu = self.win.play_menu
         self.save_menu = self.win.save_menu
         self.surface = self.win.surface
-
         self._input = ''
         self.font = get_default_font(45)
         self.info_surface = InfoSurface(self)
         self.wall_surface = WallSurface(self)
         self.input_surface = InputSurface(self)
-
         # word surface
         self.word = Word(self)
         self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager = WordSurfacesManager(self)
-
         self.wave = Wave(self)
-
         self.win_count = 0
         self.lose_count = 0
         self.word_count = len(self.words)
-
         self.copy_path = get_copy_path(module_str)
-
         self.print_game_info()
-
         self.last_timedelta = timedelta(0)
         self.start_time = datetime.now()
         self.end_time = None
-
         self._bg_img = None
 
     def set_bg_img(self, src_name='0x4.png'):
@@ -712,6 +703,7 @@ class PinyinMissile(GameBase):
         self.wordsurfaces_manager.save(_copy)
         _copy['0x2'] = (self.word_count, self.win_count, self.lose_count)
         _copy['0x3'] = (datetime.now() - self.start_time) + self.last_timedelta
+
         # https://docs.python.org/3/library/pickle.html?highlight=pickle
         # Warning:
         # The pickle module is not secure. Only unpickle data you trust.
