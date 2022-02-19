@@ -54,14 +54,17 @@ class Word():
     def get_pmt_formulas(self, _max, _oper, count=None):  # for plus/minus/time
         f = []
         count = count if count else self.count
+        _max_sqrt = int(_max**0.5)
         for _ in range(self.count + 1):
+            _oper_ = random.choice(_oper) if isinstance(_oper, list) else _oper
             num0 = random.randint(0, _max)
             num1 = random.randint(0, _max)
-            _oper_ = random.choice(_oper) if isinstance(_oper, list) else \
-                _oper
             if _oper_ == '-':
                 num0 = max(num0, num1)
                 num1 = min(num0, num1)
+            if _oper_ == '*':
+                num0 = random.randint(0, _max_sqrt)
+                num1 = random.randint(0, _max_sqrt)
             f.append(str(num0) + ' ' + _oper_ + ' ' + str(num1))
 
         return f
