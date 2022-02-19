@@ -3,7 +3,7 @@ import os
 import sys
 
 app_name = 'primaryschool'
-app_version = '0.0.12'
+app_version = '0.0.13'
 app_author = 'larryw3i'
 app_author_email = 'larryw3i@163.com'
 app_maintainer = app_author
@@ -40,21 +40,6 @@ requirements = [
             'https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt'
         ),
     ],
-    [
-        (  # dev
-            'isort', '', 'https://github.com/pycqa/isort',
-            'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
-        ),
-        (
-            'autopep8', '', 'https://github.com/hhatto/autopep8',
-            'MIT', 'https://github.com/hhatto/autopep8/blob/master/LICENSE'
-        ),
-        (
-            'nose2', '', 'https://github.com/nose-devs/nose2',
-            'BSD License',
-            'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
-        )
-    ]
 ]
 
 
@@ -69,28 +54,3 @@ def install_requirements_product():
     requirements_product = get_requirements_product()
     os.system(install_prefix + requirements_product)
 
-
-def get_requirements_dev():
-    install_requires = ''
-    for r in requirements:
-        for _r in r:
-            install_requires += ' ' + _r[0] + _r[1]
-    return install_requires
-
-
-def install_requirements_dev():
-    requirements_dev = get_requirements_dev()
-    os.system(install_prefix + requirements_dev)
-
-
-def get_requirements_dev_u():
-    install_requires = '-U'
-    for r in requirements:
-        for _r in r:
-            install_requires += ' ' + _r[0]
-    return install_requires
-
-
-def install_requirements_dev_u():
-    requirements_dev_u = get_requirements_dev_u()
-    os.system(install_prefix + requirements_dev_u)
