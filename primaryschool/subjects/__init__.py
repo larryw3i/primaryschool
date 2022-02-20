@@ -46,23 +46,23 @@ class Game():
         self.name_t = self.module.name_t
         self.difficulties = self.module.difficulties
 
-    def get_game(self, win):
+    def get_game(self, ps):
         if not self._game:
-            self._game = self.module.enjoy(win)
+            self._game = self.module.enjoy(ps)
         return self._game
 
-    def play(self, win):
-        win.play_menu._menu.disable()
-        win.play_menu._menu.full_reset()
-        self.get_game(win).play()
+    def play(self, ps):
+        ps.play_menu._menu.disable()
+        ps.play_menu._menu.full_reset()
+        self.get_game(ps).play()
 
-    def save(self, win):
-        self.get_game(win).save()
+    def save(self, ps):
+        self.get_game(ps).save()
 
-    def load(self, win):
-        win.play_menu._menu.disable()
-        win.play_menu._menu.full_reset()
-        self.get_game(win).load()
+    def load(self, ps):
+        ps.play_menu._menu.disable()
+        ps.play_menu._menu.full_reset()
+        self.get_game(ps).load()
 
     def has_copy(self):
         return os.path.exists(get_copy_path(self.module_str))
@@ -91,7 +91,7 @@ class Subject():
 
 
 class SubjectGame():
-    def __init__(self, win):
+    def __init__(self, ps):
         pass
 
     def update():

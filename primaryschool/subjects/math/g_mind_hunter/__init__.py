@@ -47,7 +47,7 @@ class Word():
 
     def __init__(self, mh):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.count = 0
         pass
 
@@ -113,7 +113,7 @@ class Word():
 class Wave():
     def __init__(self, mh):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.intercept_interval = \
             self.mh.wordsurfaces_manager.intercept_interval
         self.surface = self.mh.surface
@@ -147,7 +147,7 @@ class Wave():
 class InputSurface():
     def __init__(self, mh):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.font_size = 55
         self.font = get_default_font(self.font_size)
         self.font_color = (200, 22, 98)
@@ -173,7 +173,7 @@ class InputSurface():
 class WallSurface():
     def __init__(self, mh):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.h = self.mh.w_height / 20
         self.surface = pygame.Surface((self.mh.w_width, self.h))
         self.color = (255, 200, 99)
@@ -189,13 +189,13 @@ class WallSurface():
         return self.emitter_color
 
     def get_center(self):
-        return [self.win.w_width_of_2, self.win.w_height - self.h / 2]
+        return [self.ps.w_width_of_2, self.ps.w_height - self.h / 2]
 
     def draw_emitter(self):
         self.emitter_color = self.set_emitter_color() \
             if self.mh.wordsurfaces_manager is None \
             else self.mh.wordsurfaces_manager.laser_color
-        pygame.draw.circle(self.win.surface, self.emitter_color,
+        pygame.draw.circle(self.ps.surface, self.emitter_color,
                            self.center, self.emitter_radius)
 
     def blit(self):
@@ -207,7 +207,7 @@ class WallSurface():
 class WordSurfacesManager():
     def __init__(self, mh, frame_counter=0):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.moving_surfaces = []
         self.frame_counter = frame_counter
         self.difficulty_index_p1 = self.mh.difficulty_index + 1
@@ -309,11 +309,11 @@ class WordSurfacesManager():
 class InfoSurface():
     def __init__(self, mh):
         self.mh = mh
-        self.win = mh.win
-        self.surface = self.win.surface
+        self.ps = mh.ps
+        self.surface = self.ps.surface
         self.game_info_dest = (10, 10)
         self.game_info = name_t + \
-            '/' + difficulties[self.win.difficulty_index]
+            '/' + difficulties[self.ps.difficulty_index]
         self.game_info_color = (255, 0, 255, 10)
         self.font_size = 25
         self.font = get_default_font(self.font_size)
@@ -333,13 +333,13 @@ class InfoSurface():
 
         self.score = 0
         self._pass = False
-        self.win_info_surface = ...
+        self.ps_info_surface = ...
 
         self.score_surface = ...
         self.datetime_diff_surface = ...
         self.greeting_surface = ...
 
-        self.end_time = self.win.end_time = None
+        self.end_time = self.ps.end_time = None
 
     def get_score_font_color(self):
         return (20, 255, 0) if self._pass else (255, 20, 0)
@@ -352,11 +352,11 @@ class InfoSurface():
 
     def get_win_info_dest(self):
         _w, _ = self.win_info_surface.get_size()
-        return [self.win.w_width - _w, 0]
+        return [self.ps.w_width - _w, 0]
 
     def get_datetime_diff_str(self):
         if self.end_time is None:
-            self.end_time = self.win.end_time = datetime.now()
+            self.end_time = self.ps.end_time = datetime.now()
         diff = self.end_time - self.mh.start_time + self.mh.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
@@ -388,22 +388,22 @@ class InfoSurface():
         _w, _h = self.greeting_surface.get_size()
         _, _s_h = self.score_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 - _h - _s_h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 - _h - _s_h
         ]
 
     def get_score_surface_dest(self):
         _w, _h = self.score_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 - _h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 - _h
         ]
 
     def get_datetime_diff_surface_dest(self):
         _w, _h = self.datetime_diff_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 + _h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 + _h
         ]
 
     def score_blit(self):
@@ -442,7 +442,7 @@ class InfoSurface():
 class WordSurface():
     def __init__(self, mh, _manager, word, dest=None):
         self.mh = mh
-        self.win = self.mh.win
+        self.ps = self.mh.ps
         self.manager = _manager
         self.wall_surface = None
         self.word = word
@@ -506,7 +506,7 @@ class WordSurface():
             self.wall_surface = self.mh.wall_surface
         assert self.wall_surface is not None
         pygame.draw.line(
-            self.win.surface, self.laser_color,
+            self.ps.surface, self.laser_color,
             self.wall_surface.center, self.center,
             self.laser_width)
 
@@ -553,30 +553,30 @@ class WordSurface():
 
 
 class MindHunter(GameBase):
-    def __init__(self, win):
+    def __init__(self, ps):
 
-        self.win = win
+        self.ps = ps
 
         # window
-        self.w_width = self.win.w_width
-        self.w_height = self.win.w_height
-        self.w_height_of_2 = self.win.w_height_of_2
-        self.w_width_of_2 = self.win.w_width_of_2
-        self.w_centrex_y = self.win.w_centrex_y
+        self.w_width = self.ps.w_width
+        self.w_height = self.ps.w_height
+        self.w_height_of_2 = self.ps.w_height_of_2
+        self.w_width_of_2 = self.ps.w_width_of_2
+        self.w_centrex_y = self.ps.w_centrex_y
         self.running = True
-        self.FPS = self.win.FPS
-        self.clock = self.win.clock
+        self.FPS = self.ps.FPS
+        self.clock = self.ps.clock
         self._load = False
 
-        self.subject = self.win.subject
-        self.subject_index = self.win.subject_index
-        self.subject_game_index = self.win.subject_game_index
-        self.difficulty_index = self.win.difficulty_index
+        self.subject = self.ps.subject
+        self.subject_index = self.ps.subject_index
+        self.subject_game_index = self.ps.subject_game_index
+        self.difficulty_index = self.ps.difficulty_index
 
-        self.main_menu = self.win.main_menu
-        self.play_menu = self.win.play_menu
-        self.save_menu = self.win.save_menu
-        self.surface = self.win.surface
+        self.main_menu = self.ps.main_menu
+        self.play_menu = self.ps.play_menu
+        self.save_menu = self.ps.save_menu
+        self.surface = self.ps.surface
 
         self._input = ''
         self.font = get_default_font(45)
@@ -694,5 +694,5 @@ class MindHunter(GameBase):
             pygame.display.update()
 
 
-def enjoy(win):
-    return MindHunter(win)
+def enjoy(ps):
+    return MindHunter(ps)

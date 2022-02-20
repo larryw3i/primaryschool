@@ -22,11 +22,11 @@ app_description_t = _("app_description_t")
 
 
 class SaveMenu():
-    def __init__(self, win):
-        self.win = win
-        self.surface = self.win.surface
+    def __init__(self, ps):
+        self.ps = ps
+        self.surface = self.ps.surface
         self.title = _('Save game?')
-        self._menu = self.win.get_default_menu(self.title)
+        self._menu = self.ps.get_default_menu(self.title)
         self.save = False
 
     def add_widgets(self):
@@ -34,23 +34,23 @@ class SaveMenu():
         self._menu.add.button(
             _('Save and return'),
             self.save_the_game,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
         self._menu.add.button(
             _('Continue'),
             self.continue_the_game,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
         self._menu.add.button(
             _('Return to main menu'),
             self.to_main_menu,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
 
     def to_main_menu(self):
-        self.win.main_menu._menu.full_reset()
-        self.win.main_menu._menu.enable()
-        self.win.main_menu._menu.mainloop(self.surface)
+        self.ps.main_menu._menu.full_reset()
+        self.ps.main_menu._menu.enable()
+        self.ps.main_menu._menu.mainloop(self.surface)
 
     def save_the_game(self):
-        self.win.subject_game.save(self.win)
+        self.ps.subject_game.save(self.ps)
         self._menu.disable()
         self.to_main_menu()
 
@@ -59,11 +59,11 @@ class SaveMenu():
 
 
 class AboutMenu():
-    def __init__(self, win):
+    def __init__(self, ps):
 
-        self.win = win
+        self.ps = ps
         self.title = _('About')
-        self._menu = self.win.get_default_menu(self.title)
+        self._menu = self.ps.get_default_menu(self.title)
         self.app_name_font = get_default_font(50)
         self.app_version_font = get_default_font(20)
         self.app_description_font = get_default_font(22)
@@ -90,21 +90,21 @@ class AboutMenu():
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
 
 
 class PlayMenu():
-    def __init__(self, win):
-        self.win = win
+    def __init__(self, ps):
+        self.ps = ps
         self.title = _('Play Game')
-        self._menu = self.win.get_default_menu(self.title)
-        self.subjects = self.win.subjects
-        self.subject_games = self.win.subject_games
-        self.subject_index = self.win.subject_index = 0
-        self.subject_game_index = self.win.subject_game_index
-        self.difficulty_index = self.win.difficulty_index
-        self.subject = self.win.subject
-        self.subject_game = self.win.subject_game
+        self._menu = self.ps.get_default_menu(self.title)
+        self.subjects = self.ps.subjects
+        self.subject_games = self.ps.subject_games
+        self.subject_index = self.ps.subject_index = 0
+        self.subject_game_index = self.ps.subject_game_index
+        self.difficulty_index = self.ps.difficulty_index
+        self.subject = self.ps.subject
+        self.subject_game = self.ps.subject_game
         self.subject_dropselect = None
         self.subject_game_dropselect = None
         self.difficulty_dropselect = None
@@ -115,12 +115,12 @@ class PlayMenu():
         self._menu.add.text_input(
             title=_('Name :'),
             default=_('_name_'),
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
 
         self.subject_dropselect = self._menu.add.dropselect(
             title=_('Subject :'),
             items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
-            font_name=self.win.font_path,
+            font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a Subject'),
@@ -130,7 +130,7 @@ class PlayMenu():
             title=_('Game :'),
             items=[(g.name_t, index) for index, g in enumerate(
                 self.subject_games)],
-            font_name=self.win.font_path,
+            font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a game'),
@@ -141,7 +141,7 @@ class PlayMenu():
             title=_('Difficulty :'),
             items=[(d, index) for index, d in
                    enumerate(self.subject_games[0].difficulties)],
-            font_name=self.win.font_path,
+            font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a difficulty'),
@@ -152,16 +152,16 @@ class PlayMenu():
         self._menu.add.button(
             _('Play'),
             self.play_btn_onreturn,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
         self.continue_button = self._menu.add.button(
             _('Continue'),
             self.continue_btn_onreturn,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
         self.update_continue_button()
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
-            font_name=self.win.font_path)
+            font_name=self.ps.font_path)
 
     def update_selection_box_width(self):
         for ds in [
@@ -199,10 +199,10 @@ class PlayMenu():
         self.difficulty_dropselect.set_value(self.difficulty_index)
 
     def start_copied_game(self):
-        self.subject_game.load(self.win)
+        self.subject_game.load(self.ps)
 
     def start_the_game(self):
-        self.subject_game.play(self.win)
+        self.subject_game.play(self.ps)
 
     def on_difficulty_dropselect_change(self, value, index):
         self.set_difficulty_index(index)
@@ -214,46 +214,46 @@ class PlayMenu():
         self.set_subject_game_index(index)
 
     def set_subject_index(self, index=0):
-        self.subject_index = self.win.subject_index = index
-        self.subject = self.win.subject = self.subjects[self.subject_index]
-        self.subject_games = self.win.subject_games = self.subject.games
+        self.subject_index = self.ps.subject_index = index
+        self.subject = self.ps.subject = self.subjects[self.subject_index]
+        self.subject_games = self.ps.subject_games = self.subject.games
         self.set_subject_game_index()
         self.update_subject_game_dropselect()
         self.update_selection_box_width()
 
     def set_subject_game_index(self, index=0):
-        self.subject_game_index = self.win.subject_game_index = index
-        self.subject_game = self.win.subject_game = \
+        self.subject_game_index = self.ps.subject_game_index = index
+        self.subject_game = self.ps.subject_game = \
             self.subject.games[self.subject_game_index]
         self.update_continue_button()
         self.set_difficulty_index()
 
     def set_difficulty_index(self, index=0):
-        self.difficulty_index = self.win.difficulty_index = index
+        self.difficulty_index = self.ps.difficulty_index = index
         self.update_difficulty_dropselect()
 
 
 class MainMenu():
-    def __init__(self, win):
-        self.win = win
+    def __init__(self, ps):
+        self.ps = ps
         self.title = _('Primary School')
-        self._menu = self.win.get_default_menu(self.title)
-        self.play_menu = self.win.play_menu
-        self.about_menu = self.win.about_menu
+        self._menu = self.ps.get_default_menu(self.title)
+        self.play_menu = self.ps.play_menu
+        self.about_menu = self.ps.about_menu
 
     def add_widgets(self):
         self._menu.add.button(
-            _('Play'), self.win.play_menu._menu,
-            font_name=self.win.font_path,)
+            _('Play'), self.ps.play_menu._menu,
+            font_name=self.ps.font_path,)
         self._menu.add.button(
-            _('About'), self.win.about_menu._menu,
-            font_name=self.win.font_path,)
+            _('About'), self.ps.about_menu._menu,
+            font_name=self.ps.font_path,)
         self._menu.add.button(
             _('Quit'), pygame_menu.events.EXIT,
-            font_name=self.win.font_path,)
+            font_name=self.ps.font_path,)
 
 
-class Win():
+class PrimarySchool():
     def __init__(self):
         pygame.init()
         self.running = True
@@ -324,5 +324,5 @@ class Win():
 
 
 def go():
-    Win().run()
+    PrimarySchool().run()
     pass
