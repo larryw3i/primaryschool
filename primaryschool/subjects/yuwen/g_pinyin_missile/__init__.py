@@ -18,7 +18,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
-from primaryschool.subjects._templates_ import GameBase
+from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects.yuwen.words import cn_ps_c
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
@@ -717,6 +717,7 @@ class PinyinMissile(GameBase):
     def play(self):
         self._load = False
         self.wordsurfaces_manager.surfaces = []
+        self.wordsurfaces_manager.moving_surfaces = []
         self.wordsurfaces_manager.set_surfaces()
         self.start()
 
