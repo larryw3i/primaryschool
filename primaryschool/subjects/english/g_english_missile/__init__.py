@@ -24,7 +24,7 @@ from primaryschool.subjects.yuwen.words import cn_ps_c
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
-name_t = _('Pinyin Missile')
+name_t = _('English Missile')
 
 difficulties = [
     _('Grade 1.1'),  # 0

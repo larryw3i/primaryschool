@@ -53,4 +53,3 @@ def get_requirements_product():
 def install_requirements_product():
     requirements_product = get_requirements_product()
     os.system(install_prefix + requirements_product)
-

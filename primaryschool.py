@@ -4,25 +4,24 @@ import sys
 
 from primaryschool.settings import *
 
-
 requirements = \
-[
-    [ # ('requirement_name','version','project_url','License','license_url')
-        (  # dev
-            'isort', '', 'https://github.com/pycqa/isort',
-            'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
-        ),
-        (
-            'autopep8', '', 'https://github.com/hhatto/autopep8',
-            'MIT', 'https://github.com/hhatto/autopep8/blob/master/LICENSE'
-        ),
-        (
-            'nose2', '', 'https://github.com/nose-devs/nose2',
-            'BSD License',
-            'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
-        )
-    ]
-] + requirements
+    [
+        [  # ('requirement_name','version','project_url','License','license_url')
+            (  # dev
+                'isort', '', 'https://github.com/pycqa/isort',
+                'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
+            ),
+            (
+                'autopep8', '', 'https://github.com/hhatto/autopep8',
+                'MIT', 'https://github.com/hhatto/autopep8/blob/master/LICENSE'
+            ),
+            (
+                'nose2', '', 'https://github.com/nose-devs/nose2',
+                'BSD License',
+                'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
+            )
+        ]
+    ] + requirements
 
 
 def get_requirements_dev():

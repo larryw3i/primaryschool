@@ -34,4 +34,3 @@ class GameBase(ABC):
 
     @abstractmethod
     def play(self): ...
-
