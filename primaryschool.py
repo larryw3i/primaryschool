@@ -19,6 +19,13 @@ requirements = \
                 'nose2', '', 'https://github.com/nose-devs/nose2',
                 'BSD License',
                 'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
+            ),
+            (
+                'pygubu-designer', '', 
+                'https://github.com/alejandroautalan/pygubu-designer',
+                'GNU General Public License v3.0',
+                'https://github.com/alejandroautalan/pygubu-designer/blob/'+\
+                'master/LICENSE.md'
             )
         ]
     ] + requirements
