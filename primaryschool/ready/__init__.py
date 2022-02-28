@@ -253,7 +253,7 @@ class MainMenu():
             font_name=self.ps.font_path,)
 
 
-class PrimarySchool():
+class PrimarySchool_():
     def __init__(self):
         pygame.init()
         self.running = True
@@ -323,6 +323,16 @@ class PrimarySchool():
             pygame.display.flip()
 
 
+class PrimarySchool:
+    def __init__(self):
+        pass
+
+    def mainloop(self):
+        pass
+        
+
+
 def go():
-    PrimarySchool().run()
+    PrimarySchool().mainloop()
     pass
+
