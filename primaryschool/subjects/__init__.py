@@ -44,6 +44,7 @@ class Game():
         self._game = None
         self.name = self.module_str.split('.')[-1]
         self.name_t = self.module.name_t
+        self.help_t = self.module.help_t
         self.difficulties = self.module.difficulties
 
     def get_game(self, ps):

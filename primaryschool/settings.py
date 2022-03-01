@@ -3,7 +3,7 @@ import os
 import sys
 
 app_name = 'primaryschool'
-app_version = '0.0.13'
+app_version = '0.0.14'
 app_author = 'larryw3i'
 app_author_email = 'larryw3i@163.com'
 app_maintainer = app_author
@@ -13,6 +13,10 @@ app_url = "https://github.com/larryw3i/primaryschool"
 app_contributors = [
     app_author,
     '',
+]
+
+app_sponsors = [
+    ''
 ]
 
 install_prefix = 'python -m pip install '

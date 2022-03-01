@@ -45,6 +45,11 @@ difficulties = [
     _('All Chinese characters'),  # 15
 ]
 
+
+help_t = '''
+
+'''
+
 pinyin = Pinyin()
 
 

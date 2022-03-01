@@ -43,6 +43,11 @@ difficulties = [
 ]
 
 
+help_t = '''
+
+'''
+
+
 class Word():
 
     def __init__(self, mh):

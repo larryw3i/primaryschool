@@ -10,6 +10,7 @@ import pygame_menu
 from pygame.locals import *
 from pygame_menu.baseimage import BaseImage
 from pygame_menu.widgets import *
+from pygame_menu.locals import *
 
 from primaryschool.dirs import *
 from primaryschool.locale import _
@@ -17,6 +18,11 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_resource_path)
 from primaryschool.settings import *
 from primaryschool.subjects import subjects
+from itertools import zip_longest
+
+from functools import partial
+
+from pygame_menu._scrollarea import ScrollArea
 
 app_description_t = _("app_description_t")
 
@@ -57,6 +63,26 @@ class SaveMenu():
     def continue_the_game(self):
         self._menu.disable()
 
+class ContributorsMenu():
+    def __init__(self,ps):
+        self.ps = ps
+        self.title = _('Contributors & Sponsors')
+        self._menu = self.ps.get_default_menu(
+            self.title,onclose=pygame_menu.events.EXIT)
+        self._font = get_default_font(15)
+        self._head_font = get_default_font(18)
+
+    def add_widgets(self):
+        contributors_table = self._menu.add.table()
+        contributors_table.default_cell_padding = 5
+        contributors_table.default_row_background_color = 'white'
+        contributors_table.add_row(
+            ['Contributors', 'name',' ','Sponsors','name'], 
+            cell_font=self._head_font)
+        _len = list(range(max(len(app_contributors),len(app_sponsors))))
+        for l,c,s in zip_longest(_len,app_contributors,app_sponsors):
+            c,s = c or ' ', s or ' '
+            contributors_table.add_row([l+1,c,' ',l+1,s],cell_font=self._font)
 
 class AboutMenu():
     def __init__(self, ps):
@@ -68,8 +94,10 @@ class AboutMenu():
         self.app_version_font = get_default_font(20)
         self.app_description_font = get_default_font(22)
         self.app_url_font = get_default_font(20)
-        self.app_author_font = get_default_font(22)
-        self.app_contributors_font = self.app_author_font
+        self.app_author_font =self.app_contributors_font = get_default_font(20)
+        self.contributors_menu = ContributorsMenu(self.ps)
+        self._label_font = get_default_font(32) 
+
 
     def add_widgets(self):
         self._menu.add.label(app_name, max_char=-1,
@@ -80,13 +108,16 @@ class AboutMenu():
                              font_name=self.app_description_font)
         self._menu.add.url(app_url, font_name=self.app_url_font)
         self._menu.add.label(_('Author'), max_char=-1,
-                             font_name=get_default_font(32))
+                             font_name=self._label_font)
         self._menu.add.label(app_author, max_char=-1,
                              font_name=self.app_author_font)
-        self._menu.add.label(_('Contributors'), max_char=-1,
-                             font_name=get_default_font(32))
-        self._menu.add.label('\n'.join(app_contributors[1:]),
-                             max_char=-1, font_name=self.app_contributors_font)
+
+        self.contributors_menu.add_widgets()       
+        self._menu.add.button(
+            _('Contributors & Sponsors'), 
+            self.contributors_menu._menu,
+            font_name =self._label_font)
+
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
@@ -110,6 +141,10 @@ class PlayMenu():
         self.difficulty_dropselect = None
         self.continue_button = None
         self.selection_box_bgcolor = (255, 255, 255)
+        self.help_lael = None
+        self.help_lael_font = get_default_font(20)
+        self.help_lael_bg = (228, 0, 252,30)
+        self.help_lael_border_color =  (228, 0, 252,200)
 
     def add_widgets(self):
         self._menu.add.text_input(
@@ -162,6 +197,9 @@ class PlayMenu():
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.ps.font_path)
+        self.help_lael = self._menu.add.label(
+            '',font_name = self.help_lael_font)
+        self.update_help_lael()
 
     def update_selection_box_width(self):
         for ds in [
@@ -197,7 +235,12 @@ class PlayMenu():
             [(d, index) for index, d in enumerate(
                 self.subject_game.difficulties)])
         self.difficulty_dropselect.set_value(self.difficulty_index)
-
+    
+    def update_help_lael(self):
+        self.help_lael.set_title(self.subject_game.help_t)
+        self.help_lael.set_background_color(self.help_lael_bg)
+        self.help_lael.set_border(2,self.help_lael_border_color)
+    
     def start_copied_game(self):
         self.subject_game.load(self.ps)
 
@@ -227,6 +270,7 @@ class PlayMenu():
             self.subject.games[self.subject_game_index]
         self.update_continue_button()
         self.set_difficulty_index()
+        self.update_help_lael()
 
     def set_difficulty_index(self, index=0):
         self.difficulty_index = self.ps.difficulty_index = index
