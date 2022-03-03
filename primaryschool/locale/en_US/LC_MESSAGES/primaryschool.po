@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-17 14:22+0800\n"
+"POT-Creation-Date: 2022-03-02 14:57+0800\n"
 "PO-Revision-Date: 2022-02-10 16:04+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -32,7 +32,7 @@ msgstr "yuwen"
 #: primaryschool/ready/__init__.py:170 primaryschool/ready/__init__.py:171
 #: primaryschool/ready/__init__.py:172 primaryschool/ready/__init__.py:145
 #: primaryschool/ready/__init__.py:146 primaryschool/ready/__init__.py:232
-#: primaryschool/ready/__init__.py:233
+#: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:284
 msgid "Primary School"
 msgstr ""
 
@@ -43,6 +43,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:84 primaryschool/ready/__init__.py:85
 #: primaryschool/ready/__init__.py:78 primaryschool/ready/__init__.py:79
 #: primaryschool/ready/__init__.py:125 primaryschool/ready/__init__.py:124
+#: primaryschool/ready/__init__.py:152
 msgid "Name :"
 msgstr ""
 
@@ -57,7 +58,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:104 primaryschool/ready/__init__.py:105
 #: primaryschool/ready/__init__.py:106 primaryschool/ready/__init__.py:99
 #: primaryschool/ready/__init__.py:100 primaryschool/ready/__init__.py:148
-#: primaryschool/ready/__init__.py:147
+#: primaryschool/ready/__init__.py:147 primaryschool/ready/__init__.py:177
 msgid "Difficulty :"
 msgstr ""
 
@@ -88,7 +89,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:153 primaryschool/ready/__init__.py:110
 #: primaryschool/ready/__init__.py:154 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:238 primaryschool/ready/__init__.py:157
-#: primaryschool/ready/__init__.py:239
+#: primaryschool/ready/__init__.py:239 primaryschool/ready/__init__.py:189
+#: primaryschool/ready/__init__.py:291
 msgid "Play"
 msgstr ""
 
@@ -100,6 +102,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:184
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:242 primaryschool/ready/__init__.py:243
+#: primaryschool/ready/__init__.py:297
 msgid "Quit"
 msgstr ""
 
@@ -139,7 +142,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:84
 #: primaryschool/ready/__init__.py:85 primaryschool/ready/__init__.py:78
 #: primaryschool/ready/__init__.py:79 primaryschool/ready/__init__.py:126
-#: primaryschool/ready/__init__.py:125
+#: primaryschool/ready/__init__.py:125 primaryschool/ready/__init__.py:153
 msgid "_name_"
 msgstr "ps"
 
@@ -149,7 +152,7 @@ msgstr "ps"
 #: primaryschool/ready/__init__.py:86 primaryschool/ready/__init__.py:87
 #: primaryschool/ready/__init__.py:88 primaryschool/ready/__init__.py:82
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:130
-#: primaryschool/ready/__init__.py:129
+#: primaryschool/ready/__init__.py:129 primaryschool/ready/__init__.py:157
 msgid "Subject :"
 msgstr ""
 
@@ -170,7 +173,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:24
 #: primaryschool/ready/__init__.py:61 primaryschool/ready/__init__.py:62
 #: primaryschool/ready/__init__.py:69 primaryschool/ready/__init__.py:70
-#: primaryschool/ready/__init__.py:103
+#: primaryschool/ready/__init__.py:103 primaryschool/ready/__init__.py:131
 msgid "Play Game"
 msgstr ""
 
@@ -182,7 +185,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:114 primaryschool/ready/__init__.py:115
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:94
 #: primaryschool/ready/__init__.py:169 primaryschool/ready/__init__.py:45
-#: primaryschool/ready/__init__.py:168
+#: primaryschool/ready/__init__.py:168 primaryschool/ready/__init__.py:47
+#: primaryschool/ready/__init__.py:123 primaryschool/ready/__init__.py:198
 msgid "Return to main menu"
 msgstr ""
 
@@ -193,6 +197,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:182 primaryschool/ready/__init__.py:155
 #: primaryschool/ready/__init__.py:156 primaryschool/ready/__init__.py:68
 #: primaryschool/ready/__init__.py:240 primaryschool/ready/__init__.py:241
+#: primaryschool/ready/__init__.py:92 primaryschool/ready/__init__.py:294
 msgid "About"
 msgstr ""
 
@@ -200,7 +205,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:92
 #: primaryschool/ready/__init__.py:93 primaryschool/ready/__init__.py:86
 #: primaryschool/ready/__init__.py:87 primaryschool/ready/__init__.py:134
-#: primaryschool/ready/__init__.py:133
+#: primaryschool/ready/__init__.py:133 primaryschool/ready/__init__.py:162
 msgid "Select a Subject"
 msgstr ""
 
@@ -208,7 +213,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:95 primaryschool/ready/__init__.py:96
 #: primaryschool/ready/__init__.py:97 primaryschool/ready/__init__.py:90
 #: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:138
-#: primaryschool/ready/__init__.py:137
+#: primaryschool/ready/__init__.py:137 primaryschool/ready/__init__.py:166
 msgid "Game :"
 msgstr ""
 
@@ -216,7 +221,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:100 primaryschool/ready/__init__.py:101
 #: primaryschool/ready/__init__.py:102 primaryschool/ready/__init__.py:94
 #: primaryschool/ready/__init__.py:95 primaryschool/ready/__init__.py:143
-#: primaryschool/ready/__init__.py:142
+#: primaryschool/ready/__init__.py:142 primaryschool/ready/__init__.py:172
 msgid "Select a game"
 msgstr ""
 
@@ -225,6 +230,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:109 primaryschool/ready/__init__.py:110
 #: primaryschool/ready/__init__.py:104 primaryschool/ready/__init__.py:105
 #: primaryschool/ready/__init__.py:153 primaryschool/ready/__init__.py:152
+#: primaryschool/ready/__init__.py:183
 msgid "Select a difficulty"
 msgstr ""
 
@@ -254,6 +260,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:85
+#: primaryschool/ready/__init__.py:111
 msgid "Author"
 msgstr ""
 
@@ -267,7 +274,7 @@ msgid "primary school knowledge games"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:17 primaryschool/ready/__init__.py:20
-#: primaryschool/ready/__init__.py:21
+#: primaryschool/ready/__init__.py:21 primaryschool/ready/__init__.py:25
 msgid "app_description_t"
 msgstr "primary school knowledge games"
 
@@ -307,6 +314,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
 #: primaryschool/subjects/_templates_/__init__.py:41
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
+#: primaryschool/subjects/english/g_english_missile/__init__.py:42
 msgid "Low level"
 msgstr ""
 
@@ -316,6 +324,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
 #: primaryschool/subjects/_templates_/__init__.py:42
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
+#: primaryschool/subjects/english/g_english_missile/__init__.py:43
 msgid "High level"
 msgstr ""
 
@@ -325,6 +334,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
 #: primaryschool/subjects/_templates_/__init__.py:43
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
+#: primaryschool/subjects/english/g_english_missile/__init__.py:44
 msgid "All grades"
 msgstr ""
 
@@ -334,6 +344,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
 #: primaryschool/subjects/_templates_/__init__.py:44
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
+#: primaryschool/subjects/english/g_english_missile/__init__.py:45
 msgid "All Chinese characters"
 msgstr ""
 
@@ -343,6 +354,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:24
 #: primaryschool/subjects/_templates_/__init__.py:29
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/english/g_english_missile/__init__.py:30
 msgid "Grade 1.1"
 msgstr ""
 
@@ -352,6 +364,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:25
 #: primaryschool/subjects/_templates_/__init__.py:30
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/english/g_english_missile/__init__.py:31
 msgid "Grade 1.2"
 msgstr ""
 
@@ -361,6 +374,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:26
 #: primaryschool/subjects/_templates_/__init__.py:31
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/english/g_english_missile/__init__.py:32
 msgid "Grade 2.1"
 msgstr ""
 
@@ -370,6 +384,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
 #: primaryschool/subjects/_templates_/__init__.py:32
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/english/g_english_missile/__init__.py:33
 msgid "Grade 2.2"
 msgstr ""
 
@@ -379,6 +394,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
 #: primaryschool/subjects/_templates_/__init__.py:33
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/english/g_english_missile/__init__.py:34
 msgid "Grade 3.1"
 msgstr ""
 
@@ -388,6 +404,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:29
 #: primaryschool/subjects/_templates_/__init__.py:34
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/english/g_english_missile/__init__.py:35
 msgid "Grade 3.2"
 msgstr ""
 
@@ -397,6 +414,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
 #: primaryschool/subjects/_templates_/__init__.py:35
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/english/g_english_missile/__init__.py:36
 msgid "Grade 4.1"
 msgstr ""
 
@@ -406,6 +424,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
 #: primaryschool/subjects/_templates_/__init__.py:36
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/english/g_english_missile/__init__.py:37
 msgid "Grade 4.2"
 msgstr ""
 
@@ -415,6 +434,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
 #: primaryschool/subjects/_templates_/__init__.py:37
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: primaryschool/subjects/english/g_english_missile/__init__.py:38
 msgid "Grade 5.1"
 msgstr ""
 
@@ -424,6 +444,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
 #: primaryschool/subjects/_templates_/__init__.py:38
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
+#: primaryschool/subjects/english/g_english_missile/__init__.py:39
 msgid "Grade 5.2"
 msgstr ""
 
@@ -433,6 +454,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
 #: primaryschool/subjects/_templates_/__init__.py:39
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
+#: primaryschool/subjects/english/g_english_missile/__init__.py:40
 msgid "Grade 6.1"
 msgstr ""
 
@@ -442,6 +464,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
 #: primaryschool/subjects/_templates_/__init__.py:40
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
+#: primaryschool/subjects/english/g_english_missile/__init__.py:41
 msgid "Grade 6.2"
 msgstr ""
 
@@ -453,6 +476,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:332
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:315
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:349
+#: primaryschool/subjects/english/g_english_missile/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
 msgid "win: "
 msgstr ""
 
@@ -464,6 +490,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:332
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:315
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:349
+#: primaryschool/subjects/english/g_english_missile/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
 msgid "lose: "
 msgstr ""
 
@@ -475,6 +504,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:333
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:316
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:350
+#: primaryschool/subjects/english/g_english_missile/__init__.py:355
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:354
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:354
 msgid "remain: "
 msgstr ""
 
@@ -486,6 +518,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:335
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:318
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:352
+#: primaryschool/subjects/english/g_english_missile/__init__.py:357
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:356
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:356
 msgid "total: "
 msgstr ""
 
@@ -496,6 +531,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:347
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:330
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:364
+#: primaryschool/subjects/english/g_english_missile/__init__.py:369
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:368
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:368
 msgid "Cost: "
 msgstr ""
 
@@ -506,6 +544,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:369
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:352
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:386
+#: primaryschool/subjects/english/g_english_missile/__init__.py:391
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:390
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:390
 msgid "Score: "
 msgstr ""
 
@@ -515,6 +556,9 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:365
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:348
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:382
+#: primaryschool/subjects/english/g_english_missile/__init__.py:387
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:386
 msgid "Success!"
 msgstr ""
 
@@ -524,19 +568,25 @@ msgstr ""
 #: primaryschool/subjects/_templates_/__init__.py:366
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:349
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:383
+#: primaryschool/subjects/english/g_english_missile/__init__.py:388
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:387
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:387
 msgid "Practice makes perfect, keep trying!"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:30
+#: primaryschool/ready/__init__.py:32
 msgid "Save game?"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:36 primaryschool/ready/__init__.py:37
+#: primaryschool/ready/__init__.py:39
 msgid "Save and return"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:40 primaryschool/ready/__init__.py:163
 #: primaryschool/ready/__init__.py:41 primaryschool/ready/__init__.py:162
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:193
 msgid "Continue"
 msgstr ""
 
@@ -622,4 +672,26 @@ msgstr ""
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
 msgid "Pinyin Missile"
+msgstr ""
+
+#: primaryschool/subjects/english/g_english_missile/__init__.py:27
+msgid "English Missile"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+msgid ""
+"\n"
+"Enter the pinyin corresponding to the Chinese character, and enter the "
+"number\n"
+"after the pinyin to indicate the tone.\n"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
+msgid ""
+"\n"
+"Enter the calculation result.\n"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:68 primaryschool/ready/__init__.py:118
+msgid "Contributors & Sponsors"
 msgstr ""

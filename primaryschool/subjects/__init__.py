@@ -55,6 +55,7 @@ class Game():
     def play(self, ps):
         ps.play_menu._menu.disable()
         ps.play_menu._menu.full_reset()
+        self._game = None
         self.get_game(ps).play()
 
     def save(self, ps):

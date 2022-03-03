@@ -43,9 +43,9 @@ difficulties = [
 ]
 
 
-help_t = '''
-
-'''
+help_t = _('''
+Enter the calculation result.
+''')
 
 
 class Word():

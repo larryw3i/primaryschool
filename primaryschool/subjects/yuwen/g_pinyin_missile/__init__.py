@@ -19,7 +19,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c
+from primaryschool.subjects.yuwen.words import cn_ps_c , cn_ps_c_bb
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
@@ -44,12 +44,15 @@ difficulties = [
     _('All grades'),  # 14
     _('All Chinese characters'),  # 15
 ]
-help_t = '''
-Help
-'''
+
+help_t = _('''
+Enter the pinyin corresponding to the Chinese character, and enter the number
+after the pinyin to indicate the tone.
+''')
 
 pinyin = Pinyin()
 
+cn_ps_chars = cn_ps_c_bb
 
 class Word():
 
@@ -68,15 +71,15 @@ class Word():
     def get_cn_ps_words(self, g: int):
         words = []
         if g < 12:
-            words = cn_ps_c[g]
+            words= cn_ps_chars[g]
         elif g == 12:
-            words = sum(cn_ps_c[0:6], [])
+            words= sum(cn_ps_chars[0:6], [])
         elif g == 13:
-            words = sum(cn_ps_c[6:16], [])
+            words= sum(cn_ps_chars[6:16], [])
         elif g == 14:
-            words = sum(cn_ps_c[0:16], [])
-        return sum(words, [])
-
+            words= sum(cn_ps_chars[0:16], [])
+        return sum( words, [])
+            
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
@@ -216,7 +219,7 @@ class WordSurfacesManager():
         self.ps = self.pm.ps
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 2.2 * self.pm.FPS
+        self.interval = 3.5 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
         self.moving_speed = 0.8
         self.intercepted_color = (175, 10, 175, 100)
@@ -458,7 +461,6 @@ class WordSurface():
         self.intercept_frame_counter = 0
         self.laser_color = self.manager.laser_color
         self.laser_width = self.manager.laser_width
-
         self.surface = self.get_surface()
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
@@ -719,6 +721,8 @@ class PinyinMissile(GameBase):
 
     def play(self):
         self._load = False
+        self.difficulty_index = self.ps.difficulty_index
+        self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager.surfaces = []
         self.wordsurfaces_manager.moving_surfaces = []
         self.wordsurfaces_manager.set_surfaces()

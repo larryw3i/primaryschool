@@ -238,7 +238,7 @@ class PlayMenu():
         self.difficulty_dropselect.set_value(self.difficulty_index)
 
     def update_help_lael(self):
-        self.help_lael.set_title(self.subject_game.help_t)
+        self.help_lael.set_title(self.subject_game.help_t.strip())
         self.help_lael.set_background_color(self.help_lael_bg)
         self.help_lael.set_border(2, self.help_lael_border_color)
 
