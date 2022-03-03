@@ -15,15 +15,16 @@ from xpinyin import Pinyin
 from primaryschool.dirs import *
 from primaryschool.locale import _
 from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font, get_font_path)
+                                    get_default_font, get_font_path,
+                                    get_resource_path)
 from primaryschool.subjects import *
-from primaryschool.subjects._templates_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c
+from primaryschool.subjects._abc_ import GameBase
+from primaryschool.subjects.yuwen.words import cn_ps_c , cn_ps_c_bb
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
-name_t = _('pinyin missile')
+name_t = _('Pinyin Missile')
 
 difficulties = [
     _('Grade 1.1'),  # 0
@@ -44,35 +45,41 @@ difficulties = [
     _('All Chinese characters'),  # 15
 ]
 
+help_t = _('''
+Enter the pinyin corresponding to the Chinese character, and enter the number
+after the pinyin to indicate the tone.
+''')
+
 pinyin = Pinyin()
 
+cn_ps_chars = cn_ps_c_bb
 
 class Word():
 
     def __init__(self, pm):
         self.pm = pm
-        self.win = self.pm.win
-        self.rand_word_count = 50
+        self.ps = self.pm.ps
+        self.rand_word_count = 70
         pass
 
     def get_words(self, g: int):
         if g == 15:
-            return self.get_rand_words(250)
+            return self.get_rand_words(self.rand_word_count)
         if 0 <= g < 15:
             return self.get_cn_ps_words(g)
 
     def get_cn_ps_words(self, g: int):
         words = []
         if g < 12:
-            words = cn_ps_c[g]
+            words= cn_ps_chars[g]
         elif g == 12:
-            words = cn_ps_c[0:6]
+            words= sum(cn_ps_chars[0:6], [])
         elif g == 13:
-            words = cn_ps_c[6:16]
+            words= sum(cn_ps_chars[6:16], [])
         elif g == 14:
-            words = cn_ps_c[0:16]
-        return sum(words, [])
-
+            words= sum(cn_ps_chars[0:16], [])
+        return sum( words, [])
+            
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
@@ -80,7 +87,7 @@ class Word():
 class Wave():
     def __init__(self, pm):
         self.pm = pm
-        self.win = self.pm.win
+        self.ps = self.pm.ps
         self.intercept_interval = \
             self.pm.wordsurfaces_manager.intercept_interval
         self.surface = self.pm.surface
@@ -114,7 +121,7 @@ class Wave():
 class InputSurface():
     def __init__(self, pm):
         self.pm = pm
-        self.win = self.pm.win
+        self.ps = self.pm.ps
         self.font_size = 55
         self.font = get_default_font(self.font_size)
         self.font_color = (200, 22, 98)
@@ -140,14 +147,48 @@ class InputSurface():
 class WallSurface():
     def __init__(self, pm):
         self.pm = pm
-        self.win = self.pm.win
+        self.ps = self.pm.ps
         self.h = self.pm.w_height / 20
         self.surface = pygame.Surface((self.pm.w_width, self.h))
-        self.color = (255, 200, 99)
+        self.color = self.get_default_color()
         self.emitter_radius = self.h / 2
         self.emitter_color = None
-
         self.center = self.get_center()
+        self.flicker_interval = 1 * self.ps.FPS  # 2s
+        self.flicker_counter = 0
+        self.flicker_color = [self.color, (250, 0, 0)]
+        self.flicker_color_step = (
+            (self.flicker_color[1][0] - self.flicker_color[0][0])
+            / self.flicker_interval,
+            (self.flicker_color[1][1] - self.flicker_color[0][1])
+            / self.flicker_interval,
+            (self.flicker_color[1][2] - self.flicker_color[0][2])
+            / self.flicker_interval,
+        )
+
+    def get_default_color(self):
+        return (10, 200, 99)
+
+    def flicker(self):
+        self.flicker_counter += 1
+        self.color = (
+            min(
+                int(self.flicker_color[0][0]
+                    + self.flicker_color_step[0] * self.flicker_counter),
+                255),
+            min(
+                int(self.flicker_color[0][1]
+                    + self.flicker_color_step[1] * self.flicker_counter),
+                255),
+            min(
+                int(self.flicker_color[0][2]
+                    + self.flicker_color_step[2] * self.flicker_counter),
+                255)
+        )
+        if self.flicker_counter >= self.flicker_interval:
+            self.flicker_counter = 0
+            self.color = self.get_default_color()
+        return self.flicker_counter
 
     def set_emitter_color(self, color=(255, 0, 0, 50)):
         self.emitter_color = color
@@ -156,13 +197,13 @@ class WallSurface():
         return self.emitter_color
 
     def get_center(self):
-        return [self.win.w_width_of_2, self.win.w_height - self.h / 2]
+        return [self.ps.w_width_of_2, self.ps.w_height - self.h / 2]
 
     def draw_emitter(self):
         self.emitter_color = self.set_emitter_color() \
             if self.pm.wordsurfaces_manager is None \
             else self.pm.wordsurfaces_manager.laser_color
-        pygame.draw.circle(self.win.surface, self.emitter_color,
+        pygame.draw.circle(self.ps.surface, self.emitter_color,
                            self.center, self.emitter_radius)
 
     def blit(self):
@@ -174,12 +215,13 @@ class WallSurface():
 class WordSurfacesManager():
     def __init__(self, pm, frame_counter=0):
         self.pm = pm
-        self.win = self.pm.win
+        self.words = self.pm.words
+        self.ps = self.pm.ps
         self.moving_surfaces = []
         self.frame_counter = frame_counter
-        self.interval = 1.5 * self.pm.FPS
+        self.interval = 3.5 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
-        self.moving_speed = 1
+        self.moving_speed = 0.8
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
@@ -197,8 +239,8 @@ class WordSurfacesManager():
         return self.font_size
 
     def set_surfaces(self):
-        assert len(self.pm.words) > 0
-        self.surfaces = [WordSurface(self.pm, self, w) for w in self.pm.words]
+        assert len(self.words) > 0
+        self.surfaces = [WordSurface(self.pm, self, w) for w in self.words]
 
     def get_surfaces(self):
         if not self.surfaces:
@@ -236,19 +278,18 @@ class WordSurfacesManager():
         if len(self.surfaces) > 0:
             if len(self.moving_surfaces) < 1:
                 self.add_moving_surfaces()
-
             if self.frame_counter >= self.interval:
                 self.add_moving_surfaces()
 
         for w in self.moving_surfaces:
-
             if w.intercepted:
                 if w.intercept_frame_counter >= self.intercept_interval:
                     self.moving_surfaces.remove(w)
                 self.pm.wave.draw(w.intercept_frame_counter)
                 w.surface = w.font.render(
-                    w.word, False, self.intercepted_color)
-                self.pm.surface.blit(w.surface, w.dest)
+                    w.word, False,
+                    self.intercepted_color)
+                w.blit()
                 w.circle()
                 w.draw_laser_line()
                 w.intercept_frame_counter += 1
@@ -257,17 +298,17 @@ class WordSurfacesManager():
             if w.intercept(self.pm._input):
                 self.pm._input = ''
                 self.pm.input_surface._update()
-                self.pm.surface.blit(w.surface, w.dest)
                 self.pm.win_count += 1
+                w.blit()
                 continue
 
             if w.arrived():
-                self.moving_surfaces.remove(w)
-                self.pm.lose_count += 1
-                continue
+                if self.pm.wall_surface.flicker() < 1:
+                    self.moving_surfaces.remove(w)
+                    self.pm.lose_count += 1
+                    continue
 
-            w.add_dest((0, self.moving_speed))
-            self.pm.surface.blit(w.surface, w.dest)
+            w.add_dest((0, self.moving_speed), blit=True)
 
         self.frame_counter += 1
 
@@ -275,11 +316,11 @@ class WordSurfacesManager():
 class InfoSurface():
     def __init__(self, pm):
         self.pm = pm
-        self.win = pm.win
-        self.surface = self.win.surface
+        self.ps = pm.ps
+        self.surface = self.ps.surface
         self.game_info_dest = (10, 10)
         self.game_info = name_t + \
-            '/' + difficulties[self.win.difficulty_index]
+            '/' + difficulties[self.ps.difficulty_index]
         self.game_info_color = (255, 0, 255, 10)
         self.font_size = 25
         self.font = get_default_font(self.font_size)
@@ -305,24 +346,24 @@ class InfoSurface():
         self.datetime_diff_surface = ...
         self.greeting_surface = ...
 
-        self.end_time = self.win.end_time = None
+        self.end_time = self.ps.end_time = None
 
     def get_score_font_color(self):
         return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
-        return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') +\
-            str(self.pm.lose_count) + '|' + _('remain: ') +\
-            str(self.pm.wordsurfaces_manager.count()) + '|' +\
-            _('total: ') + str(self.pm.word_count)
+        return _('win: ') + str(self.pm.win_count) + '|' + _('lose: ') \
+            + str(self.pm.lose_count) + '|' + _('remain: ') \
+            + str(self.pm.wordsurfaces_manager.count()) + '|' \
+            + _('total: ') + str(self.pm.word_count)
 
     def get_win_info_dest(self):
         _w, _ = self.win_info_surface.get_size()
-        return [self.win.w_width - _w, 0]
+        return [self.ps.w_width - _w, 0]
 
     def get_datetime_diff_str(self):
         if self.end_time is None:
-            self.end_time = self.win.end_time = datetime.now()
+            self.end_time = self.ps.end_time = datetime.now()
         diff = (self.end_time - self.pm.start_time) + self.pm.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
@@ -354,22 +395,22 @@ class InfoSurface():
         _w, _h = self.greeting_surface.get_size()
         _, _s_h = self.score_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 - _h - _s_h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 - _h - _s_h
         ]
 
     def get_score_surface_dest(self):
         _w, _h = self.score_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 - _h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 - _h
         ]
 
     def get_datetime_diff_surface_dest(self):
         _w, _h = self.datetime_diff_surface.get_size()
         return [
-            self.win.w_width_of_2 - _w / 2,
-            self.win.w_height_of_2 + _h
+            self.ps.w_width_of_2 - _w / 2,
+            self.ps.w_height_of_2 + _h
         ]
 
     def score_blit(self):
@@ -408,24 +449,45 @@ class InfoSurface():
 class WordSurface():
     def __init__(self, pm, _manager, word, dest=None):
         self.pm = pm
-        self.win = self.pm.win
+        self.ps = self.pm.ps
         self.manager = _manager
         self.wall_surface = None
         self.word = word
         self.font_color = (200, 22, 98)
         self.font = self.manager.font
         self.circle_color = (100, 20, 25, 20)
-        self.circle_width = 4
+        self.circle_width = 6
         self.intercepted = False
         self.intercept_frame_counter = 0
         self.laser_color = self.manager.laser_color
         self.laser_width = self.manager.laser_width
-
         self.surface = self.get_surface()
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
-        self.pinyin = self.get_pinyin()
+        self.pinyins = self.get_pinyins()
+        self.tip_height = None
+        self.bg_color = None
+
+    def set_tip_height(self, height=50):
+        self.tip_height = height
+
+    def get_tip_height(self):
+        if not self.tip_height:
+            self.set_tip_height()
+        return self.tip_height
+
+    def set_bg_color(self, color=(20, 10, 200, 100)):
+        self.bg_color = color
+
+    def get_bg_color(self):
+        if not self.bg_color:
+            self.set_bg_color()
+        return self.bg_color
+
+    def blit(self):
+        self.draw_bg()
+        self.pm.surface.blit(self.surface, self.dest)
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -438,8 +500,30 @@ class WordSurface():
         return self.get_y() + self.get_h() >= \
             self.pm.w_height - self.pm.wall_surface.h
 
+    def get_tip_dest(self):
+        return (
+            self.get_x() + self.get_w() / 2,
+            self.get_y() + self.get_h() + self.get_tip_height()
+        )
+
+    def get_bg_points(self):
+        return [
+            (self.get_x(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
+            self.get_tip_dest(),
+            (self.get_x(), self.get_y() + self.get_h())
+        ]
+
+    def draw_bg(self):
+        pygame.draw.polygon(
+            self.ps.surface,
+            self.get_bg_color(),
+            self.get_bg_points())
+
     def get_surface(self):
-        return self.font.render(self.word, False, self.font_color)
+        _render = self.font.render(self.word, False, self.font_color)
+        return _render
 
     def set_dest(self, dest):
         self.dest = dest
@@ -456,10 +540,14 @@ class WordSurface():
     def get_h(self):
         return self.size[1]
 
-    def add_dest(self, _add):
-        self.dest[0] += _add[0]
-        self.dest[1] += _add[1]
+    def add_dest(self, _add, blit=False):
+        if self.dest[0] < self.ps.w_width:
+            self.dest[0] += _add[0]
+        if self.dest[1] < self.ps.w_height:
+            self.dest[1] += _add[1]
         self.center = self.get_center()
+        if blit:
+            self.blit()
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -472,7 +560,7 @@ class WordSurface():
             self.wall_surface = self.pm.wall_surface
         assert self.wall_surface is not None
         pygame.draw.line(
-            self.win.surface, self.laser_color,
+            self.ps.surface, self.laser_color,
             self.wall_surface.center, self.center,
             self.laser_width)
 
@@ -483,19 +571,23 @@ class WordSurface():
         ]
 
     def get_circle_radius(self):
-        return self.get_w() / 2
+        return self.get_w() / 1.5
 
     def circle(self):
-        pygame.draw.circle(self.pm.surface, self.circle_color,
-                           self.center, self.get_circle_radius(),
-                           width=self.circle_width)
+        pygame.draw.circle(
+            self.pm.surface, self.circle_color,
+            self.center, self.get_circle_radius(),
+            width=self.circle_width)
 
     def intercept(self, _pinyin):
-        self.intercepted = self.pinyin in _pinyin
+        for p in self.pinyins:
+            self.intercepted = p in _pinyin
+            if self.intercepted:
+                break
         return self.intercepted
 
-    def get_pinyin(self):
-        return pinyin.get_pinyin(self.word, '')
+    def get_pinyins(self):
+        return pinyin.get_pinyins(self.word, tone_marks='numbers')
 
     def get_size(self):
         return self.surface.get_size()
@@ -514,55 +606,58 @@ class WordSurface():
 
 
 class PinyinMissile(GameBase):
-    def __init__(self, win):
-
-        self.win = win
-
+    def __init__(self, ps):
+        self.ps = ps
         # window
-        self.w_width = self.win.w_width
-        self.w_height = self.win.w_height
-        self.w_height_of_2 = self.win.w_height_of_2
-        self.w_width_of_2 = self.win.w_width_of_2
-        self.w_centrex_y = self.win.w_centrex_y
+        self.w_width = self.ps.w_width
+        self.w_height = self.ps.w_height
+        self.w_height_of_2 = self.ps.w_height_of_2
+        self.w_width_of_2 = self.ps.w_width_of_2
+        self.w_centrex_y = self.ps.w_centrex_y
         self.running = True
-        self.FPS = self.win.FPS
-        self.clock = self.win.clock
+        self.FPS = self.ps.FPS
+        self.clock = self.ps.clock
         self._load = False
-
-        self.subject = self.win.subject
-        self.subject_index = self.win.subject_index
-        self.subject_game_index = self.win.subject_game_index
-        self.difficulty_index = self.win.difficulty_index
-
-        self.main_menu = self.win.main_menu
-        self.play_menu = self.win.play_menu
-        self.save_menu = self.win.save_menu
-        self.surface = self.win.surface
-
+        self.subject = self.ps.subject
+        self.subject_index = self.ps.subject_index
+        self.subject_game_index = self.ps.subject_game_index
+        self.difficulty_index = self.ps.difficulty_index
+        self.main_menu = self.ps.main_menu
+        self.play_menu = self.ps.play_menu
+        self.save_menu = self.ps.save_menu
+        self.surface = self.ps.surface
         self._input = ''
         self.font = get_default_font(45)
         self.info_surface = InfoSurface(self)
         self.wall_surface = WallSurface(self)
         self.input_surface = InputSurface(self)
-
         # word surface
         self.word = Word(self)
         self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager = WordSurfacesManager(self)
-
         self.wave = Wave(self)
-
         self.win_count = 0
         self.lose_count = 0
         self.word_count = len(self.words)
-
         self.copy_path = get_copy_path(module_str)
-
         self.print_game_info()
-
         self.last_timedelta = timedelta(0)
         self.start_time = datetime.now()
         self.end_time = None
+        self._bg_img = None
+
+    def set_bg_img(self, src_name='0x4.png'):
+        self._bg_img = pygame.image.load(get_resource_path(src_name))
+        self._bg_img = pygame.transform.scale(
+            self._bg_img, (self.w_width, self.w_height))
+
+    def get_bg_img(self):
+        if not self._bg_img:
+            self.set_bg_img()
+        return self._bg_img
+
+    def blit_bg_img(self):
+        self.surface.blit(self.get_bg_img(), (0, 0))
 
     def print_game_info(self):
         print(self.subject.name_t, name_t, difficulties[self.difficulty_index])
@@ -590,6 +685,12 @@ class PinyinMissile(GameBase):
                     self.input_surface._update()
                     return
 
+        if self.main_menu._menu.is_enabled():
+            self.main_menu._menu.update(events)
+
+        if self.play_menu._menu.is_enabled():
+            self.play_menu._menu.update(events)
+
     def load(self):
         try:
             self._load = True
@@ -615,15 +716,26 @@ class PinyinMissile(GameBase):
             pickle.dump(_copy, f)
 
     def _start(self):
-
         if not self._load:
             self.wordsurfaces_manager.set_surfaces()
 
     def play(self):
         self._load = False
+        self.difficulty_index = self.ps.difficulty_index
+        self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager.surfaces = []
+        self.wordsurfaces_manager.moving_surfaces = []
         self.wordsurfaces_manager.set_surfaces()
         self.start()
+
+    def blit_game_surface(self):
+        if self.win_count + self.lose_count < self.word_count:
+            self.info_surface.blit()
+            self.wall_surface.blit()
+            self.wordsurfaces_manager.blit()
+            self.input_surface.blit()
+        else:
+            self.info_surface.score_blit()
 
     def start(self):
 
@@ -631,27 +743,11 @@ class PinyinMissile(GameBase):
 
         while self.running:
             self.clock.tick(self.FPS)
-
-            self.surface.fill((0, 0, 0))
-
-            events = pygame.event.get()
-            self.handle_events(events)
-            if self.main_menu._menu.is_enabled():
-                self.main_menu._menu.update(events)
-
-            if self.play_menu._menu.is_enabled():
-                self.play_menu._menu.update(events)
-
-            if self.win_count + self.lose_count < self.word_count:
-                self.info_surface.blit()
-                self.wall_surface.blit()
-                self.wordsurfaces_manager.blit()
-                self.input_surface.blit()
-            else:
-                self.info_surface.score_blit()
-
+            self.blit_bg_img()
+            self.handle_events(pygame.event.get())
+            self.blit_game_surface()
             pygame.display.update()
 
 
-def enjoy(win):
-    return PinyinMissile(win)
+def enjoy(ps):
+    return PinyinMissile(ps)
