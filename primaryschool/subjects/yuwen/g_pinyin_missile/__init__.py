@@ -721,8 +721,6 @@ class PinyinMissile(GameBase):
 
     def play(self):
         self._load = False
-        self.difficulty_index = self.ps.difficulty_index
-        self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager.surfaces = []
         self.wordsurfaces_manager.moving_surfaces = []
         self.wordsurfaces_manager.set_surfaces()
