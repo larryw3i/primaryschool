@@ -164,7 +164,7 @@ class PlayMenu():
             title=_('Subject :'),
             items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
             font_name=self.ps.font_path,
-            default=len(self.subjects) - 1,
+            default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a Subject'),
             onchange=self.on_subject_dropselect_change

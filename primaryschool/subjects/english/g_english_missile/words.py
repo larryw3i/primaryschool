@@ -451,7 +451,7 @@ cn_ps_e_words = \
                 ('taller', '更高的'), ('shorter', '更矮的'),
                 ('stronger', '更强壮的'),
                 ('older', '年龄更大的'), ('younger', '更年轻的'),
-                ('bigger', '更大的'), ('heavier', '更重的'), ('longer', '更长的')
+                ('bigger', '更大的'), ('heavier', '更重的'), ('longer', '更长的'),
                 ('thinner', '更瘦的'), ('smaller', '体型更小的'),
             ],
             [
@@ -469,7 +469,7 @@ cn_ps_e_words = \
                 # ('人教版小学英语六年级下册单词表（三会）Unit 3'),
                 ('watched', '瞧'), ('washed', '洗'), ('cleaned', '打扫'),
                 ('played', '玩'), ('visited', '瞧望'), ('read', '读'),
-                ('did', '进行,做')('last weekend', '上一个周末'),
+                ('did', '进行,做'),('last weekend', '上一个周末'),
                 ('went', '去'), ('went to a park', '去公园'),
                 ('went swimming', '去游泳'),
                 ('went fishing', '去钓鱼'), ('went hiking', '去郊游'),

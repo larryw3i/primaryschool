@@ -19,7 +19,8 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c
+from primaryschool.subjects.english.g_english_missile.words import \
+    cn_ps_e_words
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
@@ -27,60 +28,21 @@ module_str = __name__
 name_t = _('English Missile')
 
 difficulties = [
-    _('Grade 1.1'),  # 0
-    _('Grade 1.2'),  # 1
-    _('Grade 2.1'),  # 2
-    _('Grade 2.2'),  # 3
-    _('Grade 3.1'),  # 4
-    _('Grade 3.2'),  # 5
-    _('Grade 4.1'),  # 6
-    _('Grade 4.2'),  # 7
-    _('Grade 5.1'),  # 8
-    _('Grade 5.2'),  # 9
-    _('Grade 6.1'),  # 10
-    _('Grade 6.2'),  # 11
-    _('Low level'),  # 12
-    _('High level'),  # 13
-    _('All grades'),  # 14
-    _('All Chinese characters'),  # 15
+    _('Grade 3.1'),  # 0
+    _('Grade 3.2'),  # 1
+    _('Grade 4.1'),  # 2
+    _('Grade 4.2'),  # 3
+    _('Grade 5.1'),  # 4
+    _('Grade 5.2'),  # 5
+    _('Grade 6.1'),  # 6
+    _('Grade 6.2'),  # 7
+    _('All grades'),  # 8
 ]
 
 
-help_t = '''
-
-'''
-
-pinyin = Pinyin()
-
-
-class Word():
-
-    def __init__(self, pm):
-        self.pm = pm
-        self.ps = self.pm.ps
-        self.rand_word_count = 70
-        pass
-
-    def get_words(self, g: int):
-        if g == 15:
-            return self.get_rand_words(self.rand_word_count)
-        if 0 <= g < 15:
-            return self.get_cn_ps_words(g)
-
-    def get_cn_ps_words(self, g: int):
-        words = []
-        if g < 12:
-            words = cn_ps_c[g]
-        elif g == 12:
-            words = sum(cn_ps_c[0:6], [])
-        elif g == 13:
-            words = sum(cn_ps_c[6:16], [])
-        elif g == 14:
-            words = sum(cn_ps_c[0:16], [])
-        return sum(words, [])
-
-    def get_rand_words(self, n):
-        return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
+help_t = _('''
+Enter the corresponding words of the Chinese characters.
+''')
 
 
 class Wave():
@@ -115,6 +77,26 @@ class Wave():
         _radius = self.max_radius / (self.intercept_interval - frame_counter)
         pygame.draw.circle(self.surface, self.color,
                            self.w_centrex_y, _radius, width=self.width)
+
+
+class Word():
+
+    def __init__(self, pm):
+        self.pm = pm
+        self.ps = self.pm.ps
+        self.rand_word_count = 70
+        pass
+
+    def get_words(self, g_index: int):
+        return self.get_cn_ps_e_words(g_index)
+
+    def get_cn_ps_e_words(self, g_index: int):
+        words = []
+        if g_index < 8:
+            words = cn_ps_e_words[g_index]
+        elif g_index == 8:
+            words = sum(cn_ps_e_words, [])
+        return sum(words, [])
 
 
 class InputSurface():
@@ -286,7 +268,7 @@ class WordSurfacesManager():
                     self.moving_surfaces.remove(w)
                 self.pm.wave.draw(w.intercept_frame_counter)
                 w.surface = w.font.render(
-                    w.word, False,
+                    w.word[-1], False,
                     self.intercepted_color)
                 w.blit()
                 w.circle()
@@ -465,7 +447,6 @@ class WordSurface():
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
-        self.pinyins = self.get_pinyins()
         self.tip_height = None
         self.bg_color = None
 
@@ -522,7 +503,7 @@ class WordSurface():
             self.get_bg_points())
 
     def get_surface(self):
-        _render = self.font.render(self.word, False, self.font_color)
+        _render = self.font.render(self.word[-1], False, self.font_color)
         return _render
 
     def set_dest(self, dest):
@@ -579,15 +560,12 @@ class WordSurface():
             self.center, self.get_circle_radius(),
             width=self.circle_width)
 
-    def intercept(self, _pinyin):
-        for p in self.pinyins:
-            self.intercepted = p in _pinyin
+    def intercept(self, _word):
+        for p in self.word[0:-1]:
+            self.intercepted = p in _word
             if self.intercepted:
                 break
         return self.intercepted
-
-    def get_pinyins(self):
-        return pinyin.get_pinyins(self.word, tone_marks='numbers')
 
     def get_size(self):
         return self.surface.get_size()
