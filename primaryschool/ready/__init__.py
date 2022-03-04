@@ -70,7 +70,7 @@ class ContributorsMenu():
             self.title, onclose=pygame_menu.events.EXIT)
         self._font = get_default_font(15)
         self._head_font = get_default_font(18)
-        self.return_background_color = (200,200,255,200)
+        self.return_background_color = (200, 200, 255, 200)
 
     def add_widgets(self):
         contributors_table = self._menu.add.table()
@@ -88,8 +88,8 @@ class ContributorsMenu():
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.ps.font_path,
-            background_color =self.return_background_color,
-            float= True,align=pygame_menu.locals.ALIGN_RIGHT)
+            background_color=self.return_background_color,
+            float=True, align=pygame_menu.locals.ALIGN_RIGHT)
 
 
 class AboutMenu():
@@ -164,7 +164,7 @@ class PlayMenu():
             title=_('Subject :'),
             items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
             font_name=self.ps.font_path,
-            default=0,
+            default=len(self.subjects) - 1,
             selection_box_bgcolor=self.selection_box_bgcolor,
             placeholder=_('Select a Subject'),
             onchange=self.on_subject_dropselect_change

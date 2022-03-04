@@ -152,24 +152,29 @@ class InputSurface():
         self.ps = self.pm.ps
         self.font_size = 55
         self.font = get_default_font(self.font_size)
-        self.font_color = (200, 22, 98)
+        self.surface_color = (200, 22, 98)
+        self.surface_bg_color = (200, 100, 100, 89)
+        self.surface_bg_border_radius = 10
+        self.surface_bg_width = 2
         self.surface = None
         self.frame_counter = 0
 
-        self.font.set_bold(True)
-
     def _update(self):
         self.surface = self.font.render(
-            self.pm._input, False, self.font_color)
+            self.pm._input, False, self.surface_color)
 
     def blit(self):
         if self.surface is None:
             return
         w, h = self.surface.get_size()
+        _dest = (self.pm.w_width_of_2 - w / 2, self.pm.w_height - h)
+        _surface_size = self.surface.get_size()
+        _bg_rect = (_dest[0], _dest[1], _surface_size[0], _surface_size[1])
+        pygame.draw.rect(self.pm.surface, color=self.surface_bg_color,
+                         width=self.surface_bg_width, rect=_bg_rect,
+                         border_radius=self.surface_bg_border_radius)
         self.pm.surface.blit(
-            self.surface,
-            (self.pm.w_width_of_2 - w / 2,
-             self.pm.w_height - h))
+            self.surface, _dest)
 
 
 class WallSurface():
@@ -368,11 +373,11 @@ class InfoSurface():
 
         self.score = 0
         self._pass = False
-        self.win_info_surface = ...
+        self.win_info_surface = None
 
-        self.score_surface = ...
-        self.datetime_diff_surface = ...
-        self.greeting_surface = ...
+        self.score_surface = None
+        self.datetime_diff_surface = None
+        self.greeting_surface = None
 
         self.end_time = self.ps.end_time = None
 
@@ -400,7 +405,6 @@ class InfoSurface():
     def blit(self):
         self.win_info_surface = self.font.render(
             self.get_win_info(), False, self.game_info_color)
-
         self.surface.blit(self.game_info_surface, self.game_info_dest)
         self.surface.blit(self.win_info_surface, self.get_win_info_dest())
 
@@ -586,7 +590,6 @@ class WordSurface():
     def draw_laser_line(self):
         if self.wall_surface is None:
             self.wall_surface = self.pm.wall_surface
-        assert self.wall_surface is not None
         pygame.draw.line(
             self.ps.surface, self.laser_color,
             self.wall_surface.center, self.center,
