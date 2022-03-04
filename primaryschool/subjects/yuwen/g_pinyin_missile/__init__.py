@@ -19,13 +19,14 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c , cn_ps_c_bb
+from primaryschool.subjects.yuwen.words import cn_ps_c, cn_ps_c_bb
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
 name_t = _('Pinyin Missile')
 
+default_difficulty_index = 16
 difficulties = [
     _('Grade 1.1'),  # 0
     _('Grade 1.2'),  # 1
@@ -43,6 +44,23 @@ difficulties = [
     _('High level'),  # 13
     _('All grades'),  # 14
     _('All Chinese characters'),  # 15
+    _('Grade 1.1 (30 characters)'),  # 16
+    _('Grade 1.2 (30 characters)'),  # 17
+    _('Grade 2.1 (30 characters)'),  # 18
+    _('Grade 2.2 (30 characters)'),  # 19
+    _('Grade 3.1 (30 characters)'),  # 20
+    _('Grade 3.2 (30 characters)'),  # 21
+    _('Grade 4.1 (30 characters)'),  # 22
+    _('Grade 4.2 (30 characters)'),  # 23
+    _('Grade 5.1 (30 characters)'),  # 24
+    _('Grade 5.2 (30 characters)'),  # 25
+    _('Grade 6.1 (30 characters)'),  # 26
+    _('Grade 6.2 (30 characters)'),  # 27
+    _('Low level (30 characters)'),  # 28
+    _('High level (30 characters)'),  # 29
+    _('All grades (30 characters)'),  # 30
+    _('All Chinese characters (30 characters)'),  # 31
+
 ]
 
 help_t = _('''
@@ -54,32 +72,42 @@ pinyin = Pinyin()
 
 cn_ps_chars = cn_ps_c_bb
 
-class Word():
 
+class Word():
     def __init__(self, pm):
         self.pm = pm
         self.ps = self.pm.ps
         self.rand_word_count = 70
         pass
 
-    def get_words(self, g: int):
-        if g == 15:
-            return self.get_rand_words(self.rand_word_count)
-        if 0 <= g < 15:
-            return self.get_cn_ps_words(g)
+    def get_words(self, g_index: int):
+        _base_len = int(len(difficulties) / 2)
+        if g_index < _base_len:
+            if g_index == _base_len - 1:
+                return self.get_rand_words(self.rand_word_count)
+            if 0 <= g_index < _base_len - 1:
+                return self.get_cn_ps_words(g_index)
+        else:
+            g_index = g_index - _base_len
+            if g_index == _base_len - 1:
+                return random.choices(
+                    self.get_rand_words(self.rand_word_count), k=30)
+            if 0 <= g_index < _base_len - 1:
+                return random.choices(
+                    self.get_cn_ps_words(g_index), k=30)
 
-    def get_cn_ps_words(self, g: int):
+    def get_cn_ps_words(self, g_index: int):
         words = []
-        if g < 12:
-            words= cn_ps_chars[g]
-        elif g == 12:
-            words= sum(cn_ps_chars[0:6], [])
-        elif g == 13:
-            words= sum(cn_ps_chars[6:16], [])
-        elif g == 14:
-            words= sum(cn_ps_chars[0:16], [])
-        return sum( words, [])
-            
+        if g_index < 12:
+            words = cn_ps_chars[g_index]
+        elif g_index == 12:
+            words = sum(cn_ps_chars[0:6], [])
+        elif g_index == 13:
+            words = sum(cn_ps_chars[6:16], [])
+        elif g_index == 14:
+            words = sum(cn_ps_chars[0:16], [])
+        return sum(words, [])
+
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
@@ -221,7 +249,7 @@ class WordSurfacesManager():
         self.frame_counter = frame_counter
         self.interval = 3.5 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
-        self.moving_speed = 0.8
+        self.moving_speed = 0.5
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2

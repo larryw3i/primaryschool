@@ -70,6 +70,7 @@ class ContributorsMenu():
             self.title, onclose=pygame_menu.events.EXIT)
         self._font = get_default_font(15)
         self._head_font = get_default_font(18)
+        self.return_background_color = (200,200,255,200)
 
     def add_widgets(self):
         contributors_table = self._menu.add.table()
@@ -83,6 +84,12 @@ class ContributorsMenu():
             c, s = c or ' ', s or ' '
             contributors_table.add_row(
                 [l + 1, c, ' ', l + 1, s], cell_font=self._font)
+        self._menu.add.button(
+            _('Return to main menu'),
+            pygame_menu.events.BACK,
+            font_name=self.ps.font_path,
+            background_color =self.return_background_color,
+            float= True,align=pygame_menu.locals.ALIGN_RIGHT)
 
 
 class AboutMenu():
@@ -274,7 +281,8 @@ class PlayMenu():
         self.update_help_lael()
 
     def set_difficulty_index(self, index=0):
-        self.difficulty_index = self.ps.difficulty_index = index
+        self.difficulty_index = self.ps.difficulty_index = \
+            index if index != 0 else self.subject_game.default_difficulty_index
         self.update_difficulty_dropselect()
 
 

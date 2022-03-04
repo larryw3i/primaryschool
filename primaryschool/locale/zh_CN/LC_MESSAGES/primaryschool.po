@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-02 14:57+0800\n"
-"PO-Revision-Date: 2022-03-02 15:28+0800\n"
+"POT-Creation-Date: 2022-03-04 10:26+0800\n"
+"PO-Revision-Date: 2022-03-04 10:32+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -33,6 +33,7 @@ msgstr "语文"
 #: primaryschool/ready/__init__.py:172 primaryschool/ready/__init__.py:145
 #: primaryschool/ready/__init__.py:146 primaryschool/ready/__init__.py:232
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:284
+#: primaryschool/ready/__init__.py:285
 msgid "Primary School"
 msgstr "小学的游戏"
 
@@ -90,7 +91,7 @@ msgstr "简单"
 #: primaryschool/ready/__init__.py:154 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:238 primaryschool/ready/__init__.py:157
 #: primaryschool/ready/__init__.py:239 primaryschool/ready/__init__.py:189
-#: primaryschool/ready/__init__.py:291
+#: primaryschool/ready/__init__.py:291 primaryschool/ready/__init__.py:292
 msgid "Play"
 msgstr "开始"
 
@@ -102,7 +103,7 @@ msgstr "开始"
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:184
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:242 primaryschool/ready/__init__.py:243
-#: primaryschool/ready/__init__.py:297
+#: primaryschool/ready/__init__.py:297 primaryschool/ready/__init__.py:298
 msgid "Quit"
 msgstr "退出"
 
@@ -198,6 +199,7 @@ msgstr "返回主菜单"
 #: primaryschool/ready/__init__.py:156 primaryschool/ready/__init__.py:68
 #: primaryschool/ready/__init__.py:240 primaryschool/ready/__init__.py:241
 #: primaryschool/ready/__init__.py:92 primaryschool/ready/__init__.py:294
+#: primaryschool/ready/__init__.py:295
 msgid "About"
 msgstr "关于"
 
@@ -315,6 +317,7 @@ msgstr "六年级"
 #: primaryschool/subjects/_templates_/__init__.py:41
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
 #: primaryschool/subjects/english/g_english_missile/__init__.py:42
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
 msgid "Low level"
 msgstr "低段"
 
@@ -325,6 +328,7 @@ msgstr "低段"
 #: primaryschool/subjects/_templates_/__init__.py:42
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
 #: primaryschool/subjects/english/g_english_missile/__init__.py:43
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
 msgid "High level"
 msgstr "高段"
 
@@ -335,6 +339,7 @@ msgstr "高段"
 #: primaryschool/subjects/_templates_/__init__.py:43
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
 #: primaryschool/subjects/english/g_english_missile/__init__.py:44
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
 msgid "All grades"
 msgstr "全小学"
 
@@ -345,6 +350,7 @@ msgstr "全小学"
 #: primaryschool/subjects/_templates_/__init__.py:44
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
 #: primaryschool/subjects/english/g_english_missile/__init__.py:45
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
 msgid "All Chinese characters"
 msgstr "全汉字"
 
@@ -355,6 +361,7 @@ msgstr "全汉字"
 #: primaryschool/subjects/_templates_/__init__.py:29
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
 #: primaryschool/subjects/english/g_english_missile/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
 msgid "Grade 1.1"
 msgstr "一年级（上）"
 
@@ -365,6 +372,7 @@ msgstr "一年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:30
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
 #: primaryschool/subjects/english/g_english_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
 msgid "Grade 1.2"
 msgstr "一年级（下）"
 
@@ -375,6 +383,7 @@ msgstr "一年级（下）"
 #: primaryschool/subjects/_templates_/__init__.py:31
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
 #: primaryschool/subjects/english/g_english_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
 msgid "Grade 2.1"
 msgstr "二年级（上）"
 
@@ -385,6 +394,7 @@ msgstr "二年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:32
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
 #: primaryschool/subjects/english/g_english_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
 msgid "Grade 2.2"
 msgstr "二年级（下）"
 
@@ -395,6 +405,7 @@ msgstr "二年级（下）"
 #: primaryschool/subjects/_templates_/__init__.py:33
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
 #: primaryschool/subjects/english/g_english_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
 msgid "Grade 3.1"
 msgstr "三年级（上）"
 
@@ -405,6 +416,7 @@ msgstr "三年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:34
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
 #: primaryschool/subjects/english/g_english_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
 msgid "Grade 3.2"
 msgstr "三年级（下）"
 
@@ -415,6 +427,7 @@ msgstr "三年级（下）"
 #: primaryschool/subjects/_templates_/__init__.py:35
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
 #: primaryschool/subjects/english/g_english_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
 msgid "Grade 4.1"
 msgstr "四年级（上）"
 
@@ -425,6 +438,7 @@ msgstr "四年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:36
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
 #: primaryschool/subjects/english/g_english_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
 msgid "Grade 4.2"
 msgstr "四年级（下）"
 
@@ -435,6 +449,7 @@ msgstr "四年级（下）"
 #: primaryschool/subjects/_templates_/__init__.py:37
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
 #: primaryschool/subjects/english/g_english_missile/__init__.py:38
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
 msgid "Grade 5.1"
 msgstr "五年级（上）"
 
@@ -445,6 +460,7 @@ msgstr "五年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:38
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
 #: primaryschool/subjects/english/g_english_missile/__init__.py:39
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
 msgid "Grade 5.2"
 msgstr "五年级（下）"
 
@@ -455,6 +471,7 @@ msgstr "五年级（下）"
 #: primaryschool/subjects/_templates_/__init__.py:39
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
 #: primaryschool/subjects/english/g_english_missile/__init__.py:40
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
 msgid "Grade 6.1"
 msgstr "六年级（上）"
 
@@ -465,6 +482,7 @@ msgstr "六年级（上）"
 #: primaryschool/subjects/_templates_/__init__.py:40
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
 #: primaryschool/subjects/english/g_english_missile/__init__.py:41
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
 msgid "Grade 6.2"
 msgstr "六年级（下）"
 
@@ -479,6 +497,7 @@ msgstr "六年级（下）"
 #: primaryschool/subjects/english/g_english_missile/__init__.py:354
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
 msgid "win: "
 msgstr "胜利: "
 
@@ -493,6 +512,7 @@ msgstr "胜利: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:354
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
 msgid "lose: "
 msgstr "失败: "
 
@@ -507,6 +527,7 @@ msgstr "失败: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:355
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:354
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:384
 msgid "remain: "
 msgstr "剩余: "
 
@@ -521,6 +542,7 @@ msgstr "剩余: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:357
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:356
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:356
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
 msgid "total: "
 msgstr "总共: "
 
@@ -534,6 +556,7 @@ msgstr "总共: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:369
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:368
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:368
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:398
 msgid "Cost: "
 msgstr "耗时: "
 
@@ -547,6 +570,7 @@ msgstr "耗时: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:391
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:390
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:390
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:420
 msgid "Score: "
 msgstr "分数: "
 
@@ -559,6 +583,7 @@ msgstr "分数: "
 #: primaryschool/subjects/english/g_english_missile/__init__.py:387
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:386
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:416
 msgid "Success!"
 msgstr "挑战成功!"
 
@@ -571,6 +596,7 @@ msgstr "挑战成功!"
 #: primaryschool/subjects/english/g_english_missile/__init__.py:388
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:387
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:387
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:417
 msgid "Practice makes perfect, keep trying!"
 msgstr "再加把劲! 努力!"
 
@@ -679,6 +705,7 @@ msgid "English Missile"
 msgstr "单词能手"
 
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:66
 msgid ""
 "\n"
 "Enter the pinyin corresponding to the Chinese character, and enter the "
@@ -700,3 +727,67 @@ msgstr ""
 #: primaryschool/ready/__init__.py:68 primaryschool/ready/__init__.py:118
 msgid "Contributors & Sponsors"
 msgstr "贡献者和赞助者"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+msgid "Grade 1.1 (30 characters)"
+msgstr "一年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
+msgid "Grade 1.2 (30 characters)"
+msgstr "一年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
+msgid "Grade 2.1 (30 characters)"
+msgstr "二年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
+msgid "Grade 2.2 (30 characters)"
+msgstr "二年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
+msgid "Grade 3.1 (30 characters)"
+msgstr "三年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
+msgid "Grade 3.2 (30 characters)"
+msgstr "三年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
+msgid "Grade 4.1 (30 characters)"
+msgstr "四年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
+msgid "Grade 4.2 (30 characters)"
+msgstr "四年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
+msgid "Grade 5.1 (30 characters)"
+msgstr "五年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
+msgid "Grade 5.2 (30 characters)"
+msgstr "五年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
+msgid "Grade 6.1 (30 characters)"
+msgstr "六年级上册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
+msgid "Grade 6.2 (30 characters)"
+msgstr "六年级下册（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
+msgid "Low level (30 characters)"
+msgstr "低段（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
+msgid "High level (30 characters)"
+msgstr "高段（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
+msgid "All grades (30 characters)"
+msgstr "全小学（30字）"
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:62
+msgid "All Chinese characters (30 characters)"
+msgstr "全汉字（30字）"
