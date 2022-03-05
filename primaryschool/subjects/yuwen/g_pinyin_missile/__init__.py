@@ -19,13 +19,14 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects.yuwen.words import cn_ps_c , cn_ps_c_bb
+from primaryschool.subjects.yuwen.words import cn_ps_c, cn_ps_c_bb
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
 name_t = _('Pinyin Missile')
 
+default_difficulty_index = 16
 difficulties = [
     _('Grade 1.1'),  # 0
     _('Grade 1.2'),  # 1
@@ -43,6 +44,23 @@ difficulties = [
     _('High level'),  # 13
     _('All grades'),  # 14
     _('All Chinese characters'),  # 15
+    _('Grade 1.1 (30 characters)'),  # 16
+    _('Grade 1.2 (30 characters)'),  # 17
+    _('Grade 2.1 (30 characters)'),  # 18
+    _('Grade 2.2 (30 characters)'),  # 19
+    _('Grade 3.1 (30 characters)'),  # 20
+    _('Grade 3.2 (30 characters)'),  # 21
+    _('Grade 4.1 (30 characters)'),  # 22
+    _('Grade 4.2 (30 characters)'),  # 23
+    _('Grade 5.1 (30 characters)'),  # 24
+    _('Grade 5.2 (30 characters)'),  # 25
+    _('Grade 6.1 (30 characters)'),  # 26
+    _('Grade 6.2 (30 characters)'),  # 27
+    _('Low level (30 characters)'),  # 28
+    _('High level (30 characters)'),  # 29
+    _('All grades (30 characters)'),  # 30
+    _('All Chinese characters (30 characters)'),  # 31
+
 ]
 
 help_t = _('''
@@ -54,32 +72,42 @@ pinyin = Pinyin()
 
 cn_ps_chars = cn_ps_c_bb
 
-class Word():
 
+class Word():
     def __init__(self, pm):
         self.pm = pm
         self.ps = self.pm.ps
         self.rand_word_count = 70
         pass
 
-    def get_words(self, g: int):
-        if g == 15:
-            return self.get_rand_words(self.rand_word_count)
-        if 0 <= g < 15:
-            return self.get_cn_ps_words(g)
+    def get_words(self, g_index: int):
+        _base_len = int(len(difficulties) / 2)
+        if g_index < _base_len:
+            if g_index == _base_len - 1:
+                return self.get_rand_words(self.rand_word_count)
+            if 0 <= g_index < _base_len - 1:
+                return self.get_cn_ps_words(g_index)
+        else:
+            g_index = g_index - _base_len
+            if g_index == _base_len - 1:
+                return random.choices(
+                    self.get_rand_words(self.rand_word_count), k=30)
+            if 0 <= g_index < _base_len - 1:
+                return random.choices(
+                    self.get_cn_ps_words(g_index), k=30)
 
-    def get_cn_ps_words(self, g: int):
+    def get_cn_ps_words(self, g_index: int):
         words = []
-        if g < 12:
-            words= cn_ps_chars[g]
-        elif g == 12:
-            words= sum(cn_ps_chars[0:6], [])
-        elif g == 13:
-            words= sum(cn_ps_chars[6:16], [])
-        elif g == 14:
-            words= sum(cn_ps_chars[0:16], [])
-        return sum( words, [])
-            
+        if g_index < 12:
+            words = cn_ps_chars[g_index]
+        elif g_index == 12:
+            words = sum(cn_ps_chars[0:6], [])
+        elif g_index == 13:
+            words = sum(cn_ps_chars[6:16], [])
+        elif g_index == 14:
+            words = sum(cn_ps_chars[0:16], [])
+        return sum(words, [])
+
     def get_rand_words(self, n):
         return [chr(random.randint(0x4e00, 0x9fbf)) for i in range(0, n)]
 
@@ -124,24 +152,29 @@ class InputSurface():
         self.ps = self.pm.ps
         self.font_size = 55
         self.font = get_default_font(self.font_size)
-        self.font_color = (200, 22, 98)
+        self.surface_color = (200, 22, 98)
+        self.surface_bg_color = (200, 100, 100, 89)
+        self.surface_bg_border_radius = 10
+        self.surface_bg_width = 2
         self.surface = None
         self.frame_counter = 0
 
-        self.font.set_bold(True)
-
     def _update(self):
         self.surface = self.font.render(
-            self.pm._input, False, self.font_color)
+            self.pm._input, False, self.surface_color)
 
     def blit(self):
         if self.surface is None:
             return
         w, h = self.surface.get_size()
+        _dest = (self.pm.w_width_of_2 - w / 2, self.pm.w_height - h)
+        _surface_size = self.surface.get_size()
+        _bg_rect = (_dest[0], _dest[1], _surface_size[0], _surface_size[1])
+        pygame.draw.rect(self.pm.surface, color=self.surface_bg_color,
+                         width=self.surface_bg_width, rect=_bg_rect,
+                         border_radius=self.surface_bg_border_radius)
         self.pm.surface.blit(
-            self.surface,
-            (self.pm.w_width_of_2 - w / 2,
-             self.pm.w_height - h))
+            self.surface, _dest)
 
 
 class WallSurface():
@@ -221,7 +254,7 @@ class WordSurfacesManager():
         self.frame_counter = frame_counter
         self.interval = 3.5 * self.pm.FPS
         self.intercept_interval = 0.3 * self.pm.FPS
-        self.moving_speed = 0.8
+        self.moving_speed = 0.5
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
@@ -340,11 +373,11 @@ class InfoSurface():
 
         self.score = 0
         self._pass = False
-        self.win_info_surface = ...
+        self.win_info_surface = None
 
-        self.score_surface = ...
-        self.datetime_diff_surface = ...
-        self.greeting_surface = ...
+        self.score_surface = None
+        self.datetime_diff_surface = None
+        self.greeting_surface = None
 
         self.end_time = self.ps.end_time = None
 
@@ -372,7 +405,6 @@ class InfoSurface():
     def blit(self):
         self.win_info_surface = self.font.render(
             self.get_win_info(), False, self.game_info_color)
-
         self.surface.blit(self.game_info_surface, self.game_info_dest)
         self.surface.blit(self.win_info_surface, self.get_win_info_dest())
 
@@ -558,7 +590,6 @@ class WordSurface():
     def draw_laser_line(self):
         if self.wall_surface is None:
             self.wall_surface = self.pm.wall_surface
-        assert self.wall_surface is not None
         pygame.draw.line(
             self.ps.surface, self.laser_color,
             self.wall_surface.center, self.center,
@@ -721,8 +752,6 @@ class PinyinMissile(GameBase):
 
     def play(self):
         self._load = False
-        self.difficulty_index = self.ps.difficulty_index
-        self.words = self.word.get_words(self.difficulty_index)
         self.wordsurfaces_manager.surfaces = []
         self.wordsurfaces_manager.moving_surfaces = []
         self.wordsurfaces_manager.set_surfaces()

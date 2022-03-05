@@ -46,6 +46,8 @@ class Game():
         self.name_t = self.module.name_t
         self.help_t = self.module.help_t
         self.difficulties = self.module.difficulties
+        self.default_difficulty_index = getattr(self.module,
+                                                'default_difficulty_index', 0)
 
     def get_game(self, ps):
         if not self._game:

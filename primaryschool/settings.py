@@ -3,7 +3,7 @@ import os
 import sys
 
 app_name = 'primaryschool'
-app_version = '0.0.14'
+app_version = '0.0.15'
 app_author = 'larryw3i'
 app_author_email = 'larryw3i@163.com'
 app_maintainer = app_author

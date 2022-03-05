@@ -23,14 +23,46 @@ from primaryschool.subjects import *
 
 
 class Target(self):
-    def __init__(self, content, key):
-        self.content = content
-        self.key = key
+    def __init__(
+        self,
+        content,
+        key,
+        font=None,
+        font_name='',
+        font_size=20,
+    ):
+        self._content = content
+        self._key = key
+        self._font = font
+        self._font_name = font_name
+        self._font_size = font_size
+        self._surface = None
+
+    @property
+    def content(self): return self._content
+    @property
+    def key(self): return self._key
+    @property
+    def surface(self): return self._surface
+
+    @property
+    def font(self):
+        if self._font:
+            return self._font
+        if self._font_name:
+            return pygame.font.Font(self._font_name, self._font_size)
+
+    @surface.setter
+    def surface(self, surface):
+        self._surface = surface
 
 
-class TargetManager(self):
-    def __init__(self):
-        ...
+class TargetsManager(self):
+    def __init__(
+        self,
+        targets
+    ):
+        self._targets = targets
 
 
 class ShootingBase(GameBase):
