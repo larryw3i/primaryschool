@@ -6,7 +6,8 @@ from primaryschool.settings import *
 
 requirements = \
     [
-        [  # ('requirement_name','version','project_url','License','license_url')
+        # ('requirement_name','version','project_url','License','license_url')
+        [
             (  # dev
                 'isort', '', 'https://github.com/pycqa/isort',
                 'MIT', 'https://github.com/PyCQA/isort/blob/main/LICENSE'
@@ -19,6 +20,11 @@ requirements = \
                 'nose2', '', 'https://github.com/nose-devs/nose2',
                 'BSD License',
                 'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
+            ),
+            (
+                'twine','','https://github.com/pypa/twine/',
+                'Apache License 2.0',
+                'https://github.com/pypa/twine/blob/main/LICENSE'
             )
         ]
     ] + requirements
