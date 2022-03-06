@@ -88,7 +88,7 @@ class Wave():
 
 
 class TargetSurface():
-    def __init__(self, shtbase, _manager, tlock,tkeys, dest=None):
+    def __init__(self, shtbase, _manager,tkeys, tlock,  dest=None):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.manager = _manager
@@ -239,7 +239,7 @@ class TargetsManager():
 
     def set_surfaces(self):
         self.surfaces = [
-            TargetSurface(self.shtbase, self, t[-1],t[0:-1]) \
+            TargetSurface(self.shtbase, self,t[0:-1], t[-1]) \
             for t in self.get_targets()
         ]
         self.shtbase.set_target_count(len(self.surfaces))
@@ -271,7 +271,7 @@ class TargetsManager():
     def load(self, _copy):
         raise NotImplementedError()
         
-    def intercepted_blit(self):
+    def intercepted_blit(self,moving_surfaces):
         pass
 
     def blit(self):
@@ -285,9 +285,9 @@ class TargetsManager():
             if w.intercepted:
                 if w.intercept_frame_counter >= self.intercept_interval:
                     self.moving_surfaces.remove(w)
-                self.intercepted_blit()
+                self.intercepted_blit(w)
                 w.surface = w.font.render(
-                    w.word, False, self.intercepted_color)
+                    w.tlock, False, self.intercepted_color)
                 self.shtbase.surface.blit(w.surface, w.dest)
                 w.circle()
                 w.draw_laser_line()
@@ -335,8 +335,8 @@ class MhTargetsManager(TargetsManager):
 
         return f
 
-    def intercepted_blit(self):        
-        self.wave.draw(w.intercept_frame_counter)
+    def intercepted_blit(self,moving_surfaces):        
+        self.wave.draw(moving_surfaces.intercept_frame_counter)
 
     def get_division_formulas(self, _max, count=None):
         _d = []
@@ -351,11 +351,12 @@ class MhTargetsManager(TargetsManager):
 
     def get_result(self,formula):
         a, oper, b = formula.split(' ')
-        return \
+        return str(
             int(a) + int(b) if oper == '+' else \
             int(a) - int(b) if oper == '-' else \
             int(a) * int(b) if oper == times_sign else \
             int(int(a) / int(b))
+        )
 
 
     def get_targets(self, d: int = 0, count=20):
@@ -389,15 +390,19 @@ class MhTargetsManager(TargetsManager):
 
 
     def save(self, _copy):
-        _copy['0x0'] = [s.word for s in self.surfaces]
-        _copy['0x1'] = [(ms.word, ms.dest) for ms in self.moving_surfaces]
+        _copy['0x0'] = [(s.tkeys,s.tlock, s.dest) \
+            for s in self.surfaces]
+        _copy['0x1'] = [(ms.tkeys,ms.tlock, ms.dest) \
+            for ms in self.moving_surfaces]
         return _copy
 
     def load(self, _copy):
-        for w in _copy['0x0']:
-            self.surfaces.append(TargetSurface(self.shtbase, self, w))
-        for w, d in _copy['0x1']:
-            self.moving_surfaces.append(TargetSurface(self.shtbase, self, w, d))
+        for keys,lock, dest in _copy['0x0']:
+            self.moving_surfaces.append(\
+                TargetSurface(self.shtbase, self, keys,lock))
+        for keys,lock, dest in _copy['0x1']:
+            self.moving_surfaces.append(\
+                TargetSurface(self.shtbase, self, keys,lock, dest))
 
 class InputSurface():
     def __init__(self, shtbase):
@@ -631,7 +636,6 @@ class ShootingBase(GameBase):
         self.start_time = datetime.now()
         self.end_time = None
 
-        # word surface
         self.targets_manager = MhTargetsManager(self)
         self.win_count = 0
         self.lose_count = 0
