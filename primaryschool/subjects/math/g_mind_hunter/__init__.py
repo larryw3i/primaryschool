@@ -86,7 +86,6 @@ class Wave():
                            self.w_centrex_y, _radius, width=self.width)
 
 
-
 class TargetSurface():
     def __init__(self, shtbase, _manager,tkeys, tlock,  dest=None):
         self.shtbase = shtbase
@@ -136,11 +135,34 @@ class TargetSurface():
 
     def get_h(self):
         return self.size[1]
+    
+
+    def get_bg_points(self,tip_height=50):
+        return [
+            (self.get_x(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
+            (
+                self.get_x() + self.get_w() / 2,
+                self.get_y() + self.get_h() + tip_height),
+            (self.get_x(), self.get_y() + self.get_h())
+        ]
+
+    def draw_bg(self):
+        pygame.draw.polygon(
+            self.ps.surface,
+            self.get_bg_color(),
+            self.get_bg_points())
+            
+
+    def move(self,_add):
+        self.add_dest(_add)
 
     def add_dest(self, _add):
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
         self.center = self.get_center()
+        self.draw_bg()
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -191,6 +213,7 @@ class TargetSurface():
         _new.surface = self.surface.copy()
         _new.set_random_dest()
         return _new
+
 
 class TargetsManager():
     def __init__(self, shtbase, frame_counter=0 ):
@@ -271,7 +294,7 @@ class TargetsManager():
     def load(self, _copy):
         raise NotImplementedError()
         
-    def intercepted_blit(self,moving_surfaces):
+    def blit_intercepting(self,moving_surfaces):
         pass
 
     def blit(self):
@@ -285,7 +308,7 @@ class TargetsManager():
             if w.intercepted:
                 if w.intercept_frame_counter >= self.intercept_interval:
                     self.moving_surfaces.remove(w)
-                self.intercepted_blit(w)
+                self.blit_intercepting(w)
                 w.surface = w.font.render(
                     w.tlock, False, self.intercepted_color)
                 self.shtbase.surface.blit(w.surface, w.dest)
@@ -335,7 +358,7 @@ class MhTargetsManager(TargetsManager):
 
         return f
 
-    def intercepted_blit(self,moving_surfaces):        
+    def blit_intercepting(self,moving_surfaces):        
         self.wave.draw(moving_surfaces.intercept_frame_counter)
 
     def get_division_formulas(self, _max, count=None):
