@@ -106,6 +106,7 @@ class TargetSurface():
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
+        self.bg_color = (20, 10, 200, 100)
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -151,7 +152,7 @@ class TargetSurface():
     def draw_bg(self):
         pygame.draw.polygon(
             self.ps.surface,
-            self.get_bg_color(),
+            self.bg_color,
             self.get_bg_points())
             
 
