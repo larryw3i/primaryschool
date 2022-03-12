@@ -57,10 +57,20 @@ class ShootingWave():
 
 
 class TargetSurface():
-    def __init__(self, shtbase, _manager, tkeys, tlock, dest=None):
+    def __init__(
+        self, 
+        shtbase, 
+        _manager, 
+        tkeys, 
+        tlock, 
+        dest=None,
+        end_pos = None
+        ):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
+        self.FPS = self.ps.FPS
         self.manager = _manager
+        self.moving_speed = self.manager.moving_speed
         self.defense_surface = None
         self.tlock = tlock
         self.tkeys = tkeys
@@ -74,9 +84,28 @@ class TargetSurface():
         self.laser_width = self.manager.laser_width
         self.surface = self.get_surface()
         self.size = self.get_size()
-        self.dest = dest if dest else self.get_random_dest()
+        self.start_pos = self.dest = dest if dest else self.get_default_pos()
+        self.end_pos = end_pos if end_pos else self. get_default_end_pos()
+        self.moving_counter = 0
         self.center = self.get_center()
         self.bg_color = (20, 10, 200, 100)
+    
+    def set_dest(self, dest):
+        self.dest = dest
+
+    def set_start_pos(self,pos,reset_dest = False):
+        self.start_pos = pos
+        if reset_dest:
+            self.dest = self.start_pos
+    
+    def set_end_pos(self,pos):
+        self.end_pos = pos
+
+    def get_default_pos(self):
+        return self.get_random_dest_top()
+
+    def get_default_end_pos(self):
+        return (None,self.shtbase.w_height - self.shtbase.defense_surface.h)
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -84,16 +113,16 @@ class TargetSurface():
     def set_circle_width(self, width):
         assert isinstance(width, int)
         self.circle_width = width
+    
 
     def arrived(self):
-        return self.get_y() + self.get_h() >= \
-            self.shtbase.w_height - self.shtbase.defense_surface.h
+        if self.end_pos[0]:
+            return self.get_x() + self.get_w() >= self.end_pos[0]
+        if self.end_pos[1]:
+            return self.get_y() + self.get_h() >= self.end_pos[1]
 
     def get_surface(self):
         return self.font.render(self.tlock, False, self.font_color)
-
-    def set_dest(self, dest):
-        self.dest = dest
 
     def get_x(self):
         return self.dest[0]
@@ -123,15 +152,21 @@ class TargetSurface():
             self.ps.surface,
             self.bg_color,
             self.get_bg_points())
+    
+    def calc_dest(self,_add):
+        return
 
-    def move(self, _add):
-        self.add_dest(_add)
-
-    def add_dest(self, _add):
-        self.dest[0] += _add[0]
-        self.dest[1] += _add[1]
+    def move(self, _add=(1,1), rel=True,use_func = False):
+        if use_func:
+            self.dest = self.calc_dest(_add)
+        elif rel:
+            self.dest[0] += _add[0]
+            self.dest[1] += _add[1]
+        else:
+            self.set_dest(_add)
         self.center = self.get_center()
         self.draw_bg()
+
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -170,16 +205,16 @@ class TargetSurface():
     def get_size(self):
         return self.surface.get_size()
 
-    def set_random_dest(self):
-        self.dest = self.get_random_dest()
+    def set_random_dest_top(self):
+        self.dest = self.get_random_dest_top()
 
-    def get_random_dest(self):
+    def get_random_dest_top(self):
         return [random.randint(0, self.shtbase.w_width - self.get_w()), 0]
 
     def copy(self):
         _new = copy.copy(self)
         _new.surface = self.surface.copy()
-        _new.set_random_dest()
+        _new.set_random_dest_top()
         return _new
 
 
@@ -187,6 +222,7 @@ class TargetsManager():
     def __init__(self, shtbase, frame_counter=0):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
+        self.FPS = self.ps.FPS
         self.moving_surfaces = []
         self.frame_counter = frame_counter == 0 and 30 or frame_counter
         self.difficulty_index_p1 = self.shtbase.difficulty_index + 1
@@ -265,7 +301,8 @@ class TargetsManager():
 
     def blit_intercepting(self, moving_surfaces):
         pass
-
+    
+    
     def blit(self):
         if len(self.surfaces) > 0:
             if len(self.moving_surfaces) < 1:
@@ -294,11 +331,13 @@ class TargetsManager():
                 continue
 
             if w.arrived():
-                self.moving_surfaces.remove(w)
-                self.shtbase.lose_count += 1
-                continue
+                if self.shtbase.defense_surface.flicker() < 1:
+                    self.moving_surfaces.remove(w)
+                    self.shtbase.lose_count += 1
+                    continue
 
-            w.add_dest((0, self.moving_speed))
+
+            w.move((0,self.moving_speed))
             self.shtbase.surface.blit(w.surface, w.dest)
             self.moving_surfaces_blit()
 
@@ -331,16 +370,50 @@ class InputSurface():
 
 
 class DefenseSurface():
-    def __init__(self, shtbase):
+    def __init__(self, shtbase,original_color= None):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.h = self.shtbase.w_height / 20
         self.surface = pygame.Surface((self.shtbase.w_width, self.h))
-        self.color = (255, 200, 99)
+        self.original_color = original_color or self.get_default_color()
+        self.color = self.original_color
         self.emitter_radius = self.h / 2
         self.emitter_color = None
 
+        self.flicker_interval = 1 * self.ps.FPS  # 2s
+        self.flicker_counter = 0
+        self.flicker_color = [self.color, (250, 0, 0)]
+        self.flicker_color_step = (
+            (self.flicker_color[1][0] - self.flicker_color[0][0])
+            / self.flicker_interval,
+            (self.flicker_color[1][1] - self.flicker_color[0][1])
+            / self.flicker_interval,
+            (self.flicker_color[1][2] - self.flicker_color[0][2])
+            / self.flicker_interval,
+        )
+
         self.center = self.get_center()
+    
+    def get_default_color(self):
+        return (10, 200, 99)
+
+    def flicker(self):
+        self.flicker_counter += 1
+        self.color = (
+            min(int(self.flicker_color[0][0]
+                    + self.flicker_color_step[0] * self.flicker_counter),
+                255),
+            min(int(self.flicker_color[0][1]
+                    + self.flicker_color_step[1] * self.flicker_counter),
+                255),
+            min(int(self.flicker_color[0][2]
+                    + self.flicker_color_step[2] * self.flicker_counter),
+                255)
+        )
+        if self.flicker_counter >= self.flicker_interval:
+            self.flicker_counter = 0
+            self.color = self.original_color
+        return self.flicker_counter
 
     def set_emitter_color(self, color=(255, 0, 0, 50)):
         self.emitter_color = color
