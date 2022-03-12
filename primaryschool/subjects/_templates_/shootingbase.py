@@ -503,10 +503,10 @@ class InfoSurface():
 
 class ShootingBase(GameBase):
     def __init__(self, ps):
-        assert hasattr(self,'name_t')
-        assert hasattr(self,'difficulties')
-        assert hasattr(self,'module_str')
-        
+        assert hasattr(self, 'name_t')
+        assert hasattr(self, 'difficulties')
+        assert hasattr(self, 'module_str')
+
         self.ps = ps
         # window
         self.w_width = self.ps.w_width
@@ -545,16 +545,16 @@ class ShootingBase(GameBase):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
-    
+
     def get_info_surface(self):
         return InfoSurface(self)
 
     def get_input_surface(self):
         return InputSurface(self)
-    
+
     def get_defense_surface(self):
         return DefenseSurface(self)
-    
+
     def get_targets_manager(self):
         raise NotImplementedError()
 
@@ -562,7 +562,8 @@ class ShootingBase(GameBase):
         self.target_count = count
 
     def print_game_info(self):
-        print(self.subject.name_t, self.name_t, self.difficulties[self.difficulty_index])
+        print(self.subject.name_t, self.name_t,
+              self.difficulties[self.difficulty_index])
 
     def key_clean(self, code):
         return 48 <= code <= 57 or code == 45

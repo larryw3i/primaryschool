@@ -17,8 +17,8 @@ from primaryschool.locale import _, sys_lang_code
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
-from primaryschool.subjects._templates_.shootingbase import *
 from primaryschool.subjects._abc_ import GameBase
+from primaryschool.subjects._templates_.shootingbase import *
 
 # primaryschool.subjects.yuwen.g_mind_hunter
 module_str = __name__
@@ -50,7 +50,6 @@ Enter the calculation result.
 
 times_sign = '\u00d7'
 division_sign = '\u00f7'
-
 
 
 class MhTargetsManager(TargetsManager):
@@ -86,7 +85,7 @@ class MhTargetsManager(TargetsManager):
             for j in range(1, _max + 1):
                 if i % j == 0:
                     _d.append((i, j))
-        return [str(a) +' '+ division_sign+' ' + str(b)
+        return [str(a) + ' ' + division_sign + ' ' + str(b)
                 for a, b in random.choices(_d, k=self.target_count)]
 
     def get_result(self, formula):
@@ -117,9 +116,9 @@ class MhTargetsManager(TargetsManager):
                 formulas = self.get_pmt_formulas(_max, _oper)
             elif _oper == division_sign:
                 formulas = self.get_division_formulas()
-            else: # ?
+            else:  # ?
                 _d_opers_count = random.choices(
-                    ['+', '-', times_sign, division_sign], \
+                    ['+', '-', times_sign, division_sign],
                     k=self.target_count)\
                     .count(division_sign)
                 formulas = \
@@ -144,19 +143,15 @@ class MhTargetsManager(TargetsManager):
                 TargetSurface(self.shtbase, self, keys, lock, dest))
 
 
-
-
-
 class MindHunter(ShootingBase):
-    def __init__(self,ps):
+    def __init__(self, ps):
         self.name_t = name_t
         self.difficulties = difficulties
         self.module_str = module_str
         super().__init__(ps)
 
     def get_targets_manager(self):
-        return MhTargetsManager(self,30)
-
+        return MhTargetsManager(self, 30)
 
 
 def enjoy(ps):
