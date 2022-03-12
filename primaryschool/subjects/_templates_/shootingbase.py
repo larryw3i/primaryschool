@@ -19,39 +19,8 @@ from primaryschool.resource import (default_font, default_font_path,
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 
-# primaryschool.subjects.yuwen.g_mind_hunter
-module_str = __name__
 
-name_t = _('Mind hunter')
-
-difficulties = [
-    _('< 10 + 10'),  # 0
-    _('< 50 + 50'),  # 1
-    _('< 100 + 100'),  # 2
-    _('< 10 - 10'),  # 3
-    _('< 50 - 50'),  # 4
-    _('< 100 - 100'),  # 5
-    _('< 10 * 10'),  # 6
-    _('< 50 * 50'),  # 7
-    _('< 100 * 100'),  # 8
-    _('< 10 / 10'),  # 9
-    _('< 50 / 50'),  # 10
-    _('< 100 / 100'),  # 11
-    _('< 10 ? 10'),  # 12
-    _('< 50 ? 50'),  # 13
-    _('< 100 ? 100'),  # 14
-]
-
-
-help_t = _('''
-Enter the calculation result.
-''')
-
-times_sign = '\u2a09'
-division_sign = '\u00f7'
-
-
-class Wave():
+class ShootingWave():
     def __init__(self, _manager):
 
         self.manager = _manager
@@ -92,7 +61,7 @@ class TargetSurface():
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.manager = _manager
-        self.wall_surface = None
+        self.defense_surface = None
         self.tlock = tlock
         self.tkeys = tkeys
         self.font_color = (200, 22, 98)
@@ -107,6 +76,7 @@ class TargetSurface():
         self.size = self.get_size()
         self.dest = dest if dest else self.get_random_dest()
         self.center = self.get_center()
+        self.bg_color = (20, 10, 200, 100)
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -117,7 +87,7 @@ class TargetSurface():
 
     def arrived(self):
         return self.get_y() + self.get_h() >= \
-            self.shtbase.w_height - self.shtbase.wall_surface.h
+            self.shtbase.w_height - self.shtbase.defense_surface.h
 
     def get_surface(self):
         return self.font.render(self.tlock, False, self.font_color)
@@ -137,10 +107,31 @@ class TargetSurface():
     def get_h(self):
         return self.size[1]
 
+    def get_bg_points(self, tip_height=50):
+        return [
+            (self.get_x(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y()),
+            (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
+            (
+                self.get_x() + self.get_w() / 2,
+                self.get_y() + self.get_h() + tip_height),
+            (self.get_x(), self.get_y() + self.get_h())
+        ]
+
+    def draw_bg(self):
+        pygame.draw.polygon(
+            self.ps.surface,
+            self.bg_color,
+            self.get_bg_points())
+
+    def move(self, _add):
+        self.add_dest(_add)
+
     def add_dest(self, _add):
         self.dest[0] += _add[0]
         self.dest[1] += _add[1]
         self.center = self.get_center()
+        self.draw_bg()
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -149,12 +140,12 @@ class TargetSurface():
         return self.laser_color
 
     def draw_laser_line(self):
-        if self.wall_surface is None:
-            self.wall_surface = self.shtbase.wall_surface
-        assert self.wall_surface is not None
+        if self.defense_surface is None:
+            self.defense_surface = self.shtbase.defense_surface
+        assert self.defense_surface is not None
         pygame.draw.line(
             self.ps.surface, self.laser_color,
-            self.wall_surface.center, self.center,
+            self.defense_surface.center, self.center,
             self.laser_width)
 
     def get_center(self):
@@ -197,7 +188,7 @@ class TargetsManager():
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.moving_surfaces = []
-        self.frame_counter = frame_counter
+        self.frame_counter = frame_counter == 0 and 30 or frame_counter
         self.difficulty_index_p1 = self.shtbase.difficulty_index + 1
         self.interval = 1.8 * self.shtbase.FPS
         self.intercept_interval = 0.3 * self.shtbase.FPS
@@ -212,17 +203,24 @@ class TargetsManager():
         self.surfaces = []
         self.target_count = 20
 
-    def set_target_surface_lang_code(self, lang_code):
-        self.target_surface_lang_code = lang_code
-
-    def set_target_count(self, target_count):
-        self.target_count = target_count
-
     def get_targets(self, d: int = 0, count=20):
         '''
         return (key,key,key,key,...,lock)
         '''
         raise NotImplementedError()
+
+    def save(self, _copy):
+        raise NotImplementedError()
+
+    def load(self, _copy):
+        raise NotImplementedError()
+
+    def set_target_surface_lang_code(self, lang_code):
+        self.target_surface_lang_code = lang_code
+
+    def set_target_count(self, target_count):
+        self.target_count = target_count
+        self.shtbase.set_target_count(target_count)
 
     def moving_surfaces_blit(self):
         pass
@@ -234,12 +232,15 @@ class TargetsManager():
     def get_font_size(self):
         return self.font_size
 
-    def set_surfaces(self):
-        self.surfaces = [
+    def get_target_surfaces(self):
+        return [
             TargetSurface(self.shtbase, self, t[0:-1], t[-1])
-            for t in self.get_targets()
+            for t in self.get_targets(self.shtbase.difficulty_index)
         ]
-        self.shtbase.set_target_count(len(self.surfaces))
+
+    def set_surfaces(self):
+        self.surfaces = self.get_target_surfaces()
+        self.set_target_count(len(self.surfaces))
 
     def get_surfaces(self):
         if not self.surfaces:
@@ -262,13 +263,7 @@ class TargetsManager():
         self.moving_surfaces.append(ws)
         self.frame_counter = 0
 
-    def save(self, _copy):
-        raise NotImplementedError()
-
-    def load(self, _copy):
-        raise NotImplementedError()
-
-    def intercepted_blit(self, moving_surfaces):
+    def blit_intercepting(self, moving_surfaces):
         pass
 
     def blit(self):
@@ -282,7 +277,7 @@ class TargetsManager():
             if w.intercepted:
                 if w.intercept_frame_counter >= self.intercept_interval:
                     self.moving_surfaces.remove(w)
-                self.intercepted_blit(w)
+                self.blit_intercepting(w)
                 w.surface = w.font.render(
                     w.tlock, False, self.intercepted_color)
                 self.shtbase.surface.blit(w.surface, w.dest)
@@ -310,95 +305,6 @@ class TargetsManager():
         self.frame_counter += 1
 
 
-class MhTargetsManager(TargetsManager):
-    def __init__(self, shtbase, frame_counter=0):
-        super().__init__(shtbase, frame_counter=0)
-        self.wave = Wave(self)
-
-    def get_pmt_formulas(self, _max, _oper, count=None):  # for plus/minus/time
-        f = []
-        count = count if count else self.target_count
-        _max_sqrt = int(_max**0.5)
-        for _ in range(self.target_count + 1):
-            _oper_ = random.choice(_oper) if isinstance(_oper, list) else _oper
-            num0 = random.randint(0, _max)
-            num1 = random.randint(0, _max)
-            if _oper_ == '-':
-                num0 = max(num0, num1)
-                num1 = min(num0, num1)
-            if _oper_ == times_sign:
-                num0 = random.randint(0, _max_sqrt)
-                num1 = random.randint(0, _max_sqrt)
-            f.append(str(num0) + ' ' + _oper_ + ' ' + str(num1))
-
-        return f
-
-    def intercepted_blit(self, moving_surfaces):
-        self.wave.draw(moving_surfaces.intercept_frame_counter)
-
-    def get_division_formulas(self, _max, count=None):
-        _d = []
-        count = count if count else self.target_count
-        for i in range(_max + 1):
-            for j in range(1, _max + 1):
-                if i % j == 0:
-                    _d.append((i, j))
-        return [str(a) + ' / ' + str(b)
-                for a, b in random.choices(_d, k=self.target_count)]
-
-    def get_result(self, formula):
-        a, oper, b = formula.split(' ')
-        return str(
-            int(a) + int(b) if oper == '+' else
-            int(a) - int(b) if oper == '-' else
-            int(a) * int(b) if oper == times_sign else
-            int(int(a) / int(b))
-        )
-
-    def get_targets(self, d: int = 0, count=20):
-        self.set_target_count(count)
-        formulas = None
-        if d < 15:
-            _rem, _quo = d % 3, d // 3
-            _max = \
-                10 if _rem == 0 else \
-                50 if _rem == 1 else \
-                100
-            _oper = \
-                '+' if _quo == 0 else \
-                '-' if _quo == 1 else \
-                times_sign if _quo == 2 else \
-                division_sign if _quo == 3 else \
-                '?'
-            if _oper in ['+', '-', times_sign]:
-                formulas = self.get_pmt_formulas(_max, _oper)
-            elif _oper == division_sign:
-                formulas = self.get_division_formulas()
-            else:
-                _d_opers_count = random.choices(
-                    ['+', '-', times_sign, division_sign], k=self.target_count)\
-                    .count(division_sign)
-                formulas = self.get_pmt_formulas(_max, ['+', '-', times_sign]) \
-                    + self.get_division_formulas(_max, _d_opers_count)
-
-            return [(self.get_result(f), f) for f in formulas]
-
-    def save(self, _copy):
-        _copy['0x0'] = [(s.tkeys, s.tlock, s.dest)
-                        for s in self.surfaces]
-        _copy['0x1'] = [(ms.tkeys, ms.tlock, ms.dest)
-                        for ms in self.moving_surfaces]
-        return _copy
-
-    def load(self, _copy):
-        for keys, lock, dest in _copy['0x0']:
-            self.moving_surfaces.append(
-                TargetSurface(self.shtbase, self, keys, lock))
-        for keys, lock, dest in _copy['0x1']:
-            self.moving_surfaces.append(
-                TargetSurface(self.shtbase, self, keys, lock, dest))
-
-
 class InputSurface():
     def __init__(self, shtbase):
         self.shtbase = shtbase
@@ -408,7 +314,6 @@ class InputSurface():
         self.font_color = (200, 22, 98)
         self.surface = None
         self.frame_counter = 0
-
         self.font.set_bold(True)
 
     def _update(self):
@@ -425,7 +330,7 @@ class InputSurface():
              self.shtbase.w_height - h))
 
 
-class WallSurface():
+class DefenseSurface():
     def __init__(self, shtbase):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
@@ -466,8 +371,8 @@ class InfoSurface():
         self.ps = shtbase.ps
         self.surface = self.ps.surface
         self.game_info_dest = (10, 10)
-        self.game_info = name_t + \
-            '/' + difficulties[self.ps.difficulty_index]
+        self.game_info = self.shtbase.name_t + \
+            '/' + self.shtbase.difficulties[self.ps.difficulty_index]
         self.game_info_color = (255, 0, 255, 10)
         self.font_size = 25
         self.font = get_default_font(self.font_size)
@@ -598,8 +503,11 @@ class InfoSurface():
 
 class ShootingBase(GameBase):
     def __init__(self, ps):
+        assert hasattr(self,'name_t')
+        assert hasattr(self,'difficulties')
+        assert hasattr(self,'module_str')
+        
         self.ps = ps
-
         # window
         self.w_width = self.ps.w_width
         self.w_height = self.ps.w_height
@@ -623,28 +531,40 @@ class ShootingBase(GameBase):
 
         self._input = ''
         self.font = get_default_font(45)
-        self.info_surface = InfoSurface(self)
-        self.wall_surface = WallSurface(self)
-        self.input_surface = InputSurface(self)
-        self.copy_path = get_copy_path(module_str)
+        self.info_surface = self.get_info_surface()
+        self.defense_surface = self.get_defense_surface()
+        self.input_surface = self.get_input_surface()
+        self.copy_path = get_copy_path(self.module_str)
 
         self.last_timedelta = timedelta(0)
         self.start_time = datetime.now()
         self.end_time = None
 
-        self.targets_manager = MhTargetsManager(self)
+        self.targets_manager = self.get_targets_manager()
         self.win_count = 0
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
+    
+    def get_info_surface(self):
+        return InfoSurface(self)
+
+    def get_input_surface(self):
+        return InputSurface(self)
+    
+    def get_defense_surface(self):
+        return DefenseSurface(self)
+    
+    def get_targets_manager(self):
+        raise NotImplementedError()
 
     def set_target_count(self, count):
         self.target_count = count
 
     def print_game_info(self):
-        print(self.subject.name_t, name_t, difficulties[self.difficulty_index])
+        print(self.subject.name_t, self.name_t, self.difficulties[self.difficulty_index])
 
-    def ascii_is_num(self, code):
+    def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
     def handle_events(self, events):
@@ -662,7 +582,7 @@ class ShootingBase(GameBase):
                     self._input = self._input[0:-1]
                     self.input_surface._update()
                     return
-                elif self.ascii_is_num(e.key):
+                elif self.key_clean(e.key):
                     self._input += pygame.key.name(e.key)
                     self.input_surface._update()
                     return
@@ -721,7 +641,7 @@ class ShootingBase(GameBase):
 
             if self.win_count + self.lose_count < self.target_count:
                 self.info_surface.blit()
-                self.wall_surface.blit()
+                self.defense_surface.blit()
                 self.targets_manager.blit()
                 self.input_surface.blit()
             else:
