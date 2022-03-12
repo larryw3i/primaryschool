@@ -22,8 +22,8 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/larryw3i/primaryschool/main/
-docs/images/screenshot.png)
+![screenshot](
+https://github.com/larryw3i/primaryschool/blob/main/docs/images/screenshot.png)
 
 ## How To Use
 
