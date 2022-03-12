@@ -237,6 +237,19 @@ class TargetsManager():
         self.target_count = 20
 
     
+
+    def get_targets(self, d: int = 0, count=20):
+        '''
+        return (key,key,key,key,...,lock)
+        '''
+        raise NotImplementedError()
+        
+    def save(self, _copy):
+        raise NotImplementedError()
+
+    def load(self, _copy):
+        raise NotImplementedError()
+        
     def set_target_surface_lang_code(self,lang_code):
         self.target_surface_lang_code = lang_code
 
@@ -244,12 +257,6 @@ class TargetsManager():
     def set_target_count(self, target_count):
         self.target_count = target_count
 
-
-    def get_targets(self, d: int = 0, count=20):
-        '''
-        return (key,key,key,key,...,lock)
-        '''
-        raise NotImplementedError()
     
     def moving_surfaces_blit(self):
         pass
@@ -289,12 +296,6 @@ class TargetsManager():
         self.moving_surfaces.append(ws)
         self.frame_counter = 0
 
-    def save(self, _copy):
-        raise NotImplementedError()
-
-    def load(self, _copy):
-        raise NotImplementedError()
-        
     def blit_intercepting(self,moving_surfaces):
         pass
 
@@ -672,7 +673,7 @@ class ShootingBase(GameBase):
     def print_game_info(self):
         print(self.subject.name_t, name_t, difficulties[self.difficulty_index])
 
-    def ascii_is_num(self, code):
+    def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
     def handle_events(self, events):
@@ -690,7 +691,7 @@ class ShootingBase(GameBase):
                     self._input = self._input[0:-1]
                     self.input_surface._update()
                     return
-                elif self.ascii_is_num(e.key):
+                elif self.key_clean(e.key):
                     self._input += pygame.key.name(e.key)
                     self.input_surface._update()
                     return
