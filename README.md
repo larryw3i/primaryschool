@@ -17,7 +17,8 @@
 </p>
 
 <p align="center">
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#how-to-use">How To Use</a> 
+  • 
   <a href="#license">License</a>
 </p>
 
@@ -32,7 +33,7 @@ To run this application, you'll need
 Unix-like may need to install separately.) 
 installed on your computer. From your command line:
 ```bash
-pip3 install primaryschool; primaryschool
+pip3 install -U primaryschool; primaryschool
 ```  
 ## Credits
 

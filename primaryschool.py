@@ -22,7 +22,7 @@ requirements = \
                 'https://github.com/nose-devs/nose2/blob/main/setup.py#L57'
             ),
             (
-                'twine','','https://github.com/pypa/twine/',
+                'twine', '', 'https://github.com/pypa/twine/',
                 'Apache License 2.0',
                 'https://github.com/pypa/twine/blob/main/LICENSE'
             )
