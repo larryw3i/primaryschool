@@ -58,14 +58,14 @@ class ShootingWave():
 
 class TargetSurface():
     def __init__(
-        self, 
-        shtbase, 
-        _manager, 
-        tkeys, 
-        tlock, 
+        self,
+        shtbase,
+        _manager,
+        tkeys,
+        tlock,
         dest=None,
-        end_pos = None
-        ):
+        end_pos=None
+    ):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.FPS = self.ps.FPS
@@ -89,23 +89,23 @@ class TargetSurface():
         self.moving_counter = 0
         self.center = self.get_center()
         self.bg_color = (20, 10, 200, 100)
-    
+
     def set_dest(self, dest):
         self.dest = dest
 
-    def set_start_pos(self,pos,reset_dest = False):
+    def set_start_pos(self, pos, reset_dest=False):
         self.start_pos = pos
         if reset_dest:
             self.dest = self.start_pos
-    
-    def set_end_pos(self,pos):
+
+    def set_end_pos(self, pos):
         self.end_pos = pos
 
     def get_default_pos(self):
         return self.get_random_dest_top()
 
     def get_default_end_pos(self):
-        return (None,self.shtbase.w_height - self.shtbase.defense_surface.h)
+        return (None, self.shtbase.w_height - self.shtbase.defense_surface.h)
 
     def set_circle_color(self, color):
         self.circle_color = color
@@ -113,7 +113,6 @@ class TargetSurface():
     def set_circle_width(self, width):
         assert isinstance(width, int)
         self.circle_width = width
-    
 
     def arrived(self):
         if self.end_pos[0]:
@@ -152,11 +151,11 @@ class TargetSurface():
             self.ps.surface,
             self.bg_color,
             self.get_bg_points())
-    
-    def calc_dest(self,_add):
+
+    def calc_dest(self, _add):
         return
 
-    def move(self, _add=(1,1), rel=True,use_func = False):
+    def move(self, _add=(1, 1), rel=True, use_func=False):
         if use_func:
             self.dest = self.calc_dest(_add)
         elif rel:
@@ -166,7 +165,6 @@ class TargetSurface():
             self.set_dest(_add)
         self.center = self.get_center()
         self.draw_bg()
-
 
     def set_laser_color(self, laser_color):
         self.laser_color = laser_color
@@ -301,8 +299,7 @@ class TargetsManager():
 
     def blit_intercepting(self, moving_surfaces):
         pass
-    
-    
+
     def blit(self):
         if len(self.surfaces) > 0:
             if len(self.moving_surfaces) < 1:
@@ -336,8 +333,7 @@ class TargetsManager():
                     self.shtbase.lose_count += 1
                     continue
 
-
-            w.move((0,self.moving_speed))
+            w.move((0, self.moving_speed))
             self.shtbase.surface.blit(w.surface, w.dest)
             self.moving_surfaces_blit()
 
@@ -370,7 +366,7 @@ class InputSurface():
 
 
 class DefenseSurface():
-    def __init__(self, shtbase,original_color= None):
+    def __init__(self, shtbase, original_color=None):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.h = self.shtbase.w_height / 20
@@ -393,7 +389,7 @@ class DefenseSurface():
         )
 
         self.center = self.get_center()
-    
+
     def get_default_color(self):
         return (10, 200, 99)
 
