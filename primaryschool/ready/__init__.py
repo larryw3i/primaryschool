@@ -191,6 +191,7 @@ class PlayMenu():
             onchange=self.on_difficulty_dropselect_change
         )
         self.update_selection_box_width()
+        self.set_difficulty_index()
 
         self._menu.add.button(
             _('Play'),
@@ -281,8 +282,9 @@ class PlayMenu():
         self.update_help_lael()
 
     def set_difficulty_index(self, index=0):
-        self.difficulty_index = self.ps.difficulty_index = \
-            index if index != 0 else self.subject_game.default_difficulty_index
+        self.difficulty_index = \
+            self.ps.difficulty_index = index if index != 0 else \
+            self.subject_game.default_difficulty_index
         self.update_difficulty_dropselect()
 
 

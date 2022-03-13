@@ -53,8 +53,8 @@ division_sign = '\u00f7'
 
 
 class MhTargetsManager(TargetsManager):
-    def __init__(self, shtbase, frame_counter=0):
-        super().__init__(shtbase, frame_counter=0)
+    def __init__(self, shtbase):
+        super().__init__(shtbase)
         self.wave = ShootingWave(self)
 
     def get_pmt_formulas(self, _max, _oper, count=None):  # for plus/minus/time
@@ -98,7 +98,6 @@ class MhTargetsManager(TargetsManager):
         )
 
     def get_targets(self, d: int = 0, count=20):
-        self.set_target_count(count)
         formulas = None
         if d < 15:
             _rem, _quo = d % 3, d // 3
@@ -126,21 +125,6 @@ class MhTargetsManager(TargetsManager):
                     self.get_division_formulas(_max, _d_opers_count)
 
             return [(self.get_result(f), f) for f in formulas]
-
-    def save(self, _copy):
-        _copy['0x0'] = [
-            (s.tkeys, s.tlock, s.dest) for s in self.surfaces]
-        _copy['0x1'] = [
-            (ms.tkeys, ms.tlock, ms.dest) for ms in self.moving_surfaces]
-        return _copy
-
-    def load(self, _copy):
-        for keys, lock, dest in _copy['0x0']:
-            self.moving_surfaces.append(
-                TargetSurface(self.shtbase, self, keys, lock))
-        for keys, lock, dest in _copy['0x1']:
-            self.moving_surfaces.append(
-                TargetSurface(self.shtbase, self, keys, lock, dest))
 
 
 class MindHunter(ShootingBase):

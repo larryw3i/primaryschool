@@ -26,8 +26,7 @@ class ShootingWave():
         self.manager = _manager
         self.shtbase = self.manager.shtbase
         self.ps = self.shtbase.ps
-        self.intercept_interval = \
-            self.manager.intercept_interval
+        self.intercept_interval = self.manager.intercept_interval
         self.surface = self.shtbase.surface
         self.w_height = self.shtbase.w_height
         self.w_height_of_2 = self.shtbase.w_height_of_2
@@ -135,7 +134,7 @@ class TargetSurface():
     def get_h(self):
         return self.size[1]
 
-    def get_bg_points(self, tip_height=50):
+    def get_default_bg_points(self, tip_height=50):
         return [
             (self.get_x(), self.get_y()),
             (self.get_x() + self.get_w(), self.get_y()),
@@ -150,7 +149,7 @@ class TargetSurface():
         pygame.draw.polygon(
             self.ps.surface,
             self.bg_color,
-            self.get_bg_points())
+            self.get_default_bg_points())
 
     def calc_dest(self, _add):
         return
@@ -217,12 +216,17 @@ class TargetSurface():
 
 
 class TargetsManager():
-    def __init__(self, shtbase, frame_counter=0):
+    def __init__(
+            self,
+            shtbase,
+            frame_counter=None,
+            target_surface_lang_code=None):
+
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.FPS = self.ps.FPS
         self.moving_surfaces = []
-        self.frame_counter = frame_counter == 0 and 30 or frame_counter
+        self.frame_counter = frame_counter or 30
         self.difficulty_index_p1 = self.shtbase.difficulty_index + 1
         self.interval = 1.8 * self.shtbase.FPS
         self.intercept_interval = 0.3 * self.shtbase.FPS
@@ -231,7 +235,7 @@ class TargetsManager():
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
         self.font_size = 50
-        self.target_surface_lang_code = sys_lang_code
+        self.target_surface_lang_code = target_surface_lang_code or sys_lang_code
         self.font_path = get_font_path(self.target_surface_lang_code)
         self.font = pygame.font.Font(self.font_path, self.font_size)
         self.surfaces = []
@@ -244,10 +248,19 @@ class TargetsManager():
         raise NotImplementedError()
 
     def save(self, _copy):
-        raise NotImplementedError()
+        _copy['0x0'] = [
+            (s.tkeys, s.tlock, s.dest) for s in self.surfaces]
+        _copy['0x1'] = [
+            (ms.tkeys, ms.tlock, ms.dest) for ms in self.moving_surfaces]
+        return _copy
 
     def load(self, _copy):
-        raise NotImplementedError()
+        for keys, lock, dest in _copy['0x0']:
+            self.moving_surfaces.append(
+                TargetSurface(self.shtbase, self, keys, lock))
+        for keys, lock, dest in _copy['0x1']:
+            self.moving_surfaces.append(
+                TargetSurface(self.shtbase, self, keys, lock, dest))
 
     def set_target_surface_lang_code(self, lang_code):
         self.target_surface_lang_code = lang_code
@@ -267,9 +280,11 @@ class TargetsManager():
         return self.font_size
 
     def get_target_surfaces(self):
+        _targets = self.get_targets(self.shtbase.difficulty_index)
+        self.set_target_count(len(_targets))
         return [
             TargetSurface(self.shtbase, self, t[0:-1], t[-1])
-            for t in self.get_targets(self.shtbase.difficulty_index)
+            for t in _targets
         ]
 
     def set_surfaces(self):
@@ -473,10 +488,10 @@ class InfoSurface():
         return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
-        return _('win: ') + str(self.shtbase.win_count) + '|' + _('lose: ') +\
-            str(self.shtbase.lose_count) + '|' + _('remain: ') +\
-            str(self.shtbase.targets_manager.count()) + '|' +\
-            _('total: ') + str(self.shtbase.target_count)
+        return _('win: ') + str(self.shtbase.win_count) + \
+            '|' + _('lose: ') + str(self.shtbase.lose_count) + \
+            '|' + _('remain: ') + str(self.shtbase.targets_manager.count()) + \
+            '|' + _('total: ') + str(self.shtbase.target_count)
 
     def get_win_info_dest(self):
         _w, _ = self.win_info_surface.get_size()
@@ -509,8 +524,9 @@ class InfoSurface():
         return self._pass
 
     def get_greeting(self):
-        return _('Success!') if self._pass \
-            else _('Practice makes perfect, keep trying!')
+        return \
+            _('Success!') if self._pass else \
+            _('Practice makes perfect, keep trying!')
 
     def get_score_str(self):
         return _('Score: ') + str(self.score)
@@ -634,6 +650,41 @@ class ShootingBase(GameBase):
         print(self.subject.name_t, self.name_t,
               self.difficulties[self.difficulty_index])
 
+    def keycode_in_alpha_upper(self, code):
+        return 65 <= code <= 90
+
+    def keycode_in_alpha_lower(self, code):
+        return 97 <= code <= 122
+
+    def keycode_in_alpha(self, code):
+        return \
+            self.keycode_in_alpha_lower(code) or \
+            self.keycode_in_alpha_upper(code)
+
+    def keycode_in_num_neg(self, code):
+        return \
+            48 <= code <= 57 or \
+            code == 45
+
+    def keycode_in_num_float(self, code):
+        return \
+            48 <= code <= 57 or \
+            code == 46
+
+    def keycode_in_pure_num(self, code):
+        return 48 <= code <= 57
+
+    def keycode_in_num(self, code):
+        return \
+            48 <= code <= 57 or \
+            code == 45 or \
+            code == 46
+
+    def keycode_in_alpha_num(self, code):
+        return \
+            self.keycode_in_num(code) or \
+            self.keycode_in_alpha(code)
+
     def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
@@ -718,11 +769,3 @@ class ShootingBase(GameBase):
                 self.info_surface.score_blit()
 
             pygame.display.update()
-
-
-class MindHunter(ShootingBase):
-    ...
-
-
-def enjoy(ps):
-    return MindHunter(ps)
