@@ -79,11 +79,14 @@ class ContributorsMenu():
         contributors_table.add_row(
             ['Contributors', 'name', ' ', 'Sponsors', 'name'],
             cell_font=self._head_font)
+
         _len = list(range(max(len(app_contributors), len(app_sponsors))))
         for l, c, s in zip_longest(_len, app_contributors, app_sponsors):
             c, s = c or ' ', s or ' '
             contributors_table.add_row(
-                [l + 1, c, ' ', l + 1, s], cell_font=self._font)
+                [l + 1, c, ' ', l + 1, s],
+                cell_font=self._font)
+
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
@@ -102,25 +105,32 @@ class AboutMenu():
         self.app_version_font = get_default_font(20)
         self.app_description_font = get_default_font(22)
         self.app_url_font = get_default_font(20)
-        self.app_author_font = self.app_contributors_font = get_default_font(
-            20)
+        self.app_author_font = self.app_contributors_font = \
+            get_default_font(20)
         self.contributors_menu = ContributorsMenu(self.ps)
         self._label_font = get_default_font(32)
 
     def add_widgets(self):
-        self._menu.add.label(app_name, max_char=-1,
-                             font_name=self.app_name_font)
-        self._menu.add.label(app_version, max_char=-1,
-                             font_name=self.app_version_font)
-        self._menu.add.label(app_description_t, max_char=-1,
-                             font_name=self.app_description_font)
-        self._menu.add.url(app_url, font_name=self.app_url_font)
-        self._menu.add.label(_('Author'), max_char=-1,
-                             font_name=self._label_font)
-        self._menu.add.label(app_author, max_char=-1,
-                             font_name=self.app_author_font)
+        self._menu.add.label(
+            app_name, max_char=-1,
+            font_name=self.app_name_font)
+        self._menu.add.label(
+            app_version, max_char=-1,
+            font_name=self.app_version_font)
+        self._menu.add.label(
+            app_description_t, max_char=-1,
+            font_name=self.app_description_font)
+        self._menu.add.url(
+            app_url, font_name=self.app_url_font)
+        self._menu.add.label(
+            _('Author'), max_char=-1,
+            font_name=self._label_font)
+        self._menu.add.label(
+            app_author, max_char=-1,
+            font_name=self.app_author_font)
 
         self.contributors_menu.add_widgets()
+
         self._menu.add.button(
             _('Contributors & Sponsors'),
             self.contributors_menu._menu,
@@ -162,7 +172,7 @@ class PlayMenu():
 
         self.subject_dropselect = self._menu.add.dropselect(
             title=_('Subject :'),
-            items=[(s.name_t, index)for index, s in enumerate(self.subjects)],
+            items=[(s.name_t, index) for index, s in enumerate(self.subjects)],
             font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
@@ -197,15 +207,18 @@ class PlayMenu():
             _('Play'),
             self.play_btn_onreturn,
             font_name=self.ps.font_path)
+
         self.continue_button = self._menu.add.button(
             _('Continue'),
             self.continue_btn_onreturn,
             font_name=self.ps.font_path)
         self.update_continue_button()
+
         self._menu.add.button(
             _('Return to main menu'),
             pygame_menu.events.BACK,
             font_name=self.ps.font_path)
+
         self.help_lael = self._menu.add.label(
             '', font_name=self.help_lael_font)
         self.update_help_lael()
@@ -314,8 +327,8 @@ class PrimarySchool():
         self.running = True
         self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w_width, self.w_height = self.surface.get_size()
-        self.w_width_of_2, self.w_height_of_2 = self.w_width / 2, \
-            self.w_height / 2
+        self.w_width_of_2, self.w_height_of_2 = \
+            self.w_width / 2, self.w_height / 2
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
         self.clock = pygame.time.Clock()
@@ -355,8 +368,10 @@ class PrimarySchool():
         theme.title_font = theme.widget_font = self.font
         theme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
         theme.background_color = self.get_bg_img()
-        return pygame_menu.Menu(title, self.w_width, self.w_height,
-                                theme=theme, **kwargs)
+        return pygame_menu.Menu(
+            title,
+            self.w_width, self.w_height,
+            theme=theme, **kwargs)
 
     def clear_screen(self):
         self.surface.fill((255, 255, 255))
