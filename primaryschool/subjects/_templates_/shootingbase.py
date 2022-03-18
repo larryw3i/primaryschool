@@ -15,7 +15,8 @@ from pygame.locals import *
 from primaryschool.dirs import *
 from primaryschool.locale import _, sys_lang_code
 from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font, get_font_path)
+                                    get_default_font,get_font_path,
+                                    get_system_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 
@@ -356,11 +357,18 @@ class TargetsManager():
 
 
 class InputSurface():
-    def __init__(self, shtbase):
+    def __init__(
+            self,
+            shtbase,
+            font_lang_code=None):
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.font_size = 55
-        self.font = get_default_font(self.font_size)
+        self.font_lang_code = font_lang_code or \
+            font_lang_code.shtbase.font_lang_code
+        self.font = get_system_font_by_lang_code(self.font_lang_code) \
+            if self.font_lang_code else \
+            get_default_font(self.font_size)
         self.font_color = (200, 22, 98)
         self.surface = None
         self.frame_counter = 0
@@ -615,7 +623,8 @@ class ShootingBase(GameBase):
         self.surface = self.ps.surface
 
         self._input = ''
-        self.font = get_default_font(45)
+        self.font_lang_code = None 
+        self.font = get_system_font_by_lang_code(self.font_lang_code,45)
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
         self.input_surface = self.get_input_surface()
@@ -630,6 +639,10 @@ class ShootingBase(GameBase):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
+    
+    def set_font_lang_code(self,font_lang_code):
+        self.font_lang_code = font_lang_code
+        self.font = get_system_font_by_lang_code(self.font_lang_code,45)
 
     def get_info_surface(self):
         return InfoSurface(self)

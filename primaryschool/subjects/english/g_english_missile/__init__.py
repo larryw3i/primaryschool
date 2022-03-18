@@ -583,7 +583,7 @@ class WordSurface():
         return _new
 
 
-class PinyinMissile(GameBase):
+class PinyinMissile_0(GameBase):
     def __init__(self, ps):
         self.ps = ps
         # window
@@ -725,5 +725,45 @@ class PinyinMissile(GameBase):
             pygame.display.update()
 
 
+class ZhCNEmTargetsManager(TargetsManager):
+    def __init__(self, shtbase):
+        super().__init__(
+            shtbase,
+            target_surface_lang_code='zh_CN'
+        )
+        self.wave = ShootingWave(self)
+
+    def blit_intercepting(self, moving_surfaces):
+        self.wave.draw(moving_surfaces.intercept_frame_counter)
+
+    def get_cn_ps_e_words(self, g_index: int):
+        words = []
+        if g_index < 8:
+            words = cn_ps_e_words[g_index]
+        elif g_index == 8:
+            words = sum(cn_ps_e_words, [])
+        return sum(words, [])
+
+    def get_targets(self, d: int = 0, count=30):
+        self.get_cn_ps_e_words()
+        pass
+
+
+class ZhCNEnglishMissile(ShootingBase):
+    def __init__(self, ps):
+        self.name_t = name_t
+        self.difficulties = difficulties
+        self.module_str = module_str
+        super().__init__(ps)
+
+    def get_targets_manager(self):
+        return ZhCNEmTargetsManager(self)
+
+    def key_clean(self, code):
+        return \
+            self.keycode_in_pure_num(code) or \
+            self.keycode_in_alpha(code)
+
+
 def enjoy(ps):
-    return PinyinMissile(ps)
+    return ZhCNEnglishMissile(ps)
