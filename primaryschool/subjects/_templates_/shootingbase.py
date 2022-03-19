@@ -203,8 +203,9 @@ class TargetSurface():
             width=self.circle_width)
 
     def intercept(self, _result, ignore_case=True):
-        if len(_result)<1:return self.intercepted
-        
+        if len(_result) < 1:
+            return self.intercepted
+
         if self.manager.intercept_keycode is None:
             self.intercepted = _result.lower() in self.tkeys
         elif chr(self.manager.intercept_keycode) == _result[-1]:

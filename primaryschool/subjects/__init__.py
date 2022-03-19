@@ -13,6 +13,7 @@ subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 def get_subject_tree():
     subject_names = []
     game_modules = []
+
     for _subject in os.listdir(subject_dir_path):
         _subject_path = os.path.join(subject_dir_path, _subject)
 
@@ -27,9 +28,11 @@ def get_subject_tree():
                 continue
             no_game = False
             game_modules.append(subject_module_prefix + _subject + '.' + _game)
+
         # Subject without game is ignored.
         if not no_game:
             subject_names.append(_subject)
+
     return subject_names, game_modules
 
 
@@ -37,15 +40,20 @@ subject_names, game_modules = get_subject_tree()
 
 
 class Game():
-    def __init__(self, module_str, subject):
+    def __init__(
+            self, 
+            module_str, 
+            subject,ps=None):
         self.module_str = module_str
         self.subject = subject
+        self.ps=ps
         self.module = import_module(self.module_str)
         self._game = None
         self.name = self.module_str.split('.')[-1]
-        self.name_t = self.module.name_t
-        self.help_t = self.module.help_t
-        self.difficulties = self.module.difficulties
+        self.name_t = getattr(self.module,'name_t')
+        self.image_url = getattr(self.module,'image_url',None)
+        self.help_t = getattr(self.module,'help_t')
+        self.difficulties = getattr(self.module,'difficulties')
         self.default_difficulty_index = getattr(
             self.module,
             'default_difficulty_index', 0)
