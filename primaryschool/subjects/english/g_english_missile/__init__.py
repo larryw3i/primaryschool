@@ -19,6 +19,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
+from primaryschool.subjects._templates_.shootingbase import *
 from primaryschool.subjects.english.g_english_missile.words import \
     cn_ps_e_words
 
@@ -745,8 +746,7 @@ class ZhCNEmTargetsManager(TargetsManager):
         return sum(words, [])
 
     def get_targets(self, d: int = 0, count=30):
-        self.get_cn_ps_e_words()
-        pass
+        return self.get_cn_ps_e_words(d)
 
 
 class ZhCNEnglishMissile(ShootingBase):

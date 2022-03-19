@@ -244,7 +244,7 @@ class TargetsManager():
 
     def get_targets(self, d: int = 0, count=20):
         '''
-        return (key,key,key,key,...,lock)
+        return [(key,key,key,key,...,lock)]
         '''
         raise NotImplementedError()
 
@@ -365,7 +365,7 @@ class InputSurface():
         self.ps = self.shtbase.ps
         self.font_size = 55
         self.font_lang_code = font_lang_code or \
-            font_lang_code.shtbase.font_lang_code
+            self.shtbase.font_lang_code
         self.font = get_system_font_by_lang_code(self.font_lang_code) \
             if self.font_lang_code else \
             get_default_font(self.font_size)
@@ -595,7 +595,7 @@ class InfoSurface():
 
 
 class ShootingBase(GameBase):
-    def __init__(self, ps):
+    def __init__(self, ps,font_lang_code = None):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')
         assert hasattr(self, 'module_str')
@@ -612,6 +612,8 @@ class ShootingBase(GameBase):
         self.clock = self.ps.clock
         self._load = False
 
+        self.font_lang_code = font_lang_code or sys_lang_code 
+
         self.subject = self.ps.subject
         self.subject_index = self.ps.subject_index
         self.subject_game_index = self.ps.subject_game_index
@@ -623,7 +625,6 @@ class ShootingBase(GameBase):
         self.surface = self.ps.surface
 
         self._input = ''
-        self.font_lang_code = None 
         self.font = get_system_font_by_lang_code(self.font_lang_code,45)
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
