@@ -15,7 +15,7 @@ from pygame.locals import *
 from primaryschool.dirs import *
 from primaryschool.locale import _, sys_lang_code
 from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font,get_font_path,
+                                    get_default_font, get_font_path,
                                     get_system_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
@@ -595,7 +595,7 @@ class InfoSurface():
 
 
 class ShootingBase(GameBase):
-    def __init__(self, ps,font_lang_code = None):
+    def __init__(self, ps, font_lang_code=None):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')
         assert hasattr(self, 'module_str')
@@ -612,7 +612,7 @@ class ShootingBase(GameBase):
         self.clock = self.ps.clock
         self._load = False
 
-        self.font_lang_code = font_lang_code or sys_lang_code 
+        self.font_lang_code = font_lang_code or sys_lang_code
 
         self.subject = self.ps.subject
         self.subject_index = self.ps.subject_index
@@ -625,7 +625,7 @@ class ShootingBase(GameBase):
         self.surface = self.ps.surface
 
         self._input = ''
-        self.font = get_system_font_by_lang_code(self.font_lang_code,45)
+        self.font = get_system_font_by_lang_code(self.font_lang_code, 45)
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
         self.input_surface = self.get_input_surface()
@@ -640,10 +640,10 @@ class ShootingBase(GameBase):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
-    
-    def set_font_lang_code(self,font_lang_code):
+
+    def set_font_lang_code(self, font_lang_code):
         self.font_lang_code = font_lang_code
-        self.font = get_system_font_by_lang_code(self.font_lang_code,45)
+        self.font = get_system_font_by_lang_code(self.font_lang_code, 45)
 
     def get_info_surface(self):
         return InfoSurface(self)

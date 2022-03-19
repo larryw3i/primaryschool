@@ -20,13 +20,13 @@ from primaryschool.resource import (default_font, default_font_path,
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects._templates_.shootingbase import *
-from primaryschool.subjects.english.g_english_missile.words import \
+from primaryschool.subjects.english.g_chinese_english_missile.words import \
     cn_ps_e_words
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
-name_t = _('English Missile')
+name_t = _('Chinese-English Missile')
 
 difficulties = [
     _('Grade 3.1'),  # 0
