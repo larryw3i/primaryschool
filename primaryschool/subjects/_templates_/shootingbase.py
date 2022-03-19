@@ -203,7 +203,13 @@ class TargetSurface():
             width=self.circle_width)
 
     def intercept(self, _result, ignore_case=True):
-        self.intercepted = _result.lower() in self.tkeys
+        if len(_result)<1:return self.intercepted
+        
+        if self.manager.intercept_keycode is None:
+            self.intercepted = _result.lower() in self.tkeys
+        elif chr(self.manager.intercept_keycode) == _result[-1]:
+            _result = _result.strip()
+            self.intercepted = _result.lower() in self.tkeys
         return self.intercepted
 
     def get_size(self):
@@ -227,7 +233,8 @@ class TargetsManager():
             self,
             shtbase,
             frame_counter=None,
-            target_surface_lang_code=None):
+            target_surface_lang_code=None,
+            intercept_keycode=None):
 
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
@@ -246,7 +253,11 @@ class TargetsManager():
         self.font_path = get_font_path(self.target_surface_lang_code)
         self.font = pygame.font.Font(self.font_path, self.font_size)
         self.surfaces = []
+        self.intercept_keycode = intercept_keycode
         self.target_count = 20
+
+    def set_intercept_keycode(self, keycode):
+        self.intercept_keycode = keycode
 
     def get_targets(self, d: int = 0, count=20):
         '''
@@ -382,7 +393,7 @@ class InputSurface():
 
     def _update(self):
         self.surface = self.font.render(
-            self.shtbase._input, False, self.font_color)
+            self.shtbase._input.strip(), False, self.font_color)
 
     def blit(self):
         if self.surface is None:
@@ -600,7 +611,7 @@ class InfoSurface():
             self.get_datetime_diff_surface_dest())
 
 
-class ShootingBase(GameBase,KeyCode):
+class ShootingBase(GameBase, KeyCode):
     def __init__(self, ps, font_lang_code=None):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')

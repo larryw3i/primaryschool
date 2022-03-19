@@ -2,7 +2,7 @@
 class KeyCode():
     def __init__(self):
         pass
-    
+
     def keycode_in_alpha_upper(self, code):
         return 65 <= code <= 90
 
@@ -16,22 +16,25 @@ class KeyCode():
 
     def keycode_in_num_neg(self, code):
         return \
-            48 <= code <= 57 or \
-            code == 45
+            self.keycode_in_pure_num(code) or \
+            self.keycode_in_hyphen(code)
 
     def keycode_in_num_float(self, code):
         return \
-            48 <= code <= 57 or \
-            code == 46
+            self.keycode_in_pure_num(code) or \
+            self.keycode_in_dot(code)
 
     def keycode_in_pure_num(self, code):
         return 48 <= code <= 57
 
     def keycode_in_num(self, code):
         return \
-            48 <= code <= 57 or \
-            code == 45 or \
-            code == 46
+            self.keycode_in_pure_num(code) or \
+            self.keycode_in_hyphen(code) or \
+            self.keycode_in_dot(code)
+
+    def keycode_in_dot(self, code):
+        return code == 46
 
     def keycode_in_alpha_num(self, code):
         return \
@@ -43,3 +46,6 @@ class KeyCode():
 
     def keycode_in_hyphen(self, code):
         return code == 45
+
+    def keycode_in_return(self, code):
+        return code == 0xd

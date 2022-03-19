@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 15:20+0800\n"
+"POT-Creation-Date: 2022-03-19 21:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -521,6 +521,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
 #: primaryschool/subjects/_templates_/shootingbase.py:499
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:337
+#: primaryschool/subjects/_templates_/shootingbase.py:516
 msgid "win: "
 msgstr ""
 
@@ -538,6 +539,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
 #: primaryschool/subjects/_templates_/shootingbase.py:500
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:337
+#: primaryschool/subjects/_templates_/shootingbase.py:517
 msgid "lose: "
 msgstr ""
 
@@ -555,6 +557,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:384
 #: primaryschool/subjects/_templates_/shootingbase.py:501
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:338
+#: primaryschool/subjects/_templates_/shootingbase.py:518
 msgid "remain: "
 msgstr ""
 
@@ -572,6 +575,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
 #: primaryschool/subjects/_templates_/shootingbase.py:502
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:340
+#: primaryschool/subjects/_templates_/shootingbase.py:519
 msgid "total: "
 msgstr ""
 
@@ -588,6 +592,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:398
 #: primaryschool/subjects/_templates_/shootingbase.py:514
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:352
+#: primaryschool/subjects/_templates_/shootingbase.py:531
 msgid "Cost: "
 msgstr ""
 
@@ -604,6 +609,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:420
 #: primaryschool/subjects/_templates_/shootingbase.py:540
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:374
+#: primaryschool/subjects/_templates_/shootingbase.py:557
 msgid "Score: "
 msgstr ""
 
@@ -619,6 +625,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:416
 #: primaryschool/subjects/_templates_/shootingbase.py:536
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:370
+#: primaryschool/subjects/_templates_/shootingbase.py:553
 msgid "Success!"
 msgstr ""
 
@@ -634,6 +641,7 @@ msgstr ""
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:417
 #: primaryschool/subjects/_templates_/shootingbase.py:537
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:371
+#: primaryschool/subjects/_templates_/shootingbase.py:554
 msgid "Practice makes perfect, keep trying!"
 msgstr ""
 
@@ -852,4 +860,10 @@ msgstr ""
 msgid ""
 "\n"
 "Enter the corresponding words of the Chinese characters.\n"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:47
+msgid ""
+"\n"
+"Enter the calculation result, press enter to confirm.\n"
 msgstr ""

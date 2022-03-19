@@ -69,7 +69,7 @@ _i_test(){
 
 _start(){
     [[ -f "$app_name/locale/en_US/LC_MESSAGES/$app_name.mo" ]] || _msgfmt
-    python3 $app_name.py st
+    venv/bin/python3 $app_name.py
 }
 
 active_venv(){

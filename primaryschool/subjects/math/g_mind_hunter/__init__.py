@@ -45,7 +45,7 @@ difficulties = [
 
 
 help_t = _('''
-Enter the calculation result.
+Enter the calculation result, press enter to confirm.
 ''')
 
 times_sign = '\u00d7'
@@ -54,7 +54,10 @@ division_sign = '\u00f7'
 
 class MhTargetsManager(TargetsManager):
     def __init__(self, shtbase):
-        super().__init__(shtbase)
+        super().__init__(
+            shtbase,
+            intercept_keycode=0xd
+        )
         self.wave = ShootingWave(self)
 
     def get_pmt_formulas(self, _max, _oper, count=None):  # for plus/minus/time
@@ -135,7 +138,12 @@ class MindHunter(ShootingBase):
         super().__init__(ps)
 
     def get_targets_manager(self):
-        return MhTargetsManager(self, 30)
+        return MhTargetsManager(self)
+
+    def key_clean(self, code):
+        return \
+            self.keycode_in_return(code) or \
+            self.keycode_in_num(code)
 
 
 def enjoy(ps):
