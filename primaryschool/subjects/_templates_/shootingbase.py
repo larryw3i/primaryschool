@@ -19,6 +19,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_system_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
+from primaryschool.subjects._templates_.keycode import KeyCode
 
 
 class ShootingWave():
@@ -64,16 +65,21 @@ class TargetSurface():
         tkeys,
         tlock,
         dest=None,
-        end_pos=None
+        end_pos=None,
+        key_lock_ignore_case=True
     ):
         self.shtbase = shtbase
+        self.key_lock_ignore_case = key_lock_ignore_case
         self.ps = self.shtbase.ps
         self.FPS = self.ps.FPS
         self.manager = _manager
         self.moving_speed = self.manager.moving_speed
         self.defense_surface = None
         self.tlock = tlock
-        self.tkeys = tkeys
+        self.tkeys = \
+            [k.lower() for k in tkeys] \
+            if self.key_lock_ignore_case else \
+            tkeys
         self.font_color = (200, 22, 98)
         self.font = self.manager.font
         self.circle_color = (100, 20, 25, 20)
@@ -196,8 +202,8 @@ class TargetSurface():
             self.center, self.get_circle_radius(),
             width=self.circle_width)
 
-    def intercept(self, _result):
-        self.intercepted = _result in self.tkeys
+    def intercept(self, _result, ignore_case=True):
+        self.intercepted = _result.lower() in self.tkeys
         return self.intercepted
 
     def get_size(self):
@@ -594,7 +600,7 @@ class InfoSurface():
             self.get_datetime_diff_surface_dest())
 
 
-class ShootingBase(GameBase):
+class ShootingBase(GameBase,KeyCode):
     def __init__(self, ps, font_lang_code=None):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')
@@ -664,41 +670,6 @@ class ShootingBase(GameBase):
         print(self.subject.name_t, self.name_t,
               self.difficulties[self.difficulty_index])
 
-    def keycode_in_alpha_upper(self, code):
-        return 65 <= code <= 90
-
-    def keycode_in_alpha_lower(self, code):
-        return 97 <= code <= 122
-
-    def keycode_in_alpha(self, code):
-        return \
-            self.keycode_in_alpha_lower(code) or \
-            self.keycode_in_alpha_upper(code)
-
-    def keycode_in_num_neg(self, code):
-        return \
-            48 <= code <= 57 or \
-            code == 45
-
-    def keycode_in_num_float(self, code):
-        return \
-            48 <= code <= 57 or \
-            code == 46
-
-    def keycode_in_pure_num(self, code):
-        return 48 <= code <= 57
-
-    def keycode_in_num(self, code):
-        return \
-            48 <= code <= 57 or \
-            code == 45 or \
-            code == 46
-
-    def keycode_in_alpha_num(self, code):
-        return \
-            self.keycode_in_num(code) or \
-            self.keycode_in_alpha(code)
-
     def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
@@ -718,7 +689,7 @@ class ShootingBase(GameBase):
                     self.input_surface._update()
                     return
                 elif self.key_clean(e.key):
-                    self._input += pygame.key.name(e.key)
+                    self._input += chr(e.key)
                     self.input_surface._update()
                     return
 

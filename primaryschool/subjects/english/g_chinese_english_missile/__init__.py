@@ -46,8 +46,6 @@ Enter the corresponding words of the Chinese characters.
 ''')
 
 
-
-
 class ZhCNEmTargetsManager(TargetsManager):
     def __init__(self, shtbase):
         super().__init__(
@@ -84,7 +82,9 @@ class ZhCNEnglishMissile(ShootingBase):
     def key_clean(self, code):
         return \
             self.keycode_in_pure_num(code) or \
-            self.keycode_in_alpha(code)
+            self.keycode_in_alpha(code) or \
+            self.keycode_in_space(code) or \
+            self.keycode_in_hyphen(code)
 
 
 def enjoy(ps):
