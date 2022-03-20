@@ -41,19 +41,19 @@ subject_names, game_modules = get_subject_tree()
 
 class Game():
     def __init__(
-            self, 
-            module_str, 
-            subject,ps=None):
+            self,
+            module_str,
+            subject, ps=None):
         self.module_str = module_str
         self.subject = subject
-        self.ps=ps
+        self.ps = ps
         self.module = import_module(self.module_str)
         self._game = None
         self.name = self.module_str.split('.')[-1]
-        self.name_t = getattr(self.module,'name_t')
-        self.image_url = getattr(self.module,'image_url',None)
-        self.help_t = getattr(self.module,'help_t')
-        self.difficulties = getattr(self.module,'difficulties')
+        self.name_t = getattr(self.module, 'name_t')
+        self.image_url = getattr(self.module, 'image_url', None)
+        self.help_t = getattr(self.module, 'help_t')
+        self.difficulties = getattr(self.module, 'difficulties')
         self.default_difficulty_index = getattr(
             self.module,
             'default_difficulty_index', 0)

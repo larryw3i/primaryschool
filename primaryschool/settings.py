@@ -43,7 +43,6 @@ requirements = [
             'MIT',
             'https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt'
         ),
-
     ],
 ]
 

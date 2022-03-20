@@ -143,9 +143,14 @@ class AboutMenu():
 
 
 class PlayMenu():
-    def __init__(self, ps):
+    def __init__(
+            self,
+            ps,
+            name=None):
         self.ps = ps
         self.title = _('Play Game')
+        self.name = name or _('default_name')
+        self.name_text_input = None
         self._menu = self.ps.get_default_menu(self.title)
         self.subjects = self.ps.subjects
         self.subject_games = self.ps.subject_games
@@ -164,10 +169,14 @@ class PlayMenu():
         self.help_lael_bg = (228, 0, 252, 30)
         self.help_lael_border_color = (228, 0, 252, 200)
 
+    def set_name(self, name):
+        self.name = name
+        self._update_input_string(self.name)
+
     def add_widgets(self):
-        self._menu.add.text_input(
+        self.name_text_input = self._menu.add.text_input(
             title=_('Name :'),
-            default=_('_name_'),
+            default=self.name,
             font_name=self.ps.font_path)
 
         self.subject_dropselect = self._menu.add.dropselect(
