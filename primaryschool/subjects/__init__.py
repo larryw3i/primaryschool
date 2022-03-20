@@ -9,6 +9,11 @@ from primaryschool.locale import _
 subject_module_prefix = 'primaryschool.subjects.'
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 
+media_dir_path = os.path.join(subject_dir_path,'media')
+img_dir_path = os.path.join(media_dir_path,'img')
+default_game_image_path = os.path.join( img_dir_path,'0x2.png' )
+default_subject_image_path = os.path.join( img_dir_path, '0x3.png' )
+
 
 def get_subject_tree():
     subject_names = []
@@ -51,7 +56,8 @@ class Game():
         self._game = None
         self.name = self.module_str.split('.')[-1]
         self.name_t = getattr(self.module, 'name_t')
-        self.image_url = getattr(self.module, 'image_url', None)
+        self.image_path = getattr(self.module, 'image_path',\
+            default_game_image_path )
         self.help_t = getattr(self.module, 'help_t')
         self.difficulties = getattr(self.module, 'difficulties')
         self.default_difficulty_index = getattr(
@@ -86,6 +92,8 @@ class Subject():
         self.name = name
         self.module = import_module(subject_module_prefix + name)
         self.name_t = self.module.name_t
+        self.image_path = getattr(self.module, 'image_path', \
+            default_subject_image_path)
         self.games = []
 
     def set_games(self):
@@ -114,3 +122,11 @@ class SubjectGame():
 subjects = [Subject(n) for n in subject_names]
 
 all_games = sum([s.get_games() for s in subjects], [])
+
+
+
+
+
+
+
+

@@ -44,6 +44,9 @@ This software uses the following open source packages:
 - [xpinyin](https://github.com/lxneng/xpinyin)
 - [appdirs](https://github.com/ActiveState/appdirs)
 
+## Todo List
+- [ ] Games Search
+
 ## License
 
 [MIT License](LICENSE)
