@@ -9,10 +9,24 @@ from primaryschool.locale import _
 subject_module_prefix = 'primaryschool.subjects.'
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 
-media_dir_path = os.path.join(subject_dir_path,'media')
-img_dir_path = os.path.join(media_dir_path,'img')
-default_game_image_path = os.path.join( img_dir_path,'0x2.png' )
-default_subject_image_path = os.path.join( img_dir_path, '0x3.png' )
+media_dir_path = os.path.join(subject_dir_path, 'media')
+img_dir_path = os.path.join(media_dir_path, 'img')
+default_game_image_path = os.path.join(img_dir_path, '0x2.png')
+default_subject_image_path = os.path.join(img_dir_path, '0x3.png')
+
+
+def game_is_valid(subject_name, game_name):
+    return \
+        game_name.startswith('g_') and \
+        os.path.exists(
+            os.path.join(
+                subject_dir_path, subject_name, game_name, '__init__.py'))
+
+
+def subject_is_valid(subject_path, subject):
+    return \
+        os.path.isdir(subject_path) and \
+        subject.startswith('_')
 
 
 def get_subject_tree():
@@ -22,14 +36,12 @@ def get_subject_tree():
     for _subject in os.listdir(subject_dir_path):
         _subject_path = os.path.join(subject_dir_path, _subject)
 
-        if not os.path.isdir(_subject_path):
-            continue
-        if _subject.startswith('_'):
+        if not subject_is_valid(_subject_path, _subject):
             continue
 
         no_game = True
         for _game in os.listdir(_subject_path):
-            if not _game.startswith('g_'):
+            if not game_is_valid(_subject, _game):
                 continue
             no_game = False
             game_modules.append(subject_module_prefix + _subject + '.' + _game)
@@ -56,8 +68,8 @@ class Game():
         self._game = None
         self.name = self.module_str.split('.')[-1]
         self.name_t = getattr(self.module, 'name_t')
-        self.image_path = getattr(self.module, 'image_path',\
-            default_game_image_path )
+        self.image_path = getattr(self.module, 'image_path',
+                                  default_game_image_path)
         self.help_t = getattr(self.module, 'help_t')
         self.difficulties = getattr(self.module, 'difficulties')
         self.default_difficulty_index = getattr(
@@ -92,8 +104,8 @@ class Subject():
         self.name = name
         self.module = import_module(subject_module_prefix + name)
         self.name_t = self.module.name_t
-        self.image_path = getattr(self.module, 'image_path', \
-            default_subject_image_path)
+        self.image_path = getattr(self.module, 'image_path',
+                                  default_subject_image_path)
         self.games = []
 
     def set_games(self):
@@ -122,11 +134,3 @@ class SubjectGame():
 subjects = [Subject(n) for n in subject_names]
 
 all_games = sum([s.get_games() for s in subjects], [])
-
-
-
-
-
-
-
-
