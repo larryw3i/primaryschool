@@ -20,3 +20,5 @@ lang = gettext.translation(
 lang.install()
 
 _ = lang.gettext
+
+t = T = _

@@ -26,7 +26,7 @@ app_description_t = _("app_description_t")
 
 class SaveMenu():
     def __init__(
-            self, 
+            self,
             ps):
         self.ps = ps
         self.surface = self.ps.surface
@@ -65,7 +65,7 @@ class SaveMenu():
 
 class ContributorsMenu():
     def __init__(
-            self, 
+            self,
             ps):
         self.ps = ps
         self.title = _('Contributors & Sponsors')
@@ -100,7 +100,7 @@ class ContributorsMenu():
 
 class AboutMenu():
     def __init__(
-            self, 
+            self,
             ps):
 
         self.ps = ps
@@ -151,11 +151,12 @@ class PlayMenu():
     def __init__(
             self,
             ps,
-            name=None):
+            player_name=None):
         self.ps = ps
         self.title = _('Play Game')
-        self.name = name or _('default_name')
-        self.name_text_input = None
+        self.player_name = self.ps.player_name = \
+        player_name or _('default_name')
+        self.player_name_text_input = None
         self._menu = self.ps.get_default_menu(self.title)
         self.subjects = self.ps.subjects
         self.subject_games = self.ps.subject_games
@@ -175,18 +176,20 @@ class PlayMenu():
         self.help_lael_border_color = (228, 0, 252, 200)
 
     def set_name(self, name):
-        self.name = name
-        self._update_input_string(self.name)
+        self.player_name = name
+        self.player_name_text_input._update_input_string(self.player_name)
+        self.ps.player_name = self.player_name
 
     def add_widgets(self):
-        self.name_text_input = self._menu.add.text_input(
+        self.player_name_text_input = self._menu.add.text_input(
             title=_('Name :'),
-            default=self.name,
+            default=self.player_name,
             font_name=self.ps.font_path)
 
         self.subject_dropselect = self._menu.add.dropselect(
             title=_('Subject :'),
-            items=[(s.name_t, index) for index, s in enumerate(self.subjects)],
+            items=[(s.name_t, index) for index, s in \
+                   enumerate(self.subjects)],
             font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
@@ -195,8 +198,8 @@ class PlayMenu():
         )
         self.subject_game_dropselect = self._menu.add.dropselect(
             title=_('Game :'),
-            items=[(g.name_t, index) for index, g in enumerate(
-                self.subject_games)],
+            items=[(g.name_t, index) for index, g in \
+                   enumerate(self.subject_games)],
             font_name=self.ps.font_path,
             default=0,
             selection_box_bgcolor=self.selection_box_bgcolor,
@@ -242,6 +245,7 @@ class PlayMenu():
                 self.subject_dropselect,
                 self.subject_game_dropselect,
                 self.difficulty_dropselect]:
+            
             ds._selection_box_width = max(
                 [b.get_width() for b in ds._option_buttons]
             ) + ds._selection_box_inflate[0]
@@ -339,7 +343,8 @@ class PrimarySchool():
     def __init__(self):
         pygame.init()
         self.running = True
-        self.surface = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+        self.surface = pygame.display.set_mode(
+            (0, 0), pygame.RESIZABLE)
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2, self.w_height_of_2 = \
             self.w_width / 2, self.w_height / 2

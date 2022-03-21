@@ -18,7 +18,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects._templates_.shootingbase import *
+from primaryschool.subjects._common_.shootingbase import *
 
 # primaryschool.subjects.yuwen.g_mind_hunter
 module_str = __name__

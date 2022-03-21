@@ -19,7 +19,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_system_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects._templates_.keycode import KeyCode
+from primaryschool.subjects._common_.keycode import KeyCode
 
 
 class ShootingWave():

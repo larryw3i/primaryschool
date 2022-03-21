@@ -19,7 +19,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects._templates_.shootingbase import *
+from primaryschool.subjects._common_.shootingbase import *
 from primaryschool.subjects.yuwen.words import cn_ps_c, cn_ps_c_bb
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
