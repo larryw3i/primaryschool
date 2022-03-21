@@ -25,7 +25,9 @@ app_description_t = _("app_description_t")
 
 
 class SaveMenu():
-    def __init__(self, ps):
+    def __init__(
+            self, 
+            ps):
         self.ps = ps
         self.surface = self.ps.surface
         self.title = _('Save game?')
@@ -62,7 +64,9 @@ class SaveMenu():
 
 
 class ContributorsMenu():
-    def __init__(self, ps):
+    def __init__(
+            self, 
+            ps):
         self.ps = ps
         self.title = _('Contributors & Sponsors')
         self._menu = self.ps.get_default_menu(
@@ -95,7 +99,9 @@ class ContributorsMenu():
 
 
 class AboutMenu():
-    def __init__(self, ps):
+    def __init__(
+            self, 
+            ps):
 
         self.ps = ps
         self.title = _('About')
@@ -333,7 +339,7 @@ class PrimarySchool():
     def __init__(self):
         pygame.init()
         self.running = True
-        self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.surface = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2, self.w_height_of_2 = \
             self.w_width / 2, self.w_height / 2

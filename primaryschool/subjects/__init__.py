@@ -26,7 +26,7 @@ def game_is_valid(subject_name, game_name):
 def subject_is_valid(subject_path, subject):
     return \
         os.path.isdir(subject_path) and \
-        subject.startswith('_')
+        not subject.startswith('_')
 
 
 def get_subject_tree():
@@ -44,7 +44,8 @@ def get_subject_tree():
             if not game_is_valid(_subject, _game):
                 continue
             no_game = False
-            game_modules.append(subject_module_prefix + _subject + '.' + _game)
+            game_modules.append(
+                subject_module_prefix + _subject + '.' + _game)
 
         # Subject without game is ignored.
         if not no_game:
@@ -60,7 +61,8 @@ class Game():
     def __init__(
             self,
             module_str,
-            subject, ps=None):
+            subject, 
+            ps=None):
         self.module_str = module_str
         self.subject = subject
         self.ps = ps
@@ -68,8 +70,8 @@ class Game():
         self._game = None
         self.name = self.module_str.split('.')[-1]
         self.name_t = getattr(self.module, 'name_t')
-        self.image_path = getattr(self.module, 'image_path',
-                                  default_game_image_path)
+        self.image_path = getattr(
+            self.module, 'image_path', default_game_image_path)
         self.help_t = getattr(self.module, 'help_t')
         self.difficulties = getattr(self.module, 'difficulties')
         self.default_difficulty_index = getattr(
@@ -96,13 +98,17 @@ class Game():
         self.get_game(ps).load()
 
     def has_copy(self):
-        return os.path.exists(get_copy_path(self.module_str))
+        return os.path.exists(
+            get_copy_path(
+                self.module_str))
 
 
 class Subject():
-    def __init__(self, name):
+    def __init__(
+            self, 
+            name):
         self.name = name
-        self.module = import_module(subject_module_prefix + name)
+        self.module = import_module(subject_module_prefix + self.name)
         self.name_t = self.module.name_t
         self.image_path = getattr(self.module, 'image_path',
                                   default_subject_image_path)
@@ -123,14 +129,7 @@ class Subject():
         return self.name_t
 
 
-class SubjectGame():
-    def __init__(self, ps):
-        pass
-
-    def update():
-        pass
-
-
 subjects = [Subject(n) for n in subject_names]
+
 
 all_games = sum([s.get_games() for s in subjects], [])
