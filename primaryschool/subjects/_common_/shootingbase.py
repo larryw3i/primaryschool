@@ -74,6 +74,9 @@ class TargetSurface():
         self.ps = self.shtbase.ps
         self.FPS = self.ps.FPS
         self.manager = _manager
+        self.intercept_chr = \
+            self.manager.intercept_keycode and \
+            chr(self.manager.intercept_keycode)
         self.moving_speed = self.manager.moving_speed
         self.defense_surface = None
         self.tlock = tlock
@@ -203,15 +206,23 @@ class TargetSurface():
             self.center, self.get_circle_radius(),
             width=self.circle_width)
 
-    def intercept(self, _result, ignore_case=True):
+    def intercept(self, _result, ignore_case=True):############################
         if len(_result) < 1:
             return self.intercepted
-
-        if self.manager.intercept_keycode is None:
-            self.intercepted = _result.lower() in self.tkeys
-        elif chr(self.manager.intercept_keycode) == _result[-1]:
+            
+        if self.intercept_chr == _result:
+            self.shtbase.set_input()
+            return self.intercepted
+        
+        if self.intercept_chr is None:
             _result = _result.strip()
             self.intercepted = _result.lower() in self.tkeys
+        elif self.intercept_chr == _result[-1]:
+            _result = _result[0:-1]
+            self.shtbase.set_input(_result)
+            _result = _result.strip()
+            self.intercepted = _result.lower() in self.tkeys
+        
         return self.intercepted
 
     def get_size(self):
@@ -251,7 +262,9 @@ class TargetsManager():
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
         self.font_size = 50
-        self.target_surface_lang_code = target_surface_lang_code or sys_lang_code
+        self.target_surface_lang_code = \
+        target_surface_lang_code or \
+        sys_lang_code
         self.font_path = get_font_path(self.target_surface_lang_code)
         self.font = pygame.font.Font(self.font_path, self.font_size)
         self.surfaces = []
@@ -348,7 +361,8 @@ class TargetsManager():
                     self.moving_surfaces.remove(w)
                 self.blit_intercepting(w)
                 w.surface = w.font.render(
-                    w.tlock, False, self.intercepted_color)
+                    w.tlock, False, 
+                    self.intercepted_color)
                 self.shtbase.surface.blit(w.surface, w.dest)
                 w.circle()
                 w.draw_laser_line()
@@ -691,6 +705,9 @@ class ShootingBase(GameBase, KeyCode):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
+    
+    def set_input(self,content = ''):
+        self._input = content
 
     def set_font_lang_code(self, font_lang_code):
         self.font_lang_code = font_lang_code

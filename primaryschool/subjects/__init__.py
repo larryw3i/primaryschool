@@ -26,7 +26,8 @@ def game_is_valid(subject_name, game_name):
 def subject_is_valid(subject_path, subject):
     return \
         os.path.isdir(subject_path) and \
-        not subject.startswith('_')
+        not subject.startswith('_') and \
+        not subject == 'media'
 
 
 def get_subject_tree():
