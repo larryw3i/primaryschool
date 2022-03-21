@@ -88,7 +88,7 @@ def get_font_path(lang_code, show_not_found=False):
     return r.get_font_path(lang_code, show_not_found)
 
 
-def get_system_font_by_lang_code(lang_code=None, size=None):
+def get_sys_font_by_lang_code(lang_code=None, size=None):
     size = size or r.default_font_size
     return \
         pygame.font.Font(

@@ -16,7 +16,7 @@ from primaryschool.dirs import *
 from primaryschool.locale import _, sys_lang_code
 from primaryschool.resource import (default_font, default_font_path,
                                     get_default_font, get_font_path,
-                                    get_system_font_by_lang_code)
+                                    get_sys_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects._common_.keycode import KeyCode
@@ -53,8 +53,9 @@ class ShootingWave():
         if frame_counter >= self.intercept_interval:
             return
         _radius = self.max_radius / (self.intercept_interval - frame_counter)
-        pygame.draw.circle(self.surface, self.color,
-                           self.w_centrex_y, _radius, width=self.width)
+        pygame.draw.circle(
+            self.surface, self.color,
+            self.w_centrex_y, _radius, width=self.width)
 
 
 class TargetSurface():
@@ -378,32 +379,64 @@ class InputSurface():
     def __init__(
             self,
             shtbase,
-            font_lang_code=None):
+            font_lang_code=None,
+            font_bold=False,
+            border_radius=5,
+            border_width=1,
+            border_color=(200, 20, 30, 60)):
+
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.font_size = 55
         self.font_lang_code = font_lang_code or \
             self.shtbase.font_lang_code
-        self.font = get_system_font_by_lang_code(self.font_lang_code) \
+        self.font = \
+            get_sys_font_by_lang_code(self.font_lang_code) \
             if self.font_lang_code else \
             get_default_font(self.font_size)
         self.font_color = (200, 22, 98)
         self.surface = None
         self.frame_counter = 0
-        self.font.set_bold(True)
+        self.x, self.y = self.dest = (0, 0)
+        self.w, self.h = self.rect = (0, 0)
+        self.border_radius = border_radius
+        self.border_width = border_width
+        self.border_color = border_color
+        self.font_bold=font_bold
+
+        self.font.set_bold(self.font_bold)
+
+    def update_rect(self, rect=None):
+        self.w, self.h = self.rect = rect or self.surface.get_size()
+
+    def update_dest(self, dest=None):
+        self.x, self.y = self.dest = dest or (
+            self.shtbase.w_width_of_2 - self.w / 2,
+            self.shtbase.w_height - self.h)
 
     def _update(self):
         self.surface = self.font.render(
-            self.shtbase._input.strip(), False, self.font_color)
+            self.shtbase._input.strip(),
+            False, self.font_color)
+
+    def _blit(self):
+        pygame.draw.rect(
+            self.shtbase.surface,
+            color=self.border_color,
+            rect=(self.x, self.y, self.w, self.h),
+            width=self.border_width,
+            border_radius=self.border_radius)
 
     def blit(self):
         if self.surface is None:
             return
-        w, h = self.surface.get_size()
+
+        self.update_rect()
+        self.update_dest()
+        self._blit()
+
         self.shtbase.surface.blit(
-            self.surface,
-            (self.shtbase.w_width_of_2 - w / 2,
-             self.shtbase.w_height - h))
+            self.surface, self.dest)
 
 
 class DefenseSurface():
@@ -643,7 +676,7 @@ class ShootingBase(GameBase, KeyCode):
         self.surface = self.ps.surface
 
         self._input = ''
-        self.font = get_system_font_by_lang_code(self.font_lang_code, 45)
+        self.font = get_sys_font_by_lang_code(self.font_lang_code, 45)
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
         self.input_surface = self.get_input_surface()
@@ -661,7 +694,7 @@ class ShootingBase(GameBase, KeyCode):
 
     def set_font_lang_code(self, font_lang_code):
         self.font_lang_code = font_lang_code
-        self.font = get_system_font_by_lang_code(self.font_lang_code, 45)
+        self.font = get_sys_font_by_lang_code(self.font_lang_code, 45)
 
     def get_info_surface(self):
         return InfoSurface(self)
