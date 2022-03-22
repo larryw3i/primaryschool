@@ -212,8 +212,12 @@ class TargetSurface():
                     
         if self.intercept_chr is None or \
             _result.endswith(self.intercept_chr):
+            
+            if self.intercept_chr:
+                _result = _result.replace(self.intercept_chr,'').strip()
+            else:
+                _result = _result.strip()
 
-            _result = _result.replace(self.intercept_chr,'').strip()
             self.intercepted = _result.lower() in self.tkeys
                     
         return self.intercepted
@@ -554,10 +558,11 @@ class InfoSurface():
         return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
-        return _('win: ') + str(self.shtbase.win_count) + \
+        return \
+            '|' + _('win: ') + str(self.shtbase.win_count) + \
             '|' + _('lose: ') + str(self.shtbase.lose_count) + \
             '|' + _('remain: ') + str(self.shtbase.targets_manager.count()) + \
-            '|' + _('total: ') + str(self.shtbase.target_count)
+            '|' + _('total: ') + str(self.shtbase.target_count) + '|'
 
     def get_win_info_dest(self):
         _w, _ = self.win_info_surface.get_size()
@@ -566,7 +571,8 @@ class InfoSurface():
     def get_datetime_diff_str(self):
         if self.end_time is None:
             self.end_time = self.ps.end_time = datetime.now()
-        diff = self.end_time - self.shtbase.start_time + self.shtbase.last_timedelta
+        diff = self.end_time - self.shtbase.start_time + \
+        self.shtbase.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
         return _('Cost: ') + f'{_h}:{_min}:{_sec}'
@@ -782,6 +788,9 @@ class ShootingBase(GameBase, KeyCode):
         self.targets_manager.moving_surfaces = []
         self.targets_manager.set_surfaces()
         self.start()
+    
+    def all_targets_gone(self):
+        return self.win_count + self.lose_count < self.target_count
 
     def start(self):
 
@@ -800,7 +809,7 @@ class ShootingBase(GameBase, KeyCode):
             if self.play_menu._menu.is_enabled():
                 self.play_menu._menu.update(events)
 
-            if self.win_count + self.lose_count < self.target_count:
+            if self.all_targets_gone():
                 self.info_surface.blit()
                 self.defense_surface.blit()
                 self.targets_manager.blit()
