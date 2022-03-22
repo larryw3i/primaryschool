@@ -209,17 +209,17 @@ class TargetSurface():
     def intercept(self, _result, ignore_case=True):
         if len(_result) < 1:
             return self.intercepted
-                    
+
         if self.intercept_chr is None or \
-            _result.endswith(self.intercept_chr):
-            
+                _result.endswith(self.intercept_chr):
+
             if self.intercept_chr:
-                _result = _result.replace(self.intercept_chr,'').strip()
+                _result = _result.replace(self.intercept_chr, '').strip()
             else:
                 _result = _result.strip()
 
             self.intercepted = _result.lower() in self.tkeys
-                    
+
         return self.intercepted
 
     def get_size(self):
@@ -260,8 +260,8 @@ class TargetsManager():
         self.laser_width = 2
         self.font_size = 50
         self.target_surface_lang_code = \
-        target_surface_lang_code or \
-        sys_lang_code
+            target_surface_lang_code or \
+            sys_lang_code
         self.font_path = get_font_path(self.target_surface_lang_code)
         self.font = pygame.font.Font(self.font_path, self.font_size)
         self.surfaces = []
@@ -358,7 +358,7 @@ class TargetsManager():
                     self.moving_surfaces.remove(w)
                 self.blit_intercepting(w)
                 w.surface = w.font.render(
-                    w.tlock, False, 
+                    w.tlock, False,
                     self.intercepted_color)
                 self.shtbase.surface.blit(w.surface, w.dest)
                 w.circle()
@@ -413,7 +413,7 @@ class InputSurface():
         self.border_radius = border_radius
         self.border_width = border_width
         self.border_color = border_color
-        self.font_bold=font_bold
+        self.font_bold = font_bold
 
         self.font.set_bold(self.font_bold)
 
@@ -572,7 +572,7 @@ class InfoSurface():
         if self.end_time is None:
             self.end_time = self.ps.end_time = datetime.now()
         diff = self.end_time - self.shtbase.start_time + \
-        self.shtbase.last_timedelta
+            self.shtbase.last_timedelta
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
         return _('Cost: ') + f'{_h}:{_min}:{_sec}'
@@ -704,8 +704,8 @@ class ShootingBase(GameBase, KeyCode):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
-    
-    def set_input(self,content = ''):
+
+    def set_input(self, content=''):
         self._input = content
 
     def set_font_lang_code(self, font_lang_code):
@@ -788,7 +788,7 @@ class ShootingBase(GameBase, KeyCode):
         self.targets_manager.moving_surfaces = []
         self.targets_manager.set_surfaces()
         self.start()
-    
+
     def all_targets_gone(self):
         return self.win_count + self.lose_count < self.target_count
 
