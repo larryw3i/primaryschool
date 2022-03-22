@@ -206,23 +206,16 @@ class TargetSurface():
             self.center, self.get_circle_radius(),
             width=self.circle_width)
 
-    def intercept(self, _result, ignore_case=True):############################
+    def intercept(self, _result, ignore_case=True):
         if len(_result) < 1:
             return self.intercepted
-            
-        if self.intercept_chr == _result:
-            self.shtbase.set_input()
-            return self.intercepted
-        
-        if self.intercept_chr is None:
-            _result = _result.strip()
+                    
+        if self.intercept_chr is None or \
+            _result.endswith(self.intercept_chr):
+
+            _result = _result.replace(self.intercept_chr,'').strip()
             self.intercepted = _result.lower() in self.tkeys
-        elif self.intercept_chr == _result[-1]:
-            _result = _result[0:-1]
-            self.shtbase.set_input(_result)
-            _result = _result.strip()
-            self.intercepted = _result.lower() in self.tkeys
-        
+                    
         return self.intercepted
 
     def get_size(self):
