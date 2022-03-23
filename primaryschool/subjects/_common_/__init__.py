@@ -10,7 +10,6 @@ from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
 import pygame
 import pygame_menu
-from pygame.key import key_code
 from pygame.locals import *
 from xpinyin import Pinyin
 

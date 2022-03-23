@@ -9,7 +9,6 @@ from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
 import pygame
 import pygame_menu
-from pygame.key import key_code
 from pygame.locals import *
 
 from primaryschool.dirs import *
@@ -19,7 +18,7 @@ from primaryschool.resource import (default_font, default_font_path,
                                     get_sys_font_by_lang_code)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
-from primaryschool.subjects._common_.keycode import KeyCode
+from primaryschool.subjects._common_.keycode import PsKeyCode
 
 
 class ShootingWave():
@@ -146,15 +145,17 @@ class TargetSurface():
         return self.size[1]
 
     def get_default_bg_points(self, tip_height=50):
-        return [
-            (self.get_x(), self.get_y()),
-            (self.get_x() + self.get_w(), self.get_y()),
-            (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
-            (
-                self.get_x() + self.get_w() / 2,
-                self.get_y() + self.get_h() + tip_height),
-            (self.get_x(), self.get_y() + self.get_h())
-        ]
+        return \
+            [
+                (self.get_x(), self.get_y()),
+                (self.get_x() + self.get_w(), self.get_y()),
+                (self.get_x() + self.get_w(), self.get_y() + self.get_h()),
+                (
+                    self.get_x() + self.get_w() / 2,
+                    self.get_y() + self.get_h() + tip_height
+                ),
+                (self.get_x(), self.get_y() + self.get_h())
+            ]
 
     def draw_bg(self):
         pygame.draw.polygon(
@@ -268,7 +269,7 @@ class TargetsManager():
         self.intercept_keycode = intercept_keycode
         self.target_count = 20
 
-    def set_intercept_keycode(self, keycode):
+    def set_intercept_keycode(self, Pskeycode):
         self.intercept_keycode = keycode
 
     def get_targets(self, d: int = 0, count=20):
@@ -503,14 +504,19 @@ class DefenseSurface():
         return self.emitter_color
 
     def get_center(self):
-        return [self.ps.w_width_of_2, self.ps.w_height - self.h / 2]
+        return \
+            [
+                self.ps.w_width_of_2,
+                self.ps.w_height - self.h / 2
+            ]
 
     def draw_emitter(self):
         self.emitter_color = self.set_emitter_color() \
             if self.shtbase.targets_manager is None \
             else self.shtbase.targets_manager.laser_color
-        pygame.draw.circle(self.ps.surface, self.emitter_color,
-                           self.center, self.emitter_radius)
+        pygame.draw.circle(
+            self.ps.surface, self.emitter_color,
+            self.center, self.emitter_radius)
 
     def blit(self):
         self.surface.fill(self.color)
@@ -658,7 +664,7 @@ class InfoSurface():
             self.get_datetime_diff_surface_dest())
 
 
-class ShootingBase(GameBase, KeyCode):
+class ShootingBase(GameBase, PsKeyCode):
     def __init__(self, ps, font_lang_code=None):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')

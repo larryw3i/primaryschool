@@ -36,7 +36,6 @@ class Resource():
 
         if show_not_found:
             from tkinter import Tk, messagebox
-
             root = Tk()
             messagebox.showerror(
                 _('No font found'),
@@ -63,17 +62,18 @@ class Resource():
                 return f
 
     def get_locale_font_paths(self):
-        return {
-            'default': pygame.font.match_font(
-                self.get_sys_font_name_like('mono')),
-            'zh_CN': pygame.font.match_font(
-                self.get_sys_font_name_like(
-                    'heiti' if sys.platform == 'darwin' else
-                    'yahei' if sys.platform == 'win32' else
-                    'cjk'
-                )
-            ),
-        }
+        return \
+            {
+                'default': pygame.font.match_font(
+                    self.get_sys_font_name_like('mono')),
+                'zh_CN': pygame.font.match_font(
+                    self.get_sys_font_name_like(
+                        sys.platform == 'darwin' and 'heiti' or
+                        sys.platform == 'win32' and 'yahei' or
+                        'cjk'
+                    )
+                ),
+            }
 
 
 r = Resource()
@@ -81,18 +81,26 @@ default_font_path = r.get_font_path()
 
 
 def get_default_font(size=None):
-    return pygame.font.Font(default_font_path, size or r.default_font_size)
+    return pygame.font.Font(
+        default_font_path,
+        size or r.default_font_size)
 
 
-def get_font_path(lang_code, show_not_found=False):
+def get_font_path(
+        lang_code,
+        show_not_found=False):
+
     return r.get_font_path(lang_code, show_not_found)
 
 
-def get_sys_font_by_lang_code(lang_code=None, size=None):
+def get_sys_font_by_lang_code(
+        lang_code=None,
+        size=None):
+
     size = size or r.default_font_size
     return \
-        pygame.font.Font(
-            get_font_path(lang_code), size) if lang_code else \
+        pygame.font.Font(get_font_path(lang_code), size) \
+        if lang_code else \
         get_default_font()
 
 

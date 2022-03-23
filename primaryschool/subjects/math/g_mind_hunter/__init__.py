@@ -9,7 +9,6 @@ from typing import Any, List, Optional, Sequence, Text, Tuple, Union, overload
 
 import pygame
 import pygame_menu
-from pygame.key import key_code
 from pygame.locals import *
 
 from primaryschool.dirs import *
@@ -117,7 +116,7 @@ class MhTargetsManager(TargetsManager):
             if _oper in ['+', '-', times_sign]:
                 formulas = self.get_pmt_formulas(_max, _oper)
             elif _oper == division_sign:
-                formulas = self.get_division_formulas()
+                formulas = self.get_division_formulas(_max)
             else:  # ?
                 _d_opers_count = random.choices(
                     ['+', '-', times_sign, division_sign],

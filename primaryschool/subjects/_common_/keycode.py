@@ -1,5 +1,5 @@
 
-class KeyCode():
+class PsKeyCode():
     def __init__(self):
         pass
 
