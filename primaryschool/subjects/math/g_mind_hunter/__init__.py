@@ -44,7 +44,7 @@ difficulties = [
 
 
 help_t = _('''
-Enter the calculation result, press enter to confirm.
+Enter the calculation result, press Enter to confirm.
 ''')
 
 times_sign = '\u00d7'

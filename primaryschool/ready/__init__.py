@@ -150,12 +150,10 @@ class AboutMenu():
 class PlayMenu():
     def __init__(
             self,
-            ps,
-            player_name=None):
+            ps):
         self.ps = ps
         self.title = _('Play Game')
-        self.player_name = self.ps.player_name = \
-            player_name or _('default_name')
+        self.player_name = self.ps.player_name
         self.player_name_text_input = None
         self._menu = self.ps.get_default_menu(self.title)
         self.subjects = self.ps.subjects
@@ -175,15 +173,19 @@ class PlayMenu():
         self.help_lael_bg = (228, 0, 252, 30)
         self.help_lael_border_color = (228, 0, 252, 200)
 
-    def set_name(self, name):
-        self.player_name = name
-        self.player_name_text_input._update_input_string(self.player_name)
-        self.ps.player_name = self.player_name
+    def set_player_name(self, name):
+        self.player_name = self.ps.player_name = name
+        if self.player_name_text_input:
+            self.player_name_text_input.set_value(
+                self.player_name)
+    
+    def get_player_name(self):
+        return self.player_name
 
     def add_widgets(self):
         self.player_name_text_input = self._menu.add.text_input(
             title=_('Name :'),
-            default=self.player_name,
+            default=self.get_player_name(),
             font_name=self.ps.font_path)
 
         self.subject_dropselect = self._menu.add.dropselect(
@@ -350,6 +352,7 @@ class PrimarySchool():
             self.w_width / 2, self.w_height / 2
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
+        self.player_name = _('default_name')
         self.clock = pygame.time.Clock()
         self.subjects = subjects
         self.subject_games = self.subjects[0].games

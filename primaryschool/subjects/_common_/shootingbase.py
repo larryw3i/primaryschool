@@ -144,7 +144,7 @@ class TargetSurface():
     def get_h(self):
         return self.size[1]
 
-    def get_default_bg_points(self, tip_height=50):
+    def get_default_bg_points(self, tip_height=55):
         return \
             [
                 (self.get_x(), self.get_y()),
@@ -166,7 +166,12 @@ class TargetSurface():
     def calc_dest(self, _add):
         return
 
-    def move(self, _add=(1, 1), rel=True, use_func=False):
+    def move(
+        self, 
+        _add=(1, 1), 
+        rel=True, 
+        use_func=False):
+        
         if use_func:
             self.dest = self.calc_dest(_add)
         elif rel:
@@ -313,6 +318,7 @@ class TargetsManager():
     def get_target_surfaces(self):
         _targets = self.get_targets(self.shtbase.difficulty_index)
         self.set_target_count(len(_targets))
+
         return [
             TargetSurface(self.shtbase, self, t[0:-1], t[-1])
             for t in _targets
@@ -537,7 +543,7 @@ class InfoSurface():
         self.font_size = 25
         self.font = get_default_font(self.font_size)
 
-        self.score_font_size = 66
+        self.score_font_size = 55
         self.score_font = get_default_font(self.score_font_size)
 
         self.datetime_diff_font_size = 50
@@ -602,9 +608,12 @@ class InfoSurface():
         return self._pass
 
     def get_greeting(self):
+        _player_name = self.shtbase.get_player_name()
         return \
-            _('Success!') if self._pass else \
-            _('Practice makes perfect, keep trying!')
+        (
+            _('Success! Dear %s, you are so awesome!') if self._pass else \
+            _('Dear %s, practice makes perfect, keep trying!')
+        )%_player_name
 
     def get_score_str(self):
         return _('Score: ') + str(self.score)
@@ -680,6 +689,7 @@ class ShootingBase(GameBase, PsKeyCode):
         self.running = True
         self.FPS = self.ps.FPS
         self.clock = self.ps.clock
+        self.player_name = self.ps.player_name
         self._load = False
 
         self.font_lang_code = font_lang_code or sys_lang_code
@@ -710,6 +720,12 @@ class ShootingBase(GameBase, PsKeyCode):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
+
+    def get_player_name(self):
+        return self.player_name
+    
+    def set_player_name(self,name):
+        self.player_name = self.ps.player_name = name
 
     def set_input(self, content=''):
         self._input = content
