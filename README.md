@@ -19,10 +19,14 @@
 <p align="center">
   <a href="#how-to-use">How To Use</a> 
   • 
+  <a href="#todo-list">Todo List</a> 
+  • 
+  <a href="#credits">Credits</a> 
+  • 
   <a href="#license">License</a>
 </p>
 
-![screenshot](docs/images/screenshot.png)
+![screenshot](https://github.com/larryw3i/primaryschool/blob/daily/primaryschool/resource/imgs/0x1.png?raw=true)
 
 ## How To Use
 
@@ -35,6 +39,10 @@ installed on your computer. From your command line:
 ```bash
 pip3 install -U primaryschool; primaryschool
 ```  
+
+## Todo List
+- [ ] Games Search
+
 ## Credits
 
 This software uses the following open source packages:
@@ -44,8 +52,6 @@ This software uses the following open source packages:
 - [xpinyin](https://github.com/lxneng/xpinyin)
 - [appdirs](https://github.com/ActiveState/appdirs)
 
-## Todo List
-- [ ] Games Search
 
 ## License
 

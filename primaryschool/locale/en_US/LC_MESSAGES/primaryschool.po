@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-24 11:22+0800\n"
-"PO-Revision-Date: 2022-02-10 16:04+0800\n"
+"PO-Revision-Date: 2022-03-24 13:44+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 41.0\n"
 
 #: primaryschool/subjects/yuwen/__init__.py:7
 msgid "math"
@@ -949,7 +949,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355
 msgid "default_name"
-msgstr ""
+msgstr "ps"
 
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
 msgid ""
