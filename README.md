@@ -11,7 +11,8 @@
 
 <p align="center">
     <a href="https://badge.fury.io/py/primaryschool">
-        <img src="https://badge.fury.io/py/primaryschool.svg" 
+        <img 
+            src="https://badge.fury.io/py/primaryschool.svg" 
             alt="PyPI version" height="18" />
     </a>
 </p>
@@ -24,24 +25,31 @@
   <a href="#credits">Credits</a> 
   • 
   <a href="#license">License</a>
-</p>
+</p>  
 
-<img src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.png?raw=true" alt="screenshot" width="100%" height="auto"/>
+<img 
+    src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.png?raw=true" 
+    alt="screenshot" 
+    width="100%" 
+    height="auto"/>
 
 ## How To Use
 
-To run this application, you'll need 
+To run 
+[primaryschool](https://pypi.org/project/primaryschool), 
+you'll need 
 [Python3](https://www.python.org/downloads/) and 
 [python3-pip](https://pypi.org/) 
 (which comes with [Python3](https://www.python.org/downloads/) generally, 
 Unix-like may need to install separately.) 
 installed on your computer. From your command line:
+
 ```bash
 pip3 install -U primaryschool; primaryschool
 ```  
 
 ## Todo List
-- [ ] Games Search
+- [ ] Games search
 
 ## Credits
 
@@ -55,7 +63,7 @@ This software uses the following open source packages:
 
 ## License
 
-[MIT License](LICENSE)
+[MIT License](https://github.com/larryw3i/primaryschool/blob/daily/LICENSE)
 
 ---
 
