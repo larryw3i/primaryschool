@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 11:22+0800\n"
+"POT-Creation-Date: 2022-03-24 15:54+0800\n"
 "PO-Revision-Date: 2022-03-24 13:44+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -304,6 +304,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:46 primaryschool/ready/__init__.py:47
 #: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:89
+#: primaryschool/ready/__init__.py:83
 msgid "Contributors"
 msgstr ""
 
@@ -965,4 +966,13 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:615
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:83
+#, fuzzy
+msgid "name"
+msgstr "ps"
+
+#: primaryschool/ready/__init__.py:83
+msgid "Sponsors"
 msgstr ""

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 11:22+0800\n"
-"PO-Revision-Date: 2022-03-24 11:25+0800\n"
+"POT-Creation-Date: 2022-03-24 15:54+0800\n"
+"PO-Revision-Date: 2022-03-24 15:56+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -304,6 +304,7 @@ msgstr "作者"
 
 #: primaryschool/ready/__init__.py:46 primaryschool/ready/__init__.py:47
 #: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:89
+#: primaryschool/ready/__init__.py:83
 msgid "Contributors"
 msgstr "贡献者"
 
@@ -977,3 +978,11 @@ msgstr "挑战成功，%s ，你真是太棒了！"
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr "亲爱的 %s , 再加把劲! 努力!"
+
+#: primaryschool/ready/__init__.py:83
+msgid "name"
+msgstr "名称（姓名）"
+
+#: primaryschool/ready/__init__.py:83
+msgid "Sponsors"
+msgstr "赞助者"

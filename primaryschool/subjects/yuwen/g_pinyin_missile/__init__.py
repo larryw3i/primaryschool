@@ -127,7 +127,10 @@ class PmTargetsManager(TargetsManager):
 
 
 class PinyinMissile(ShootingBase):
-    def __init__(self, ps):
+    def __init__(
+            self, 
+            ps
+        ):
         self.name_t = name_t
         self.difficulties = difficulties
         self.module_str = module_str

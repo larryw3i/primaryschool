@@ -80,7 +80,7 @@ class ContributorsMenu():
         contributors_table.default_cell_padding = 5
         contributors_table.default_row_background_color = 'white'
         contributors_table.add_row(
-            ['Contributors', 'name', ' ', 'Sponsors', 'name'],
+            [_('Contributors'), _('name'), ' ', _('Sponsors'), _('name')],
             cell_font=self._head_font)
 
         _len = list(range(max(len(app_contributors), len(app_sponsors))))
@@ -178,7 +178,7 @@ class PlayMenu():
         if self.player_name_text_input:
             self.player_name_text_input.set_value(
                 self.player_name)
-    
+
     def get_player_name(self):
         return self.player_name
 
@@ -348,8 +348,8 @@ class PrimarySchool():
         self.surface = pygame.display.set_mode(
             (0, 0), pygame.RESIZABLE)
         self.w_width, self.w_height = self.surface.get_size()
-        self.w_width_of_2, self.w_height_of_2 = \
-            self.w_width / 2, self.w_height / 2
+        self.w_width_of_2 = self.w_width / 2
+        self.w_height_of_2 =  self.w_height / 2
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
         self.player_name = _('default_name')

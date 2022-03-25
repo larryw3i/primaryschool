@@ -167,11 +167,11 @@ class TargetSurface():
         return
 
     def move(
-        self, 
-        _add=(1, 1), 
-        rel=True, 
-        use_func=False):
-        
+            self,
+            _add=(1, 1),
+            rel=True,
+            use_func=False):
+
         if use_func:
             self.dest = self.calc_dest(_add)
         elif rel:
@@ -532,7 +532,9 @@ class DefenseSurface():
 
 
 class InfoSurface():
-    def __init__(self, shtbase):
+    def __init__(
+            self,
+            shtbase):
         self.shtbase = shtbase
         self.ps = shtbase.ps
         self.surface = self.ps.surface
@@ -543,9 +545,6 @@ class InfoSurface():
         self.font_size = 25
         self.font = get_default_font(self.font_size)
 
-        self.score_font_size = 55
-        self.score_font = get_default_font(self.score_font_size)
-
         self.datetime_diff_font_size = 50
         self.datetime_diff_font = get_default_font(
             self.datetime_diff_font_size)
@@ -555,19 +554,6 @@ class InfoSurface():
 
         self.game_info_surface = self.font.render(
             self.game_info, False, self.game_info_color)
-
-        self.score = 0
-        self._pass = False
-        self.ps_info_surface = ...
-
-        self.score_surface = ...
-        self.datetime_diff_surface = ...
-        self.greeting_surface = ...
-
-        self.end_time = self.ps.end_time = None
-
-    def get_score_font_color(self):
-        return (20, 255, 0) if self._pass else (255, 20, 0)
 
     def get_win_info(self):
         return \
@@ -580,6 +566,35 @@ class InfoSurface():
         _w, _ = self.win_info_surface.get_size()
         return [self.ps.w_width - _w, 0]
 
+    def blit(self):
+        self.win_info_surface = self.font.render(
+            self.get_win_info(), False, self.game_info_color)
+
+        self.surface.blit(self.game_info_surface, self.game_info_dest)
+        self.surface.blit(self.win_info_surface, self.get_win_info_dest())
+
+
+class ScoreSurface():
+    def __init__(
+            self,
+            shtbase):
+        self.shtbase = shtbase
+        self.ps = shtbase.ps
+        self.surface = self.ps.surface
+        self.score = 0
+        self._pass = False
+        self.score_font_size = 55
+        self.score_font = get_default_font(self.score_font_size)
+
+        self.score_surface = ...
+        self.datetime_diff_surface = ...
+        self.greeting_surface = ...
+
+        self.end_time = self.ps.end_time = None
+
+    def get_score_font_color(self):
+        return (20, 255, 0) if self._pass else (255, 20, 0)
+
     def get_datetime_diff_str(self):
         if self.end_time is None:
             self.end_time = self.ps.end_time = datetime.now()
@@ -588,13 +603,6 @@ class InfoSurface():
         _h, _rem = divmod(diff.seconds, 3600)
         _min, _sec = divmod(_rem, 60)
         return _('Cost: ') + f'{_h}:{_min}:{_sec}'
-
-    def blit(self):
-        self.win_info_surface = self.font.render(
-            self.get_win_info(), False, self.game_info_color)
-
-        self.surface.blit(self.game_info_surface, self.game_info_dest)
-        self.surface.blit(self.win_info_surface, self.get_win_info_dest())
 
     def get_score(self):
         self.score = int(
@@ -610,10 +618,10 @@ class InfoSurface():
     def get_greeting(self):
         _player_name = self.shtbase.get_player_name()
         return \
-        (
-            _('Success! Dear %s, you are so awesome!') if self._pass else \
-            _('Dear %s, practice makes perfect, keep trying!')
-        )%_player_name
+            (
+                _('Success! Dear %s, you are so awesome!') if self._pass else
+                _('Dear %s, practice makes perfect, keep trying!')
+            ) % _player_name
 
     def get_score_str(self):
         return _('Score: ') + str(self.score)
@@ -640,7 +648,7 @@ class InfoSurface():
             self.ps.w_height_of_2 + _h
         ]
 
-    def score_blit(self):
+    def blit(self):
         self.score = self.get_score()
         self.get_score_pass()
 
@@ -674,7 +682,11 @@ class InfoSurface():
 
 
 class ShootingBase(GameBase, PsKeyCode):
-    def __init__(self, ps, font_lang_code=None):
+    def __init__(
+            self, 
+            ps, 
+            font_lang_code=None
+        ):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')
         assert hasattr(self, 'module_str')
@@ -723,8 +735,8 @@ class ShootingBase(GameBase, PsKeyCode):
 
     def get_player_name(self):
         return self.player_name
-    
-    def set_player_name(self,name):
+
+    def set_player_name(self, name):
         self.player_name = self.ps.player_name = name
 
     def set_input(self, content=''):

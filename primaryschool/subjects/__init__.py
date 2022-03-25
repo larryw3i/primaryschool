@@ -63,7 +63,8 @@ class Game():
             self,
             module_str,
             subject,
-            ps=None):
+            ps=None
+        ):
         self.module_str = module_str
         self.subject = subject
         self.ps = ps
@@ -80,20 +81,24 @@ class Game():
             'default_difficulty_index', 0)
 
     def get_game(self, ps):
+        assert ps
         if not self._game:
             self._game = self.module.enjoy(ps)
         return self._game
 
     def play(self, ps):
+        assert ps
         ps.play_menu._menu.disable()
         ps.play_menu._menu.full_reset()
         self._game = None
         self.get_game(ps).play()
 
     def save(self, ps):
+        assert ps
         self.get_game(ps).save()
 
     def load(self, ps):
+        assert ps
         ps.play_menu._menu.disable()
         ps.play_menu._menu.full_reset()
         self.get_game(ps).load()
