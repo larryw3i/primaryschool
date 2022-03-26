@@ -112,7 +112,8 @@ class Game():
 class Subject():
     def __init__(
             self,
-            name):
+            name
+        ):
         self.name = name
         self.module = import_module(subject_module_prefix + self.name)
         self.name_t = self.module.name_t

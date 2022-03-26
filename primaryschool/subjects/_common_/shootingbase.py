@@ -319,7 +319,8 @@ class TargetsManager():
         _targets = self.get_targets(self.shtbase.difficulty_index)
         self.set_target_count(len(_targets))
 
-        return [
+        return \
+        [
             TargetSurface(self.shtbase, self, t[0:-1], t[-1])
             for t in _targets
         ]
@@ -401,13 +402,14 @@ class InputSurface():
             font_bold=False,
             border_radius=5,
             border_width=1,
-            border_color=(200, 20, 30, 60)):
+            border_color=(200, 20, 30, 60)
+        ):
 
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.font_size = 55
-        self.font_lang_code = font_lang_code or \
-            self.shtbase.font_lang_code
+        self.font_lang_code = \
+            font_lang_code or self.shtbase.font_lang_code
         self.font = \
             get_sys_font_by_lang_code(self.font_lang_code) \
             if self.font_lang_code else \
@@ -721,6 +723,7 @@ class ShootingBase(GameBase, PsKeyCode):
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
         self.input_surface = self.get_input_surface()
+        self.score_surface = self.get_score_surface()
         self.copy_path = get_copy_path(self.module_str)
 
         self.last_timedelta = timedelta(0)
@@ -732,6 +735,12 @@ class ShootingBase(GameBase, PsKeyCode):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
+    
+    def set_score_surface(self,score_surface=None):
+        self.score_surface = score_surface or ScoreSurface(self)
+
+    def get_score_surface(self):
+        return self.score_surface or ScoreSurface(self)
 
     def get_player_name(self):
         return self.player_name
@@ -849,6 +858,6 @@ class ShootingBase(GameBase, PsKeyCode):
                 self.targets_manager.blit()
                 self.input_surface.blit()
             else:
-                self.info_surface.score_blit()
+                self.score_surface.blit()
 
             pygame.display.update()
