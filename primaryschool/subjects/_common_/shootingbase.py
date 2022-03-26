@@ -547,11 +547,6 @@ class InfoSurface():
         self.font_size = 25
         self.font = get_default_font(self.font_size)
 
-        self.datetime_diff_font_size = 50
-        self.datetime_diff_font = get_default_font(
-            self.datetime_diff_font_size)
-        self.datetime_diff_font_color = ...
-
         self.font = get_default_font(self.font_size)
 
         self.game_info_surface = self.font.render(
@@ -576,7 +571,7 @@ class InfoSurface():
         self.surface.blit(self.win_info_surface, self.get_win_info_dest())
 
 
-class ScoreSurface():
+class ScoreSurface(InfoSurface):
     def __init__(
             self,
             shtbase):
@@ -588,10 +583,14 @@ class ScoreSurface():
         self.score_font_size = 55
         self.score_font = get_default_font(self.score_font_size)
 
-        self.score_surface = ...
-        self.datetime_diff_surface = ...
-        self.greeting_surface = ...
+        self.datetime_diff_font_size = 50
+        self.datetime_diff_font = get_default_font(
+            self.datetime_diff_font_size)
+        self.datetime_diff_font_color = None
 
+        self.score_surface = None
+        self.datetime_diff_surface = None
+        self.greeting_surface = None
         self.end_time = self.ps.end_time = None
 
     def get_score_font_color(self):
@@ -740,7 +739,11 @@ class ShootingBase(GameBase, PsKeyCode):
         self.score_surface = score_surface or ScoreSurface(self)
 
     def get_score_surface(self):
-        return self.score_surface or ScoreSurface(self)
+        score_surface = \
+            hasattr(self,'score_surface') and \
+            self.score_surface or \
+            ScoreSurface(self)
+        return score_surface
 
     def get_player_name(self):
         return self.player_name
