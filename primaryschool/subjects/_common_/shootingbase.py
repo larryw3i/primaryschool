@@ -320,10 +320,10 @@ class TargetsManager():
         self.set_target_count(len(_targets))
 
         return \
-        [
-            TargetSurface(self.shtbase, self, t[0:-1], t[-1])
-            for t in _targets
-        ]
+            [
+                TargetSurface(self.shtbase, self, t[0:-1], t[-1])
+                for t in _targets
+            ]
 
     def set_surfaces(self):
         self.surfaces = self.get_target_surfaces()
@@ -396,14 +396,14 @@ class TargetsManager():
 
 class InputSurface():
     def __init__(
-            self,
-            shtbase,
-            font_lang_code=None,
-            font_bold=False,
-            border_radius=5,
-            border_width=1,
-            border_color=(200, 20, 30, 60)
-        ):
+        self,
+        shtbase,
+        font_lang_code=None,
+        font_bold=False,
+        border_radius=5,
+        border_width=1,
+        border_color=(200, 20, 30, 60)
+    ):
 
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
@@ -425,6 +425,9 @@ class InputSurface():
         self.font_bold = font_bold
 
         self.font.set_bold(self.font_bold)
+    
+    def set_rect(self, rect=None):
+        self.update_rect(rect)
 
     def update_rect(self, rect=None):
         self.w, self.h = self.rect = rect or self.surface.get_size()
@@ -433,10 +436,22 @@ class InputSurface():
         self.x, self.y = self.dest = dest or (
             self.shtbase.w_width_of_2 - self.w / 2,
             self.shtbase.w_height - self.h)
+        
+    def get_input(self,strip=True):
+        _input = self.shtbase._input
+        if strip:
+            return _input.strip()
+        else:
+            return _input
+    
+    def set_input(self, input_str):
+        self.shtbase._input = input_str
 
-    def _update(self):
+
+    def _update(self,_input=None):
+        _input =_input or self.get_input()
         self.surface = self.font.render(
-            self.shtbase._input.strip(),
+            _input,
             False, self.font_color)
 
     def _blit(self):
@@ -684,10 +699,10 @@ class ScoreSurface(InfoSurface):
 
 class ShootingBase(GameBase, PsKeyCode):
     def __init__(
-            self, 
-            ps, 
-            font_lang_code=None
-        ):
+        self,
+        ps,
+        font_lang_code=None
+    ):
         assert hasattr(self, 'name_t')
         assert hasattr(self, 'difficulties')
         assert hasattr(self, 'module_str')
@@ -734,13 +749,13 @@ class ShootingBase(GameBase, PsKeyCode):
         self.lose_count = 0
         self.target_count = 0
         self.print_game_info()
-    
-    def set_score_surface(self,score_surface=None):
+
+    def set_score_surface(self, score_surface=None):
         self.score_surface = score_surface or ScoreSurface(self)
 
     def get_score_surface(self):
         score_surface = \
-            hasattr(self,'score_surface') and \
+            hasattr(self, 'score_surface') and \
             self.score_surface or \
             ScoreSurface(self)
         return score_surface
@@ -780,26 +795,6 @@ class ShootingBase(GameBase, PsKeyCode):
     def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
-    def handle_events(self, events):
-        for e in events:
-            if e.type == pygame.QUIT:
-                exit()
-            elif e.type == pygame.KEYDOWN:
-                if e.key == pygame.K_ESCAPE:
-                    self.save_menu._menu.enable()
-                    self.last_timedelta += datetime.now() - self.start_time
-                    self.save_menu._menu.mainloop(self.surface)
-                    self.start_time = datetime.now()
-                    return
-                elif e.key == pygame.K_BACKSPACE:
-                    self._input = self._input[0:-1]
-                    self.input_surface._update()
-                    return
-                elif self.key_clean(e.key):
-                    self._input += chr(e.key)
-                    self.input_surface._update()
-                    return
-
     def load(self):
         try:
             self._load = True
@@ -837,6 +832,26 @@ class ShootingBase(GameBase, PsKeyCode):
 
     def all_targets_gone(self):
         return self.win_count + self.lose_count < self.target_count
+
+    def handle_events(self, events):
+        for e in events:
+            if e.type == pygame.QUIT:
+                exit()
+            elif e.type == pygame.KEYDOWN:
+                if e.key == pygame.K_ESCAPE:
+                    self.save_menu._menu.enable()
+                    self.last_timedelta += datetime.now() - self.start_time
+                    self.save_menu._menu.mainloop(self.surface)
+                    self.start_time = datetime.now()
+                    return
+                elif e.key == pygame.K_BACKSPACE:
+                    self._input = self._input[0:-1]
+                    self.input_surface._update()
+                    return
+                elif self.key_clean(e.key):
+                    self._input += chr(e.key)
+                    self.input_surface._update()
+                    return
 
     def start(self):
 

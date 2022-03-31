@@ -70,9 +70,9 @@ class ZhCNEmTargetsManager(TargetsManager):
 
 class ZhCNEnglishMissile(ShootingBase):
     def __init__(
-            self, 
-            ps
-        ):
+        self,
+        ps
+    ):
         self.name_t = name_t
         self.difficulties = difficulties
         self.module_str = module_str

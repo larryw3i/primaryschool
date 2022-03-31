@@ -60,11 +60,11 @@ subject_names, game_modules = get_subject_tree()
 
 class Game():
     def __init__(
-            self,
-            module_str,
-            subject,
-            ps=None
-        ):
+        self,
+        module_str,
+        subject,
+        ps=None
+    ):
         self.module_str = module_str
         self.subject = subject
         self.ps = ps
@@ -111,9 +111,9 @@ class Game():
 
 class Subject():
     def __init__(
-            self,
-            name
-        ):
+        self,
+        name
+    ):
         self.name = name
         self.module = import_module(subject_module_prefix + self.name)
         self.name_t = self.module.name_t

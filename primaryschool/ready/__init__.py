@@ -349,7 +349,7 @@ class PrimarySchool():
             (0, 0), pygame.RESIZABLE)
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2 = self.w_width / 2
-        self.w_height_of_2 =  self.w_height / 2
+        self.w_height_of_2 = self.w_height / 2
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
         self.player_name = _('default_name')

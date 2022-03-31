@@ -131,7 +131,7 @@ class MhTargetsManager(TargetsManager):
 
 class MindHunter(ShootingBase):
     def __init__(
-            self, 
+            self,
             ps):
         self.name_t = name_t
         self.difficulties = difficulties
