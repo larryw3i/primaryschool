@@ -19,8 +19,8 @@ from primaryschool.resource import (default_font, default_font_path,
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects._common_.shootingbase import *
-from primaryschool.subjects.yuwen.yumu import p_a,p_o,p_e,p_i,p_u,p_v
 from primaryschool.subjects.yuwen.words import cn_ps_c, cn_ps_c_bb
+from primaryschool.subjects.yuwen.yumu import p_a, p_e, p_i, p_o, p_u, p_v
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
@@ -82,14 +82,14 @@ class PmInputSurface(InputSurface):
         border_radius=5,
         border_width=1,
         border_color=(200, 20, 30, 60)
-        ):
+    ):
         super().__init__(
-        shtbase,
-        font_lang_code,
-        font_bold,
-        border_radius,
-        border_width,
-        border_color
+            shtbase,
+            font_lang_code,
+            font_bold,
+            border_radius,
+            border_width,
+            border_color
         )
         self.candidates = []
         self.p_a = p_a
@@ -107,18 +107,16 @@ class PmInputSurface(InputSurface):
             self.p_v
         ]
 
-    
     def get_input(self):
         _input = super().get_input()
         _new_input = _input
         for yms in self.aoeiuv:
             if yms[0] in _input:
-                for i,_ym in enumerate( yms[1:]):
-                    _new_input += f'  ({i+1})'+ _input.replace(yms[0],_ym)
+                for i, _ym in enumerate(yms[1:]):
+                    _new_input += f'  ({i+1})' + _input.replace(yms[0], _ym)
                 break
-        return _input if _input == _new_input else '(0)'+_new_input
+        return _input if _input == _new_input else '(0)' + _new_input
 
-        
 
 class PmTargetsManager(TargetsManager):
     def __init__(
@@ -189,7 +187,7 @@ class PinyinMissile(ShootingBase):
 
     def get_targets_manager(self):
         return PmTargetsManager(self)
-    
+
     def get_input_surface(self):
         return PmInputSurface(self)
 

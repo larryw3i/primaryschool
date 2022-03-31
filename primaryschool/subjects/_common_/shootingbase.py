@@ -425,7 +425,7 @@ class InputSurface():
         self.font_bold = font_bold
 
         self.font.set_bold(self.font_bold)
-    
+
     def set_rect(self, rect=None):
         self.update_rect(rect)
 
@@ -436,20 +436,19 @@ class InputSurface():
         self.x, self.y = self.dest = dest or (
             self.shtbase.w_width_of_2 - self.w / 2,
             self.shtbase.w_height - self.h)
-        
-    def get_input(self,strip=True):
+
+    def get_input(self, strip=True):
         _input = self.shtbase._input
         if strip:
             return _input.strip()
         else:
             return _input
-    
+
     def set_input(self, input_str):
         self.shtbase._input = input_str
 
-
-    def _update(self,_input=None):
-        _input =_input or self.get_input()
+    def _update(self, _input=None):
+        _input = _input or self.get_input()
         self.surface = self.font.render(
             _input,
             False, self.font_color)
