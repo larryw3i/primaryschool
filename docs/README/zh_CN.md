@@ -28,7 +28,7 @@
 </p>  
 
 <img 
-    src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.0.png?raw=true" 
+    src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.0.png" 
     alt="screenshot" 
     width="100%" 
     height="auto"/>
