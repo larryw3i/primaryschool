@@ -28,7 +28,7 @@
 </p>  
 
 <img 
-    src="https://i.postimg.cc/15V7CP1c/f1n6yk-AAOP4dgm-CAQAAAAAAABj-Ev0-Rt-RKUzy-Jel-AAAAAEl-FTk-Su-Qm-CC.png" 
+    src="../images/screenshot.0.png" 
     alt="screenshot" 
     width="100%" 
     height="auto"/>
