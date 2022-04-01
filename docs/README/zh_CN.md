@@ -28,7 +28,7 @@
 </p>  
 
 <img 
-    src="docs/images/screenshot.0.png" 
+    src="https://imgpp.com/image/1ZVNH" 
     alt="screenshot" 
     width="100%" 
     height="auto"/>
