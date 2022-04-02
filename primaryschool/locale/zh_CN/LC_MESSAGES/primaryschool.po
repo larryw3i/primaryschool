@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-03 01:52+0800\n"
-"PO-Revision-Date: 2022-04-03 01:52+0800\n"
+"PO-Revision-Date: 2022-04-03 01:57+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -1075,16 +1075,16 @@ msgstr "赞助者"
 
 #: primaryschool/ready/__init__.py:374
 msgid "Screenshots"
-msgstr ""
+msgstr "截图"
 
 #: primaryschool/subjects/_common_/shootingbase.py:700
 msgid "Screenshot path is not set."
-msgstr ""
+msgstr "截图路径未设置。"
 
 #: primaryschool/subjects/_common_/shootingbase.py:703
 msgid "Screenshot saved."
-msgstr ""
+msgstr "截图被保存。"
 
 #: primaryschool/subjects/_common_/shootingbase.py:742
 msgid "Screenshot saved. Press Esc to RETURN"
-msgstr ""
+msgstr "截图被保存。按 Esc 返回。"
