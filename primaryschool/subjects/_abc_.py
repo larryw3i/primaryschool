@@ -1,5 +1,3 @@
-
-
 import copy
 import os
 import pickle
@@ -16,20 +14,28 @@ from xpinyin import Pinyin
 
 from primaryschool.dirs import *
 from primaryschool.locale import _, sys_lang_code
-from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font, get_font_path)
+from primaryschool.resource import (
+    default_font,
+    default_font_path,
+    get_default_font,
+    get_font_path,
+)
 from primaryschool.subjects import *
 
 
 class GameBase(ABC):
     @abstractmethod
-    def __init__(self): ...
+    def __init__(self):
+        ...
 
     @abstractmethod
-    def save(self): ...
+    def save(self):
+        ...
 
     @abstractmethod
-    def load(self): ...
+    def load(self):
+        ...
 
     @abstractmethod
-    def play(self): ...
+    def play(self):
+        ...

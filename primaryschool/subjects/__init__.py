@@ -1,4 +1,3 @@
-
 import os
 import sys
 from importlib import import_module
@@ -6,28 +5,27 @@ from importlib import import_module
 from primaryschool.dirs import *
 from primaryschool.locale import _
 
-subject_module_prefix = 'primaryschool.subjects.'
+subject_module_prefix = "primaryschool.subjects."
 subject_dir_path = os.path.abspath(os.path.dirname(__file__))
 
-media_dir_path = os.path.join(subject_dir_path, 'media')
-img_dir_path = os.path.join(media_dir_path, 'img')
-default_game_image_path = os.path.join(img_dir_path, '0x2.png')
-default_subject_image_path = os.path.join(img_dir_path, '0x3.png')
+media_dir_path = os.path.join(subject_dir_path, "media")
+img_dir_path = os.path.join(media_dir_path, "img")
+default_game_image_path = os.path.join(img_dir_path, "0x2.png")
+default_subject_image_path = os.path.join(img_dir_path, "0x3.png")
 
 
 def game_is_valid(subject_name, game_name):
-    return \
-        game_name.startswith('g_') and \
-        os.path.exists(
-            os.path.join(
-                subject_dir_path, subject_name, game_name, '__init__.py'))
+    return game_name.startswith("g_") and os.path.exists(
+        os.path.join(subject_dir_path, subject_name, game_name, "__init__.py")
+    )
 
 
 def subject_is_valid(subject_path, subject):
-    return \
-        os.path.isdir(subject_path) and \
-        not subject.startswith('_') and \
-        not subject == 'media'
+    return (
+        os.path.isdir(subject_path)
+        and not subject.startswith("_")
+        and not subject == "media"
+    )
 
 
 def get_subject_tree():
@@ -45,8 +43,7 @@ def get_subject_tree():
             if not game_is_valid(_subject, _game):
                 continue
             no_game = False
-            game_modules.append(
-                subject_module_prefix + _subject + '.' + _game)
+            game_modules.append(subject_module_prefix + _subject + "." + _game)
 
         # Subject without game is ignored.
         if not no_game:
@@ -58,27 +55,23 @@ def get_subject_tree():
 subject_names, game_modules = get_subject_tree()
 
 
-class Game():
-    def __init__(
-        self,
-        module_str,
-        subject,
-        ps=None
-    ):
+class Game:
+    def __init__(self, module_str, subject, ps=None):
         self.module_str = module_str
         self.subject = subject
         self.ps = ps
         self.module = import_module(self.module_str)
         self._game = None
-        self.name = self.module_str.split('.')[-1]
-        self.name_t = getattr(self.module, 'name_t')
+        self.name = self.module_str.split(".")[-1]
+        self.name_t = getattr(self.module, "name_t")
         self.image_path = getattr(
-            self.module, 'image_path', default_game_image_path)
-        self.help_t = getattr(self.module, 'help_t')
-        self.difficulties = getattr(self.module, 'difficulties')
+            self.module, "image_path", default_game_image_path
+        )
+        self.help_t = getattr(self.module, "help_t")
+        self.difficulties = getattr(self.module, "difficulties")
         self.default_difficulty_index = getattr(
-            self.module,
-            'default_difficulty_index', 0)
+            self.module, "default_difficulty_index", 0
+        )
 
     def get_game(self, ps):
         assert ps
@@ -104,21 +97,17 @@ class Game():
         self.get_game(ps).load()
 
     def has_copy(self):
-        return os.path.exists(
-            get_copy_path(
-                self.module_str))
+        return os.path.exists(get_copy_path(self.module_str))
 
 
-class Subject():
-    def __init__(
-        self,
-        name
-    ):
+class Subject:
+    def __init__(self, name):
         self.name = name
         self.module = import_module(subject_module_prefix + self.name)
         self.name_t = self.module.name_t
-        self.image_path = getattr(self.module, 'image_path',
-                                  default_subject_image_path)
+        self.image_path = getattr(
+            self.module, "image_path", default_subject_image_path
+        )
         self.games = []
 
     def set_games(self):

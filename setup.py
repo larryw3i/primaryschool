@@ -1,4 +1,3 @@
-
 import os
 import re
 
@@ -27,11 +26,11 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        'console_scripts': [
-            'primaryschool=primaryschool:victory',
+        "console_scripts": [
+            "primaryschool=primaryschool:victory",
         ]
     },
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     install_requires=get_requirements_product(),
     include_package_data=True,
 )

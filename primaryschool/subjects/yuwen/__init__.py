@@ -1,4 +1,3 @@
-
 import os
 import random
 import sys
@@ -15,4 +14,4 @@ from primaryschool.locale import _
 from primaryschool.resource import *
 from primaryschool.subjects import *
 
-name_t = _('Yuwen')
+name_t = _("Yuwen")

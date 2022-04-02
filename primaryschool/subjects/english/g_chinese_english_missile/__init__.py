@@ -13,44 +13,48 @@ from xpinyin import Pinyin
 
 from primaryschool.dirs import *
 from primaryschool.locale import _
-from primaryschool.resource import (default_font, default_font_path,
-                                    get_default_font, get_font_path,
-                                    get_resource_path)
+from primaryschool.resource import (
+    default_font,
+    default_font_path,
+    get_default_font,
+    get_font_path,
+    get_resource_path,
+)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects._common_.shootingbase import *
-from primaryschool.subjects.english.g_chinese_english_missile.words import \
-    cn_ps_e_words
+from primaryschool.subjects.english.g_chinese_english_missile.words import (
+    cn_ps_e_words,
+)
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
 
-name_t = _('Chinese-English Missile')
+name_t = _("Chinese-English Missile")
 
 difficulties = [
-    _('Grade 3.1'),  # 0
-    _('Grade 3.2'),  # 1
-    _('Grade 4.1'),  # 2
-    _('Grade 4.2'),  # 3
-    _('Grade 5.1'),  # 4
-    _('Grade 5.2'),  # 5
-    _('Grade 6.1'),  # 6
-    _('Grade 6.2'),  # 7
-    _('All grades'),  # 8
+    _("Grade 3.1"),  # 0
+    _("Grade 3.2"),  # 1
+    _("Grade 4.1"),  # 2
+    _("Grade 4.2"),  # 3
+    _("Grade 5.1"),  # 4
+    _("Grade 5.2"),  # 5
+    _("Grade 6.1"),  # 6
+    _("Grade 6.2"),  # 7
+    _("All grades"),  # 8
 ]
 
 
-help_t = _('''
+help_t = _(
+    """
 Enter the corresponding words of the Chinese characters.
-''')
+"""
+)
 
 
 class ZhCNEmTargetsManager(TargetsManager):
     def __init__(self, shtbase):
-        super().__init__(
-            shtbase,
-            target_surface_lang_code='zh_CN'
-        )
+        super().__init__(shtbase, target_surface_lang_code="zh_CN")
         self.wave = ShootingWave(self)
 
     def blit_intercepting(self, moving_surfaces):
@@ -69,10 +73,7 @@ class ZhCNEmTargetsManager(TargetsManager):
 
 
 class ZhCNEnglishMissile(ShootingBase):
-    def __init__(
-        self,
-        ps
-    ):
+    def __init__(self, ps):
         self.name_t = name_t
         self.difficulties = difficulties
         self.module_str = module_str
@@ -82,11 +83,12 @@ class ZhCNEnglishMissile(ShootingBase):
         return ZhCNEmTargetsManager(self)
 
     def key_clean(self, code):
-        return \
-            self.keycode_in_pure_num(code) or \
-            self.keycode_in_alpha(code) or \
-            self.keycode_in_space(code) or \
-            self.keycode_in_hyphen(code)
+        return (
+            self.keycode_in_pure_num(code)
+            or self.keycode_in_alpha(code)
+            or self.keycode_in_space(code)
+            or self.keycode_in_hyphen(code)
+        )
 
 
 def enjoy(ps):

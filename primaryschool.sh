@@ -12,28 +12,34 @@ update_gitignore(){
 }
 
 _xgettext(){
-    xgettext -v -j -L Python --output=$app_name/locale/$app_name.pot \
-    $(find $app_name/ -name "*.py")
+    xgettext -v -j -L Python --output=${app_name}/locale/${app_name}.pot \
+    $(find ${app_name}/ -name "*.py")
 
-    for _po in $(find $app_name/locale/ -name "*.po"); do
-        msgmerge -U -v $_po $app_name/locale/$app_name.pot
+    for _po in $(find ${app_name}/locale/ -name "*.po"); do
+        msgmerge -U -v $_po ${app_name}/locale/${app_name}.pot
     done
 }
 
 _msgfmt(){
-    for _po in $(find $app_name/locale -name "*.po"); do
+    for _po in $(find ${app_name}/locale -name "*.po"); do
         echo -e "$_po --> ${_po/.po/.mo}"
         msgfmt -v -o ${_po/.po/.mo} $_po
     done
 }
 
 p8(){
-    isort $app_name/
-    autopep8 -i -a -a -r -v $app_name/
-    isort $app_name.py
-    autopep8 -i -a -a -r -v $app_name.py
+    isort ${app_name}/
+    autopep8 -i -a -a -r -v ${app_name}/
+    isort ${app_name}.py
+    autopep8 -i -a -a -r -v ${app_name}.py
     isort ./setup.py
     autopep8 -i -a -a -r -v ./setup.py
+}
+
+_black(){
+    python3 -m black -l 79 ${app_name}/;
+    python3 -m black -l 79 ${app_name}.py;
+    python3 -m black -l 79 setup.py;
 }
 
 git_add(){
@@ -41,7 +47,7 @@ git_add(){
 }
 
 _pip3(){
-    python3 $app_name.py req_dev_u
+    python3 ${app_name}.py req_dev_u
 }
 
 twine_upload(){
@@ -50,26 +56,26 @@ twine_upload(){
 
 bdist(){
     _msgfmt
-    rm -rf dist/ build/ $app_name.egg-info/
+    rm -rf dist/ build/ ${app_name}.egg-info/
     python3 setup.py sdist bdist_wheel
 }
 
 bdist_deb(){
-    rm -rf deb_dist/  dist/  $app_name.egg-info/ $app_name*.tar.gz
+    rm -rf deb_dist/  dist/  ${app_name}.egg-info/ ${app_name}*.tar.gz
     python3 setup.py --command-packages=stdeb.command bdist_deb
 }
 
 _i_test(){
     bdist
-    pip3 uninstall $app_name -y
+    pip3 uninstall ${app_name} -y
     pip3 install dist/*.whl
-    $app_name
+    ${app_name}
 }
 
 
 _start(){
-    [[ -f "$app_name/locale/en_US/LC_MESSAGES/$app_name.mo" ]] || _msgfmt
-    venv/bin/python3 $app_name.py
+    [[ -f "${app_name}/locale/en_US/LC_MESSAGES/${app_name}.mo" ]] || _msgfmt
+    venv/bin/python3 ${app_name}.py
 }
 
 active_venv(){
@@ -80,10 +86,10 @@ active_venv(){
 }
 
 cat_bt(){
-    echo $app_name.sh; cat -bt $app_name.sh
-    echo $app_name.py; cat -bt $app_name.py
+    echo ${app_name}.sh; cat -bt ${app_name}.sh
+    echo ${app_name}.py; cat -bt ${app_name}.py
     echo setup.py;  cat -bt setup.py
-    for f in $(find $app_name/ -name "*.py" -o -name "*.po" -o -name "*.pot")
+    for f in $(find ${app_name}/ -name "*.py" -o -name "*.po" -o -name "*.pot")
     do
         echo $f
         cat -bt $f
@@ -91,7 +97,7 @@ cat_bt(){
 }
 
 test(){
-    python3 $app_name.py test
+    python3 ${app_name}.py test
 }
 
 tu(){       twine_upload;       }
@@ -116,5 +122,6 @@ _cat_(){    _cat | tr -s '\n';  }
 
 bdeb(){     bdist_deb;          }
 wcl(){      _cat_ | wc -l;      }
+blk(){      _black;              }
 
 ${_args[0]}
