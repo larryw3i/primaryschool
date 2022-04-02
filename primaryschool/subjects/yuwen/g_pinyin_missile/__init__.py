@@ -127,6 +127,8 @@ class PmTargetsManager(TargetsManager):
     def __init__(self, shtbase):
         super().__init__(shtbase, target_surface_lang_code="zh_CN")
         self.wave = ShootingWave(self)
+        self.set_interval(2)
+        self.set_moving_speed((0,0.7))
 
     def blit_intercepting(self, moving_surfaces):
         self.wave.draw(moving_surfaces.intercept_frame_counter)
