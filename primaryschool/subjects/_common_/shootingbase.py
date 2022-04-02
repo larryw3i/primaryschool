@@ -267,7 +267,7 @@ class TargetsManager:
         self.difficulty_index_p1 = self.shtbase.difficulty_index + 1
         self.interval = 1.8 * self.shtbase.FPS
         self.intercept_interval = 0.3 * self.shtbase.FPS
-        self.moving_speed = (0,1)
+        self.moving_speed = (0, 1)
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
@@ -281,18 +281,21 @@ class TargetsManager:
         self.intercept_keycode = intercept_keycode
         self.target_count = 20
 
-    def set_moving_speed(self,speed=(0,1)):
+    def set_moving_speed(self, speed=(0, 1)):
+        """
+        The number of pixels moved per frame.
+        """
         self.moving_speed = speed
-    
+
     def get_moving_speed(self):
         return self.moving_speed
 
-    def set_interval(self,interval=1.8):
-        '''
+    def set_interval(self, interval=1.8):
+        """
         interval: The time interval at which the target appears, in seconds.
-        '''
+        """
         self.interval = interval * self.shtbase.FPS
-    
+
     def get_interval(self):
         return self.interval
 

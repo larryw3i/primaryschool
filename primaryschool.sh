@@ -43,7 +43,8 @@ _black(){
 }
 
 git_add(){
-    p8; git add .
+    _black;
+    git add .;
 }
 
 _pip3(){
