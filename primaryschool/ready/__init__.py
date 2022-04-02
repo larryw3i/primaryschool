@@ -23,6 +23,9 @@ from primaryschool.resource import (
 )
 from primaryschool.settings import *
 from primaryschool.subjects import subjects
+import webbrowser
+from primaryschool.dirs import user_screenshot_dir_path
+import subprocess
 
 app_description_t = _("app_description_t")
 
@@ -341,6 +344,16 @@ class MainMenu:
         self.play_menu = self.ps.play_menu
         self.about_menu = self.ps.about_menu
 
+    def open_screenshots_dir(self):
+        _open = (
+            sys.platform == "darwin"
+            and "open"
+            or sys.platform == "win32"
+            and "explorer"
+            or "xdg-open"
+        )
+        subprocess.Popen([_open, user_screenshot_dir_path])
+
     def add_widgets(self):
         self._menu.add.button(
             _("Play"),
@@ -356,6 +369,14 @@ class MainMenu:
             _("Quit"),
             pygame_menu.events.EXIT,
             font_name=self.ps.font_path,
+        )
+        self._menu.add.button(
+            _("Screenshots"),
+            self.open_screenshots_dir,
+            font_name=self.ps.font_path,
+            align=pygame_menu.locals.ALIGN_RIGHT,
+            background_color=(100, 20, 20, 50),
+            font_color=(20, 20, 100),
         )
 
 
