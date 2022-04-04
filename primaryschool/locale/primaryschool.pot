@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-03 01:52+0800\n"
+"POT-Creation-Date: 2022-04-04 21:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:285 primaryschool/ready/__init__.py:307
 #: primaryschool/ready/__init__.py:323 primaryschool/ready/__init__.py:325
 #: primaryschool/ready/__init__.py:327 primaryschool/ready/__init__.py:342
+#: primaryschool/ready/__init__.py:350
 msgid "Primary School"
 msgstr ""
 
@@ -50,6 +51,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:152 primaryschool/ready/__init__.py:169
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:185
 #: primaryschool/ready/__init__.py:187 primaryschool/ready/__init__.py:191
+#: primaryschool/ready/__init__.py:193
 msgid "Name :"
 msgstr ""
 
@@ -67,7 +69,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:147 primaryschool/ready/__init__.py:177
 #: primaryschool/ready/__init__.py:194 primaryschool/ready/__init__.py:209
 #: primaryschool/ready/__init__.py:211 primaryschool/ready/__init__.py:213
-#: primaryschool/ready/__init__.py:218
+#: primaryschool/ready/__init__.py:218 primaryschool/ready/__init__.py:220
 msgid "Difficulty :"
 msgstr ""
 
@@ -105,6 +107,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:224 primaryschool/ready/__init__.py:332
 #: primaryschool/ready/__init__.py:226 primaryschool/ready/__init__.py:334
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:359
+#: primaryschool/ready/__init__.py:235 primaryschool/ready/__init__.py:367
 msgid "Play"
 msgstr ""
 
@@ -119,7 +122,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:297 primaryschool/ready/__init__.py:298
 #: primaryschool/ready/__init__.py:320 primaryschool/ready/__init__.py:336
 #: primaryschool/ready/__init__.py:338 primaryschool/ready/__init__.py:340
-#: primaryschool/ready/__init__.py:369
+#: primaryschool/ready/__init__.py:369 primaryschool/ready/__init__.py:377
 msgid "Quit"
 msgstr ""
 
@@ -174,7 +177,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:129 primaryschool/ready/__init__.py:157
 #: primaryschool/ready/__init__.py:174 primaryschool/ready/__init__.py:188
 #: primaryschool/ready/__init__.py:190 primaryschool/ready/__init__.py:192
-#: primaryschool/ready/__init__.py:197
+#: primaryschool/ready/__init__.py:197 primaryschool/ready/__init__.py:199
 msgid "Subject :"
 msgstr ""
 
@@ -219,6 +222,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:235
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:99
 #: primaryschool/ready/__init__.py:151 primaryschool/ready/__init__.py:244
+#: primaryschool/ready/__init__.py:246
 msgid "Return to main menu"
 msgstr ""
 
@@ -234,7 +238,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:317 primaryschool/ready/__init__.py:107
 #: primaryschool/ready/__init__.py:333 primaryschool/ready/__init__.py:335
 #: primaryschool/ready/__init__.py:337 primaryschool/ready/__init__.py:112
-#: primaryschool/ready/__init__.py:364
+#: primaryschool/ready/__init__.py:364 primaryschool/ready/__init__.py:372
 msgid "About"
 msgstr ""
 
@@ -245,7 +249,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:133 primaryschool/ready/__init__.py:162
 #: primaryschool/ready/__init__.py:179 primaryschool/ready/__init__.py:194
 #: primaryschool/ready/__init__.py:196 primaryschool/ready/__init__.py:198
-#: primaryschool/ready/__init__.py:202
+#: primaryschool/ready/__init__.py:202 primaryschool/ready/__init__.py:204
 msgid "Select a Subject"
 msgstr ""
 
@@ -256,7 +260,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:137 primaryschool/ready/__init__.py:166
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:198
 #: primaryschool/ready/__init__.py:200 primaryschool/ready/__init__.py:202
-#: primaryschool/ready/__init__.py:206
+#: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
 msgid "Game :"
 msgstr ""
 
@@ -267,7 +271,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:142 primaryschool/ready/__init__.py:172
 #: primaryschool/ready/__init__.py:189 primaryschool/ready/__init__.py:204
 #: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
-#: primaryschool/ready/__init__.py:213
+#: primaryschool/ready/__init__.py:213 primaryschool/ready/__init__.py:215
 msgid "Select a game"
 msgstr ""
 
@@ -279,6 +283,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:200
 #: primaryschool/ready/__init__.py:215 primaryschool/ready/__init__.py:217
 #: primaryschool/ready/__init__.py:219 primaryschool/ready/__init__.py:226
+#: primaryschool/ready/__init__.py:228
 msgid "Select a difficulty"
 msgstr ""
 
@@ -686,6 +691,7 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:584
 #: primaryschool/subjects/_common_/shootingbase.py:590
 #: primaryschool/subjects/_common_/shootingbase.py:718
+#: primaryschool/subjects/_common_/shootingbase.py:720
 msgid "Cost: "
 msgstr ""
 
@@ -707,6 +713,7 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:610
 #: primaryschool/subjects/_common_/shootingbase.py:619
 #: primaryschool/subjects/_common_/shootingbase.py:739
+#: primaryschool/subjects/_common_/shootingbase.py:741
 msgid "Score: "
 msgstr ""
 
@@ -764,7 +771,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:212 primaryschool/ready/__init__.py:44
 #: primaryschool/ready/__init__.py:227 primaryschool/ready/__init__.py:229
 #: primaryschool/ready/__init__.py:231 primaryschool/ready/__init__.py:49
-#: primaryschool/ready/__init__.py:237
+#: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:239
 msgid "Continue"
 msgstr ""
 
@@ -1033,6 +1040,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
+#: primaryschool/ready/__init__.py:401
 msgid "default_name"
 msgstr ""
 
@@ -1045,12 +1053,14 @@ msgstr ""
 
 #: primaryschool/subjects/_common_/shootingbase.py:614
 #: primaryschool/subjects/_common_/shootingbase.py:733
+#: primaryschool/subjects/_common_/shootingbase.py:735
 #, python-format
 msgid "Success! Dear %s, you are so awesome!"
 msgstr ""
 
 #: primaryschool/subjects/_common_/shootingbase.py:615
 #: primaryschool/subjects/_common_/shootingbase.py:735
+#: primaryschool/subjects/_common_/shootingbase.py:737
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr ""
@@ -1063,18 +1073,29 @@ msgstr ""
 msgid "Sponsors"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:374
+#: primaryschool/ready/__init__.py:374 primaryschool/ready/__init__.py:382
 msgid "Screenshots"
 msgstr ""
 
 #: primaryschool/subjects/_common_/shootingbase.py:700
+#: primaryschool/subjects/_common_/shootingbase.py:702
 msgid "Screenshot path is not set."
 msgstr ""
 
 #: primaryschool/subjects/_common_/shootingbase.py:703
+#: primaryschool/subjects/_common_/shootingbase.py:705
 msgid "Screenshot saved."
 msgstr ""
 
 #: primaryschool/subjects/_common_/shootingbase.py:742
+#: primaryschool/subjects/_common_/shootingbase.py:744
 msgid "Screenshot saved. Press Esc to RETURN"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:257
+msgid "After starting the game, press ESC to return"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:257
+msgid "After starting the game, press ESC to return."
 msgstr ""

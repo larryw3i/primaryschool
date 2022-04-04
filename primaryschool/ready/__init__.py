@@ -254,7 +254,7 @@ class PlayMenu:
         self.update_help_lael()
 
         self._menu.add.label(
-            _("After starting the game, press ESC to return"),
+            _("After starting the game, press ESC to return."),
             font_name=self.esc_lael_font,
             font_color=(255, 0, 0),
         )
