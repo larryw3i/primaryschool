@@ -6,7 +6,7 @@
 </h1>
 
 <h4 align="center">
-    primary school knowledge games.
+    小学知识游戏。
 </h4>
 
 <p align="center">
@@ -18,50 +18,53 @@
 </p>
 
 <p align="center">
-  <a href="#how-to-use">How To Use</a> 
+  <a href="#安装">安装</a> 
   • 
-  <a href="#todo-list">Todo List</a> 
+  <a href="#待办">待办</a> 
   • 
-  <a href="#credits">Credits</a> 
+  <a href="#声明">声明</a> 
   • 
-  <a href="#license">License</a>
+  <a href="#授权">授权</a>
 </p>  
 
 <img 
-    src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.0.png?raw=true" 
+    src="../images/screenshot.0.png" 
     alt="screenshot" 
     width="100%" 
     height="auto"/>
 
-## How To Use
+## 安装
 
-To run 
+安装 
 [primaryschool](https://pypi.org/project/primaryschool), 
-you'll need 
-[Python3](https://www.python.org/downloads/) and 
+你的计算机上需要装有 
+[Python3](https://www.python.org/downloads/) 和 
 [python3-pip](https://pypi.org/) 
-(which comes with [Python3](https://www.python.org/downloads/) generally, 
-Unix-like may need to install separately.) 
-installed on your computer. From your command line:
-
+(默认是 [Python3](https://www.python.org/downloads/) 自带的, 
+Unix-like 系统可能需要单独安装) 
+。 然后在命令行或终端输入:
 ```bash
-pip3 install -U primaryschool; primaryschool
+pip3 install -U primaryschool; primaryschool # 回车。
+```  
+你也可以使用镜像站点加速网络流量:  
+```bash
+pip3 install -U -i https://mirrors.bfsu.edu.cn/pypi/web/simple primaryschool;  
+primaryschool # 回车。
 ```  
 
-## Todo List
-- [ ] Games search
+## 待办
+- [ ] 游戏搜索
 
-## Credits
+## 声明
 
-This software uses the following open source packages:
-
+此项目依赖以下的项目:  
 - [pygame](https://github.com/pygame/pygame)
 - [pygame-menu](https://github.com/ppizarror/pygame-menu)
 - [xpinyin](https://github.com/lxneng/xpinyin)
 - [appdirs](https://github.com/ActiveState/appdirs)
 
 
-## License
+## 授权
 
 [MIT License](https://github.com/larryw3i/primaryschool/blob/daily/LICENSE)
 
