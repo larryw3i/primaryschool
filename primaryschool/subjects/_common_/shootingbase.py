@@ -663,31 +663,33 @@ class ScoreSurface(InfoSurface):
             self.shtbase.module_str, self.shtbase.ps.player_name
         )
         self.screenshot_saved = False
-        self.bg = pygame.image.load(default_score_surface_bg_path)
-        self.bg0 = pygame.image.load(default_score_surface_bg0_path)
-        self.scale_bg()
+        self.bg = None
+        self.pass_bg_path = default_score_surface_pass_bg_path
+        self.not_pass_bg_path = default_score_surface_not_pass_bg_path
 
     def scale_bg(self):
         self.bg = pygame.transform.scale(
             self.bg, (self.ps.w_width, self.ps.w_height)
         )
-        self.bg0 = pygame.transform.scale(
-            self.bg0, (self.ps.w_width, self.ps.w_height)
-        )
-
-    def get_bg_dest(self):
-        _bg = self.get_bg()
-        _w, _h = _bg.get_size()
-        return [
-            self.ps.w_width_of_2 - _w / 2,
-            self.ps.w_height_of_2 - _h / 2,
-        ]
 
     def get_bg(self):
-        return self.bg if self._pass else self.bg0
+        if not self.bg:
+            self.set_bg()
+        return self.bg
 
-    def set_bg(self, path):
-        self.bg = pygame.image.load(path)
+    def set_bg(self):
+        _bg_path = self.pass_bg_path if self._pass else self.not_pass_bg_path
+        self.bg = pygame.image.load(_bg_path)
+        self.scale_bg()
+
+    def set_bg_path(self, pass_bg_path=None, not_pass_bg_path=None):
+        if pass_bg_path:
+            self.pass_bg_path = pass_bg_path
+        if not_pass_bg_path:
+            self.not_pass_bg_path = not_pass_bg_path
+        if not pass_bg_path and not not_pass_bg_path:
+            self.pass_bg_path = default_score_surface_pass_bg_path
+            self.not_pass_bg_path = default_score_surface_not_pass_bg_path
 
     def get_screenshot_path(self):
         return self.screenshot_path
@@ -791,8 +793,6 @@ class ScoreSurface(InfoSurface):
             )
 
     def blit_bg(self):
-        if not self.bg:
-            return
         self.surface.blit(self.get_bg(), (0, 0))
 
     def blit(self):
