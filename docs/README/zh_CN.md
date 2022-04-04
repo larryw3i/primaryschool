@@ -18,9 +18,9 @@
 </p>
 
 <p align="center">
-  <a href="#怎么安装">怎么安装</a> 
+  <a href="#安装">安装</a> 
   • 
-  <a href="#待办项">待办项</a> 
+  <a href="#待办">待办</a> 
   • 
   <a href="#声明">声明</a> 
   • 
@@ -33,7 +33,7 @@
     width="100%" 
     height="auto"/>
 
-## 怎么安装
+## 安装
 
 安装 
 [primaryschool](https://pypi.org/project/primaryschool), 
@@ -52,7 +52,7 @@ pip3 install -U -i https://mirrors.bfsu.edu.cn/pypi/web/simple primaryschool;
 primaryschool # 回车。
 ```  
 
-## 待办项
+## 待办
 - [ ] 游戏搜索
 
 ## 声明
