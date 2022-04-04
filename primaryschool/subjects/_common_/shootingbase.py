@@ -266,9 +266,9 @@ class TargetsManager:
         self.moving_surfaces = []
         self.frame_counter = frame_counter or 30
         self.difficulty_index_p1 = self.shtbase.difficulty_index + 1
-        self.interval = 1.8 * self.shtbase.FPS
+        self.interval = 2.0 * self.shtbase.FPS
         self.intercept_interval = 0.3 * self.shtbase.FPS
-        self.moving_speed = (0, 1)
+        self.moving_speed = (0, 0.6)
         self.intercepted_color = (175, 10, 175, 100)
         self.laser_color = (0, 0, 255, 90)
         self.laser_width = 2
