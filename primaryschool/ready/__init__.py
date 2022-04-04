@@ -175,6 +175,8 @@ class PlayMenu:
         self.selection_box_bgcolor = (255, 255, 255)
         self.help_lael = None
         self.help_lael_font = get_default_font(20)
+        self.esc_lael_font = get_default_font(16)
+        self.esc_lael_font.set_bold(True)
         self.help_lael_bg = (228, 0, 252, 30)
         self.help_lael_border_color = (228, 0, 252, 200)
 
@@ -250,6 +252,12 @@ class PlayMenu:
             "", font_name=self.help_lael_font
         )
         self.update_help_lael()
+
+        self._menu.add.label(
+            _("After starting the game, press ESC to return"),
+            font_name=self.esc_lael_font,
+            font_color=(255, 0, 0),
+        )
 
     def update_selection_box_width(self):
         for ds in [
