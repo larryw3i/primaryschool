@@ -15,6 +15,11 @@
             src="https://badge.fury.io/py/primaryschool.svg" 
             alt="PyPI version" height="18" />
     </a>
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://img.shields.io/badge/code%20style-black-000000.svg" 
+            alt="Code style: black" height="18" />
+    </a>
 </p>
 
 <p align="center">
