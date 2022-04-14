@@ -1,6 +1,7 @@
 import importlib
 import os
 import uuid
+
 from appdirs import AppDirs
 
 from primaryschool.settings import app_author, app_name, app_version

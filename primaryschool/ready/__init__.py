@@ -1,7 +1,9 @@
 import importlib
 import os
 import pickle
+import subprocess
 import threading
+import webbrowser
 from functools import partial
 from itertools import zip_longest
 
@@ -14,6 +16,7 @@ from pygame_menu.locals import *
 from pygame_menu.widgets import *
 
 from primaryschool.dirs import *
+from primaryschool.dirs import user_screenshot_dir_path
 from primaryschool.locale import _
 from primaryschool.resource import (
     default_font,
@@ -23,9 +26,6 @@ from primaryschool.resource import (
 )
 from primaryschool.settings import *
 from primaryschool.subjects import subjects
-import webbrowser
-from primaryschool.dirs import user_screenshot_dir_path
-import subprocess
 
 app_description_t = _("app_description_t")
 
@@ -389,10 +389,15 @@ class MainMenu:
 
 
 class PrimarySchool:
-    def __init__(self):
-        pygame.init()
+    def __init__(self, surface=None):
+        if not pygame.get_init():
+            pygame.init()
         self.running = True
-        self.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.surface = (
+            surface
+            or getattr(self, "surface", None)
+            or pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        )
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2 = self.w_width / 2
         self.w_height_of_2 = self.w_height / 2
