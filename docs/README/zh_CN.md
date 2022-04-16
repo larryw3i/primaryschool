@@ -76,11 +76,7 @@
   <a href="#授权">授权</a>
 </p>  
 
-<img 
-    src="../images/screenshot.0.png" 
-    alt="screenshot" 
-    width="100%" 
-    height="auto"/>
+---
 
 ## 安装
 
@@ -103,6 +99,7 @@ primaryschool # 回车。
 
 ## 待办
 - [ ] 游戏搜索
+- [ ] 目标美化
 
 ## 声明
 

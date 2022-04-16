@@ -76,11 +76,7 @@
   <a href="#license">License</a>
 </p>  
 
-<img 
-    src="https://github.com/larryw3i/primaryschool/blob/daily/docs/images/screenshot.0.png?raw=true" 
-    alt="screenshot" 
-    width="100%" 
-    height="auto"/>
+---
 
 ## How To Use
 
@@ -98,7 +94,8 @@ pip3 install -U primaryschool; primaryschool
 ```  
 
 ## Todo List
-- [ ] Games search
+- [ ] Search games
+- [ ] Update target style
 
 ## Credits
 
