@@ -76,7 +76,7 @@ _i_test(){
 
 _start(){
     [[ -f "${app_name}/locale/en_US/LC_MESSAGES/${app_name}.mo" ]] || _msgfmt
-    venv/bin/python3 ${app_name}.py
+    python3 ${app_name}.py
 }
 
 active_venv(){
