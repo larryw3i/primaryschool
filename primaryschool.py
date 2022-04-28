@@ -1,5 +1,6 @@
 import getopt
 import os
+import re
 import sys
 
 from primaryschool.settings import *
@@ -82,15 +83,15 @@ for arg in argv:
         install_requirements_dev_u()
 
     if arg == "test":
-        import tests
+        from tests import victory
+
+        sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
+        sys.exit(victory())
+        break
 
 if len(argv) == 0:
-    import re
-    import sys
 
-    import tests
     from primaryschool import victory
 
-    # if __name__ == '__main__':
     sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
     sys.exit(victory())

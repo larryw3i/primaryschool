@@ -15,6 +15,55 @@
             src="https://badge.fury.io/py/primaryschool.svg" 
             alt="PyPI version" height="18" />
     </a>
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://img.shields.io/badge/code%20style-black-000000.svg" 
+            alt="Code style: black" height="18" />
+    </a>
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://static.pepy.tech/personalized-badge/primaryschool?period=week&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads/Week"
+            alt="Downloads/Month" height="18" />
+    </a>  
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://static.pepy.tech/personalized-badge/primaryschool?period=month&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads/Month"
+            alt="Downloads/Month" height="18" />
+    </a>  
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://static.pepy.tech/personalized-badge/primaryschool?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads"
+            alt="Downloads" height="18" />
+    </a>  
+    <a href="https://github.com/psf/black">
+        <img 
+            src="https://img.shields.io/badge/python-3.6+-blue.svg"
+            alt="Downloads" height="18" />
+    </a>  
+    <a href="https://github.com/larryw3i/primaryschool/blob/main/LICENSE">
+        <img 
+            alt="GitHub license" 
+            src="https://img.shields.io/github/license/larryw3i/primaryschool"
+        />
+    </a>
+    <a href="https://github.com/larryw3i/primaryschool/issues">
+        <img 
+            alt="GitHub issues" 
+            src="https://img.shields.io/github/issues/larryw3i/primaryschool"
+        />
+    </a>
+    <a href="https://github.com/larryw3i/primaryschool/network">
+        <img 
+            alt="GitHub forks" 
+            src="https://img.shields.io/github/forks/larryw3i/primaryschool"
+        />
+    </a>
+    <a href="https://github.com/larryw3i/primaryschool/stargazers">
+        <img 
+            alt="GitHub stars" 
+            src="https://img.shields.io/github/stars/larryw3i/primaryschool"
+        />
+    </a>
 </p>
 
 <p align="center">
@@ -27,11 +76,7 @@
   <a href="#授权">授权</a>
 </p>  
 
-<img 
-    src="../images/screenshot.0.png" 
-    alt="screenshot" 
-    width="100%" 
-    height="auto"/>
+---
 
 ## 安装
 
@@ -54,6 +99,7 @@ primaryschool # 回车。
 
 ## 待办
 - [ ] 游戏搜索
+- [ ] 目标美化
 
 ## 声明
 

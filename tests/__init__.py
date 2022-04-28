@@ -1,9 +1,9 @@
 
-b = ...
-def a():
-    b = 0
-def c():
-    print(b)
 
-def d():
-    print(b+3)
+
+def victory():
+    import pygame
+    from tests.primaryschool.ready import PrimarySchoolTest
+    pygame.init()
+    PrimarySchoolTest().run()
+    pass
