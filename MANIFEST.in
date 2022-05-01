@@ -11,6 +11,7 @@ prune tests/
 prune .git/
 prune primaryschool.build/
 prune .cp/
+prune .ipynb_checkpoints/
 
 global-exclude *.po
 global-exclude *.pot
