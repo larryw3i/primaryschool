@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
-_args=("$@") # All parameters from terminal.
-
 app_name='primaryschool'
+[[ -d "venv/local" ]] && bin_dir='venv/local/bin' || bin_dir='venv/bin'
+local_dir="${app_name}/locale"
+pot_path="${local_dir}/${app_name}.pot"
+first_mo_path="${local_dir}/en_US/LC_MESSAGES/${app_name}.mo"
 
 update_gitignore(){
     git rm -r --cached . && git add .
@@ -12,16 +14,16 @@ update_gitignore(){
 }
 
 _xgettext(){
-    xgettext -v -j -L Python --output=${app_name}/locale/${app_name}.pot \
+    xgettext -v -j -L Python --output=${pot_path} \
     $(find ${app_name}/ -name "*.py")
 
-    for _po in $(find ${app_name}/locale/ -name "*.po"); do
-        msgmerge -U -v $_po ${app_name}/locale/${app_name}.pot
+    for _po in $(find ${local_dir}/ -name "*.po"); do
+        msgmerge -U -v $_po ${pot_path}
     done
 }
 
 _msgfmt(){
-    for _po in $(find ${app_name}/locale -name "*.po"); do
+    for _po in $(find ${local_dir} -name "*.po"); do
         echo -e "$_po --> ${_po/.po/.mo}"
         msgfmt -v -o ${_po/.po/.mo} $_po
     done
@@ -37,6 +39,10 @@ p8(){
 }
 
 _black(){
+
+    isort ${app_name}/
+    isort ${app_name}.py
+    isort setup.py
     python3 -m black -l 79 ${app_name}/;
     python3 -m black -l 79 ${app_name}.py;
     python3 -m black -l 79 setup.py;
@@ -48,7 +54,7 @@ git_add(){
 }
 
 _pip3(){
-    python3 ${app_name}.py req_dev_u
+    ${bin_dir}/python3 ${app_name}.py req_dev_u
 }
 
 twine_upload(){
@@ -58,32 +64,32 @@ twine_upload(){
 bdist(){
     _msgfmt
     rm -rf dist/ build/ ${app_name}.egg-info/
-    python3 setup.py sdist bdist_wheel
+    ${bin_dir}/python3 setup.py sdist bdist_wheel
 }
 
 bdist_deb(){
     rm -rf deb_dist/  dist/  ${app_name}.egg-info/ ${app_name}*.tar.gz
-    python3 setup.py --command-packages=stdeb.command bdist_deb
+    ${bin_dir}/python3 setup.py --command-packages=stdeb.command bdist_deb
 }
 
 _i_test(){
     bdist
-    pip3 uninstall ${app_name} -y
-    pip3 install dist/*.whl
+    ${bin_dir}/pip3 uninstall ${app_name} -y
+    ${bin_dir}/pip3 install dist/*.whl
     ${app_name}
 }
 
-
 _start(){
-    [[ -f "${app_name}/locale/en_US/LC_MESSAGES/${app_name}.mo" ]] || _msgfmt
-    python3 ${app_name}.py
+    _black
+    [[ -f "${first_mo_path}" ]] || _msgfmt
+    ${bin_dir}/python3 ${app_name}.py
 }
 
 active_venv(){
-    [[ -f "./venv/bin/activate" ]] || \
-    [[ -f $(which virtualenv) ]] && virtualenv venv || \
+    [[ -f "${bin_dir}/activate" ]] || \
+    [[ -f "$(which virtualenv)" ]] && virtualenv venv || \
     echo "Installing virtualenv..." && pip3 install -U virtualenv
-    source venv/bin/activate
+    source ${bin_dir}/activate
 }
 
 cat_bt(){
@@ -98,7 +104,7 @@ cat_bt(){
 }
 
 test(){
-    python3 ${app_name}.py test
+    ${bin_dir}/python3 ${app_name}.py test
 }
 
 tu(){       twine_upload;       }
@@ -125,4 +131,4 @@ bdeb(){     bdist_deb;          }
 wcl(){      _cat_ | wc -l;      }
 blk(){      _black;              }
 
-${_args[0]}
+$1
