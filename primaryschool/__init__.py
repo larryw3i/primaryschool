@@ -5,7 +5,6 @@ project_path = os.path.abspath(os.path.dirname(__file__))
 
 
 def victory():
-    from primaryschool import ready
+    from primaryschool.widgets import show
 
-    ready.go()
-    pass
+    show()
