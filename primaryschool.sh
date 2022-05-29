@@ -129,6 +129,6 @@ _cat_(){    _cat | tr -s '\n';  }
 
 bdeb(){     bdist_deb;          }
 wcl(){      _cat_ | wc -l;      }
-blk(){      _black;              }
+blk(){      _black;             }
 
 $1
