@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 21:49+0800\n"
-"PO-Revision-Date: 2022-04-04 21:49+0800\n"
+"POT-Creation-Date: 2022-06-05 05:05+0800\n"
+"PO-Revision-Date: 2022-06-05 05:05+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -36,7 +36,7 @@ msgstr "语文"
 #: primaryschool/ready/__init__.py:285 primaryschool/ready/__init__.py:307
 #: primaryschool/ready/__init__.py:323 primaryschool/ready/__init__.py:325
 #: primaryschool/ready/__init__.py:327 primaryschool/ready/__init__.py:342
-#: primaryschool/ready/__init__.py:350
+#: primaryschool/ready/__init__.py:350 primaryschool/widgets/wroot.py:20
 msgid "Primary School"
 msgstr "小学的游戏"
 
@@ -238,6 +238,8 @@ msgstr "返回主菜单"
 #: primaryschool/ready/__init__.py:333 primaryschool/ready/__init__.py:335
 #: primaryschool/ready/__init__.py:337 primaryschool/ready/__init__.py:112
 #: primaryschool/ready/__init__.py:364 primaryschool/ready/__init__.py:372
+#: primaryschool/widgets/about_toplevel.py:61
+#: primaryschool/widgets/menubar.py:22
 msgid "About"
 msgstr "关于"
 
@@ -316,6 +318,7 @@ msgstr "没有发现 %s 的字体。"
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:85
 #: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:126
 #: primaryschool/ready/__init__.py:131 primaryschool/ready/__init__.py:136
+#: primaryschool/widgets/left_place.py:91
 msgid "Author"
 msgstr "作者"
 
@@ -326,6 +329,7 @@ msgid "Contributors"
 msgstr "贡献者"
 
 #: primaryschool/settings.py:12 primaryschool/ready/__init__.py:18
+#: primaryschool/settings_t.py:7
 msgid "primary school knowledge games"
 msgstr "小学的知识游戏"
 
@@ -1048,7 +1052,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
-#: primaryschool/ready/__init__.py:401
+#: primaryschool/ready/__init__.py:401 primaryschool/ready/__init__.py:406
 msgid "default_name"
 msgstr "小学"
 
@@ -1109,3 +1113,31 @@ msgstr "进入游戏后，按Esc返回。"
 #: primaryschool/ready/__init__.py:257
 msgid "After starting the game, press ESC to return."
 msgstr "进入游戏后，按Esc返回。"
+
+#: primaryschool/settings_t.py:6
+msgid "primaryschool"
+msgstr "小学的游戏"
+
+#: primaryschool/widgets/left_place.py:90
+msgid "Game"
+msgstr "游戏"
+
+#: primaryschool/widgets/left_place.py:92
+msgid "Updating date"
+msgstr "最近更新时间"
+
+#: primaryschool/widgets/about_toplevel.py:47
+msgid "OK"
+msgstr "好的"
+
+#: primaryschool/widgets/about_toplevel.py:157
+msgid "Author:"
+msgstr "作者:"
+
+#: primaryschool/widgets/about_toplevel.py:165
+msgid "Contributors:"
+msgstr "贡献者:"
+
+#: primaryschool/widgets/menubar.py:23
+msgid "Help"
+msgstr "帮助"

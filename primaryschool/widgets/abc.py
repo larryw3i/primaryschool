@@ -8,3 +8,6 @@ class WidgetABC(ABC):
 
     def place(self):
         pass
+
+    def config(self):
+        pass

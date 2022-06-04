@@ -19,8 +19,8 @@ class PSMenubar(WidgetABC):
         )
         self.about_toplevel = None
         self.help_menu = tk.Menu(self.menu, tearoff=0)
-        self.help_menu.add_command(label="About", command=self.about)
-        self.menu.add_cascade(label="Help", menu=self.help_menu)
+        self.help_menu.add_command(label=_("About"), command=self.about)
+        self.menu.add_cascade(label=_("Help"), menu=self.help_menu)
 
     def config(self):
         self.root.config(menu=self.menu)

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import tkinter as tk
@@ -18,6 +17,7 @@ from primaryschool.widgets.abc import WidgetABC
 class RightPlace(WidgetABC):
     def __init__(
         self,
-        ps,):
+        ps,
+    ):
         super().__init__(ps)
         self.text = tk.Text(self.root)

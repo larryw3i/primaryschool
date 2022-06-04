@@ -7,6 +7,7 @@ from tkinter import ttk
 
 from primaryschool.dirs import *
 from primaryschool.locale import _
+from primaryschool.widgets.left_place import LeftPlace
 from primaryschool.widgets.menubar import PSMenubar
 
 
@@ -14,6 +15,7 @@ class PSWidget:
     def __init__(self):
         self.root = Tk()
         self.menubar = PSMenubar(self)
+        self.leftplace = LeftPlace(self)
 
     def set_title(self, title=_("Primary School")):
         self.root.title(title)
@@ -48,8 +50,17 @@ class PSWidget:
     def get_default_height(self):
         return self.get_screenheight(of=2)
 
+    def get_root_width(self):
+        root_width = self.root.winfo_width()
+        return root_width > 1 and root_width or self.get_default_width()
+
+    def get_root_height(self):
+        root_height = self.root.winfo_height()
+        return root_height > 1 and root_height or self.get_default_height()
+
     def place(self):
         self.menubar.place()
+        self.leftplace.place()
 
     def set_bind(self):
         self.root.bind("<Configure>", self.root_bind_configure)
@@ -58,6 +69,9 @@ class PSWidget:
         self.menubar.config()
         self.place()
 
+    def config(self):
+        pass
+
     def set_widgets(self):
         pass
 
@@ -65,6 +79,7 @@ class PSWidget:
         self.set_title()
         self.set_geometry()
         self.set_widgets()
+        self.config()
         self.set_bind()
         self.place()
         self.root.mainloop()
