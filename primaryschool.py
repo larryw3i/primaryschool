@@ -75,6 +75,38 @@ def install_requirements_dev_u():
 
 argv = sys.argv[1:]
 
+
+def gen_settings4xgettext():
+    from primaryschool import settings
+
+    _pwd = os.path.abspath(os.path.dirname(__file__))
+    with open(os.path.join(_pwd, "primaryschool", "settings.txt"), "r") as f:
+        settings_txt = f.read()
+    _attrs = dir(settings)
+    for _attr in _attrs:
+        _attr_value = getattr(settings, _attr)
+        if not isinstance(_attr_value, str):
+            continue
+        settings_txt = settings_txt.replace(f"@{_attr}", _attr_value)
+
+    with open(os.path.join(_pwd, "primaryschool", "settings_t.py"), "w") as f:
+        f.write(settings_txt)
+
+
+def start_victory():
+    from primaryschool import victory
+
+    sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
+    sys.exit(victory())
+
+
+def start_victory_test():
+    from test import victory
+
+    sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
+    sys.exit(victory())
+
+
 for arg in argv:
     if arg == "req_dev":
         install_requirements_dev()
@@ -82,16 +114,12 @@ for arg in argv:
     if arg == "req_dev_u":
         install_requirements_dev_u()
 
-    if arg == "test":
-        from tests import victory
+    if arg == "4xget":
+        gen_settings4xgettext()
 
-        sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
-        sys.exit(victory())
+    if arg == "test":
+        start_victory_test()
         break
 
 if len(argv) == 0:
-
-    from primaryschool import victory
-
-    sys.argv[0] = re.sub(r"(-script\.pyw|\.exe)?$", "", sys.argv[0])
-    sys.exit(victory())
+    start_victory()

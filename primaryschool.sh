@@ -85,6 +85,10 @@ _start(){
     ${bin_dir}/python3 ${app_name}.py
 }
 
+gen4xget(){
+    ${bin_dir}/python3 ${app_name}.py 4xget
+}
+
 active_venv(){
     [[ -f "${bin_dir}/activate" ]] || \
     [[ -f "$(which virtualenv)" ]] && virtualenv venv || \
@@ -130,5 +134,7 @@ _cat_(){    _cat | tr -s '\n';  }
 bdeb(){     bdist_deb;          }
 wcl(){      _cat_ | wc -l;      }
 blk(){      _black;             }
+
+4xget(){    gen4xget;           }
 
 $1
