@@ -12,6 +12,7 @@ from primaryschool.locale import _
 from primaryschool.settings import *
 from primaryschool.settings_t import *
 from primaryschool.widgets.abc import WidgetABC
+from primaryschool.widgets.common import tk_text_insert
 
 
 class AboutToplevel(WidgetABC):
@@ -102,34 +103,23 @@ class AboutToplevel(WidgetABC):
     def default_text_insert(
         self,
         content,
-        new_line=True,
-        font="",
+        newline=True,
+        font=None,
         justify="center",
-        foreground="",
-        background="",
-        cursor="",
+        foreground=None,
+        background=None,
+        cursor=None,
     ):
-        if new_line:
-            self.text.insert("end", "\n")
-        _tag = str(uuid.uuid4()).replace("-", "")
-        self.text.insert("end", content, (_tag))
-        self.text.tag_configure(
-            _tag,
+        return tk_text_insert(
+            self.text,
+            content,
+            newline=newline,
             font=font,
             justify=justify,
             foreground=foreground,
             background=background,
+            cursor=cursor,
         )
-
-        self.text.tag_bind(
-            _tag,
-            "<Enter>",
-            lambda e, cursor=cursor: self.text.config(cursor=cursor),
-        )
-        self.text.tag_bind(
-            _tag, "<Leave>", lambda e: self.text.config(cursor="")
-        )
-        return _tag
 
     def set_text_content(self):
 
