@@ -1,18 +1,11 @@
-import asyncio
 import importlib
 import os
 import pickle
-import queue
 import subprocess
 import threading
-import tkinter as tk
 import webbrowser
 from functools import partial
 from itertools import zip_longest
-from multiprocessing import Pipe, Process, Queue
-from queue import Queue
-from threading import Thread
-from tkinter import *
 
 import pygame
 import pygame_menu
@@ -165,8 +158,6 @@ class PlayMenu:
     def __init__(self, ps):
         self.ps = ps
         self.title = _("Play Game")
-        self.tk_root = None
-        self.player_name_entry = None
         self.player_name = self.ps.player_name
         self.player_name_button = None
         self._menu = self.ps.get_default_menu(self.title)
@@ -191,51 +182,16 @@ class PlayMenu:
 
     def set_player_name(self, name):
         self.player_name = self.ps.player_name = name
-        self.player_name_button.set_title(self.player_name)
+        if self.player_name_button:
+            self.player_name_button.set_value(self.player_name)
 
     def get_player_name(self):
         return self.player_name
 
-    def exit_player_name_button_action(self):
-
-        self.set_player_name(self.player_name_entry.get())
-        self.tk_root.destroy()
-        self.tk_root = None
-
-    def show_player_name_entry_tk(self):
-
-        self.tk_root = tk.Tk()
-        tk.Label(self.tk_root, text="Player name:").pack(side=LEFT)
-        self.player_name_entry = tk.Entry(self.tk_root, bd=5)
-        self.player_name_entry.bind(
-            "<Return>",
-            lambda e: self.exit_player_name_button_action,
-        )
-        self.player_name_entry.pack(side=RIGHT)
-        w, h = self.tk_root.winfo_reqwidth(), self.tk_root.winfo_reqheight()
-        sw, sh = (
-            self.tk_root.winfo_screenwidth(),
-            self.tk_root.winfo_screenheight(),
-        )
-        self.tk_root.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
-        self.tk_root.resizable(False, False)
-        self.tk_root.wm_protocol(
-            "WM_DELETE_WINDOW",
-            lambda: self.exit_player_name_button_action(),
-        )
-        self.tk_root.mainloop()
-
-    def player_name_button_action(self):
-        if not self.tk_root:
-            tasks = [self.show_player_name_entry_tk()]
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(asyncio.wait(tasks))
-            loop.close()
-
     def add_widgets(self):
-        self.player_name_button = self._menu.add.button(
-            _("Name :") + self.get_player_name(),
-            self.player_name_button_action,
+        self.player_name_button = self._menu.add.text_input(
+            title=_("Name :"),
+            default=self.get_player_name(),
             font_name=self.ps.font_path,
         )
 
@@ -293,7 +249,7 @@ class PlayMenu:
         )
 
         self.help_label = self._menu.add.label(
-            "", font_name=self.help_label_font, max_char=-1
+            "", font_name=self.help_label_font
         )
         self.update_help_label()
 
@@ -301,7 +257,6 @@ class PlayMenu:
             _("After starting the game, press ESC to return."),
             font_name=self.esc_lael_font,
             font_color=(255, 0, 0),
-            max_char=-1,
         )
 
     def update_selection_box_width(self):
@@ -434,14 +389,14 @@ class MainMenu:
 
 
 class PrimarySchool:
-    def __init__(self, surface=None, mode_flags=pygame.RESIZABLE):
+    def __init__(self, surface=None):
         if not pygame.get_init():
             pygame.init()
         self.running = True
         self.surface = (
             surface
             or getattr(self, "surface", None)
-            or pygame.display.set_mode((0, 0), mode_flags)
+            or pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         )
         self.w_width, self.w_height = self.surface.get_size()
         self.w_width_of_2 = self.w_width / 2
