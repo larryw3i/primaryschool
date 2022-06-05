@@ -509,7 +509,14 @@ class PrimarySchool:
 
             pygame.display.flip()
 
+class Player():
+    def __init__(self):
+        pass
+
+def get_player():
+    pass
 
 def go():
+
     PrimarySchool().run()
     pass
