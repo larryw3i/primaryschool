@@ -25,6 +25,7 @@ from pygame_menu.widgets import *
 from primaryschool.dirs import *
 from primaryschool.dirs import user_screenshot_dir_path
 from primaryschool.locale import _
+from primaryschool.ready.player import Player
 from primaryschool.resource import (
     default_font,
     default_font_path,
@@ -189,53 +190,9 @@ class PlayMenu:
         self.help_label_bg = (228, 0, 252, 30)
         self.help_label_border_color = (228, 0, 252, 200)
 
-    def set_player_name(self, name):
-        self.player_name = self.ps.player_name = name
-        self.player_name_button.set_title(self.player_name)
-
-    def get_player_name(self):
-        return self.player_name
-
-    def exit_player_name_button_action(self):
-
-        self.set_player_name(self.player_name_entry.get())
-        self.tk_root.destroy()
-        self.tk_root = None
-
-    def show_player_name_entry_tk(self):
-
-        self.tk_root = tk.Tk()
-        tk.Label(self.tk_root, text="Player name:").pack(side=LEFT)
-        self.player_name_entry = tk.Entry(self.tk_root, bd=5)
-        self.player_name_entry.bind(
-            "<Return>",
-            lambda e: self.exit_player_name_button_action,
-        )
-        self.player_name_entry.pack(side=RIGHT)
-        w, h = self.tk_root.winfo_reqwidth(), self.tk_root.winfo_reqheight()
-        sw, sh = (
-            self.tk_root.winfo_screenwidth(),
-            self.tk_root.winfo_screenheight(),
-        )
-        self.tk_root.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
-        self.tk_root.resizable(False, False)
-        self.tk_root.wm_protocol(
-            "WM_DELETE_WINDOW",
-            lambda: self.exit_player_name_button_action(),
-        )
-        self.tk_root.mainloop()
-
-    def player_name_button_action(self):
-        if not self.tk_root:
-            tasks = [self.show_player_name_entry_tk()]
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(asyncio.wait(tasks))
-            loop.close()
-
     def add_widgets(self):
         self.player_name_button = self._menu.add.button(
-            _("Name :") + self.get_player_name(),
-            self.player_name_button_action,
+            _("Name :") + self.ps.get_player_name(),
             font_name=self.ps.font_path,
         )
 
@@ -434,7 +391,9 @@ class MainMenu:
 
 
 class PrimarySchool:
-    def __init__(self, surface=None, mode_flags=pygame.RESIZABLE):
+    def __init__(
+        self, surface=None, mode_flags=pygame.RESIZABLE, player_name=None
+    ):
         if not pygame.get_init():
             pygame.init()
         self.running = True
@@ -448,7 +407,7 @@ class PrimarySchool:
         self.w_height_of_2 = self.w_height / 2
         self.w_centrex_y = [self.w_width_of_2, self.w_height]
         self.FPS = 30
-        self.player_name = _("default_name")
+        self.player_name = player_name or _("default_name")
         self.clock = pygame.time.Clock()
         self.subjects = subjects
         self.subject_games = self.subjects[0].games
@@ -464,6 +423,12 @@ class PrimarySchool:
         self.about_menu = AboutMenu(self)
         self.save_menu = SaveMenu(self)
         self.main_menu = MainMenu(self)
+
+    def set_player_name(self, name):
+        self.player_name = name
+
+    def get_player_name(self):
+        return self.player_name
 
     def add_widgets(self):
         self.play_menu.add_widgets()
@@ -509,14 +474,8 @@ class PrimarySchool:
 
             pygame.display.flip()
 
-class Player():
-    def __init__(self):
-        pass
-
-def get_player():
-    pass
 
 def go():
-
-    PrimarySchool().run()
-    pass
+    player = Player()
+    player_name = player.get_name_by_tk()
+    PrimarySchool(player_name=player_name).run()
