@@ -48,6 +48,13 @@ requirements = [
             "MIT",
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
         ),
+        (
+            "PyYAML",
+            "",
+            "https://github.com/yaml/pyyaml",
+            "MIT License",
+            "https://github.com/yaml/pyyaml/blob/master/LICENSE",
+        ),
     ],
 ]
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-05 05:05+0800\n"
+"POT-Creation-Date: 2022-06-12 00:06+0800\n"
 "PO-Revision-Date: 2022-03-24 13:44+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -37,6 +37,8 @@ msgstr "yuwen"
 #: primaryschool/ready/__init__.py:323 primaryschool/ready/__init__.py:325
 #: primaryschool/ready/__init__.py:327 primaryschool/ready/__init__.py:342
 #: primaryschool/ready/__init__.py:350 primaryschool/widgets/wroot.py:20
+#: primaryschool/games/__init__.py:350 primaryschool/ready/__init__.py:352
+#: primaryschool/widgets/deprecated_wroot.py:20
 msgid "Primary School"
 msgstr ""
 
@@ -50,7 +52,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:152 primaryschool/ready/__init__.py:169
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:185
 #: primaryschool/ready/__init__.py:187 primaryschool/ready/__init__.py:191
-#: primaryschool/ready/__init__.py:193
+#: primaryschool/ready/__init__.py:193 primaryschool/games/__init__.py:193
+#: primaryschool/ready/__init__.py:195
 msgid "Name :"
 msgstr ""
 
@@ -69,6 +72,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:194 primaryschool/ready/__init__.py:209
 #: primaryschool/ready/__init__.py:211 primaryschool/ready/__init__.py:213
 #: primaryschool/ready/__init__.py:218 primaryschool/ready/__init__.py:220
+#: primaryschool/games/__init__.py:220 primaryschool/ready/__init__.py:221
 msgid "Difficulty :"
 msgstr ""
 
@@ -107,6 +111,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:226 primaryschool/ready/__init__.py:334
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:359
 #: primaryschool/ready/__init__.py:235 primaryschool/ready/__init__.py:367
+#: primaryschool/games/__init__.py:235 primaryschool/games/__init__.py:367
+#: primaryschool/ready/__init__.py:236 primaryschool/ready/__init__.py:369
 msgid "Play"
 msgstr ""
 
@@ -122,6 +128,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:320 primaryschool/ready/__init__.py:336
 #: primaryschool/ready/__init__.py:338 primaryschool/ready/__init__.py:340
 #: primaryschool/ready/__init__.py:369 primaryschool/ready/__init__.py:377
+#: primaryschool/games/__init__.py:377 primaryschool/ready/__init__.py:379
 msgid "Quit"
 msgstr ""
 
@@ -177,6 +184,7 @@ msgstr "ps"
 #: primaryschool/ready/__init__.py:174 primaryschool/ready/__init__.py:188
 #: primaryschool/ready/__init__.py:190 primaryschool/ready/__init__.py:192
 #: primaryschool/ready/__init__.py:197 primaryschool/ready/__init__.py:199
+#: primaryschool/games/__init__.py:199 primaryschool/ready/__init__.py:200
 msgid "Subject :"
 msgstr ""
 
@@ -203,6 +211,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:103 primaryschool/ready/__init__.py:131
 #: primaryschool/ready/__init__.py:148 primaryschool/ready/__init__.py:156
 #: primaryschool/ready/__init__.py:155 primaryschool/ready/__init__.py:160
+#: primaryschool/games/__init__.py:160 primaryschool/ready/__init__.py:168
 msgid "Play Game"
 msgstr ""
 
@@ -221,7 +230,11 @@ msgstr ""
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:235
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:99
 #: primaryschool/ready/__init__.py:151 primaryschool/ready/__init__.py:244
-#: primaryschool/ready/__init__.py:246
+#: primaryschool/ready/__init__.py:246 primaryschool/games/__init__.py:52
+#: primaryschool/games/__init__.py:99 primaryschool/games/__init__.py:151
+#: primaryschool/games/__init__.py:246 primaryschool/ready/__init__.py:60
+#: primaryschool/ready/__init__.py:107 primaryschool/ready/__init__.py:159
+#: primaryschool/ready/__init__.py:247
 msgid "Return to main menu"
 msgstr ""
 
@@ -239,7 +252,12 @@ msgstr ""
 #: primaryschool/ready/__init__.py:337 primaryschool/ready/__init__.py:112
 #: primaryschool/ready/__init__.py:364 primaryschool/ready/__init__.py:372
 #: primaryschool/widgets/about_toplevel.py:61
-#: primaryschool/widgets/menubar.py:22
+#: primaryschool/widgets/menubar.py:22 primaryschool/games/__init__.py:112
+#: primaryschool/games/__init__.py:372 primaryschool/ready/__init__.py:374
+#: primaryschool/widgets/about_toplevel.py:62 primaryschool/ready/psready.py:89
+#: primaryschool/ready/psready.py:249
+#: primaryschool/widgets/deprecated_menubar.py:22
+#: primaryschool/widgets/deprecated_about_toplevel.py:62
 msgid "About"
 msgstr ""
 
@@ -251,6 +269,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:179 primaryschool/ready/__init__.py:194
 #: primaryschool/ready/__init__.py:196 primaryschool/ready/__init__.py:198
 #: primaryschool/ready/__init__.py:202 primaryschool/ready/__init__.py:204
+#: primaryschool/games/__init__.py:204 primaryschool/ready/__init__.py:205
 msgid "Select a Subject"
 msgstr ""
 
@@ -262,6 +281,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:198
 #: primaryschool/ready/__init__.py:200 primaryschool/ready/__init__.py:202
 #: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
+#: primaryschool/games/__init__.py:208 primaryschool/ready/__init__.py:209
 msgid "Game :"
 msgstr ""
 
@@ -273,6 +293,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:189 primaryschool/ready/__init__.py:204
 #: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
 #: primaryschool/ready/__init__.py:213 primaryschool/ready/__init__.py:215
+#: primaryschool/games/__init__.py:215 primaryschool/ready/__init__.py:216
 msgid "Select a game"
 msgstr ""
 
@@ -284,7 +305,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:200
 #: primaryschool/ready/__init__.py:215 primaryschool/ready/__init__.py:217
 #: primaryschool/ready/__init__.py:219 primaryschool/ready/__init__.py:226
-#: primaryschool/ready/__init__.py:228
+#: primaryschool/ready/__init__.py:228 primaryschool/games/__init__.py:228
+#: primaryschool/ready/__init__.py:229
 msgid "Select a difficulty"
 msgstr ""
 
@@ -318,13 +340,16 @@ msgstr ""
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:85
 #: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:126
 #: primaryschool/ready/__init__.py:131 primaryschool/ready/__init__.py:136
-#: primaryschool/widgets/left_place.py:91
+#: primaryschool/widgets/left_place.py:91 primaryschool/games/__init__.py:136
+#: primaryschool/ready/__init__.py:144
+#: primaryschool/widgets/deprecated_left_place.py:91
 msgid "Author"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:46 primaryschool/ready/__init__.py:47
 #: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:89
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/games/__init__.py:87 primaryschool/ready/__init__.py:95
 msgid "Contributors"
 msgstr ""
 
@@ -336,6 +361,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:17 primaryschool/ready/__init__.py:20
 #: primaryschool/ready/__init__.py:21 primaryschool/ready/__init__.py:25
 #: primaryschool/ready/__init__.py:24 primaryschool/ready/__init__.py:30
+#: primaryschool/games/__init__.py:30 primaryschool/ready/__init__.py:38
 msgid "app_description_t"
 msgstr "primary school knowledge games"
 
@@ -758,13 +784,15 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:30
 #: primaryschool/ready/__init__.py:32 primaryschool/ready/__init__.py:33
-#: primaryschool/ready/__init__.py:37
+#: primaryschool/ready/__init__.py:37 primaryschool/games/__init__.py:37
+#: primaryschool/ready/__init__.py:45
 msgid "Save game?"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:36 primaryschool/ready/__init__.py:37
 #: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:40
-#: primaryschool/ready/__init__.py:44
+#: primaryschool/ready/__init__.py:44 primaryschool/games/__init__.py:44
+#: primaryschool/ready/__init__.py:52
 msgid "Save and return"
 msgstr ""
 
@@ -775,6 +803,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:227 primaryschool/ready/__init__.py:229
 #: primaryschool/ready/__init__.py:231 primaryschool/ready/__init__.py:49
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:239
+#: primaryschool/games/__init__.py:49 primaryschool/games/__init__.py:239
+#: primaryschool/ready/__init__.py:57 primaryschool/ready/__init__.py:240
 msgid "Continue"
 msgstr ""
 
@@ -921,7 +951,9 @@ msgstr ""
 #: primaryschool/ready/__init__.py:68 primaryschool/ready/__init__.py:118
 #: primaryschool/ready/__init__.py:135 primaryschool/ready/__init__.py:71
 #: primaryschool/ready/__init__.py:140 primaryschool/ready/__init__.py:74
-#: primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:145 primaryschool/games/__init__.py:74
+#: primaryschool/games/__init__.py:145 primaryschool/ready/__init__.py:82
+#: primaryschool/ready/__init__.py:153
 msgid "Contributors & Sponsors"
 msgstr ""
 
@@ -1044,6 +1076,11 @@ msgstr ""
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
 #: primaryschool/ready/__init__.py:401 primaryschool/ready/__init__.py:406
+#: primaryschool/games/__init__.py:406 primaryschool/ready/player.py:40
+#: primaryschool/ready/__init__.py:410 primaryschool/widgets/__init__.py:19
+#: primaryschool/ready/psready.py:207
+#: primaryschool/widgets/deprecated___init__.py:19
+#: primaryschool/widgets/__init__.py:40
 msgid "default_name"
 msgstr "ps"
 
@@ -1069,15 +1106,18 @@ msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/games/__init__.py:87 primaryschool/ready/__init__.py:95
 #, fuzzy
 msgid "name"
 msgstr "ps"
 
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/games/__init__.py:87 primaryschool/ready/__init__.py:95
 msgid "Sponsors"
 msgstr ""
 
 #: primaryschool/ready/__init__.py:374 primaryschool/ready/__init__.py:382
+#: primaryschool/games/__init__.py:382 primaryschool/ready/__init__.py:384
 msgid "Screenshots"
 msgstr ""
 
@@ -1100,7 +1140,8 @@ msgstr ""
 msgid "After starting the game, press ESC to return"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:257
+#: primaryschool/ready/__init__.py:257 primaryschool/games/__init__.py:257
+#: primaryschool/ready/__init__.py:258
 msgid "After starting the game, press ESC to return."
 msgstr ""
 
@@ -1109,25 +1150,49 @@ msgid "primaryschool"
 msgstr ""
 
 #: primaryschool/widgets/left_place.py:90
+#: primaryschool/widgets/deprecated_left_place.py:90
 msgid "Game"
 msgstr ""
 
 #: primaryschool/widgets/left_place.py:92
+#: primaryschool/widgets/deprecated_left_place.py:92
 msgid "Updating date"
 msgstr ""
 
 #: primaryschool/widgets/about_toplevel.py:47
+#: primaryschool/widgets/about_toplevel.py:48 primaryschool/ready/psready.py:75
+#: primaryschool/widgets/deprecated_about_toplevel.py:48
 msgid "OK"
 msgstr ""
 
 #: primaryschool/widgets/about_toplevel.py:157
+#: primaryschool/widgets/about_toplevel.py:147
+#: primaryschool/ready/psready.py:174
+#: primaryschool/widgets/deprecated_about_toplevel.py:147
 msgid "Author:"
 msgstr ""
 
 #: primaryschool/widgets/about_toplevel.py:165
+#: primaryschool/widgets/about_toplevel.py:155
+#: primaryschool/ready/psready.py:182
+#: primaryschool/widgets/deprecated_about_toplevel.py:155
 msgid "Contributors:"
 msgstr ""
 
 #: primaryschool/widgets/menubar.py:23
+#: primaryschool/widgets/deprecated_menubar.py:23
 msgid "Help"
+msgstr ""
+
+#: primaryschool/ready/player.py:59 primaryschool/ready/psready.py:241
+#: primaryschool/widgets/__init__.py:59
+msgid "Player name:"
+msgstr ""
+
+#: primaryschool/ready/psready.py:221 primaryschool/ready/psready.py:237
+msgid "PrimarySchool"
+msgstr ""
+
+#: primaryschool/ready/psready.py:245
+msgid "GO"
 msgstr ""

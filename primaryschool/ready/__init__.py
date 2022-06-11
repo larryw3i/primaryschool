@@ -25,7 +25,7 @@ from pygame_menu.widgets import *
 from primaryschool.dirs import *
 from primaryschool.dirs import user_screenshot_dir_path
 from primaryschool.locale import _
-from primaryschool.ready.player import Player
+from primaryschool.ready.psready import PSReady
 from primaryschool.resource import (
     default_font,
     default_font_path,
@@ -392,10 +392,16 @@ class MainMenu:
 
 class PrimarySchool:
     def __init__(
-        self, surface=None, mode_flags=pygame.RESIZABLE, player_name=None
+        self,
+        surface=None,
+        mode_flags=pygame.RESIZABLE,
+        player_name=None,
+        caption=_("PrimarySchool"),
     ):
         if not pygame.get_init():
             pygame.init()
+        self.caption = caption
+        pygame.display.set_caption(self.caption)
         self.running = True
         self.surface = (
             surface
@@ -476,6 +482,6 @@ class PrimarySchool:
 
 
 def go():
-    player = Player()
-    player_name = player.get_name_by_tk()
-    PrimarySchool(player_name=player_name).run()
+    psready = PSReady()
+    psready.get_input()
+    PrimarySchool(player_name=psready.player_name).run()
