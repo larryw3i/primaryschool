@@ -305,6 +305,10 @@ class PSReady:
         self.set_ready_data()
         self.root.destroy()
 
+    def sys_exit(self):
+        self.root.destroy()
+        sys.exit(0)
+
     def mainloop(self):
         w, h = self.root.winfo_reqwidth(), self.root.winfo_reqheight()
         sw, sh = (
@@ -315,7 +319,7 @@ class PSReady:
         self.root.resizable(False, False)
         self.root.wm_protocol(
             "WM_DELETE_WINDOW",
-            lambda: self.exit(),
+            lambda: self.sys_exit(),
         )
         if self.player_name_entry:
             self.player_name_entry.focus_set()
