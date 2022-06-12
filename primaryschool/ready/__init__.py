@@ -57,8 +57,8 @@ class SaveMenu:
             _("Continue"), self.continue_the_game, font_name=self.ps.font_path
         )
         self._menu.add.button(
-            _("Return to main menu"),
-            self.to_main_menu,
+            _("Return to play menu"),
+            self.to_play_menu,
             font_name=self.ps.font_path,
         )
 
@@ -67,10 +67,15 @@ class SaveMenu:
         self.ps.main_menu._menu.enable()
         self.ps.main_menu._menu.mainloop(self.surface)
 
+    def to_play_menu(self):
+        self.ps.play_menu._menu.full_reset()
+        self.ps.play_menu._menu.enable()
+        self.ps.play_menu._menu.mainloop(self.surface)
+
     def save_the_game(self):
         self.ps.subject_game.save(self.ps)
         self._menu.disable()
-        self.to_main_menu()
+        self.to_play_menu()
 
     def continue_the_game(self):
         self._menu.disable()
@@ -161,14 +166,22 @@ class AboutMenu:
             font_name=self.ps.font_path,
         )
 
+class ScoreMenu:
+    def __init__(
+        self, ps
+    ):
+        self.ps = ps
+        self.title = _("Score")
+        self._menu = self.ps.get_default_menu(self.title)
 
 class PlayMenu:
-    def __init__(self, ps, return_main_menu=False):
+    def __init__(
+        self, ps, show_return_main_menu=False, show_open_screenshots_button=True
+    ):
         self.ps = ps
-        self.return_main_menu = return_main_menu
+        self.show_open_screenshots_button = show_open_screenshots_button
+        self.show_return_main_menu = show_return_main_menu
         self.title = _("Play Game")
-        self.tk_root = None
-        self.player_name_entry = None
         self.player_name = self.ps.player_name
         self.player_name_button = None
         self._menu = self.ps.get_default_menu(self.title)
@@ -190,6 +203,16 @@ class PlayMenu:
         self.esc_lael_font.set_bold(True)
         self.help_label_bg = (228, 0, 252, 30)
         self.help_label_border_color = (228, 0, 252, 200)
+
+    def open_screenshots_dir(self):
+        _open = (
+            sys.platform == "darwin"
+            and "open"
+            or sys.platform == "win32"
+            and "explorer"
+            or "xdg-open"
+        )
+        subprocess.Popen([_open, user_screenshot_dir_path])
 
     def add_widgets(self):
         self.player_name_button = self._menu.add.button(
@@ -244,7 +267,7 @@ class PlayMenu:
         )
         self.update_continue_button()
 
-        if self.return_main_menu:
+        if self.show_return_main_menu:
             self._menu.add.button(
                 _("Return to main menu"),
                 pygame_menu.events.BACK,
@@ -262,6 +285,16 @@ class PlayMenu:
             font_color=(255, 0, 0),
             max_char=-1,
         )
+
+        if self.show_open_screenshots_button:
+            self._menu.add.button(
+                _("Screenshots >>"),
+                self.open_screenshots_dir,
+                font_name=self.ps.font_path,
+                align=pygame_menu.locals.ALIGN_RIGHT,
+                background_color=(200, 200, 200, 200),
+                font_color=(220, 20, 100),
+            )
 
     def update_selection_box_width(self):
         for ds in [
@@ -356,16 +389,6 @@ class MainMenu:
         self.play_menu = self.ps.play_menu
         self.about_menu = self.ps.about_menu
 
-    def open_screenshots_dir(self):
-        _open = (
-            sys.platform == "darwin"
-            and "open"
-            or sys.platform == "win32"
-            and "explorer"
-            or "xdg-open"
-        )
-        subprocess.Popen([_open, user_screenshot_dir_path])
-
     def add_widgets(self):
         self._menu.add.button(
             _("Play"),
@@ -381,14 +404,6 @@ class MainMenu:
             _("Quit"),
             pygame_menu.events.EXIT,
             font_name=self.ps.font_path,
-        )
-        self._menu.add.button(
-            _("Screenshots"),
-            self.open_screenshots_dir,
-            font_name=self.ps.font_path,
-            align=pygame_menu.locals.ALIGN_RIGHT,
-            background_color=(100, 20, 20, 50),
-            font_color=(20, 20, 100),
         )
 
 
@@ -434,6 +449,7 @@ class PrimarySchool:
         self.play_menu = PlayMenu(self)
         self.about_menu = AboutMenu(self)
         self.save_menu = SaveMenu(self)
+        self.score_menu = ScoreMenu(self)
         self.main_menu = MainMenu(self)
 
     def set_player_name(self, name):
@@ -446,6 +462,7 @@ class PrimarySchool:
         self.play_menu.add_widgets()
         self.about_menu.add_widgets()
         self.save_menu.add_widgets()
+        self.score_menu.add_widgets()
         self.main_menu.add_widgets()
 
     def set_bg_img(self, src_name="0x1.png"):
