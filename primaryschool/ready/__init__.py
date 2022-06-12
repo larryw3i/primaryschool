@@ -163,8 +163,9 @@ class AboutMenu:
 
 
 class PlayMenu:
-    def __init__(self, ps):
+    def __init__(self, ps, return_main_menu=False):
         self.ps = ps
+        self.return_main_menu = return_main_menu
         self.title = _("Play Game")
         self.tk_root = None
         self.player_name_entry = None
@@ -243,11 +244,12 @@ class PlayMenu:
         )
         self.update_continue_button()
 
-        self._menu.add.button(
-            _("Return to main menu"),
-            pygame_menu.events.BACK,
-            font_name=self.ps.font_path,
-        )
+        if self.return_main_menu:
+            self._menu.add.button(
+                _("Return to main menu"),
+                pygame_menu.events.BACK,
+                font_name=self.ps.font_path,
+            )
 
         self.help_label = self._menu.add.label(
             "", font_name=self.help_label_font, max_char=-1
@@ -397,9 +399,13 @@ class PrimarySchool:
         mode_flags=pygame.RESIZABLE,
         player_name=None,
         caption=_("PrimarySchool"),
+        show_main_menu=False,
+        show_play_menu=True,
     ):
         if not pygame.get_init():
             pygame.init()
+        self.show_main_menu = show_main_menu
+        self.show_play_menu = show_play_menu
         self.caption = caption
         pygame.display.set_caption(self.caption)
         self.running = True
@@ -475,8 +481,13 @@ class PrimarySchool:
             for event in events:
                 if event.type == pygame.QUIT:
                     exit()
-            if self.main_menu._menu.is_enabled():
-                self.main_menu._menu.mainloop(self.surface)
+            if self.show_main_menu:
+                if self.main_menu._menu.is_enabled():
+                    self.main_menu._menu.mainloop(self.surface)
+
+            if self.show_play_menu:
+                if self.play_menu._menu.is_enabled():
+                    self.play_menu._menu.mainloop(self.surface)
 
             pygame.display.flip()
 

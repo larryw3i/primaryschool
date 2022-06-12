@@ -2,7 +2,7 @@ import os
 import sys
 
 app_name = "primaryschool"
-app_version = "0.0.23"
+app_version = "0.0.24"
 app_author = "larryw3i"
 app_author_email = "larryw3i@163.com"
 app_maintainer = app_author
@@ -47,13 +47,6 @@ requirements = [
             "https://github.com/ActiveState/appdirs",
             "MIT",
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
-        ),
-        (
-            "PyYAML",
-            "",
-            "https://github.com/yaml/pyyaml",
-            "MIT License",
-            "https://github.com/yaml/pyyaml/blob/master/LICENSE",
         ),
     ],
 ]

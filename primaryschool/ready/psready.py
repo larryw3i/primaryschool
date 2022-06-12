@@ -210,6 +210,23 @@ class PSReady:
         self.abouttoplevel = None
         self.psframe_padx = (10, 10)
         self.psframe_pady = (10, 10)
+        self.data = self.get_ready_data()
+
+    def is_default_player_name(self):
+        return self.player_name == _("default_name")
+
+    def get_ready_data(self):
+        """
+        Warning:
+        The pickle module is not secure. Only unpickle data you trust.
+        """
+        with open(get_ready_data_path(), "rb") as f:
+            self.data = pickle.load(f, encoding="UTF-8")
+        return self.data
+
+    def set_ready_data(self):
+        with open(get_ready_data_path(), "wb") as f:
+            pickle.dump(self.data, f)
 
     def get_screenwidth(self, of=1):
         return int(self.root.winfo_screenwidth() / of)
@@ -221,7 +238,11 @@ class PSReady:
         self.root.title(title or _("PrimarySchool"))
 
     def get_player_name(self):
-        return self.player_name
+        return (
+            self.is_default_player_name()
+            and self.data.get("player_name", self.player_name)
+            or self.player_name
+        )
 
     def exit_command(self):
         self.exit()
@@ -233,6 +254,7 @@ class PSReady:
             self.abouttoplevel = AboutToplevel(self)
 
     def add_widgets(self, ps_name_label=None):
+
         self.ps_name_label = ps_name_label or tk.Label(
             self.psframe, text=_("PrimarySchool"), font=("None", 24)
         )
@@ -240,11 +262,13 @@ class PSReady:
 
         tk.Label(self.psframe, text=_("Player name:")).grid(row=1, column=0)
         self.player_name_entry = tk.Entry(self.psframe)
+        self.player_name_entry.insert(0, self.get_player_name())
         self.player_name_entry.grid(row=1, column=1)
 
         tk.Button(self.psframe, text=_("GO"), command=self.exit_command).grid(
             row=2, column=1, sticky="e"
         )
+
         tk.Button(
             self.psframe, text=_("About"), command=self.about_command
         ).grid(row=2, column=0, sticky="w")
@@ -268,6 +292,7 @@ class PSReady:
 
     def set_player_name(self, name):
         self.player_name = name
+        self.data["player_name"] = self.player_name
 
     def focus_set(self):
         self.player_name_entry.focus_set()
@@ -277,6 +302,7 @@ class PSReady:
 
     def exit(self, event=None):
         self.set_inputs()
+        self.set_ready_data()
         self.root.destroy()
 
     def mainloop(self):
