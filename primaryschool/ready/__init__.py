@@ -63,11 +63,6 @@ class SaveMenu(MenuBase):
             font_name=self.ps.font_path,
         )
 
-    def to_main_menu(self):
-        self.ps.main_menu._menu.full_reset()
-        self.ps.main_menu._menu.enable()
-        self.ps.main_menu._menu.mainloop(self.surface)
-
     def to_play_menu(self):
         self.ps.play_menu._menu.full_reset()
         self.ps.play_menu._menu.enable()
@@ -82,109 +77,22 @@ class SaveMenu(MenuBase):
         self._menu.disable()
 
 
-class ContributorsMenu(MenuBase):
-    def __init__(self, ps):
-        self.ps = ps
-        self.title = _("Contributors & Sponsors")
-        self._menu = self.ps.get_default_menu(
-            self.title, onclose=pygame_menu.events.EXIT
-        )
-        self._font = get_default_font(15)
-        self._head_font = get_default_font(18)
-        self.return_background_color = (200, 200, 255, 200)
-
-    def add_widgets(self):
-        contributors_table = self._menu.add.table()
-        contributors_table.default_cell_padding = 5
-        contributors_table.default_row_background_color = "white"
-        contributors_table.add_row(
-            [_("Contributors"), _("name"), " ", _("Sponsors"), _("name")],
-            cell_font=self._head_font,
-        )
-
-        _len = list(range(max(len(app_contributors), len(app_sponsors))))
-        for l, c, s in zip_longest(_len, app_contributors, app_sponsors):
-            c, s = c or " ", s or " "
-            contributors_table.add_row(
-                [l + 1, c, " ", l + 1, s], cell_font=self._font
-            )
-
-        self._menu.add.button(
-            _("Return to main menu"),
-            pygame_menu.events.BACK,
-            font_name=self.ps.font_path,
-            background_color=self.return_background_color,
-            float=True,
-            align=pygame_menu.locals.ALIGN_RIGHT,
-        )
-
-
-class AboutMenu(MenuBase):
-    def __init__(self, ps):
-
-        self.ps = ps
-        self.title = _("About")
-        self._menu = self.ps.get_default_menu(self.title)
-        self.app_name_font = get_default_font(50)
-        self.app_version_font = get_default_font(20)
-        self.app_description_font = get_default_font(22)
-        self.app_url_font = get_default_font(20)
-        self.app_author_font = self.app_contributors_font = get_default_font(
-            20
-        )
-        self.contributors_menu = ContributorsMenu(self.ps)
-        self._label_font = get_default_font(32)
-
-    def add_widgets(self):
-        self._menu.add.label(
-            app_name, max_char=-1, font_name=self.app_name_font
-        )
-        self._menu.add.label(
-            app_version, max_char=-1, font_name=self.app_version_font
-        )
-        self._menu.add.label(
-            app_description_t, max_char=-1, font_name=self.app_description_font
-        )
-        self._menu.add.url(app_url, font_name=self.app_url_font)
-        self._menu.add.label(
-            _("Author"), max_char=-1, font_name=self._label_font
-        )
-        self._menu.add.label(
-            app_author, max_char=-1, font_name=self.app_author_font
-        )
-
-        self.contributors_menu.add_widgets()
-
-        self._menu.add.button(
-            _("Contributors & Sponsors"),
-            self.contributors_menu._menu,
-            font_name=self._label_font,
-        )
-
-        self._menu.add.button(
-            _("Return to main menu"),
-            pygame_menu.events.BACK,
-            font_name=self.ps.font_path,
-        )
-
-
 class ScoreMenu(MenuBase):
-    def __init__(self, ps):
-        self.ps = ps
-        self.title = _("Score")
-        self._menu = self.ps.get_default_menu(self.title)
+    def __init__(self, ps, title=_("Score")):
+        super().__init__(ps, title)
+
+    def add_widgets(self):
+        pass
 
 
 class PlayMenu(MenuBase):
     def __init__(
         self,
         ps,
-        show_return_main_menu=False,
         show_open_screenshots_button=True,
     ):
         self.ps = ps
         self.show_open_screenshots_button = show_open_screenshots_button
-        self.show_return_main_menu = show_return_main_menu
         self.title = _("Play Game")
         self.player_name = self.ps.player_name
         self.player_name_button = None
@@ -270,13 +178,6 @@ class PlayMenu(MenuBase):
             font_name=self.ps.font_path,
         )
         self.update_continue_button()
-
-        if self.show_return_main_menu:
-            self._menu.add.button(
-                _("Return to main menu"),
-                pygame_menu.events.BACK,
-                font_name=self.ps.font_path,
-            )
 
         self.help_label = self._menu.add.label(
             "", font_name=self.help_label_font, max_char=-1
@@ -385,36 +286,6 @@ class PlayMenu(MenuBase):
         self.update_difficulty_dropselect()
 
 
-class MainMenu(MenuBase):
-    """
-    deprecated
-    """
-
-    def __init__(self, ps):
-        self.ps = ps
-        self.title = _("Primary School")
-        self._menu = self.ps.get_default_menu(self.title)
-        self.play_menu = self.ps.play_menu
-        self.about_menu = self.ps.about_menu
-
-    def add_widgets(self):
-        self._menu.add.button(
-            _("Play"),
-            self.ps.play_menu._menu,
-            font_name=self.ps.font_path,
-        )
-        self._menu.add.button(
-            _("About"),
-            self.ps.about_menu._menu,
-            font_name=self.ps.font_path,
-        )
-        self._menu.add.button(
-            _("Quit"),
-            pygame_menu.events.EXIT,
-            font_name=self.ps.font_path,
-        )
-
-
 class PrimarySchool:
     def __init__(
         self,
@@ -422,12 +293,10 @@ class PrimarySchool:
         mode_flags=pygame.RESIZABLE,
         player_name=None,
         caption=_("PrimarySchool"),
-        show_main_menu=False,
         show_play_menu=True,
     ):
         if not pygame.get_init():
             pygame.init()
-        self.show_main_menu = show_main_menu
         self.show_play_menu = show_play_menu
         self.caption = caption
         pygame.display.set_caption(self.caption)
@@ -455,10 +324,8 @@ class PrimarySchool:
         self.font = default_font
         self.bg_img = None
         self.play_menu = PlayMenu(self)
-        self.about_menu = AboutMenu(self)
         self.save_menu = SaveMenu(self)
         self.score_menu = ScoreMenu(self)
-        self.main_menu = MainMenu(self)
 
     def set_player_name(self, name):
         self.player_name = name
@@ -468,10 +335,8 @@ class PrimarySchool:
 
     def add_widgets(self):
         self.play_menu.add_widgets()
-        self.about_menu.add_widgets()
         self.save_menu.add_widgets()
         self.score_menu.add_widgets()
-        self.main_menu.add_widgets()
 
     def set_bg_img(self, src_name="0x1.png"):
         self.bg_img = BaseImage(
@@ -506,9 +371,6 @@ class PrimarySchool:
             for event in events:
                 if event.type == pygame.QUIT:
                     exit()
-            if self.show_main_menu:
-                if self.main_menu._menu.is_enabled():
-                    self.main_menu._menu.mainloop(self.surface)
 
             if self.show_play_menu:
                 if self.play_menu._menu.is_enabled():

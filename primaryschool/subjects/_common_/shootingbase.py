@@ -316,9 +316,7 @@ class TargetsManager:
 
     def load(self, _copy):
         for keys, lock, dest in _copy["0x0"]:
-            self.moving_surfaces.append(
-                TargetSurface(self.shtbase, self, keys, lock)
-            )
+            self.surfaces.append(TargetSurface(self.shtbase, self, keys, lock))
         for keys, lock, dest in _copy["0x1"]:
             self.moving_surfaces.append(
                 TargetSurface(self.shtbase, self, keys, lock, dest)
@@ -840,7 +838,6 @@ class ShootingBase(GameBase, PsKeyCode):
         self.subject_game_index = self.ps.subject_game_index
         self.difficulty_index = self.ps.difficulty_index
 
-        self.main_menu = self.ps.main_menu
         self.play_menu = self.ps.play_menu
         self.save_menu = self.ps.save_menu
         self.surface = self.ps.surface
@@ -912,6 +909,18 @@ class ShootingBase(GameBase, PsKeyCode):
     def key_clean(self, code):
         return 48 <= code <= 57 or code == 45
 
+    def copy_time(self, _copy, save=False, key="0x3"):
+        _copy[key] = (datetime.now() - self.start_time) + self.last_timedelta
+        if save:
+            with open(self.copy_path, "wb") as f:
+                pickle.dump(_copy, f)
+
+    def get_prev_time(self, _copy=None, key="0x3"):
+        if not _copy:
+            with open(self.copy_path, "rb") as f:
+                _copy = pickle.load(f)
+        return _copy[key]
+
     def load(self):
         try:
             self._load = True
@@ -919,16 +928,16 @@ class ShootingBase(GameBase, PsKeyCode):
                 _copy = pickle.load(f)
             self.targets_manager.load(_copy)
             self.target_count, self.win_count, self.lose_count = _copy["0x2"]
-            self.last_timedelta = _copy["0x3"]
+            self.last_timedelta = self.get_prev_time(_copy)
             self.start()
-        except e:
+        except Exception as e:
             print(e)
 
     def save(self):
         _copy = {}
         self.targets_manager.save(_copy)
         _copy["0x2"] = (self.target_count, self.win_count, self.lose_count)
-        _copy["0x3"] = (datetime.now() - self.start_time) + self.last_timedelta
+        self.copy_time(_copy)
 
         # https://docs.python.org/3/library/pickle.html?highlight=pickle
         # Warning:
@@ -981,8 +990,6 @@ class ShootingBase(GameBase, PsKeyCode):
 
             events = pygame.event.get()
             self.handle_events(events)
-            if self.main_menu._menu.is_enabled():
-                self.main_menu._menu.update(events)
 
             if self.play_menu._menu.is_enabled():
                 self.play_menu._menu.update(events)

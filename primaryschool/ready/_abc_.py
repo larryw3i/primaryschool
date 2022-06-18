@@ -38,8 +38,10 @@ from primaryschool.subjects import subjects
 
 
 class MenuBase(ABC):
-    def __init__(self):
-        pass
+    def __init__(self, ps, title=None):
+        self.ps = ps
+        self.title = title or _("PrimarySchool")
+        self._menu = self.ps.get_default_menu(self.title)
 
     def add_widgets(self):
         pass
