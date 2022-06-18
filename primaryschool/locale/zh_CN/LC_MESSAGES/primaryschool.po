@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-12 00:06+0800\n"
-"PO-Revision-Date: 2022-06-12 00:07+0800\n"
+"POT-Creation-Date: 2022-06-18 19:04+0800\n"
+"PO-Revision-Date: 2022-06-18 19:05+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
 "Language: zh_CHS\n"
@@ -53,7 +53,7 @@ msgstr "小学的游戏"
 #: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:185
 #: primaryschool/ready/__init__.py:187 primaryschool/ready/__init__.py:191
 #: primaryschool/ready/__init__.py:193 primaryschool/games/__init__.py:193
-#: primaryschool/ready/__init__.py:195
+#: primaryschool/ready/__init__.py:195 primaryschool/ready/__init__.py:194
 msgid "Name :"
 msgstr "姓名 :"
 
@@ -212,6 +212,7 @@ msgstr "数学"
 #: primaryschool/ready/__init__.py:148 primaryschool/ready/__init__.py:156
 #: primaryschool/ready/__init__.py:155 primaryschool/ready/__init__.py:160
 #: primaryschool/games/__init__.py:160 primaryschool/ready/__init__.py:168
+#: primaryschool/ready/__init__.py:159
 msgid "Play Game"
 msgstr "开始游戏"
 
@@ -258,6 +259,7 @@ msgstr "返回主菜单"
 #: primaryschool/ready/psready.py:249
 #: primaryschool/widgets/deprecated_menubar.py:22
 #: primaryschool/widgets/deprecated_about_toplevel.py:62
+#: primaryschool/ready/psready.py:273
 msgid "About"
 msgstr "关于"
 
@@ -362,6 +364,7 @@ msgstr "小学的知识游戏"
 #: primaryschool/ready/__init__.py:21 primaryschool/ready/__init__.py:25
 #: primaryschool/ready/__init__.py:24 primaryschool/ready/__init__.py:30
 #: primaryschool/games/__init__.py:30 primaryschool/ready/__init__.py:38
+#: primaryschool/ready/__init__.py:40
 msgid "app_description_t"
 msgstr "小学的知识游戏"
 
@@ -633,6 +636,7 @@ msgstr "六年级（下）"
 #: primaryschool/subjects/_common_/shootingbase.py:568
 #: primaryschool/subjects/_common_/shootingbase.py:574
 #: primaryschool/subjects/_common_/shootingbase.py:610
+#: primaryschool/subjects/_common_/shootingbase.py:608
 msgid "win: "
 msgstr "胜利: "
 
@@ -655,6 +659,7 @@ msgstr "胜利: "
 #: primaryschool/subjects/_common_/shootingbase.py:569
 #: primaryschool/subjects/_common_/shootingbase.py:575
 #: primaryschool/subjects/_common_/shootingbase.py:613
+#: primaryschool/subjects/_common_/shootingbase.py:611
 msgid "lose: "
 msgstr "失败: "
 
@@ -677,6 +682,7 @@ msgstr "失败: "
 #: primaryschool/subjects/_common_/shootingbase.py:570
 #: primaryschool/subjects/_common_/shootingbase.py:576
 #: primaryschool/subjects/_common_/shootingbase.py:616
+#: primaryschool/subjects/_common_/shootingbase.py:614
 msgid "remain: "
 msgstr "剩余: "
 
@@ -699,6 +705,7 @@ msgstr "剩余: "
 #: primaryschool/subjects/_common_/shootingbase.py:571
 #: primaryschool/subjects/_common_/shootingbase.py:577
 #: primaryschool/subjects/_common_/shootingbase.py:619
+#: primaryschool/subjects/_common_/shootingbase.py:617
 msgid "total: "
 msgstr "总共: "
 
@@ -721,6 +728,7 @@ msgstr "总共: "
 #: primaryschool/subjects/_common_/shootingbase.py:590
 #: primaryschool/subjects/_common_/shootingbase.py:718
 #: primaryschool/subjects/_common_/shootingbase.py:720
+#: primaryschool/ready/__init__.py:148
 msgid "Cost: "
 msgstr "耗时: "
 
@@ -785,14 +793,14 @@ msgstr "再加把劲! 努力!"
 #: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:30
 #: primaryschool/ready/__init__.py:32 primaryschool/ready/__init__.py:33
 #: primaryschool/ready/__init__.py:37 primaryschool/games/__init__.py:37
-#: primaryschool/ready/__init__.py:45
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:47
 msgid "Save game?"
 msgstr "保存游戏?"
 
 #: primaryschool/ready/__init__.py:36 primaryschool/ready/__init__.py:37
 #: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:40
 #: primaryschool/ready/__init__.py:44 primaryschool/games/__init__.py:44
-#: primaryschool/ready/__init__.py:52
+#: primaryschool/ready/__init__.py:52 primaryschool/ready/__init__.py:54
 msgid "Save and return"
 msgstr "保存并返回"
 
@@ -805,6 +813,7 @@ msgstr "保存并返回"
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:239
 #: primaryschool/games/__init__.py:49 primaryschool/games/__init__.py:239
 #: primaryschool/ready/__init__.py:57 primaryschool/ready/__init__.py:240
+#: primaryschool/ready/__init__.py:59
 msgid "Continue"
 msgstr "继续"
 
@@ -1089,7 +1098,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:410 primaryschool/widgets/__init__.py:19
 #: primaryschool/ready/psready.py:207
 #: primaryschool/widgets/deprecated___init__.py:19
-#: primaryschool/widgets/__init__.py:40
+#: primaryschool/widgets/__init__.py:40 primaryschool/ready/__init__.py:377
+#: primaryschool/ready/psready.py:216
 msgid "default_name"
 msgstr "小学"
 
@@ -1105,6 +1115,7 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:614
 #: primaryschool/subjects/_common_/shootingbase.py:733
 #: primaryschool/subjects/_common_/shootingbase.py:735
+#: primaryschool/ready/__init__.py:94
 #, python-format
 msgid "Success! Dear %s, you are so awesome!"
 msgstr "挑战成功，%s ，你真是太棒了！"
@@ -1112,6 +1123,7 @@ msgstr "挑战成功，%s ，你真是太棒了！"
 #: primaryschool/subjects/_common_/shootingbase.py:615
 #: primaryschool/subjects/_common_/shootingbase.py:735
 #: primaryschool/subjects/_common_/shootingbase.py:737
+#: primaryschool/ready/__init__.py:96
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr "亲爱的 %s , 再加把劲! 努力!"
@@ -1133,11 +1145,13 @@ msgstr "截图"
 
 #: primaryschool/subjects/_common_/shootingbase.py:700
 #: primaryschool/subjects/_common_/shootingbase.py:702
+#: primaryschool/ready/__init__.py:120
 msgid "Screenshot path is not set."
 msgstr "截图路径未设置。"
 
 #: primaryschool/subjects/_common_/shootingbase.py:703
 #: primaryschool/subjects/_common_/shootingbase.py:705
+#: primaryschool/ready/__init__.py:124
 msgid "Screenshot saved."
 msgstr "截图被保存。"
 
@@ -1151,7 +1165,7 @@ msgid "After starting the game, press ESC to return"
 msgstr "进入游戏后，按Esc返回。"
 
 #: primaryschool/ready/__init__.py:257 primaryschool/games/__init__.py:257
-#: primaryschool/ready/__init__.py:258
+#: primaryschool/ready/__init__.py:258 primaryschool/ready/__init__.py:251
 msgid "After starting the game, press ESC to return."
 msgstr "进入游戏后，按Esc返回。"
 
@@ -1195,14 +1209,32 @@ msgid "Help"
 msgstr "帮助"
 
 #: primaryschool/ready/player.py:59 primaryschool/ready/psready.py:241
-#: primaryschool/widgets/__init__.py:59
+#: primaryschool/widgets/__init__.py:59 primaryschool/ready/psready.py:263
 msgid "Player name:"
 msgstr "玩家名字:"
 
 #: primaryschool/ready/psready.py:221 primaryschool/ready/psready.py:237
+#: primaryschool/ready/_abc_.py:43 primaryschool/ready/__init__.py:358
+#: primaryschool/ready/psready.py:238 primaryschool/ready/psready.py:259
 msgid "PrimarySchool"
 msgstr "小学的游戏"
 
-#: primaryschool/ready/psready.py:245
+#: primaryschool/ready/psready.py:245 primaryschool/ready/psready.py:268
 msgid "GO"
 msgstr "开始"
+
+#: primaryschool/ready/__init__.py:62
+msgid "Return to play menu"
+msgstr "返回游戏菜单"
+
+#: primaryschool/ready/__init__.py:82
+msgid "Score"
+msgstr "分数:"
+
+#: primaryschool/ready/__init__.py:134
+msgid "Save Screenshot"
+msgstr "截图"
+
+#: primaryschool/ready/__init__.py:259
+msgid "Screenshots >>"
+msgstr "截图"
