@@ -25,6 +25,7 @@ from pygame_menu.widgets import *
 from primaryschool.dirs import *
 from primaryschool.dirs import user_screenshot_dir_path
 from primaryschool.locale import _
+from primaryschool.ready._abc_ import MenuBase
 from primaryschool.ready.psready import PSReady
 from primaryschool.resource import (
     default_font,
@@ -38,7 +39,7 @@ from primaryschool.subjects import subjects
 app_description_t = _("app_description_t")
 
 
-class SaveMenu:
+class SaveMenu(MenuBase):
     def __init__(self, ps):
         self.ps = ps
         self.surface = self.ps.surface
@@ -81,7 +82,7 @@ class SaveMenu:
         self._menu.disable()
 
 
-class ContributorsMenu:
+class ContributorsMenu(MenuBase):
     def __init__(self, ps):
         self.ps = ps
         self.title = _("Contributors & Sponsors")
@@ -118,7 +119,7 @@ class ContributorsMenu:
         )
 
 
-class AboutMenu:
+class AboutMenu(MenuBase):
     def __init__(self, ps):
 
         self.ps = ps
@@ -166,17 +167,20 @@ class AboutMenu:
             font_name=self.ps.font_path,
         )
 
-class ScoreMenu:
-    def __init__(
-        self, ps
-    ):
+
+class ScoreMenu(MenuBase):
+    def __init__(self, ps):
         self.ps = ps
         self.title = _("Score")
         self._menu = self.ps.get_default_menu(self.title)
 
-class PlayMenu:
+
+class PlayMenu(MenuBase):
     def __init__(
-        self, ps, show_return_main_menu=False, show_open_screenshots_button=True
+        self,
+        ps,
+        show_return_main_menu=False,
+        show_open_screenshots_button=True,
     ):
         self.ps = ps
         self.show_open_screenshots_button = show_open_screenshots_button
@@ -381,7 +385,11 @@ class PlayMenu:
         self.update_difficulty_dropselect()
 
 
-class MainMenu:
+class MainMenu(MenuBase):
+    """
+    deprecated
+    """
+
     def __init__(self, ps):
         self.ps = ps
         self.title = _("Primary School")
