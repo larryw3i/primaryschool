@@ -7,6 +7,7 @@ import subprocess
 import threading
 import tkinter as tk
 import webbrowser
+from datetime import datetime, timedelta
 from functools import partial
 from itertools import zip_longest
 from multiprocessing import Pipe, Process, Queue
@@ -78,11 +79,73 @@ class SaveMenu(MenuBase):
 
 
 class ScoreMenu(MenuBase):
-    def __init__(self, ps, title=_("Score")):
+    def __init__(self, ps, title=_("Score"), _test=False):
         super().__init__(ps, title)
+        self._pass = False
+        self.screenshot_path = None
+        self._test = _test
+        self.score = 0
+
+    def set_pass(self, _pass):
+        self._pass = _pass
+
+    def get_greeting(self):
+        return (
+            _("Success! Dear %s, you are so awesome!")
+            if self.get_score_pass()
+            else _("Dear %s, practice makes perfect, keep trying!")
+        ) % self.ps.player_name
+
+    def set_cost_str(self, cost_str):
+        self.cost_str = cost_str
+
+    def update_widgets(self, score, _pass, cost_str, screenshot_path):
+        self.set_score(score)
+        self.set_pass(_pass)
+        self.set_cost_str(cost_str)
+        self.set_screenshot_path(screenshot_path)
+
+        self.pass_label.set_title(self.get_greeting())
+        self.score_label.set_title(self.get_score())
+        self.cost_label.set_title(self.get_datetime_diff())
+
+    def get_screenshot_path(self):
+        return self.screenshot_path
+
+    def set_screenshot_path(self, path):
+        self.screenshot_path = path
+
+    def take_screenshot(self):
+        if not self.screenshot_path:
+            print(_("Screenshot path is not set."))
+            return
+        pygame.image.save(self.ps.surface, self.get_screenshot_path())
+        if self._test:
+            print(_("Screenshot saved."))
+
+    def set_score_pass(self, _pass=False):
+        self._pass = _pass
 
     def add_widgets(self):
-        pass
+        self.pass_label = self._menu.add.label("", max_char=-1)
+        self.score_label = self._menu.add.label("", max_char=-1)
+        self.cost_label = self._menu.add.label("", max_char=-1)
+        self.save_screenshot_button = self._menu.add.button(
+            _("Save Screenshot"),
+            self.take_screenshot,
+        )
+
+    def set_score(self, score):
+        self.score = score
+
+    def get_score(self):
+        return self.score
+
+    def get_score_pass(self):
+        return self._pass
+
+    def get_datetime_diff(self):
+        return _("Cost: ") + self.cost_str
 
 
 class PlayMenu(MenuBase):

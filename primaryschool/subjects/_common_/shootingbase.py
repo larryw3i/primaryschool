@@ -632,186 +632,6 @@ class InfoSurface:
         self.surface.blit(self.win_info_surface, self.get_win_info_dest())
 
 
-class ScoreSurface(InfoSurface):
-    def __init__(self, shtbase):
-        self.shtbase = shtbase
-        self.ps = shtbase.ps
-        self.surface = self.ps.surface
-        self.score = 0
-        self._pass = False
-        self.score_font_size = 55
-        self.score_font = get_default_font(self.score_font_size)
-        self.screenshot_saved_font_size = 45
-        self.screenshot_saved_font_color = (0, 200, 10)
-        self.screenshot_saved_font = get_default_font(
-            self.screenshot_saved_font_size
-        )
-
-        self.datetime_diff_font_size = 50
-        self.datetime_diff_font = get_default_font(
-            self.datetime_diff_font_size
-        )
-        self.datetime_diff_font_color = None
-
-        self.score_surface = None
-        self.datetime_diff_surface = None
-        self.greeting_surface = None
-        self.end_time = self.ps.end_time = None
-        self.screenshot_path = get_default_screenshot_path(
-            self.shtbase.module_str, self.shtbase.ps.player_name
-        )
-        self.screenshot_saved = False
-        self.bg = None
-        self.pass_bg_path = default_score_surface_pass_bg_path
-        self.not_pass_bg_path = default_score_surface_not_pass_bg_path
-
-    def scale_bg(self):
-        self.bg = pygame.transform.scale(
-            self.bg, (self.ps.w_width, self.ps.w_height)
-        )
-
-    def get_bg(self):
-        if not self.bg:
-            self.set_bg()
-        return self.bg
-
-    def set_bg(self):
-        _bg_path = self.pass_bg_path if self._pass else self.not_pass_bg_path
-        self.bg = pygame.image.load(_bg_path)
-        self.scale_bg()
-
-    def set_bg_path(self, pass_bg_path=None, not_pass_bg_path=None):
-        if pass_bg_path:
-            self.pass_bg_path = pass_bg_path
-        if not_pass_bg_path:
-            self.not_pass_bg_path = not_pass_bg_path
-        if not pass_bg_path and not not_pass_bg_path:
-            self.pass_bg_path = default_score_surface_pass_bg_path
-            self.not_pass_bg_path = default_score_surface_not_pass_bg_path
-
-    def get_screenshot_path(self):
-        return self.screenshot_path
-
-    def set_screenshot_path(self, path):
-        self.screenshot_path = path
-
-    def take_screenshot(self):
-        if not self.screenshot_path:
-            print(_("Screenshot path is not set."))
-            return
-        pygame.image.save(self.shtbase.surface, self.get_screenshot_path())
-        print(_("Screenshot saved."))
-
-    def get_score_font_color(self):
-        return (20, 255, 0) if self._pass else (255, 20, 0)
-
-    def get_datetime_diff_str(self):
-        if self.end_time is None:
-            self.end_time = self.ps.end_time = datetime.now()
-        diff = (
-            self.end_time
-            - self.shtbase.start_time
-            + self.shtbase.last_timedelta
-        )
-        _h, _rem = divmod(diff.seconds, 3600)
-        _min, _sec = divmod(_rem, 60)
-        return _("Cost: ") + f"{_h}:{_min}:{_sec}"
-
-    def get_score(self):
-        self.score = int(
-            100 * self.shtbase.win_count / self.shtbase.target_count
-        )
-        return self.score
-
-    def get_score_pass(self):
-        self._pass = self.score > 60
-        return self._pass
-
-    def get_greeting(self):
-        _player_name = self.shtbase.get_player_name()
-        return (
-            _("Success! Dear %s, you are so awesome!")
-            if self._pass
-            else _("Dear %s, practice makes perfect, keep trying!")
-        ) % _player_name
-
-    def get_score_str(self):
-        return _("Score: ") + str(self.score)
-
-    def get_screenshot_saved_str(self):
-        return _("Screenshot saved. Press Esc to RETURN")
-
-    def get_greeting_dest(self):
-        _w, _h = self.greeting_surface.get_size()
-        _, _s_h = self.score_surface.get_size()
-        return [
-            self.ps.w_width_of_2 - _w / 2,
-            self.ps.w_height_of_2 - _h - _s_h,
-        ]
-
-    def get_score_surface_dest(self):
-        _w, _h = self.score_surface.get_size()
-        return [self.ps.w_width_of_2 - _w / 2, self.ps.w_height_of_2 - _h]
-
-    def get_datetime_diff_surface_dest(self):
-        _w, _h = self.datetime_diff_surface.get_size()
-        return [self.ps.w_width_of_2 - _w / 2, self.ps.w_height_of_2 + _h]
-
-    def get_screenshot_saved_surface_dest(self):
-        _w, _h = self.screenshot_saved_surface.get_size()
-        return [self.ps.w_width_of_2 - _w / 2, self.ps.w_height - _h]
-
-    def set_surfaces(self):
-        if (
-            not self.greeting_surface
-            or not self.score_surface
-            or not self.datetime_diff_surface
-        ):
-
-            self.score = self.get_score()
-            self.get_score_pass()
-
-            self.greeting_surface = self.score_font.render(
-                self.get_greeting(), False, self.get_score_font_color()
-            )
-
-            self.score_surface = self.score_font.render(
-                self.get_score_str(), False, self.get_score_font_color()
-            )
-
-            self.datetime_diff_surface = self.datetime_diff_font.render(
-                self.get_datetime_diff_str(),
-                False,
-                self.get_score_font_color(),
-            )
-            self.screenshot_saved_surface = self.screenshot_saved_font.render(
-                self.get_screenshot_saved_str(),
-                False,
-                self.screenshot_saved_font_color,
-            )
-
-    def blit_bg(self):
-        self.surface.blit(self.get_bg(), (0, 0))
-
-    def blit(self):
-
-        self.set_surfaces()
-        self.blit_bg()
-        self.surface.blit(self.greeting_surface, self.get_greeting_dest())
-        self.surface.blit(self.score_surface, self.get_score_surface_dest())
-        self.surface.blit(
-            self.datetime_diff_surface, self.get_datetime_diff_surface_dest()
-        )
-        if not self.screenshot_saved:
-            self.take_screenshot()
-            self.screenshot_saved = True
-        else:
-            self.surface.blit(
-                self.screenshot_saved_surface,
-                self.get_screenshot_saved_surface_dest(),
-            )
-
-
 class ShootingBase(GameBase, PsKeyCode):
     def __init__(self, ps, font_lang_code=None):
         assert hasattr(self, "name_t")
@@ -831,6 +651,8 @@ class ShootingBase(GameBase, PsKeyCode):
         self.player_name = self.ps.player_name
         self._load = False
 
+        self._pass_value = 60
+
         self.font_lang_code = font_lang_code or sys_lang_code
 
         self.subject = self.ps.subject
@@ -840,6 +662,7 @@ class ShootingBase(GameBase, PsKeyCode):
 
         self.play_menu = self.ps.play_menu
         self.save_menu = self.ps.save_menu
+        self.score_menu = self.ps.score_menu
         self.surface = self.ps.surface
 
         self._input = ""
@@ -847,7 +670,6 @@ class ShootingBase(GameBase, PsKeyCode):
         self.info_surface = self.get_info_surface()
         self.defense_surface = self.get_defense_surface()
         self.input_surface = self.get_input_surface()
-        self.score_surface = self.get_score_surface()
         self.copy_path = get_copy_path(self.module_str)
 
         self.last_timedelta = timedelta(0)
@@ -858,7 +680,23 @@ class ShootingBase(GameBase, PsKeyCode):
         self.win_count = 0
         self.lose_count = 0
         self.target_count = 0
+        self.score = 0
         self.print_game_info()
+        self.screenshot_path = get_default_screenshot_path(
+            self.module_str, self.ps.player_name
+        )
+
+    def get_screenshot_path(self):
+        return self.screenshot_path
+
+    def set_screenshot_path(self, path):
+        self.screenshot_path = path
+
+    def set_pass_value(self, value=60):
+        self._pass_value = value
+
+    def get_pass_value(self):
+        return self._pass_value
 
     def set_score_surface(self, score_surface=None):
         self.score_surface = score_surface or ScoreSurface(self)
@@ -956,8 +794,23 @@ class ShootingBase(GameBase, PsKeyCode):
         self.targets_manager.set_surfaces()
         self.start()
 
+    def get_score(self):
+        self.score = int(100 * self.win_count / self.target_count)
+        return self.score
+
+    def get_pass(self):
+        return self.score >= self._pass_value
+
+    def get_cost_str(self):
+        if not self.end_time:
+            self.end_time = self.ps.end_time = datetime.now()
+        diff = self.end_time - self.start_time + self.last_timedelta
+        _h, _rem = divmod(diff.seconds, 3600)
+        _min, _sec = divmod(_rem, 60)
+        return f"{_h}:{_min}:{_sec}"
+
     def all_targets_gone(self):
-        return self.win_count + self.lose_count < self.target_count
+        return self.win_count + self.lose_count >= self.target_count
 
     def handle_events(self, events):
         for e in events:
@@ -995,11 +848,19 @@ class ShootingBase(GameBase, PsKeyCode):
                 self.play_menu._menu.update(events)
 
             if self.all_targets_gone():
+                self.score_menu.update_widgets(
+                    score=self.get_score(),
+                    _pass=self.get_pass(),
+                    cost_str=self.get_cost_str(),
+                    screenshot_path=self.get_screenshot_path(),
+                )
+                self.score_menu._menu.enable()
+                self.score_menu._menu.update(events)
+                self.score_menu._menu.mainloop(self.surface)
+            else:
                 self.info_surface.blit()
                 self.defense_surface.blit()
                 self.targets_manager.blit()
                 self.input_surface.blit()
-            else:
-                self.score_surface.blit()
 
             pygame.display.update()
