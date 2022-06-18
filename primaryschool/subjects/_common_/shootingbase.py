@@ -313,7 +313,7 @@ class TargetsManager:
             (ms.tkeys, ms.tlock, ms.dest) for ms in self.moving_surfaces
         ]
         return _copy
-    
+
     def set_all_surfaces_none(self):
         self.surfaces = self.moving_surfaces = []
 
