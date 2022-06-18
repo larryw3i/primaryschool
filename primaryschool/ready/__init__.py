@@ -4,6 +4,7 @@ import os
 import pickle
 import queue
 import subprocess
+import sys
 import threading
 import tkinter as tk
 import webbrowser
@@ -84,6 +85,7 @@ class ScoreMenu(MenuBase):
         self._pass = False
         self.screenshot_path = None
         self._test = _test
+        self.to_play_menu = self.ps.save_menu.to_play_menu
         self.score = 0
 
     def set_pass(self, _pass):
@@ -122,6 +124,7 @@ class ScoreMenu(MenuBase):
         pygame.image.save(self.ps.surface, self.get_screenshot_path())
         if self._test:
             print(_("Screenshot saved."))
+        self.save_screenshot_button.set_title(_("Screenshot Saved!"))
 
     def set_score_pass(self, _pass=False):
         self._pass = _pass
@@ -133,6 +136,10 @@ class ScoreMenu(MenuBase):
         self.save_screenshot_button = self._menu.add.button(
             _("Save Screenshot"),
             self.take_screenshot,
+        )
+        self.return_button = self._menu.add.button(
+            _("Return"),
+            self.to_play_menu,
         )
 
     def set_score(self, score):
@@ -241,6 +248,12 @@ class PlayMenu(MenuBase):
             font_name=self.ps.font_path,
         )
         self.update_continue_button()
+
+        self.exit_button = self._menu.add.button(
+            _("Exit"),
+            self.ps.sys_exit,
+            font_name=self.ps.font_path,
+        )
 
         self.help_label = self._menu.add.label(
             "", font_name=self.help_label_font, max_char=-1
@@ -395,6 +408,9 @@ class PrimarySchool:
 
     def get_player_name(self):
         return self.player_name
+
+    def sys_exit(self):
+        sys.exit(0)
 
     def add_widgets(self):
         self.play_menu.add_widgets()

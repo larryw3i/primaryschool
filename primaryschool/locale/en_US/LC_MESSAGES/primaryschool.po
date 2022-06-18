@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-18 19:04+0800\n"
+"POT-Creation-Date: 2022-06-18 23:38+0800\n"
 "PO-Revision-Date: 2022-03-24 13:44+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -728,7 +728,7 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:590
 #: primaryschool/subjects/_common_/shootingbase.py:718
 #: primaryschool/subjects/_common_/shootingbase.py:720
-#: primaryschool/ready/__init__.py:148
+#: primaryschool/ready/__init__.py:148 primaryschool/ready/__init__.py:149
 msgid "Cost: "
 msgstr ""
 
@@ -1090,7 +1090,7 @@ msgstr ""
 #: primaryschool/ready/psready.py:207
 #: primaryschool/widgets/deprecated___init__.py:19
 #: primaryschool/widgets/__init__.py:40 primaryschool/ready/__init__.py:377
-#: primaryschool/ready/psready.py:216
+#: primaryschool/ready/psready.py:216 primaryschool/ready/__init__.py:378
 msgid "default_name"
 msgstr "ps"
 
@@ -1156,6 +1156,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:257 primaryschool/games/__init__.py:257
 #: primaryschool/ready/__init__.py:258 primaryschool/ready/__init__.py:251
+#: primaryschool/ready/__init__.py:252
 msgid "After starting the game, press ESC to return."
 msgstr ""
 
@@ -1206,6 +1207,7 @@ msgstr ""
 #: primaryschool/ready/psready.py:221 primaryschool/ready/psready.py:237
 #: primaryschool/ready/_abc_.py:43 primaryschool/ready/__init__.py:358
 #: primaryschool/ready/psready.py:238 primaryschool/ready/psready.py:259
+#: primaryschool/ready/__init__.py:359
 msgid "PrimarySchool"
 msgstr ""
 
@@ -1221,10 +1223,14 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:134
+#: primaryschool/ready/__init__.py:134 primaryschool/ready/__init__.py:135
 msgid "Save Screenshot"
 msgstr ""
 
-#: primaryschool/ready/__init__.py:259
+#: primaryschool/ready/__init__.py:259 primaryschool/ready/__init__.py:260
 msgid "Screenshots >>"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:125
+msgid "Screenshot Saved!"
 msgstr ""

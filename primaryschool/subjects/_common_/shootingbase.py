@@ -313,8 +313,12 @@ class TargetsManager:
             (ms.tkeys, ms.tlock, ms.dest) for ms in self.moving_surfaces
         ]
         return _copy
+    
+    def set_all_surfaces_none(self):
+        self.surfaces = self.moving_surfaces = []
 
     def load(self, _copy):
+        self.set_all_surfaces_none()
         for keys, lock, dest in _copy["0x0"]:
             self.surfaces.append(TargetSurface(self.shtbase, self, keys, lock))
         for keys, lock, dest in _copy["0x1"]:
