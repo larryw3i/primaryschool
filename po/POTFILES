@@ -1,0 +1,6 @@
+data/com.gitee.larryw3i.primaryschool.desktop.in
+data/com.gitee.larryw3i.primaryschool.appdata.xml.in
+data/com.gitee.larryw3i.primaryschool.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
