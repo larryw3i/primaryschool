@@ -1,0 +1,1101 @@
+#
+# larry <larryw3i@163.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: unnamed project\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-04 21:49+0800\n"
+"PO-Revision-Date: 2022-03-24 13:44+0800\n"
+"Last-Translator: larry <larryw3i@163.com>\n"
+"Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
+"Language: zh_CHS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#: primaryschool/subjects/yuwen/__init__.py:7
+msgid "math"
+msgstr "math"
+
+#: primaryschool/subjects/math/__init__.py:6
+#: primaryschool/subjects/math/__init__.py:7
+msgid "yuwen"
+msgstr "yuwen"
+
+#: primaryschool/ready/__init__.py:34 primaryschool/ready/__init__.py:40
+#: primaryschool/ready/__init__.py:28 primaryschool/ready/__init__.py:97
+#: primaryschool/ready/__init__.py:107 primaryschool/ready/__init__.py:110
+#: primaryschool/ready/__init__.py:133 primaryschool/ready/__init__.py:139
+#: primaryschool/ready/__init__.py:170 primaryschool/ready/__init__.py:171
+#: primaryschool/ready/__init__.py:172 primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:146 primaryschool/ready/__init__.py:232
+#: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:284
+#: primaryschool/ready/__init__.py:285 primaryschool/ready/__init__.py:307
+#: primaryschool/ready/__init__.py:323 primaryschool/ready/__init__.py:325
+#: primaryschool/ready/__init__.py:327 primaryschool/ready/__init__.py:342
+#: primaryschool/ready/__init__.py:350
+msgid "Primary School"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:37 primaryschool/ready/__init__.py:42
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:51
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:58
+#: primaryschool/ready/__init__.py:52 primaryschool/ready/__init__.py:83
+#: primaryschool/ready/__init__.py:84 primaryschool/ready/__init__.py:85
+#: primaryschool/ready/__init__.py:78 primaryschool/ready/__init__.py:79
+#: primaryschool/ready/__init__.py:125 primaryschool/ready/__init__.py:124
+#: primaryschool/ready/__init__.py:152 primaryschool/ready/__init__.py:169
+#: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:185
+#: primaryschool/ready/__init__.py:187 primaryschool/ready/__init__.py:191
+#: primaryschool/ready/__init__.py:193
+msgid "Name :"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:45
+msgid "Subject"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:52
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:54
+#: primaryschool/ready/__init__.py:63 primaryschool/ready/__init__.py:64
+#: primaryschool/ready/__init__.py:73 primaryschool/ready/__init__.py:79
+#: primaryschool/ready/__init__.py:104 primaryschool/ready/__init__.py:105
+#: primaryschool/ready/__init__.py:106 primaryschool/ready/__init__.py:99
+#: primaryschool/ready/__init__.py:100 primaryschool/ready/__init__.py:148
+#: primaryschool/ready/__init__.py:147 primaryschool/ready/__init__.py:177
+#: primaryschool/ready/__init__.py:194 primaryschool/ready/__init__.py:209
+#: primaryschool/ready/__init__.py:211 primaryschool/ready/__init__.py:213
+#: primaryschool/ready/__init__.py:218 primaryschool/ready/__init__.py:220
+msgid "Difficulty :"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:54 primaryschool/ready/__init__.py:128
+msgid "Hard"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43
+msgid "middle"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:55 primaryschool/ready/__init__.py:128
+msgid "Easy"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:55
+#: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:62
+#: primaryschool/ready/__init__.py:72 primaryschool/ready/__init__.py:105
+#: primaryschool/ready/__init__.py:82 primaryschool/ready/__init__.py:115
+#: primaryschool/ready/__init__.py:118 primaryschool/ready/__init__.py:87
+#: primaryschool/ready/__init__.py:141 primaryschool/ready/__init__.py:81
+#: primaryschool/ready/__init__.py:147 primaryschool/ready/__init__.py:112
+#: primaryschool/ready/__init__.py:178 primaryschool/ready/__init__.py:113
+#: primaryschool/ready/__init__.py:179 primaryschool/ready/__init__.py:114
+#: primaryschool/ready/__init__.py:180 primaryschool/ready/__init__.py:109
+#: primaryschool/ready/__init__.py:153 primaryschool/ready/__init__.py:110
+#: primaryschool/ready/__init__.py:154 primaryschool/ready/__init__.py:158
+#: primaryschool/ready/__init__.py:238 primaryschool/ready/__init__.py:157
+#: primaryschool/ready/__init__.py:239 primaryschool/ready/__init__.py:189
+#: primaryschool/ready/__init__.py:291 primaryschool/ready/__init__.py:292
+#: primaryschool/ready/__init__.py:207 primaryschool/ready/__init__.py:314
+#: primaryschool/ready/__init__.py:222 primaryschool/ready/__init__.py:330
+#: primaryschool/ready/__init__.py:224 primaryschool/ready/__init__.py:332
+#: primaryschool/ready/__init__.py:226 primaryschool/ready/__init__.py:334
+#: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:359
+#: primaryschool/ready/__init__.py:235 primaryschool/ready/__init__.py:367
+msgid "Play"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:57
+#: primaryschool/ready/__init__.py:62 primaryschool/ready/__init__.py:66
+#: primaryschool/ready/__init__.py:107 primaryschool/ready/__init__.py:119
+#: primaryschool/ready/__init__.py:122 primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:151 primaryschool/ready/__init__.py:182
+#: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:184
+#: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
+#: primaryschool/ready/__init__.py:242 primaryschool/ready/__init__.py:243
+#: primaryschool/ready/__init__.py:297 primaryschool/ready/__init__.py:298
+#: primaryschool/ready/__init__.py:320 primaryschool/ready/__init__.py:336
+#: primaryschool/ready/__init__.py:338 primaryschool/ready/__init__.py:340
+#: primaryschool/ready/__init__.py:369 primaryschool/ready/__init__.py:377
+msgid "Quit"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:46
+msgid "Select an option"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:54
+#: primaryschool/ready/__init__.py:128
+msgid "Crazy"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:55
+#: primaryschool/ready/__init__.py:128
+msgid "Middle"
+msgstr ""
+
+#: primaryschool/subjects/english/__init__.py:8
+#: primaryschool/subjects/english/__init__.py:9
+#: primaryschool/subjects/s_english/__init__.py:9
+#: primaryschool/subjects/english/__init__.py:7
+msgid "English"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:50 primaryschool/ready/__init__.py:59
+#: primaryschool/ready/__init__.py:60
+msgid "Select an Subject"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:58 primaryschool/ready/__init__.py:68
+#: primaryschool/ready/__init__.py:69 primaryschool/ready/__init__.py:78
+msgid "Select an difficulty"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
+#: primaryschool/ready/__init__.py:51 primaryschool/ready/__init__.py:53
+#: primaryschool/ready/__init__.py:58 primaryschool/ready/__init__.py:52
+#: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:84
+#: primaryschool/ready/__init__.py:85 primaryschool/ready/__init__.py:78
+#: primaryschool/ready/__init__.py:79 primaryschool/ready/__init__.py:126
+#: primaryschool/ready/__init__.py:125 primaryschool/ready/__init__.py:153
+#: primaryschool/ready/__init__.py:170
+msgid "_name_"
+msgstr "ps"
+
+#: primaryschool/ready/__init__.py:45 primaryschool/ready/__init__.py:46
+#: primaryschool/ready/__init__.py:54 primaryschool/ready/__init__.py:56
+#: primaryschool/ready/__init__.py:61 primaryschool/ready/__init__.py:55
+#: primaryschool/ready/__init__.py:86 primaryschool/ready/__init__.py:87
+#: primaryschool/ready/__init__.py:88 primaryschool/ready/__init__.py:82
+#: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:130
+#: primaryschool/ready/__init__.py:129 primaryschool/ready/__init__.py:157
+#: primaryschool/ready/__init__.py:174 primaryschool/ready/__init__.py:188
+#: primaryschool/ready/__init__.py:190 primaryschool/ready/__init__.py:192
+#: primaryschool/ready/__init__.py:197 primaryschool/ready/__init__.py:199
+msgid "Subject :"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/__init__.py:8
+#: primaryschool/subjects/yuwen/__init__.py:19
+#: primaryschool/subjects/yuwen/__init__.py:18
+#: primaryschool/subjects/s_yuwen/__init__.py:18
+#: primaryschool/subjects/yuwen/__init__.py:17
+msgid "Yuwen"
+msgstr "Yuwen"
+
+#: primaryschool/subjects/math/__init__.py:8
+#: primaryschool/subjects/s_math/__init__.py:8
+#: primaryschool/subjects/math/__init__.py:10
+#: primaryschool/subjects/math/__init__.py:9
+msgid "Math"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:37
+#: primaryschool/ready/__init__.py:21 primaryschool/ready/__init__.py:23
+#: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:24
+#: primaryschool/ready/__init__.py:61 primaryschool/ready/__init__.py:62
+#: primaryschool/ready/__init__.py:69 primaryschool/ready/__init__.py:70
+#: primaryschool/ready/__init__.py:103 primaryschool/ready/__init__.py:131
+#: primaryschool/ready/__init__.py:148 primaryschool/ready/__init__.py:156
+#: primaryschool/ready/__init__.py:155 primaryschool/ready/__init__.py:160
+msgid "Play Game"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:76 primaryschool/ready/__init__.py:86
+#: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:85
+#: primaryschool/ready/__init__.py:51 primaryschool/ready/__init__.py:116
+#: primaryschool/ready/__init__.py:52 primaryschool/ready/__init__.py:117
+#: primaryschool/ready/__init__.py:53 primaryschool/ready/__init__.py:118
+#: primaryschool/ready/__init__.py:114 primaryschool/ready/__init__.py:115
+#: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:94
+#: primaryschool/ready/__init__.py:169 primaryschool/ready/__init__.py:45
+#: primaryschool/ready/__init__.py:168 primaryschool/ready/__init__.py:47
+#: primaryschool/ready/__init__.py:123 primaryschool/ready/__init__.py:198
+#: primaryschool/ready/__init__.py:140 primaryschool/ready/__init__.py:218
+#: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:235
+#: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:99
+#: primaryschool/ready/__init__.py:151 primaryschool/ready/__init__.py:244
+#: primaryschool/ready/__init__.py:246
+msgid "Return to main menu"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:106 primaryschool/ready/__init__.py:117
+#: primaryschool/ready/__init__.py:120 primaryschool/ready/__init__.py:143
+#: primaryschool/ready/__init__.py:149 primaryschool/ready/__init__.py:180
+#: primaryschool/ready/__init__.py:181 primaryschool/ready/__init__.py:25
+#: primaryschool/ready/__init__.py:182 primaryschool/ready/__init__.py:155
+#: primaryschool/ready/__init__.py:156 primaryschool/ready/__init__.py:68
+#: primaryschool/ready/__init__.py:240 primaryschool/ready/__init__.py:241
+#: primaryschool/ready/__init__.py:92 primaryschool/ready/__init__.py:294
+#: primaryschool/ready/__init__.py:295 primaryschool/ready/__init__.py:102
+#: primaryschool/ready/__init__.py:317 primaryschool/ready/__init__.py:107
+#: primaryschool/ready/__init__.py:333 primaryschool/ready/__init__.py:335
+#: primaryschool/ready/__init__.py:337 primaryschool/ready/__init__.py:112
+#: primaryschool/ready/__init__.py:364 primaryschool/ready/__init__.py:372
+msgid "About"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:60 primaryschool/ready/__init__.py:66
+#: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:92
+#: primaryschool/ready/__init__.py:93 primaryschool/ready/__init__.py:86
+#: primaryschool/ready/__init__.py:87 primaryschool/ready/__init__.py:134
+#: primaryschool/ready/__init__.py:133 primaryschool/ready/__init__.py:162
+#: primaryschool/ready/__init__.py:179 primaryschool/ready/__init__.py:194
+#: primaryschool/ready/__init__.py:196 primaryschool/ready/__init__.py:198
+#: primaryschool/ready/__init__.py:202 primaryschool/ready/__init__.py:204
+msgid "Select a Subject"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:64 primaryschool/ready/__init__.py:70
+#: primaryschool/ready/__init__.py:95 primaryschool/ready/__init__.py:96
+#: primaryschool/ready/__init__.py:97 primaryschool/ready/__init__.py:90
+#: primaryschool/ready/__init__.py:91 primaryschool/ready/__init__.py:138
+#: primaryschool/ready/__init__.py:137 primaryschool/ready/__init__.py:166
+#: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:198
+#: primaryschool/ready/__init__.py:200 primaryschool/ready/__init__.py:202
+#: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
+msgid "Game :"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:69 primaryschool/ready/__init__.py:75
+#: primaryschool/ready/__init__.py:100 primaryschool/ready/__init__.py:101
+#: primaryschool/ready/__init__.py:102 primaryschool/ready/__init__.py:94
+#: primaryschool/ready/__init__.py:95 primaryschool/ready/__init__.py:143
+#: primaryschool/ready/__init__.py:142 primaryschool/ready/__init__.py:172
+#: primaryschool/ready/__init__.py:189 primaryschool/ready/__init__.py:204
+#: primaryschool/ready/__init__.py:206 primaryschool/ready/__init__.py:208
+#: primaryschool/ready/__init__.py:213 primaryschool/ready/__init__.py:215
+msgid "Select a game"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:78 primaryschool/ready/__init__.py:83
+#: primaryschool/ready/__init__.py:77 primaryschool/ready/__init__.py:108
+#: primaryschool/ready/__init__.py:109 primaryschool/ready/__init__.py:110
+#: primaryschool/ready/__init__.py:104 primaryschool/ready/__init__.py:105
+#: primaryschool/ready/__init__.py:153 primaryschool/ready/__init__.py:152
+#: primaryschool/ready/__init__.py:183 primaryschool/ready/__init__.py:200
+#: primaryschool/ready/__init__.py:215 primaryschool/ready/__init__.py:217
+#: primaryschool/ready/__init__.py:219 primaryschool/ready/__init__.py:226
+#: primaryschool/ready/__init__.py:228
+msgid "Select a difficulty"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:114
+#: primaryschool/ready/__init__.py:145 primaryschool/ready/__init__.py:146
+#: primaryschool/ready/__init__.py:147
+msgid "null"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:18
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:19
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:19
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:20
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:21
+#: primaryschool/subjects/_common_/__init__.py:26
+msgid "pinyin missile"
+msgstr ""
+
+#: primaryschool/resource/__init__.py:40 primaryschool/resource/__init__.py:42
+#: primaryschool/resource/__init__.py:41
+msgid "No font found"
+msgstr ""
+
+#: primaryschool/resource/__init__.py:41 primaryschool/resource/__init__.py:43
+#: primaryschool/resource/__init__.py:42
+#, python-format
+msgid "Could not find font of %s."
+msgstr ""
+
+#: primaryschool/ready/__init__.py:42 primaryschool/ready/__init__.py:43
+#: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:85
+#: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:126
+#: primaryschool/ready/__init__.py:131 primaryschool/ready/__init__.py:136
+msgid "Author"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:46 primaryschool/ready/__init__.py:47
+#: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:89
+#: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+msgid "Contributors"
+msgstr ""
+
+#: primaryschool/settings.py:12 primaryschool/ready/__init__.py:18
+msgid "primary school knowledge games"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:17 primaryschool/ready/__init__.py:20
+#: primaryschool/ready/__init__.py:21 primaryschool/ready/__init__.py:25
+#: primaryschool/ready/__init__.py:24 primaryschool/ready/__init__.py:30
+msgid "app_description_t"
+msgstr "primary school knowledge games"
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:22
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:28
+msgid "Grade 1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:23
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:29
+msgid "Grade 2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:24
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:30
+msgid "Grade 3"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:25
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:31
+msgid "Grade 4"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:26
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:32
+msgid "Grade 5"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:33
+msgid "Grade 6"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/_common_/__init__.py:41
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
+#: primaryschool/subjects/english/g_english_missile/__init__.py:42
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+msgid "Low level"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/_common_/__init__.py:42
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
+#: primaryschool/subjects/english/g_english_missile/__init__.py:43
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
+msgid "High level"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: primaryschool/subjects/_common_/__init__.py:43
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
+#: primaryschool/subjects/english/g_english_missile/__init__.py:44
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:40
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:39
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:44
+msgid "All grades"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
+#: primaryschool/subjects/_common_/__init__.py:44
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
+#: primaryschool/subjects/english/g_english_missile/__init__.py:45
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
+msgid "All Chinese characters"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:22
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:22
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:23
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:24
+#: primaryschool/subjects/_common_/__init__.py:29
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/english/g_english_missile/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+msgid "Grade 1.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:23
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:23
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:24
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:25
+#: primaryschool/subjects/_common_/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/english/g_english_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+msgid "Grade 1.2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:24
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:24
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:25
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:26
+#: primaryschool/subjects/_common_/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/english/g_english_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+msgid "Grade 2.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:25
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:25
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:26
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/_common_/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/english/g_english_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+msgid "Grade 2.2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:26
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:26
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
+#: primaryschool/subjects/_common_/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/english/g_english_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:32
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:36
+msgid "Grade 3.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:29
+#: primaryschool/subjects/_common_/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/english/g_english_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:33
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:37
+msgid "Grade 3.2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:28
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:29
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/_common_/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: primaryschool/subjects/english/g_english_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:34
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:38
+msgid "Grade 4.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:29
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:29
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/_common_/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: primaryschool/subjects/english/g_english_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:35
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:39
+msgid "Grade 4.2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:30
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/_common_/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: primaryschool/subjects/english/g_english_missile/__init__.py:38
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:36
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:35
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:40
+msgid "Grade 5.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/_common_/__init__.py:38
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
+#: primaryschool/subjects/english/g_english_missile/__init__.py:39
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:37
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:36
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:41
+msgid "Grade 5.2"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/_common_/__init__.py:39
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
+#: primaryschool/subjects/english/g_english_missile/__init__.py:40
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:38
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:37
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:42
+msgid "Grade 6.1"
+msgstr ""
+
+#: primaryschool/subjects/s_yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: primaryschool/subjects/_common_/__init__.py:40
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
+#: primaryschool/subjects/english/g_english_missile/__init__.py:41
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:39
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:38
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:43
+msgid "Grade 6.2"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:292
+#: primaryschool/subjects/_common_/__init__.py:332
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:315
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:349
+#: primaryschool/subjects/english/g_english_missile/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
+#: primaryschool/subjects/_common_/shootingbase.py:499
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:337
+#: primaryschool/subjects/_common_/shootingbase.py:516
+#: primaryschool/subjects/_common_/shootingbase.py:517
+#: primaryschool/subjects/_common_/shootingbase.py:568
+#: primaryschool/subjects/_common_/shootingbase.py:574
+#: primaryschool/subjects/_common_/shootingbase.py:610
+msgid "win: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:265
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:290
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:292
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:292
+#: primaryschool/subjects/_common_/__init__.py:332
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:315
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:349
+#: primaryschool/subjects/english/g_english_missile/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:353
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:353
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:383
+#: primaryschool/subjects/_common_/shootingbase.py:500
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:337
+#: primaryschool/subjects/_common_/shootingbase.py:517
+#: primaryschool/subjects/_common_/shootingbase.py:518
+#: primaryschool/subjects/_common_/shootingbase.py:569
+#: primaryschool/subjects/_common_/shootingbase.py:575
+#: primaryschool/subjects/_common_/shootingbase.py:613
+msgid "lose: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:266
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:291
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:294
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:293
+#: primaryschool/subjects/_common_/__init__.py:333
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:316
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:350
+#: primaryschool/subjects/english/g_english_missile/__init__.py:355
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:354
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:354
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:384
+#: primaryschool/subjects/_common_/shootingbase.py:501
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:338
+#: primaryschool/subjects/_common_/shootingbase.py:518
+#: primaryschool/subjects/_common_/shootingbase.py:519
+#: primaryschool/subjects/_common_/shootingbase.py:570
+#: primaryschool/subjects/_common_/shootingbase.py:576
+#: primaryschool/subjects/_common_/shootingbase.py:616
+msgid "remain: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:268
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:293
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:295
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:296
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:295
+#: primaryschool/subjects/_common_/__init__.py:335
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:318
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:352
+#: primaryschool/subjects/english/g_english_missile/__init__.py:357
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:356
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:356
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
+#: primaryschool/subjects/_common_/shootingbase.py:502
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:340
+#: primaryschool/subjects/_common_/shootingbase.py:519
+#: primaryschool/subjects/_common_/shootingbase.py:520
+#: primaryschool/subjects/_common_/shootingbase.py:571
+#: primaryschool/subjects/_common_/shootingbase.py:577
+#: primaryschool/subjects/_common_/shootingbase.py:619
+msgid "total: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:305
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:307
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:308
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:307
+#: primaryschool/subjects/_common_/__init__.py:347
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:330
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:364
+#: primaryschool/subjects/english/g_english_missile/__init__.py:369
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:368
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:368
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:398
+#: primaryschool/subjects/_common_/shootingbase.py:514
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:352
+#: primaryschool/subjects/_common_/shootingbase.py:531
+#: primaryschool/subjects/_common_/shootingbase.py:532
+#: primaryschool/subjects/_common_/shootingbase.py:584
+#: primaryschool/subjects/_common_/shootingbase.py:590
+#: primaryschool/subjects/_common_/shootingbase.py:718
+#: primaryschool/subjects/_common_/shootingbase.py:720
+msgid "Cost: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:318
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:329
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:330
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:329
+#: primaryschool/subjects/_common_/__init__.py:369
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:352
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:386
+#: primaryschool/subjects/english/g_english_missile/__init__.py:391
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:390
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:390
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:420
+#: primaryschool/subjects/_common_/shootingbase.py:540
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:374
+#: primaryschool/subjects/_common_/shootingbase.py:557
+#: primaryschool/subjects/_common_/shootingbase.py:558
+#: primaryschool/subjects/_common_/shootingbase.py:610
+#: primaryschool/subjects/_common_/shootingbase.py:619
+#: primaryschool/subjects/_common_/shootingbase.py:739
+#: primaryschool/subjects/_common_/shootingbase.py:741
+msgid "Score: "
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:325
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:326
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:325
+#: primaryschool/subjects/_common_/__init__.py:365
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:348
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:382
+#: primaryschool/subjects/english/g_english_missile/__init__.py:387
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:386
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:386
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:416
+#: primaryschool/subjects/_common_/shootingbase.py:536
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:370
+#: primaryschool/subjects/_common_/shootingbase.py:553
+#: primaryschool/subjects/_common_/shootingbase.py:554
+#: primaryschool/subjects/_common_/shootingbase.py:606
+msgid "Success!"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:326
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:327
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:326
+#: primaryschool/subjects/_common_/__init__.py:366
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:349
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:383
+#: primaryschool/subjects/english/g_english_missile/__init__.py:388
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:387
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:387
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:417
+#: primaryschool/subjects/_common_/shootingbase.py:537
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:371
+#: primaryschool/subjects/_common_/shootingbase.py:554
+#: primaryschool/subjects/_common_/shootingbase.py:555
+#: primaryschool/subjects/_common_/shootingbase.py:607
+msgid "Practice makes perfect, keep trying!"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:29 primaryschool/ready/__init__.py:30
+#: primaryschool/ready/__init__.py:32 primaryschool/ready/__init__.py:33
+#: primaryschool/ready/__init__.py:37
+msgid "Save game?"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:36 primaryschool/ready/__init__.py:37
+#: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:40
+#: primaryschool/ready/__init__.py:44
+msgid "Save and return"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:40 primaryschool/ready/__init__.py:163
+#: primaryschool/ready/__init__.py:41 primaryschool/ready/__init__.py:162
+#: primaryschool/ready/__init__.py:43 primaryschool/ready/__init__.py:193
+#: primaryschool/ready/__init__.py:212 primaryschool/ready/__init__.py:44
+#: primaryschool/ready/__init__.py:227 primaryschool/ready/__init__.py:229
+#: primaryschool/ready/__init__.py:231 primaryschool/ready/__init__.py:49
+#: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:239
+msgid "Continue"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:21
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:25
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:26
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
+msgid "Mind hunter"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:24
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:28
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
+msgid "< 10 + 10"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:25
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:30
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
+msgid "< 50 + 50"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:26
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:30
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:31
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
+msgid "< 100 + 100"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:27
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:31
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
+msgid "< 10 - 10"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:28
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
+msgid "< 50 - 50"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
+msgid "< 100 - 100"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:30
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
+msgid "< 10 * 10"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:31
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:39
+msgid "< 50 * 50"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:40
+msgid "< 100 * 100"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:41
+msgid "< 10 / 10"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:39
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:42
+msgid "< 50 / 50"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:39
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:40
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:43
+msgid "< 100 / 100"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:40
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:41
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:44
+msgid "< 10 ? 10"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:41
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:42
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:45
+msgid "< 50 ? 50"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:42
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:43
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
+msgid "< 100 ? 100"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:27
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+msgid "Pinyin Missile"
+msgstr ""
+
+#: primaryschool/subjects/english/g_english_missile/__init__.py:27
+msgid "English Missile"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:66
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:65
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:70
+msgid ""
+"\n"
+"Enter the pinyin corresponding to the Chinese character, and enter the "
+"number\n"
+"after the pinyin to indicate the tone.\n"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:47
+msgid ""
+"\n"
+"Enter the calculation result.\n"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:68 primaryschool/ready/__init__.py:118
+#: primaryschool/ready/__init__.py:135 primaryschool/ready/__init__.py:71
+#: primaryschool/ready/__init__.py:140 primaryschool/ready/__init__.py:74
+#: primaryschool/ready/__init__.py:145
+msgid "Contributors & Sponsors"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
+msgid "Grade 1.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
+msgid "Grade 1.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
+msgid "Grade 2.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
+msgid "Grade 2.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
+msgid "Grade 3.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
+msgid "Grade 3.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
+msgid "Grade 4.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
+msgid "Grade 4.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
+msgid "Grade 5.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
+msgid "Grade 5.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
+msgid "Grade 6.1 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:62
+msgid "Grade 6.2 (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:63
+msgid "Low level (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:64
+msgid "High level (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:65
+msgid "All grades (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:62
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
+#: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:66
+msgid "All Chinese characters (30 characters)"
+msgstr ""
+
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:29
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:28
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:33
+msgid "Chinese-English Missile"
+msgstr ""
+
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:44
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:43
+#: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:49
+msgid ""
+"\n"
+"Enter the corresponding words of the Chinese characters.\n"
+msgstr ""
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:47
+msgid ""
+"\n"
+"Enter the calculation result, press enter to confirm.\n"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
+#: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
+#: primaryschool/ready/__init__.py:401
+msgid "default_name"
+msgstr "ps"
+
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
+#: primaryschool/subjects/math/g_mind_hunter/__init__.py:51
+msgid ""
+"\n"
+"Enter the calculation result, press Enter to confirm.\n"
+msgstr ""
+
+#: primaryschool/subjects/_common_/shootingbase.py:614
+#: primaryschool/subjects/_common_/shootingbase.py:733
+#: primaryschool/subjects/_common_/shootingbase.py:735
+#, python-format
+msgid "Success! Dear %s, you are so awesome!"
+msgstr ""
+
+#: primaryschool/subjects/_common_/shootingbase.py:615
+#: primaryschool/subjects/_common_/shootingbase.py:735
+#: primaryschool/subjects/_common_/shootingbase.py:737
+#, python-format
+msgid "Dear %s, practice makes perfect, keep trying!"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#, fuzzy
+msgid "name"
+msgstr "ps"
+
+#: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+msgid "Sponsors"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:374 primaryschool/ready/__init__.py:382
+msgid "Screenshots"
+msgstr ""
+
+#: primaryschool/subjects/_common_/shootingbase.py:700
+#: primaryschool/subjects/_common_/shootingbase.py:702
+msgid "Screenshot path is not set."
+msgstr ""
+
+#: primaryschool/subjects/_common_/shootingbase.py:703
+#: primaryschool/subjects/_common_/shootingbase.py:705
+msgid "Screenshot saved."
+msgstr ""
+
+#: primaryschool/subjects/_common_/shootingbase.py:742
+#: primaryschool/subjects/_common_/shootingbase.py:744
+msgid "Screenshot saved. Press Esc to RETURN"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:257
+msgid "After starting the game, press ESC to return"
+msgstr ""
+
+#: primaryschool/ready/__init__.py:257
+msgid "After starting the game, press ESC to return."
+msgstr ""
