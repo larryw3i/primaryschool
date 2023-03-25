@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import *
 
 app_name = "primaryschool"
 app_version = "0.0.23"
@@ -50,6 +51,43 @@ requirements = [
         ),
     ],
 ]
+
+
+def get_requirements_for_apt():
+    """For python 3.11, the Python environment is externally managed, so python
+    packages should be installed via `apt`.
+    The Format of requirements:
+    ```python3
+    [
+        ("package_name","package_version(N/A)","license","license_url"),
+    ]
+    ```
+    """
+    requirements = [("")]
+    return requirements
+    pass
+
+
+def get_requirements_for_pypi():
+    requirements = [("")]
+    return requirements
+    pass
+
+
+def get_requirements_for_dnf():
+    requirements = [("")]
+    return requirements
+    pass
+
+
+def get_requirements_for_yourself():
+    requirements = None
+    print(
+        "Feel free to contribute the code at "
+        + "`https://github.com/larryw3i/primaryschool`."
+    )
+    return requirements
+    pass
 
 
 def get_requirements_product():

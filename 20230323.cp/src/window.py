@@ -20,9 +20,10 @@
 from gi.repository import Adw
 from gi.repository import Gtk
 
-@Gtk.Template(resource_path='/com/gitee/larryw3i/primaryschool/window.ui')
+
+@Gtk.Template(resource_path="/com/gitee/larryw3i/primaryschool/window.ui")
 class PrimaryschoolWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'PrimaryschoolWindow'
+    __gtype_name__ = "PrimaryschoolWindow"
 
     label = Gtk.Template.Child()
 
