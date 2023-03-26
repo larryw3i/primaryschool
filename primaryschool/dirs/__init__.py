@@ -1,11 +1,13 @@
 import importlib
 import os
 import uuid
+from pathlib import *
 
 from appdirs import AppDirs
 
 from primaryschool.settings import app_author, app_name, app_version
 
+project_path = Path(__file__).parent.parent.absolute()
 _dirs = AppDirs(app_name, app_author)
 
 user_data_dir_path = _dirs.user_data_dir
