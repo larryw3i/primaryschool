@@ -7,7 +7,7 @@ venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
 global_parameters=$@
 
-locale_path="${app_name}/locale"
+locale_path="${app_name}/l10n"
 pot_path="${locale_path}/${app_name}.pot"
 po_lang0="en_US"
 po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"

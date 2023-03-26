@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 10:44+0800\n"
-"PO-Revision-Date: 2023-03-26 11:00+0800\n"
+"POT-Creation-Date: 2023-03-26 20:48+0800\n"
+"PO-Revision-Date: 2023-03-26 20:48+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese - China <larryw3i@163.com>\n"
 "Language: zh_CN\n"
@@ -1110,7 +1110,7 @@ msgstr "进入游戏后，按Esc返回。"
 msgid "After starting the game, press ESC to return."
 msgstr "进入游戏后，按Esc返回。"
 
-#: primaryschool/cli_opts.py:10
+#: primaryschool/cli_opts.py:10 primaryschool/cli_opt.py:34
 msgid "Run/Start this application."
 msgstr "运行应用。"
 
@@ -1129,3 +1129,49 @@ msgstr "打印测试信息。"
 #: primaryschool/cli_opts.py:27
 msgid "Say hello to you."
 msgstr "显示问候语。"
+
+#: primaryschool/__main__.py:17 primaryschool/__main__.py:18
+#, python-brace-format
+msgid "Have fun with {app_name}."
+msgstr "与 {app_name} 一起进步。"
+
+#: primaryschool/__main__.py:21 primaryschool/__main__.py:22
+#: primaryschool/__main__.py:24
+msgid "Start main program."
+msgstr "启动主程序。"
+
+#: primaryschool/__main__.py:33 primaryschool/cli_opt.py:36
+#: primaryschool/cli_opt.py:50 primaryschool/__main__.py:34
+#: primaryschool/__main__.py:41 primaryschool/__main__.py:37
+msgid "Print version."
+msgstr "显示版本信息。"
+
+#: primaryschool/cli_opt.py:35
+msgid "Show help information."
+msgstr "显示帮助信息。"
+
+#: primaryschool/cli_opt.py:37
+msgid "Show verbose information."
+msgstr "显示测试信息。"
+
+#: primaryschool/cli_opt.py:50
+msgid "Print Hello."
+msgstr "输出“你好”。"
+
+#: primaryschool/__main__.py:41 primaryschool/__main__.py:42
+#: primaryschool/__main__.py:49 primaryschool/__main__.py:45
+#, python-brace-format
+msgid "Have fun with {app_name} {app_version}."
+msgstr "与 {app_name} 一起进步。(版本号：{app_version})"
+
+#: primaryschool/__main__.py:27 primaryschool/__main__.py:29
+msgid "Show verbose messages."
+msgstr "显示测试信息。"
+
+#: primaryschool/__main__.py:34 primaryschool/__main__.py:15
+msgid "show this help message and exit"
+msgstr "显示帮助信息后退出。"
+
+#: primaryschool/__main__.py:20
+msgid "\\(^_^)/Yea!"
+msgstr "\\(^_^)/耶!"

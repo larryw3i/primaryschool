@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 10:45+0800\n"
+"POT-Creation-Date: 2023-03-26 20:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1100,7 +1100,7 @@ msgstr ""
 msgid "After starting the game, press ESC to return."
 msgstr ""
 
-#: primaryschool/cli_opts.py:10
+#: primaryschool/cli_opts.py:10 primaryschool/cli_opt.py:34
 msgid "Run/Start this application."
 msgstr ""
 
@@ -1118,4 +1118,50 @@ msgstr ""
 
 #: primaryschool/cli_opts.py:27
 msgid "Say hello to you."
+msgstr ""
+
+#: primaryschool/__main__.py:17 primaryschool/__main__.py:18
+#, python-brace-format
+msgid "Have fun with {app_name}."
+msgstr ""
+
+#: primaryschool/__main__.py:21 primaryschool/__main__.py:22
+#: primaryschool/__main__.py:24
+msgid "Start main program."
+msgstr ""
+
+#: primaryschool/__main__.py:33 primaryschool/cli_opt.py:36
+#: primaryschool/cli_opt.py:50 primaryschool/__main__.py:34
+#: primaryschool/__main__.py:41 primaryschool/__main__.py:37
+msgid "Print version."
+msgstr ""
+
+#: primaryschool/cli_opt.py:35
+msgid "Show help information."
+msgstr ""
+
+#: primaryschool/cli_opt.py:37
+msgid "Show verbose information."
+msgstr ""
+
+#: primaryschool/cli_opt.py:50
+msgid "Print Hello."
+msgstr ""
+
+#: primaryschool/__main__.py:41 primaryschool/__main__.py:42
+#: primaryschool/__main__.py:49 primaryschool/__main__.py:45
+#, python-brace-format
+msgid "Have fun with {app_name} {app_version}."
+msgstr ""
+
+#: primaryschool/__main__.py:27 primaryschool/__main__.py:29
+msgid "Show verbose messages."
+msgstr ""
+
+#: primaryschool/__main__.py:34 primaryschool/__main__.py:15
+msgid "show this help message and exit"
+msgstr ""
+
+#: primaryschool/__main__.py:20
+msgid "\\(^_^)/Yea!"
 msgstr ""
