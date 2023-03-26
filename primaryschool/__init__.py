@@ -4,9 +4,7 @@ from pathlib import *
 
 project_path = os.path.abspath(os.path.dirname(__file__))
 
-
-def victory():
+def ready_go():
     from primaryschool import ready
-
     ready.go()
     pass

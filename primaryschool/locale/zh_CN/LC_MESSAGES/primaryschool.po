@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 21:49+0800\n"
+"POT-Creation-Date: 2023-03-26 10:44+0800\n"
 "PO-Revision-Date: 2022-04-04 21:49+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -1048,7 +1048,7 @@ msgstr ""
 
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
-#: primaryschool/ready/__init__.py:401
+#: primaryschool/ready/__init__.py:401 primaryschool/ready/__init__.py:406
 msgid "default_name"
 msgstr "小学"
 
@@ -1109,3 +1109,23 @@ msgstr "进入游戏后，按Esc返回。"
 #: primaryschool/ready/__init__.py:257
 msgid "After starting the game, press ESC to return."
 msgstr "进入游戏后，按Esc返回。"
+
+#: primaryschool/cli_opts.py:10
+msgid "Run/Start this application."
+msgstr ""
+
+#: primaryschool/cli_opts.py:11
+msgid "Shows help information."
+msgstr ""
+
+#: primaryschool/cli_opts.py:12
+msgid "Shows version."
+msgstr ""
+
+#: primaryschool/cli_opts.py:13
+msgid "Print tests information."
+msgstr ""
+
+#: primaryschool/cli_opts.py:27
+msgid "Say hello to you."
+msgstr ""

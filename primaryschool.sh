@@ -7,6 +7,11 @@ venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
 global_parameters=$@
 
+locale_path="${app_name}/locale"
+pot_path="${locale_path}/${app_name}.pot"
+po_lang0="en_US"
+po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
+
 echo_use_venv_y(){
     echo "Virtual environment is used."
 }
@@ -40,6 +45,33 @@ use_venv(){
     fi
     return 1        
 }
+
+msg_get(){
+    [[ -f $pot_path ]] || touch $pot_path
+
+    xgettext \
+            -v \
+            -j \
+            -L Python \
+            --output=${pot_path} \
+            $(find ${app_name} -name "*.py")
+
+    [[ -f $po0_path ]] || touch $po0_path
+
+    for _po in $(find ${locale_path}/ -name "*.po")
+    do
+        msgmerge -U -v $_po ${pot_path}
+    done
+}
+
+msg_fmt(){
+    for _po in $(find ${locale_path} -name "*.po")
+    do
+        echo -e "$_po --> ${_po/.po/.mo}"
+        msgfmt -v -o ${_po/.po/.mo} $_po
+    done
+}
+
 
 if [[ $# == 0 ]];
 then
