@@ -1,20 +1,20 @@
 #
-# larry <larryw3i@163.com>, 2022.
+# larry <larryw3i@163.com>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-26 10:44+0800\n"
-"PO-Revision-Date: 2022-04-04 21:49+0800\n"
+"PO-Revision-Date: 2023-03-26 11:00+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
-"Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
-"Language: zh_CHS\n"
+"Language-Team: Chinese - China <larryw3i@163.com>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: primaryschool/subjects/yuwen/__init__.py:7
 msgid "math"
@@ -1112,20 +1112,20 @@ msgstr "进入游戏后，按Esc返回。"
 
 #: primaryschool/cli_opts.py:10
 msgid "Run/Start this application."
-msgstr ""
+msgstr "运行应用。"
 
 #: primaryschool/cli_opts.py:11
 msgid "Shows help information."
-msgstr ""
+msgstr "显示帮助信息。"
 
 #: primaryschool/cli_opts.py:12
 msgid "Shows version."
-msgstr ""
+msgstr "显示版本信息。"
 
 #: primaryschool/cli_opts.py:13
 msgid "Print tests information."
-msgstr ""
+msgstr "打印测试信息。"
 
 #: primaryschool/cli_opts.py:27
 msgid "Say hello to you."
-msgstr ""
+msgstr "显示问候语。"

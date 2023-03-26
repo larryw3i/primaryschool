@@ -5,8 +5,8 @@ from pathlib import *
 project_path = os.path.abspath(os.path.dirname(__file__))
 
 
-
 install_prefix = "python -m pip install "
+
 
 def get_requirements_for_apt():
     """For python 3.11, the Python environment is externally managed by default
@@ -98,6 +98,3 @@ def get_latest_requirements_for_pypi():
         r[1] = None
     return requirements
     pass
-
-
-
