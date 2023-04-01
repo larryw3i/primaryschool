@@ -3,8 +3,8 @@ import sys
 import argparse
 
 import primaryschool
-from primaryschool.l10n import _
-from primaryschool.requirements import *
+from primaryschool.psl10n import _
+from primaryschool.psdep import *
 
 
 

@@ -1,7 +1,7 @@
 import importlib
 import os
 from pathlib import *
-from primaryschool.l10n import _
+from primaryschool.psl10n import _
 
 project_path = os.path.abspath(os.path.dirname(__file__))
 

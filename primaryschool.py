@@ -1,6 +1,6 @@
 import getopt
 from pathlib import *
-from primaryschool.settings import *
+from primaryschool.pssettings import *
 
 
 def get_dev_requirements_for_pypi():

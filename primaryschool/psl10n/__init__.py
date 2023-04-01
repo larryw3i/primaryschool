@@ -2,6 +2,7 @@ import gettext
 import locale
 import os
 import sys
+import primaryschool
 
 sys_lang_code = locale.getdefaultlocale()[0]
 locale_path = locale_dir_path = os.path.abspath(os.path.dirname(__file__))
