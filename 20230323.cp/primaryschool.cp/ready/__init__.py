@@ -39,7 +39,6 @@ class SaveMenu:
         self.save = False
 
     def add_widgets(self):
-
         self._menu.add.button(
             _("Save and return"),
             self.save_the_game,
@@ -107,7 +106,6 @@ class ContributorsMenu:
 
 class AboutMenu:
     def __init__(self, ps):
-
         self.ps = ps
         self.title = _("About")
         self._menu = self.ps.get_default_menu(self.title)
@@ -265,7 +263,6 @@ class PlayMenu:
             self.subject_game_dropselect,
             self.difficulty_dropselect,
         ]:
-
             ds._selection_box_width = (
                 max([b.get_width() for b in ds._option_buttons])
                 + ds._selection_box_inflate[0]
@@ -450,7 +447,6 @@ class PrimarySchool:
         pygame.display.update()
 
     def run(self):
-
         self.add_widgets()
 
         while self.running:

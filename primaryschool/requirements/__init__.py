@@ -1,6 +1,7 @@
 import importlib
 import os
 from pathlib import *
+from primaryschool.l10n import _
 
 project_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -58,6 +59,13 @@ def get_requirements_for_pypi():
             "MIT",
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
         ),
+        (
+            "tomlkit",
+            None,
+            "https://github.com/sdispater/tomlkit",
+            "MIT License (MIT)",
+            "https://github.com/sdispater/tomlkit/blob/master/LICENSE",
+        ),
     ]
     return requirements
     pass
@@ -72,8 +80,10 @@ def get_requirements_for_dnf():
 def get_requirements_for_yourself():
     requirements = None
     print(
-        "Feel free to contribute the code at "
-        + "`https://github.com/larryw3i/primaryschool`."
+        _(
+            "Feel free to contribute the code at "
+            + "`https://github.com/larryw3i/primaryschool`."
+        )
     )
     return requirements
     pass
@@ -98,3 +108,18 @@ def get_latest_requirements_for_pypi():
         r[1] = None
     return requirements
     pass
+
+
+def get_latest_requirements_name_for_pypi():
+    requirements = get_requirements_for_pypi()
+    requirements = [r[0] for r in requirements]
+    return requirements
+    pass
+
+
+def print_latest_requirements_name_for_pypi():
+    requirements = get_latest_requirements_name_for_pypi()
+    print(' '.join(requirements))
+    pass
+
+

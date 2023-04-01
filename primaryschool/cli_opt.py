@@ -17,7 +17,6 @@ class CliOption(ABC):
         require_argument=False,
         _run=None,
     ):
-
         if not self in cli_options:
             cli_options.append(self)
         self.shortopt = None

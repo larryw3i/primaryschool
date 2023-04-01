@@ -72,6 +72,14 @@ msg_fmt(){
     done
 }
 
+install_requirements(){
+    pip3 install $(python3 -m primaryschool.requirements --prn)
+}
+
+get_rqmts(){
+    install_requirements;
+}
+
 
 if [[ $# == 0 ]];
 then

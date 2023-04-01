@@ -134,7 +134,6 @@ class PmTargetsManager(TargetsManager):
         self.wave.draw(moving_surfaces.intercept_frame_counter)
 
     def get_targets(self, d: int = 0, count=30):
-
         targets = None
         _base_len = int(len(difficulties) / 2)
         g_index = d

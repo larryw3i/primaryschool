@@ -54,6 +54,6 @@ if len(sys.argv[1:]) < 1 or start_signal:
     )
     if verbose > 0:
         print(f"Start program with verbose={verbose}.")
-    
+
 
 pass

@@ -4,7 +4,6 @@ from primaryschool.settings import *
 
 
 def get_dev_requirements_for_pypi():
-
     requirements = [
         (
             "black",

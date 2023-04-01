@@ -28,7 +28,6 @@ from primaryschool.subjects._common_.media import *
 
 class ShootingWave:
     def __init__(self, _manager):
-
         self.manager = _manager
         self.shtbase = self.manager.shtbase
         self.ps = self.shtbase.ps
@@ -173,7 +172,6 @@ class TargetSurface:
         return
 
     def move(self, _add=(1, 1), rel=True, use_func=False):
-
         if use_func:
             self.dest = self.calc_dest(_add)
         elif rel:
@@ -225,7 +223,6 @@ class TargetSurface:
             return self.intercepted
 
         if self.intercept_chr is None or _result.endswith(self.intercept_chr):
-
             if self.intercept_chr:
                 _result = _result.replace(self.intercept_chr, "").strip()
             else:
@@ -259,7 +256,6 @@ class TargetsManager:
         lang_code=None,
         intercept_keycode=None,
     ):
-
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.FPS = self.ps.FPS
@@ -427,7 +423,6 @@ class InputSurface:
         border_width=1,
         border_color=(200, 20, 30, 60),
     ):
-
         self.shtbase = shtbase
         self.ps = self.shtbase.ps
         self.font_size = 55
@@ -769,7 +764,6 @@ class ScoreSurface(InfoSurface):
             or not self.score_surface
             or not self.datetime_diff_surface
         ):
-
             self.score = self.get_score()
             self.get_score_pass()
 
@@ -796,7 +790,6 @@ class ScoreSurface(InfoSurface):
         self.surface.blit(self.get_bg(), (0, 0))
 
     def blit(self):
-
         self.set_surfaces()
         self.blit_bg()
         self.surface.blit(self.greeting_surface, self.get_greeting_dest())
@@ -971,7 +964,6 @@ class ShootingBase(GameBase, PsKeyCode):
                     return
 
     def start(self):
-
         self._start()
 
         while self.running:

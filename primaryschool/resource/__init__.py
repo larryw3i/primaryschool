@@ -14,7 +14,6 @@ pygame.font.init()
 
 class Resource:
     def __init__(self):
-
         self.default_font_size = 50
         self.sys_font_names = pygame.font.get_fonts()
         self.locale_font_paths = self.get_locale_font_paths()
@@ -88,12 +87,10 @@ def get_default_font(size=None):
 
 
 def get_font_path(lang_code, show_not_found=False):
-
     return r.get_font_path(lang_code, show_not_found)
 
 
 def get_sys_font_by_lang_code(lang_code=None, size=None):
-
     size = size or r.default_font_size
     return (
         pygame.font.Font(get_font_path(lang_code), size)
