@@ -73,11 +73,19 @@ msg_fmt(){
 }
 
 install_requirements(){
-    pip3 install $(python3 -m primaryschool.requirements --prn)
+    pip3 install $(python3 -m primaryschool.psdep --prn)
 }
 
 get_rqmts(){
     install_requirements;
+}
+
+black79(){
+    black -l79 .
+}
+
+blk79(){
+    black79
 }
 
 

@@ -1,8 +1,6 @@
-
 import sys
 from pathlib import Path
 
-import primaryschool 
+from primaryschool import *
 
-
-
+ps_cp_path = get_copy_path()

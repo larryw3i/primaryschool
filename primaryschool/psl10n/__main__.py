@@ -1,5 +1,2 @@
-
 import sys
 import primaryschool
-
-

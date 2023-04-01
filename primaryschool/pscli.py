@@ -1,3 +1,5 @@
+# Intend to deprecate.
+
 import getopt
 from abc import ABC
 from primaryschool.locale import _

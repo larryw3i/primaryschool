@@ -38,6 +38,13 @@ def get_requirements_for_apt():
             "MIT",
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
         ),
+        (
+            "python3-toml",
+            None,
+            "https://github.com/uiri/toml",
+            "MIT license",
+            "https://github.com/uiri/toml/blob/master/LICENSE",
+        ),
     ]
     return requirements
     pass
@@ -60,11 +67,11 @@ def get_requirements_for_pypi():
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
         ),
         (
-            "tomlkit",
+            "toml",
             None,
-            "https://github.com/sdispater/tomlkit",
-            "MIT License (MIT)",
-            "https://github.com/sdispater/tomlkit/blob/master/LICENSE",
+            "https://github.com/uiri/toml",
+            "MIT License",
+            "https://github.com/uiri/toml/blob/master/LICENSE",
         ),
     ]
     return requirements
@@ -119,7 +126,5 @@ def get_latest_requirements_name_for_pypi():
 
 def print_latest_requirements_name_for_pypi():
     requirements = get_latest_requirements_name_for_pypi()
-    print(' '.join(requirements))
+    print(" ".join(requirements))
     pass
-
-
