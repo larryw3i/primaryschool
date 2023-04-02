@@ -1,13 +1,14 @@
 #
 # larry <larryw3i@163.com>, 2022-2023.
+# larryw3i <larryw3i@163.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 20:48+0800\n"
-"PO-Revision-Date: 2023-03-26 20:48+0800\n"
-"Last-Translator: larry <larryw3i@163.com>\n"
+"POT-Creation-Date: 2023-04-03 03:12+0800\n"
+"PO-Revision-Date: 2023-04-03 03:18+0800\n"
+"Last-Translator: larryw3i <larryw3i@163.com>\n"
 "Language-Team: Chinese - China <larryw3i@163.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +37,7 @@ msgstr "语文"
 #: primaryschool/ready/__init__.py:285 primaryschool/ready/__init__.py:307
 #: primaryschool/ready/__init__.py:323 primaryschool/ready/__init__.py:325
 #: primaryschool/ready/__init__.py:327 primaryschool/ready/__init__.py:342
-#: primaryschool/ready/__init__.py:350
+#: primaryschool/ready/__init__.py:350 primaryschool/ready/__init__.py:347
 msgid "Primary School"
 msgstr "小学的游戏"
 
@@ -107,6 +108,7 @@ msgstr "简单"
 #: primaryschool/ready/__init__.py:226 primaryschool/ready/__init__.py:334
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:359
 #: primaryschool/ready/__init__.py:235 primaryschool/ready/__init__.py:367
+#: primaryschool/ready/__init__.py:364
 msgid "Play"
 msgstr "开始"
 
@@ -122,6 +124,7 @@ msgstr "开始"
 #: primaryschool/ready/__init__.py:320 primaryschool/ready/__init__.py:336
 #: primaryschool/ready/__init__.py:338 primaryschool/ready/__init__.py:340
 #: primaryschool/ready/__init__.py:369 primaryschool/ready/__init__.py:377
+#: primaryschool/ready/__init__.py:374 primaryschool/pswidgets/TopWidget.py:190
 msgid "Quit"
 msgstr "退出"
 
@@ -203,6 +206,7 @@ msgstr "数学"
 #: primaryschool/ready/__init__.py:103 primaryschool/ready/__init__.py:131
 #: primaryschool/ready/__init__.py:148 primaryschool/ready/__init__.py:156
 #: primaryschool/ready/__init__.py:155 primaryschool/ready/__init__.py:160
+#: primaryschool/ready/__init__.py:158
 msgid "Play Game"
 msgstr "开始游戏"
 
@@ -221,7 +225,8 @@ msgstr "开始游戏"
 #: primaryschool/ready/__init__.py:233 primaryschool/ready/__init__.py:235
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:99
 #: primaryschool/ready/__init__.py:151 primaryschool/ready/__init__.py:244
-#: primaryschool/ready/__init__.py:246
+#: primaryschool/ready/__init__.py:246 primaryschool/ready/__init__.py:98
+#: primaryschool/ready/__init__.py:149
 msgid "Return to main menu"
 msgstr "返回主菜单"
 
@@ -238,6 +243,7 @@ msgstr "返回主菜单"
 #: primaryschool/ready/__init__.py:333 primaryschool/ready/__init__.py:335
 #: primaryschool/ready/__init__.py:337 primaryschool/ready/__init__.py:112
 #: primaryschool/ready/__init__.py:364 primaryschool/ready/__init__.py:372
+#: primaryschool/ready/__init__.py:110 primaryschool/ready/__init__.py:369
 msgid "About"
 msgstr "关于"
 
@@ -307,7 +313,7 @@ msgid "No font found"
 msgstr "未发现字体"
 
 #: primaryschool/resource/__init__.py:41 primaryschool/resource/__init__.py:43
-#: primaryschool/resource/__init__.py:42
+#: primaryschool/resource/__init__.py:42 primaryschool/resource/__init__.py:40
 #, python-format
 msgid "Could not find font of %s."
 msgstr "没有发现 %s 的字体。"
@@ -316,12 +322,14 @@ msgstr "没有发现 %s 的字体。"
 #: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:85
 #: primaryschool/ready/__init__.py:111 primaryschool/ready/__init__.py:126
 #: primaryschool/ready/__init__.py:131 primaryschool/ready/__init__.py:136
+#: primaryschool/ready/__init__.py:134
 msgid "Author"
 msgstr "作者"
 
 #: primaryschool/ready/__init__.py:46 primaryschool/ready/__init__.py:47
 #: primaryschool/ready/__init__.py:48 primaryschool/ready/__init__.py:89
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/ready/__init__.py:86
 msgid "Contributors"
 msgstr "贡献者"
 
@@ -603,6 +611,7 @@ msgstr "六年级（下）"
 #: primaryschool/subjects/_common_/shootingbase.py:568
 #: primaryschool/subjects/_common_/shootingbase.py:574
 #: primaryschool/subjects/_common_/shootingbase.py:610
+#: primaryschool/subjects/_common_/shootingbase.py:605
 msgid "win: "
 msgstr "胜利: "
 
@@ -625,6 +634,7 @@ msgstr "胜利: "
 #: primaryschool/subjects/_common_/shootingbase.py:569
 #: primaryschool/subjects/_common_/shootingbase.py:575
 #: primaryschool/subjects/_common_/shootingbase.py:613
+#: primaryschool/subjects/_common_/shootingbase.py:608
 msgid "lose: "
 msgstr "失败: "
 
@@ -647,6 +657,7 @@ msgstr "失败: "
 #: primaryschool/subjects/_common_/shootingbase.py:570
 #: primaryschool/subjects/_common_/shootingbase.py:576
 #: primaryschool/subjects/_common_/shootingbase.py:616
+#: primaryschool/subjects/_common_/shootingbase.py:611
 msgid "remain: "
 msgstr "剩余: "
 
@@ -669,6 +680,7 @@ msgstr "剩余: "
 #: primaryschool/subjects/_common_/shootingbase.py:571
 #: primaryschool/subjects/_common_/shootingbase.py:577
 #: primaryschool/subjects/_common_/shootingbase.py:619
+#: primaryschool/subjects/_common_/shootingbase.py:614
 msgid "total: "
 msgstr "总共: "
 
@@ -691,6 +703,7 @@ msgstr "总共: "
 #: primaryschool/subjects/_common_/shootingbase.py:590
 #: primaryschool/subjects/_common_/shootingbase.py:718
 #: primaryschool/subjects/_common_/shootingbase.py:720
+#: primaryschool/subjects/_common_/shootingbase.py:715
 msgid "Cost: "
 msgstr "耗时: "
 
@@ -713,6 +726,7 @@ msgstr "耗时: "
 #: primaryschool/subjects/_common_/shootingbase.py:619
 #: primaryschool/subjects/_common_/shootingbase.py:739
 #: primaryschool/subjects/_common_/shootingbase.py:741
+#: primaryschool/subjects/_common_/shootingbase.py:736
 msgid "Score: "
 msgstr "分数: "
 
@@ -760,7 +774,7 @@ msgstr "保存游戏?"
 
 #: primaryschool/ready/__init__.py:36 primaryschool/ready/__init__.py:37
 #: primaryschool/ready/__init__.py:39 primaryschool/ready/__init__.py:40
-#: primaryschool/ready/__init__.py:44
+#: primaryschool/ready/__init__.py:44 primaryschool/ready/__init__.py:43
 msgid "Save and return"
 msgstr "保存并返回"
 
@@ -771,6 +785,7 @@ msgstr "保存并返回"
 #: primaryschool/ready/__init__.py:227 primaryschool/ready/__init__.py:229
 #: primaryschool/ready/__init__.py:231 primaryschool/ready/__init__.py:49
 #: primaryschool/ready/__init__.py:237 primaryschool/ready/__init__.py:239
+#: primaryschool/ready/__init__.py:48
 msgid "Continue"
 msgstr "继续"
 
@@ -922,7 +937,8 @@ msgstr ""
 #: primaryschool/ready/__init__.py:68 primaryschool/ready/__init__.py:118
 #: primaryschool/ready/__init__.py:135 primaryschool/ready/__init__.py:71
 #: primaryschool/ready/__init__.py:140 primaryschool/ready/__init__.py:74
-#: primaryschool/ready/__init__.py:145
+#: primaryschool/ready/__init__.py:145 primaryschool/ready/__init__.py:73
+#: primaryschool/ready/__init__.py:143
 msgid "Contributors & Sponsors"
 msgstr "贡献者和赞助者"
 
@@ -1049,6 +1065,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:157 primaryschool/ready/__init__.py:158
 #: primaryschool/ready/__init__.py:355 primaryschool/ready/__init__.py:393
 #: primaryschool/ready/__init__.py:401 primaryschool/ready/__init__.py:406
+#: primaryschool/ready/__init__.py:403
 msgid "default_name"
 msgstr "小学"
 
@@ -1064,6 +1081,7 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:614
 #: primaryschool/subjects/_common_/shootingbase.py:733
 #: primaryschool/subjects/_common_/shootingbase.py:735
+#: primaryschool/subjects/_common_/shootingbase.py:730
 #, python-format
 msgid "Success! Dear %s, you are so awesome!"
 msgstr "挑战成功，%s ，你真是太棒了！"
@@ -1071,34 +1089,41 @@ msgstr "挑战成功，%s ，你真是太棒了！"
 #: primaryschool/subjects/_common_/shootingbase.py:615
 #: primaryschool/subjects/_common_/shootingbase.py:735
 #: primaryschool/subjects/_common_/shootingbase.py:737
+#: primaryschool/subjects/_common_/shootingbase.py:732
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr "亲爱的 %s , 再加把劲! 努力!"
 
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/ready/__init__.py:86
 msgid "name"
 msgstr "名称（姓名）"
 
 #: primaryschool/ready/__init__.py:83 primaryschool/ready/__init__.py:87
+#: primaryschool/ready/__init__.py:86
 msgid "Sponsors"
 msgstr "赞助者"
 
 #: primaryschool/ready/__init__.py:374 primaryschool/ready/__init__.py:382
+#: primaryschool/ready/__init__.py:379
 msgid "Screenshots"
 msgstr "截图"
 
 #: primaryschool/subjects/_common_/shootingbase.py:700
 #: primaryschool/subjects/_common_/shootingbase.py:702
+#: primaryschool/subjects/_common_/shootingbase.py:697
 msgid "Screenshot path is not set."
 msgstr "截图路径未设置。"
 
 #: primaryschool/subjects/_common_/shootingbase.py:703
 #: primaryschool/subjects/_common_/shootingbase.py:705
+#: primaryschool/subjects/_common_/shootingbase.py:700
 msgid "Screenshot saved."
 msgstr "截图被保存。"
 
 #: primaryschool/subjects/_common_/shootingbase.py:742
 #: primaryschool/subjects/_common_/shootingbase.py:744
+#: primaryschool/subjects/_common_/shootingbase.py:739
 msgid "Screenshot saved. Press Esc to RETURN"
 msgstr "截图被保存。按 Esc 返回。"
 
@@ -1106,11 +1131,12 @@ msgstr "截图被保存。按 Esc 返回。"
 msgid "After starting the game, press ESC to return"
 msgstr "进入游戏后，按Esc返回。"
 
-#: primaryschool/ready/__init__.py:257
+#: primaryschool/ready/__init__.py:257 primaryschool/ready/__init__.py:255
 msgid "After starting the game, press ESC to return."
 msgstr "进入游戏后，按Esc返回。"
 
 #: primaryschool/cli_opts.py:10 primaryschool/cli_opt.py:34
+#: primaryschool/pscli.py:35
 msgid "Run/Start this application."
 msgstr "运行应用。"
 
@@ -1136,42 +1162,88 @@ msgid "Have fun with {app_name}."
 msgstr "与 {app_name} 一起进步。"
 
 #: primaryschool/__main__.py:21 primaryschool/__main__.py:22
-#: primaryschool/__main__.py:24
+#: primaryschool/__main__.py:24 primaryschool/__main__.py:23
 msgid "Start main program."
 msgstr "启动主程序。"
 
 #: primaryschool/__main__.py:33 primaryschool/cli_opt.py:36
 #: primaryschool/cli_opt.py:50 primaryschool/__main__.py:34
 #: primaryschool/__main__.py:41 primaryschool/__main__.py:37
+#: primaryschool/pscli.py:37 primaryschool/pscli.py:51
 msgid "Print version."
 msgstr "显示版本信息。"
 
-#: primaryschool/cli_opt.py:35
+#: primaryschool/cli_opt.py:35 primaryschool/pscli.py:36
 msgid "Show help information."
 msgstr "显示帮助信息。"
 
-#: primaryschool/cli_opt.py:37
+#: primaryschool/cli_opt.py:37 primaryschool/pscli.py:38
 msgid "Show verbose information."
 msgstr "显示测试信息。"
 
-#: primaryschool/cli_opt.py:50
+#: primaryschool/cli_opt.py:50 primaryschool/pscli.py:51
 msgid "Print Hello."
 msgstr "输出“你好”。"
 
 #: primaryschool/__main__.py:41 primaryschool/__main__.py:42
 #: primaryschool/__main__.py:49 primaryschool/__main__.py:45
+#: primaryschool/__main__.py:51
 #, python-brace-format
 msgid "Have fun with {app_name} {app_version}."
 msgstr "与 {app_name} 一起进步。(版本号：{app_version})"
 
 #: primaryschool/__main__.py:27 primaryschool/__main__.py:29
+#: primaryschool/__main__.py:32
 msgid "Show verbose messages."
 msgstr "显示测试信息。"
 
 #: primaryschool/__main__.py:34 primaryschool/__main__.py:15
+#: primaryschool/__main__.py:14
 msgid "show this help message and exit"
 msgstr "显示帮助信息后退出。"
 
-#: primaryschool/__main__.py:20
+#: primaryschool/__main__.py:20 primaryschool/__main__.py:19
 msgid "\\(^_^)/Yea!"
 msgstr "\\(^_^)/耶!"
+
+#: primaryschool/pscopy/__main__.py:9
+msgid "Get `ps_cp_path`."
+msgstr "获取 `ps_cp_path`。"
+
+#: primaryschool/pscopy/__main__.py:20
+msgid "primaryschool.pscopy"
+msgstr "primaryschool 的副本"
+
+#: primaryschool/pscopy/__main__.py:21
+msgid "The `pscopy` module of primaryschool."
+msgstr "primaryschool 的 pscopy 模块。"
+
+#: primaryschool/pscopy/__init__.py:20
+msgid "A copy is required."
+msgstr "需要一个副本。"
+
+#: primaryschool/pscopy/__init__.py:31
+msgid "A game name is required."
+msgstr "需要一个游戏名。"
+
+#: primaryschool/psdep/__main__.py:11
+msgid "primaryschool's requirements"
+msgstr "primaryschool 的依赖。"
+
+#: primaryschool/psdep/__main__.py:13
+msgid "The requirements of primaryschool."
+msgstr "primaryschool 的依赖脚本。"
+
+#: primaryschool/psdep/__main__.py:19
+msgid "Print the latest requirements' name for PYPI."
+msgstr "打印通过 PYPI 安装时最新依赖名。"
+
+#: primaryschool/psdep/__init__.py:91
+msgid ""
+"Feel free to contribute the code at `https://github.com/larryw3i/"
+"primaryschool`."
+msgstr "期待你在 `https://github.com/larryw3i/primaryschool` 贡献代码。"
+
+#: primaryschool/pswidgets/TopWidget.py:191
+msgid "Do you want to quit?"
+msgstr "确定退出？"

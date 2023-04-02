@@ -32,7 +32,7 @@ class SubWidget(WidgetABC):
 
 
 class TopWidget(WidgetABC):
-    def __init__(self, root=None, frame=None, mainloop=True):
+    def __init__(self, root=None, frame=None, mainloop=True, title=None):
         super().__init__()
         self.root_widget = self.rootw = self.root = root or Tk()
         self.frame_padding = 8
@@ -42,6 +42,8 @@ class TopWidget(WidgetABC):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.subwidgets = []
+        self.title = title or f"{app_name} ({app_version})"
+
 
         if mainloop:
             self.mainloop()
@@ -210,6 +212,7 @@ class TopWidget(WidgetABC):
 
     def mainloop(self):
         self.place_widgets()
+        self.root_widget.title(self.title)
         self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
         self.root_widget.bind("<Configure>", self.on_rootw_configuring)
         self.root_widget.mainloop()

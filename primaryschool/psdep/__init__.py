@@ -123,8 +123,21 @@ def get_latest_requirements_name_for_pypi():
     return requirements
     pass
 
+def get_requirements_name_with_version_for_pypi():
+    requirements = get_requirements_for_pypi()
+    requirements = [
+        (r[0]+r[1] ) if r[1] else r[0] \
+        for r in requirements
+    ]
+    passs
+
 
 def print_latest_requirements_name_for_pypi():
     requirements = get_latest_requirements_name_for_pypi()
     print(" ".join(requirements))
     pass
+
+req_names_pypi = get_latest_requirements_for_pypi()
+req_names_with_version_pypi = get_requirements_name_with_version_for_pypi()
+
+pass
