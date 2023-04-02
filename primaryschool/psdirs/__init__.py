@@ -40,7 +40,7 @@ def get_copy_path(game_module_name=None, mk_ifnot_exists=True):
     if mk_ifnot_exists:
         if not cp_path.exists():
             with open(str(cp_path), "w") as f:
-                toml_content = toml.dump({}, f)
+                toml.dump({}, f)
 
     return cp_path
     pass
@@ -53,11 +53,18 @@ def get_game_module_copy_path(game_module_name=None):
     return cp_path
     pass
 
-    return cp_path
-
 
 def get_default_screenshot_path(module_str, player_name):
     _uuid = str(uuid.uuid4())
     return os.path.join(
         user_screenshot_dir_path, f"{module_str}.{player_name}.{_uuid}.png"
     )
+
+
+get_cp_path = get_copy_path
+get_game_cp_path = get_game_copy_path = get_game_module_copy_path
+
+get_screenshot_path0 = get_default_screenshot_path
+
+
+pass

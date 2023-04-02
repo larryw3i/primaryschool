@@ -5,7 +5,14 @@ from primaryschool.pscopy import *
 
 
 def test():
-    print(ps_cp_path)
+    print_nl(
+        _("Get `ps_cp_path`."),
+        ps_cp_path,
+        "Testing get_ps_copy().",
+        get_ps_copy(),
+        "Testing set_ps_copy().",
+        set_ps_copy({"Test": "Hello, World!"}),
+    )
     pass
 
 

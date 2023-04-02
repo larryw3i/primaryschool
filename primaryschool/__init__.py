@@ -7,6 +7,7 @@ from toml import *
 from pathlib import *
 from primaryschool.psl10n import _
 from primaryschool.psdirs import *
+from primaryschool.pstest import *
 
 project_path = str(Path(__file__).parent.parent.absolute())
 
