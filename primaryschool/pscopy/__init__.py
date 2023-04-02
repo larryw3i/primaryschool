@@ -15,12 +15,13 @@ def get_ps_copy():
     pass
 
 
-def set_ps_copy(pscp=None):
+def set_ps_copy(pscp=None, save_now=True):
     if not pscp:
         print(_("A copy is required."))
         return False
-    with open(ps_cp_path, "w") as f:
-        toml.dump(pscp, f)
+    if save_now:
+        with open(ps_cp_path, "w") as f:
+            toml.dump(pscp, f)
     return True
     pass
 
@@ -42,6 +43,9 @@ def get_game_copy(game_name=None):
 
 
 get_ps_cp = get_ps_copy
+set_ps_cp = set_ps_copy
+
 pscp = get_ps_cp()
+
 
 pass
