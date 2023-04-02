@@ -87,6 +87,7 @@ get_rqmts(){
 }
 
 black79(){
+    [[ -f "$(which black)" ]] || pip3 install -U black
     black -l79 .
 }
 

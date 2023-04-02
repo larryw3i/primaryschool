@@ -18,9 +18,10 @@ def get_ps_copy():
 def set_ps_copy(pscp=None):
     if not pscp:
         print(_("A copy is required."))
-        return
+        return False
     with open(ps_cp_path, "w") as f:
         toml.dump(pscp, f)
+    return True
     pass
 
 
@@ -39,5 +40,8 @@ def get_game_copy(game_name=None):
     return psgcp
     pass
 
+
+get_ps_cp = get_ps_copy
+pscp = get_ps_cp()
 
 pass
