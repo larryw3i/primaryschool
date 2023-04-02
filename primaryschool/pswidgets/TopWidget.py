@@ -8,14 +8,37 @@ from primaryschool import *
 
 
 class WidgetABC(ABC):
+    def __init__(self):
+        self.set_ps_cp = self.set_ps_copy = set_ps_copy
+        self.pscp = pscp
+        pass
+
+    def save_ps_cp(self):
+        self.set_ps_cp(self.pscp)
+        pass
+
+    def save_ps_copy(self, *args, **kwargs):
+        self.save_ps_cp(args, kwargs)
+        pass
+
+    pass
+
+
+class SubWidget(WidgetABC):
+    def __init__(self):
+        super().__init__()
+
     pass
 
 
 class TopWidget(WidgetABC):
     def __init__(self, root=None, frame=None, mainloop=True):
+        super().__init__()
         self.root_widget = self.rootw = self.root = root or Tk()
         self.frame_padding = 8
-        self.frame = frame or ttk.Frame(self.root, padding=self.frame_padding)
+        self.main_frame = self.mainframe = self.frame = frame or ttk.Frame(
+            self.root, padding=self.frame_padding
+        )
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.subwidgets = []
@@ -74,7 +97,7 @@ class TopWidget(WidgetABC):
         root_h = pscp.get(self.pscp_root_height_key, None)
         if not root_h:
             root_h = self.root.winfo_screenheight()
-            pscp.set(self.pscp_root_height_key, root_h)
+            pscp[self.pscp_root_height_key] = root_h
         return root_h
         pass
 
@@ -82,14 +105,11 @@ class TopWidget(WidgetABC):
         root_w = pscp.get(self.pscp_root_width_key, None)
         if not root_w:
             root_w = self.root.winfo_screenwidth()
-            pscp.set(self.pscp_root_width_key, root_w)
+            pscp[self.pscp_root_width_key] = root_w
         return root_w
         pass
 
     def set_root_width_height(self, width=None, height=None):
-        if not (width and height):
-            return False
-
         if height:
             pscp.set(self.pscp_root_height_key, height)
 
@@ -120,13 +140,79 @@ class TopWidget(WidgetABC):
         return self.set_root_width_height(height=height)
         pass
 
+    def set_rootw_width(self, *args, **kwargs):
+        self.set_root_width(args, kwargs)
+        pass
+
+    def set_rootw_height(self, *args, **kwargs):
+        self.set_root_height(args, kwargs)
+        pass
+
+    def set_root_widget_width(self, *args, **kwargs):
+        self.set_root_width(args, kwargs)
+        pass
+
+    def set_root_widget_height(self, *args, **kwargs):
+        self.set_root_height(args, kwargs)
+        pass
+
+    def get_mainframe_x(self):
+        return 0
+        pass
+
+    def get_mainframe_y(self):
+        return 0
+        pass
+
+    def get_mainframe_width(self):
+        return self.get_root_width()
+        pass
+
+    def get_mainframe_height(self):
+        return self.get_root_height()
+        pass
+
     def place_widgets(self):
-        self.frame.pack()
+        self.mainframe.place(
+            x=self.get_mainframe_x(),
+            y=self.get_mainframe_y(),
+            width=self.get_mainframe_width(),
+            height=self.get_mainframe_height(),
+        )
+        self.set_root_width_height()
+        pass
+
+    def on_rootw_closing(self):
+        self.save_ps_cp()
+        if messagebox.askokcancel(
+            _("Quit"),
+            _("Do you want to quit?"),
+            parent=self.root_widget,
+        ):
+            self.root_widget.destroy()
+        pass
+
+    def set_rootw_width_height_cp(self,event = None):
+        if not event:
+            return
+        self.pscp[self.pscp_root_width_key] = event.width
+        self.pscp[self.pscp_root_height_key] = event.height
+
+        pass
+
+    def set_rootw_wh_cp(self, *args, **kwargs):
+        self.set_rootw_width_height_cp(args, kwargs)
+        pass
+
+    def on_rootw_configuring(self, event):
+        self.set_rootw_width_height_cp(event)
         pass
 
     def mainloop(self):
         self.place_widgets()
-        self.root.mainloop()
+        self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
+        self.root_widget.bind("<Configure>", self.on_rootw_configuring)
+        self.root_widget.mainloop()
 
         pass
 

@@ -5,6 +5,7 @@ import argparse
 import toml
 from toml import *
 from pathlib import *
+from tkinter import messagebox
 from primaryschool.psl10n import _
 from primaryschool.psdirs import *
 from primaryschool.pstest import *
