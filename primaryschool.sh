@@ -12,6 +12,11 @@ pot_path="${locale_path}/${app_name}.pot"
 po_lang0="en_US"
 po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
 
+if ! [[ -v "venv_used" ]];
+then
+    venv_used=0
+fi
+
 echo_use_venv_y(){
     echo "Virtual environment is used."
 }
@@ -43,6 +48,7 @@ use_venv(){
         . ${venv_dir_path}/bin/activate.fish
         echo_use_venv_y
     fi
+    venv_used=1
     return 1        
 }
 
@@ -96,11 +102,11 @@ elif [[ $1 == "use_venv" ]];
 then
     use_venv
 else
-    use_venv
-    if ! [[ $? == 1 ]];
-    then 
-        return
+    if [[ $venv_used == 0 ]];
+    then
+        use_venv
     fi
+
     $@
 fi
 

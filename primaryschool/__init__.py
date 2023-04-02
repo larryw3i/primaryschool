@@ -3,6 +3,7 @@ import os
 import sys
 import argparse
 import toml
+from toml import *
 from pathlib import *
 from primaryschool.psl10n import _
 from primaryschool.psdirs import *
