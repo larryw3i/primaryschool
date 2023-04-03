@@ -102,6 +102,16 @@ get_dev_deps(){
     [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
 }
 
+build0(){
+    python3 primaryschool0.py --upptoml
+    python3 -m build
+}
+build(){
+    blk79
+    python3 primaryschool0.py --upptoml
+    python3 -m build
+}
+
 if [[ $# == 0 ]];
 then
     echo "${app_name_sh} is used."

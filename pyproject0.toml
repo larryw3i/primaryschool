@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools","black",'isort']
+requires = ["setuptools",]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -25,26 +25,20 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Source = "https://github.com/alejandroautalan/pygubu"
-
+Source = ""
 
 [tool.setuptools.packages.find]
-where = ["primaryschool"]
+where = ["src"]
 
-[tool.black]
-line-length = 79
-target-version = ["py36", "py37", "py38", "py39", "py310"]
-include = '\\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
+
+[tool.setuptools.exclude-package-data]
+"*" = ["*.pot", "*.po"]
+
+[project.gui-scripts]
+primaryschool = "primaryschool"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = [ "*.mo",]

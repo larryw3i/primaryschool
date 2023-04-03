@@ -6,6 +6,8 @@ from primaryschool import *
 from primaryschool.psdirs import *
 
 ps_cp_path = get_copy_path()
+
+
 def get_ps_copy():
     pscp = None
     with open(ps_cp_path, "r") as f:

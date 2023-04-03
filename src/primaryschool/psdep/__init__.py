@@ -126,7 +126,9 @@ def get_latest_requirements_name_for_pypi():
 
 def get_requirements_name_with_version_for_pypi():
     requirements = get_requirements_for_pypi()
-    requirements = [(r[0] +f"'{r[1]}'") if r[1] else r[0] for r in requirements]
+    requirements = [
+        (r[0] + f"'{r[1]}'") if r[1] else r[0] for r in requirements
+    ]
     return requirements
     pass
 
@@ -138,9 +140,9 @@ def print_latest_requirements_name_for_pypi():
 
 
 req_names_pypi = get_latest_requirements_for_pypi()
-deps=setup_reqs = (
-    req_names_with_version_pypi
-) = get_requirements_name_with_version_for_pypi()
+deps = (
+    setup_reqs
+) = req_names_with_version_pypi = get_requirements_name_with_version_for_pypi()
 
 
 pass
