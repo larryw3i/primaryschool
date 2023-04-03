@@ -1,0 +1,5 @@
+[build-system]
+requires = ["setuptools","black","toml","isort"]
+build-backend = "setuptools.build_meta"
+
+
