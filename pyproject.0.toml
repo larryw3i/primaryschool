@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools","black",'isort']
+build-backend = "setuptools.build_meta"
+
+[project]
+name = ""
+description = ""
+readme = "README.md"
+requires-python = ">=3.6"
+license = { text = "MIT" }
+keywords = [ "education", "game"]
+authors = []
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Students",
+  "Topic :: Games",
+]
+dependencies = []
+
+[project.urls]
+Source = "https://github.com/alejandroautalan/pygubu"
+
+
+[tool.setuptools.packages.find]
+where = ["primaryschool"]
+
+[tool.black]
+line-length = 79
+target-version = ["py36", "py37", "py38", "py39", "py310"]
+include = '\\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

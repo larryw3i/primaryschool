@@ -1,5 +1,31 @@
 [build-system]
-requires = ["setuptools","black","toml","isort"]
+requires = [ "setuptools", "black", "isort",]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "primaryschool"
+description = ""
+readme = "README.md"
+requires-python = ">=3.6"
+keywords = [ "education", "game",]
+classifiers = [ "Programming Language :: Python", "Programming Language :: Python :: 3.6", "Programming Language :: Python :: 3.7", "Programming Language :: Python :: 3.8", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Intended Audience :: Students", "Topic :: Games",]
+dependencies = [ "pygame", "appdirs", "toml",]
+version = "0.0.24"
+[[project.authors]]
+name = "larryw3i"
+email = "larryw3i@163.com"
 
+[project.license]
+text = "MIT"
+
+[project.urls]
+Source = "https://github.com/larryw3i/primaryschool"
+
+[tool.black]
+line-length = 79
+target-version = [ "py36", "py37", "py38", "py39", "py310",]
+include = "\\\\.pyi?$"
+exclude = "/(\n    \\.git\n  | \\.hg\n  | \\.mypy_cache\n  | \\.tox\n  | \\.venv\n  | _build\n  | buck-out\n  | build\n  | dist\n)/\n"
+
+[tool.setuptools.packages.find]
+where = [ "primaryschool",]

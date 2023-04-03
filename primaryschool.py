@@ -1,24 +1,49 @@
 import argparse
 import getopt
+import json
 import sys
+from pathlib import Path
+
+import toml
 
 import primaryschool
 from primaryschool import *
-from primaryschool.psdep import *
-from primaryschool.psl10n import _
+
+_=str
 
 
-def test():
-    print_nl(
-        "req_names_pypi",
-        req_names_pypi,
-        "req_names_with_version_pypi",
-        req_names_with_version_pypi,
-        "setup_reqs",
-        setup_reqs,
-    )
+parent_path = Path(__file__).parent
+pyproject_toml_path = parent_path / "pyproject.toml"
+pyproject0_toml_path = parent_path / "pyproject.0.toml"
+pyproject = None
+
+def get_pyproject(_read = False,cp=False):
+    global pyproject
+    if (not _read ) and pyproject:
+        return pyproject
+    with open( pyproject0_toml_path if cp else  pyproject_toml_path, 'r') as f:
+        pyproject = toml.loads(f.read())
+    
+    return pyproject
+    pass
 
 def update_pyproject_toml():
+    global pyproject_toml_path
+    pyproject = get_pyproject(cp=True)
+    pyproject["project"]['name'] = app_name
+    pyproject["project"]['version'] = app_version
+    pyproject["project"]['dependencies'] = deps
+    pyproject["project"]["authors"] = app_authors
+    pyproject["project"]['urls']['Source'] = project_url
+    with open(pyproject_toml_path,'w' ) as f:
+        toml.dump(pyproject,f)
+    print("Update completed.")
+    pass
+
+def print_pyproject_toml():
+    print(
+        json.dumps(get_pyproject(), indent = 4)
+    )
     pass
 
 parser = argparse.ArgumentParser(
@@ -35,6 +60,22 @@ parser.add_argument(
     help=_("Run the testings."),
 )
 
+parser.add_argument(
+    "--upptoml",
+    action="store_true",
+    help=_("Run the testings."),
+)
+
+
+
+def test():
+    print(
+    "print_pyproject_toml")
+    print_pyproject_toml()
+        
+
+
+
 
 argv = sys.argv[1:]
 if len(argv) < 1:
@@ -42,10 +83,16 @@ if len(argv) < 1:
 
 args = parser.parse_args()
 run_test = args.test
+upptoml = args.upptoml
 
+if upptoml:
+    update_pyproject_toml()
+    exit()
 
 if run_test:
     test()
     exit()
+
+
 
 pass

@@ -97,6 +97,10 @@ blk79(){
     black79
 }
 
+get_dev_deps(){
+    [[ -f "$(which ipython3)" ]] || pip3 install -U ipython
+    [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
+}
 
 if [[ $# == 0 ]];
 then
@@ -109,7 +113,7 @@ else
     then
         use_venv
     fi
-
+    get_dev_deps
     $@
 fi
 

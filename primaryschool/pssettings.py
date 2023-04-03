@@ -11,8 +11,11 @@ project_author_email = app_author_email = "larryw3i@163.com"
 project_maintainer = app_maintainer = app_author
 project_maintainer_email = app_maintainer_email = app_author_email
 project_description = app_description = "primary school knowledge games"
-project_url = app_url = "https://github.com/larryw3i/primaryschool"
-project_contributors = app_contributors = [(app_author, app_author_email)]
+project_url = project_source_url = \
+app_url = "https://github.com/larryw3i/primaryschool"
+project_authors = app_authors = \
+project_contributors = app_contributors = \
+[{"name": app_author, "email": app_author_email},]
 project_reqs = app_reqs = setup_reqs
 project_license = app_license = (
     "MIT",

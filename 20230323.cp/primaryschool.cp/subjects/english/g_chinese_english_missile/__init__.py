@@ -13,19 +13,14 @@ from xpinyin import Pinyin
 
 from primaryschool.dirs import *
 from primaryschool.locale import _
-from primaryschool.resource import (
-    default_font,
-    default_font_path,
-    get_default_font,
-    get_font_path,
-    get_resource_path,
-)
+from primaryschool.resource import (default_font, default_font_path,
+                                    get_default_font, get_font_path,
+                                    get_resource_path)
 from primaryschool.subjects import *
 from primaryschool.subjects._abc_ import GameBase
 from primaryschool.subjects._common_.shootingbase import *
-from primaryschool.subjects.english.g_chinese_english_missile.words import (
-    cn_ps_e_words,
-)
+from primaryschool.subjects.english.g_chinese_english_missile.words import \
+    cn_ps_e_words
 
 # primaryschool.subjects.yuwen.g_pinyin_missile
 module_str = __name__
