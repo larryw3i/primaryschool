@@ -1,7 +1,7 @@
+import argparse
 import importlib
 import os
 import sys
-import argparse
 from pathlib import *
 
 project_path = str(Path(__file__).parent.parent.absolute())
@@ -9,7 +9,7 @@ if not project_path in sys.path:
     sys.path.append(project_path)
 
 from primaryschool.psl10n import _
-from primaryschool.pssettings import app_version, app_name
+from primaryschool.pssettings import app_name, app_version
 
 help_text = _("show this help message and exit")
 

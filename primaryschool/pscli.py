@@ -2,6 +2,7 @@
 
 import getopt
 from abc import ABC
+
 from primaryschool.locale import _
 
 # https://docs.python.org/3/library/getopt.html

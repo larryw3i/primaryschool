@@ -1,6 +1,7 @@
 import importlib
 import os
 from pathlib import *
+
 from primaryschool.psl10n import _
 
 project_path = os.path.abspath(os.path.dirname(__file__))
@@ -111,8 +112,7 @@ def install_requirements_product():
 
 def get_latest_requirements_for_pypi():
     requirements = get_requirements_for_pypi()
-    for r in requirements:
-        r[1] = None
+    requirements = [(r[0], None) for r in requirements]
     return requirements
     pass
 
@@ -123,13 +123,12 @@ def get_latest_requirements_name_for_pypi():
     return requirements
     pass
 
+
 def get_requirements_name_with_version_for_pypi():
     requirements = get_requirements_for_pypi()
-    requirements = [
-        (r[0]+r[1] ) if r[1] else r[0] \
-        for r in requirements
-    ]
-    passs
+    requirements = [(r[0] + r[1]) if r[1] else r[0] for r in requirements]
+    return requirements
+    pass
 
 
 def print_latest_requirements_name_for_pypi():
@@ -137,7 +136,11 @@ def print_latest_requirements_name_for_pypi():
     print(" ".join(requirements))
     pass
 
+
 req_names_pypi = get_latest_requirements_for_pypi()
-req_names_with_version_pypi = get_requirements_name_with_version_for_pypi()
+setup_reqs = (
+    req_names_with_version_pypi
+) = get_requirements_name_with_version_for_pypi()
+
 
 pass

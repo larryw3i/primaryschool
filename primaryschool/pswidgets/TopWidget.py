@@ -1,7 +1,6 @@
+from abc import ABC
 from tkinter import *
 from tkinter import ttk
-
-from abc import ABC
 
 import primaryschool
 from primaryschool import *
@@ -43,7 +42,6 @@ class TopWidget(WidgetABC):
         self.pscp_root_height_key = "rootw_height"
         self.subwidgets = []
         self.title = title or f"{app_name} ({app_version})"
-
 
         if mainloop:
             self.mainloop()
@@ -194,7 +192,7 @@ class TopWidget(WidgetABC):
             self.root_widget.destroy()
         pass
 
-    def set_rootw_width_height_cp(self,event = None):
+    def set_rootw_width_height_cp(self, event=None):
         if not event:
             return
         self.pscp[self.pscp_root_width_key] = event.width

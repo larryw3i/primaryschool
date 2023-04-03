@@ -88,6 +88,8 @@ get_rqmts(){
 
 black79(){
     [[ -f "$(which black)" ]] || pip3 install -U black
+    [[ -f "$(which isort)" ]] || pip3 install -U isort
+    isort .
     black -l79 .
 }
 

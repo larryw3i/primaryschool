@@ -2,6 +2,7 @@ import gettext
 import locale
 import os
 import sys
+
 import primaryschool
 
 sys_lang_code = locale.getdefaultlocale()[0]
