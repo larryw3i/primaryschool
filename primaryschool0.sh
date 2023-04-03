@@ -7,7 +7,8 @@ venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
 global_parameters=$@
 
-locale_path="${app_name}/psl10n"
+src_path="${PWD}/src"
+locale_path="${src_path}/${app_name}/psl10n"
 pot_path="${locale_path}/${app_name}.pot"
 po_lang0="en_US"
 po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
@@ -97,9 +98,11 @@ blk79(){
     black79
 }
 
-get_dev_deps(){
+psread(){
     [[ -f "$(which ipython3)" ]] || pip3 install -U ipython
     [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
+    [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
+    export PYTHONPATH=${PYTHONPATH}:${PWD}/src
 }
 
 build0(){
@@ -112,8 +115,10 @@ build(){
     python3 -m build
 }
 
+
 if [[ $# == 0 ]];
 then
+    psread
     echo "${app_name_sh} is used."
 elif [[ $1 == "use_venv" ]];
 then
@@ -123,7 +128,6 @@ else
     then
         use_venv
     fi
-    get_dev_deps
     $@
 fi
 

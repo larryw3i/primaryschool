@@ -43,6 +43,7 @@ def update_pyproject_toml():
     pyproject["project"]["dependencies"] = deps
     pyproject["project"]["authors"] = app_authors
     pyproject["project"]["urls"]["Source"] = project_url
+    pyproject["project"]["description"] = project_description
     with open(pyproject_toml_path, "w") as f:
         toml.dump(pyproject, f)
     print("Update completed.")
