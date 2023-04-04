@@ -31,9 +31,15 @@ class SubWidget(WidgetABC):
 
 
 class TopWidget(WidgetABC):
-    def __init__(self, root=None, frame=None, mainloop=True, title=None):
+    def __init__(
+        self, root=None, frame=None, mainloop=True, title=None, menubar=None
+    ):
         super().__init__()
         self.root_widget = self.rootw = self.root = root or Tk()
+
+        self.menubar = menubar or Menu(self.root_widget)
+        self.helpmenu = None
+
         self.frame_padding = 8
         self.main_frame = self.mainframe = self.frame = frame or ttk.Frame(
             self.root, padding=self.frame_padding
@@ -204,13 +210,30 @@ class TopWidget(WidgetABC):
         self.set_rootw_width_height_cp(args, kwargs)
         pass
 
+    def cmd_get_help(self):
+        pass
+
+    def cmd_about(self):
+        pass
+
+    def set_menubar_cascades(self):
+        self.helpmenu = Menu(self.menubar, tearoff=0)
+        self.helpmenu.add_command(
+            label=_("Get Help"), command=self.cmd_get_help
+        )
+        self.helpmenu.add_command(label=_("About..."), command=self.cmd_about)
+        self.menubar.add_cascade(label=_("Help"), menu=self.helpmenu)
+        self.root_widget.config(menu=self.menubar)
+        pass
+
     def on_rootw_configuring(self, event):
         self.set_rootw_width_height_cp(event)
         pass
 
     def mainloop(self):
-        self.place_widgets()
         self.root_widget.title(self.title)
+        self.set_menubar_cascades()
+        self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
         self.root_widget.bind("<Configure>", self.on_rootw_configuring)
         self.root_widget.mainloop()

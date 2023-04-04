@@ -98,6 +98,14 @@ blk79(){
     black79
 }
 
+code_style(){
+    black79
+}
+
+cdfmt(){
+    code_style
+}
+
 psread(){
     [[ -f "$(which ipython3)" ]] || pip3 install -U ipython
     [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
