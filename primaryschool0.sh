@@ -103,6 +103,7 @@ psread(){
     [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
+    [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
 }
 
 build0(){
