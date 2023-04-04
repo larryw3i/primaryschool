@@ -3,6 +3,9 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
+import pygubu
+from pygubu.widgets.scrolledframe import *
+
 import primaryschool
 from primaryschool import *
 
@@ -62,9 +65,14 @@ class TopWidget(WidgetABC):
         self.helpmenu = None
 
         self.frame_padding = 8
-        self.main_frame = self.mainframe = self.frame = frame or ttk.Frame(
-            self.root, padding=self.frame_padding
+        self.main_sclframe = (
+            self.mainsclframe
+        ) = self.sclframe = frame or ScrolledFrame(
+            self.root_widget, scrolltype="both"
         )
+        self.main_frame = (
+            self.mainframe
+        ) = self.frame = self.main_sclframe.innerframe
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
