@@ -76,6 +76,7 @@ class TopWidget(WidgetABC):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
+        self.ready_for_mainloop = True
 
         if mainloop:
             self.mainloop()
@@ -143,7 +144,9 @@ class TopWidget(WidgetABC):
         return root_w
         pass
 
-    def set_root_width_height(self, width=None, height=None):
+    def set_root_width_height(
+        self, width=None, height=None, update_widget=True
+    ):
         if height:
             pscp.set(self.pscp_root_height_key, height)
 
@@ -156,8 +159,9 @@ class TopWidget(WidgetABC):
         if not width:
             width = self.get_root_width()
 
-        geo_str = f"{width}x{height}"
-        self.root.geometry(geo_str)
+        if update_widget:
+            geo_str = f"{width}x{height}"
+            self.root.geometry(geo_str)
 
         return True
         pass
@@ -206,18 +210,6 @@ class TopWidget(WidgetABC):
         return self.get_root_height()
         pass
 
-    def place_widgets(self):
-        self.mainsclframe.place(
-            x=self.get_mainsclframe_x(),
-            y=self.get_mainsclframe_y(),
-            width=self.get_mainsclframe_width(),
-            height=self.get_mainsclframe_height(),
-        )
-
-        for sw in self.subwidgets:
-            sw.place()
-        pass
-
     def on_rootw_closing(self):
         self.save_ps_cp()
         if messagebox.askokcancel(
@@ -256,11 +248,31 @@ class TopWidget(WidgetABC):
         self.root_widget.config(menu=self.menubar)
         pass
 
-    def on_rootw_configuring(self, event):
-        self.set_rootw_width_height_cp(event)
+    def place_widgets(self):
+        if self.mainsclframe:
+            self.mainsclframe.place(
+                x=self.get_mainsclframe_x(),
+                y=self.get_mainsclframe_y(),
+                width=self.get_mainsclframe_width(),
+                height=self.get_mainsclframe_height(),
+            )
+
+        for sw in self.subwidgets:
+            sw.place()
+        pass
+
+    def on_rootw_configuring(self, event=None):
+        if event and not self.ready_for_mainloop:
+            self.set_rootw_width_height_cp(event)
+
+        # self.set_root_width_height()
         for sw in self.subwidgets:
             sw.config()
+
         pass
+
+    def config(self, *args, **kwargs):
+        self.on_rootw_configuring(args, kwargs)
 
     def mainloop(self):
         self.root_widget.title(self.title)
@@ -269,6 +281,8 @@ class TopWidget(WidgetABC):
         self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
         self.root_widget.bind("<Configure>", self.on_rootw_configuring)
+        # self.on_rootw_configuring()
+        self.ready_for_mainloop = False
         self.root_widget.mainloop()
 
         pass
