@@ -1,7 +1,7 @@
 
 app_name="primaryschool"
-app_name_sh="${app_name}.sh"
-app_name_py="${app_name}.py"
+app_name_sh="${app_name}0.sh"
+app_name_py="${app_name}0.py"
 venv_dir_name="venv"
 venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
@@ -61,7 +61,7 @@ msg_get(){
             -j \
             -L Python \
             --output=${pot_path} \
-            $(find ${app_name} -name "*.py")
+            $(find ${src_path} -name "*.py")
 
     [[ -f $po0_path ]] || touch $po0_path
 
@@ -80,7 +80,7 @@ msg_fmt(){
 }
 
 install_requirements(){
-    pip3 install $(python3 -m primaryschool.psdep --prn)
+    pip3 install $(python3 -m ${app_name}.psdep --prn)
 }
 
 get_rqmts(){
@@ -115,12 +115,12 @@ psread(){
 }
 
 build0(){
-    python3 primaryschool0.py --upptoml
+    python3 ${app_name_py} --upptoml
     python3 -m build
 }
 build(){
     blk79
-    python3 primaryschool0.py --upptoml
+    python3 ${app_name_py} --upptoml
     python3 -m build
 }
 

@@ -1,3 +1,4 @@
+import abc
 from abc import ABC
 from tkinter import *
 from tkinter import ttk
@@ -10,6 +11,7 @@ class WidgetABC(ABC):
     def __init__(self):
         self.set_ps_cp = self.set_ps_copy = set_ps_copy
         self.pscp = pscp
+        self.subwidgets = []
         pass
 
     def save_ps_cp(self):
@@ -24,8 +26,27 @@ class WidgetABC(ABC):
 
 
 class SubWidget(WidgetABC):
-    def __init__(self):
+    def __init__(self, parent_widget=None):
+        if not parent_widget:
+            print(_("'parent_widget' is None."))
         super().__init__()
+        self.parent_widget = parent_widget
+        self.psubwidgets = (
+            self.parent_subwidgets
+        ) = self.parent_widget.subwidgets
+        if not self in self.psubwidgets:
+            self.psubwidgets.append(self)
+            pass
+
+        pass
+
+    @abc.abstractmethod
+    def place(self):
+        pass
+
+    @abc.abstractmethod
+    def config(self):
+        pass
 
     pass
 
@@ -46,7 +67,6 @@ class TopWidget(WidgetABC):
         )
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
-        self.subwidgets = []
         self.title = title or f"{app_name} ({app_version})"
 
         if mainloop:
@@ -185,6 +205,8 @@ class TopWidget(WidgetABC):
             width=self.get_mainframe_width(),
             height=self.get_mainframe_height(),
         )
+        for sw in self.subwidgets:
+            sw.place()
         self.set_root_width_height()
         pass
 
@@ -228,6 +250,8 @@ class TopWidget(WidgetABC):
 
     def on_rootw_configuring(self, event):
         self.set_rootw_width_height_cp(event)
+        for sw in self.subwidgets:
+            sw.config()
         pass
 
     def mainloop(self):
