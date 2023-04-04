@@ -68,7 +68,7 @@ class TopWidget(WidgetABC):
         self.main_sclframe = (
             self.mainsclframe
         ) = self.sclframe = frame or ScrolledFrame(
-            self.root_widget, scrolltype="both"
+            self.root_widget, scrolltype="both", usemousewheel=True
         )
         self.main_frame = (
             self.mainframe
@@ -190,32 +190,32 @@ class TopWidget(WidgetABC):
         self.set_root_height(args, kwargs)
         pass
 
-    def get_mainframe_x(self):
+    def get_mainsclframe_x(self):
         return 0
         pass
 
-    def get_mainframe_y(self):
+    def get_mainsclframe_y(self):
         return 0
         pass
 
-    def get_mainframe_width(self):
+    def get_mainsclframe_width(self):
         return self.get_root_width()
         pass
 
-    def get_mainframe_height(self):
+    def get_mainsclframe_height(self):
         return self.get_root_height()
         pass
 
     def place_widgets(self):
-        self.mainframe.place(
-            x=self.get_mainframe_x(),
-            y=self.get_mainframe_y(),
-            width=self.get_mainframe_width(),
-            height=self.get_mainframe_height(),
+        self.mainsclframe.place(
+            x=self.get_mainsclframe_x(),
+            y=self.get_mainsclframe_y(),
+            width=self.get_mainsclframe_width(),
+            height=self.get_mainsclframe_height(),
         )
+
         for sw in self.subwidgets:
             sw.place()
-        self.set_root_width_height()
         pass
 
     def on_rootw_closing(self):
@@ -265,6 +265,7 @@ class TopWidget(WidgetABC):
     def mainloop(self):
         self.root_widget.title(self.title)
         self.set_menubar_cascades()
+        self.set_root_width_height()
         self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
         self.root_widget.bind("<Configure>", self.on_rootw_configuring)
