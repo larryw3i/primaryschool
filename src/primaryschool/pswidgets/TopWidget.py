@@ -76,7 +76,8 @@ class TopWidget(WidgetABC):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
-        self.ready_for_mainloop = True
+
+        self.bind_config = False
 
         if mainloop:
             self.mainloop()
@@ -220,11 +221,21 @@ class TopWidget(WidgetABC):
             self.root_widget.destroy()
         pass
 
-    def set_rootw_width_height_cp(self, event=None):
-        if not event:
-            return
-        self.pscp[self.pscp_root_width_key] = event.width
-        self.pscp[self.pscp_root_height_key] = event.height
+    def set_rootw_width_height_cp(
+        self, 
+        event=None,
+        width = None, 
+        height = None
+    ):
+        if  event:
+            self.pscp[self.pscp_root_width_key] = event.width
+            self.pscp[self.pscp_root_height_key] = event.height
+            return 
+        if width and width > 0:
+            self.pscp[self.pscp_root_width_key] = width
+
+        if height and height > 0:
+            self.pscp[self.pscp_root_height_key] = height
 
         pass
 
@@ -260,15 +271,26 @@ class TopWidget(WidgetABC):
         for sw in self.subwidgets:
             sw.place()
         pass
+    
+    def get_root_x(self):
+        return self.root_widget.winfo_x()
+
+    def get_root_y(self):
+        return self.root_widget.winfo_y()
 
     def on_rootw_configuring(self, event=None):
-        if event and not self.ready_for_mainloop:
-            self.set_rootw_width_height_cp(event)
+        if event:
+            self.set_rootw_width_height_cp( 
+            width = self.root_widget.winfo_width(),
+            height = self.root_widget.winfo_height())
+        
+        self.place_widgets()
+        pass
 
-        # self.set_root_width_height()
-        for sw in self.subwidgets:
-            sw.config()
-
+    def bind_rootw_enter(self,event):
+        if not self.bind_config:
+            self.root_widget.bind("<Configure>", self.on_rootw_configuring)
+            self.bind_config = True
         pass
 
     def config(self, *args, **kwargs):
@@ -280,9 +302,7 @@ class TopWidget(WidgetABC):
         self.set_root_width_height()
         self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
-        self.root_widget.bind("<Configure>", self.on_rootw_configuring)
-        # self.on_rootw_configuring()
-        self.ready_for_mainloop = False
+        self.root_widget.bind("<Enter>", self.bind_rootw_enter)
         self.root_widget.mainloop()
 
         pass
