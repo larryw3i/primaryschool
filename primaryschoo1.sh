@@ -114,7 +114,7 @@ psread(){
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
     [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
-    [[ -d "${main_src_ln_path}" ]] || ln -s ${main_src_path} \
+    [[ -d "${main_src_ln_path}" ]] || ln -sr ${main_src_path} \
     ${main_src_ln_path}
 }
 
