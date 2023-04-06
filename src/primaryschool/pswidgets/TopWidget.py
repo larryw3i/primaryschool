@@ -22,7 +22,7 @@ class WidgetABC(ABC):
         pass
 
     def save_ps_copy(self, *args, **kwargs):
-        self.save_ps_cp(args, kwargs)
+        self.save_ps_cp(*args, **kwargs)
         pass
 
     pass
@@ -180,19 +180,19 @@ class TopWidget(WidgetABC):
         pass
 
     def set_rootw_width(self, *args, **kwargs):
-        self.set_root_width(args, kwargs)
+        self.set_root_width(*args, **kwargs)
         pass
 
     def set_rootw_height(self, *args, **kwargs):
-        self.set_root_height(args, kwargs)
+        self.set_root_height(*args, **kwargs)
         pass
 
     def set_root_widget_width(self, *args, **kwargs):
-        self.set_root_width(args, kwargs)
+        self.set_root_width(*args, **kwargs)
         pass
 
     def set_root_widget_height(self, *args, **kwargs):
-        self.set_root_height(args, kwargs)
+        self.set_root_height(*args, **kwargs)
         pass
 
     def get_mainsclframe_x(self):
@@ -221,16 +221,11 @@ class TopWidget(WidgetABC):
             self.root_widget.destroy()
         pass
 
-    def set_rootw_width_height_cp(
-        self, 
-        event=None,
-        width = None, 
-        height = None
-    ):
-        if  event:
+    def set_rootw_width_height_cp(self, event=None, width=None, height=None):
+        if event:
             self.pscp[self.pscp_root_width_key] = event.width
             self.pscp[self.pscp_root_height_key] = event.height
-            return 
+            return
         if width and width > 0:
             self.pscp[self.pscp_root_width_key] = width
 
@@ -240,7 +235,7 @@ class TopWidget(WidgetABC):
         pass
 
     def set_rootw_wh_cp(self, *args, **kwargs):
-        self.set_rootw_width_height_cp(args, kwargs)
+        self.set_rootw_width_height_cp(*args, **kwargs)
         pass
 
     def cmd_get_help(self):
@@ -271,38 +266,59 @@ class TopWidget(WidgetABC):
         for sw in self.subwidgets:
             sw.place()
         pass
-    
+
     def get_root_x(self):
         return self.root_widget.winfo_x()
 
     def get_root_y(self):
         return self.root_widget.winfo_y()
 
+    def get_rootw_winfo_width(self):
+        if not self.root_widget:
+            return None
+        return self.root_widget.winfo_width()
+        pass
+
+    def get_rootw_winfo_height(self):
+        if not self.root_widget:
+            return None
+        return self.root_widget.winfo_height()
+        pass
+
     def on_rootw_configuring(self, event=None):
         if event:
-            self.set_rootw_width_height_cp( 
-            width = self.root_widget.winfo_width(),
-            height = self.root_widget.winfo_height())
-        
+            self.set_rootw_width_height_cp(
+                width=self.get_rootw_winfo_width(),
+                height=self.get_rootw_winfo_height(),
+            )
+
         self.place_widgets()
         pass
 
-    def bind_rootw_enter(self,event):
+    def bind_rootw_enter(self, event = None):
+        if not event:
+            return
+
         if not self.bind_config:
             self.root_widget.bind("<Configure>", self.on_rootw_configuring)
             self.bind_config = True
         pass
 
+    def close(self, *args, **kwargs):
+        self.on_rootw_closing(*args, **kwargs)
+        pass
+
     def config(self, *args, **kwargs):
-        self.on_rootw_configuring(args, kwargs)
+        self.on_rootw_configuring(*args, **kwargs)
+        pass
 
     def mainloop(self):
         self.root_widget.title(self.title)
         self.set_menubar_cascades()
         self.set_root_width_height()
         self.place_widgets()
-        self.root_widget.protocol("WM_DELETE_WINDOW", self.on_rootw_closing)
-        self.root_widget.bind("<Enter>", self.bind_rootw_enter)
+        self.root_widget.protocol("WM_DELETE_WINDOW", self.close)
+        self.root_widget.bind("<Configure>",self.config)
         self.root_widget.mainloop()
 
         pass

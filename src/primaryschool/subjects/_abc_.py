@@ -14,12 +14,8 @@ from xpinyin import Pinyin
 
 from primaryschool.dirs import *
 from primaryschool.locale import _, sys_lang_code
-from primaryschool.resource import (
-    default_font,
-    default_font_path,
-    get_default_font,
-    get_font_path,
-)
+from primaryschool.resource import (default_font, default_font_path,
+                                    get_default_font, get_font_path)
 from primaryschool.subjects import *
 
 

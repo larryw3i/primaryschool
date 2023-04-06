@@ -1,14 +1,16 @@
 
 app_name="primaryschool"
-app_name_sh="${app_name}0.sh"
-app_name_py="${app_name}0.py"
+app_name_sh="${app_name/l/1}.sh"
+app_name_py="${app_name/l/1}.py"
 venv_dir_name="venv"
 venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
 global_parameters=$@
 
 src_path="${PWD}/src"
-locale_path="${src_path}/${app_name}/psl10n"
+main_src_path="${src_path}/${app_name}"
+main_src_ln_path="${PWD}/${app_name}"
+locale_path="${main_src_path}/psl10n"
 pot_path="${locale_path}/${app_name}.pot"
 po_lang0="en_US"
 po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
@@ -112,6 +114,8 @@ psread(){
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
     [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
+    [[ -d "${main_src_ln_path}" ]] || ln -s ${main_src_path} \
+    ${main_src_ln_path}
 }
 
 build0(){

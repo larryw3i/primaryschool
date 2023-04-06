@@ -148,6 +148,9 @@ primaryschool/data/snapshots/
 # ignored now.
 pyproject.toml
 
+# main source code link
+primaryschool/
+
 
 ###############################################################################
 ###############################################################################
