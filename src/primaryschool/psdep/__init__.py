@@ -2,7 +2,7 @@ import importlib
 import os
 from pathlib import *
 
-from primaryschool.psl10n import _
+# from primaryschool.psl10n import _
 
 project_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -52,6 +52,11 @@ def get_requirements_for_apt():
 
 
 def get_requirements_for_pypi():
+    '''
+    Return the requirements for installing 'primaryschool' via 'pypi'.
+    Note: add the new requirement to the function 'install_requirements'
+    in 'primaryschoo1.sh'.
+    '''
     requirements = [
         (
             "pygame",

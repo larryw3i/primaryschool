@@ -82,11 +82,21 @@ msg_fmt(){
 }
 
 install_requirements(){
-    pip3 install $(python3 -m ${app_name}.psdep --prn)
+    # If you add new requirement to src/primaryschool/psdep/__init__.py, repeat 
+    # it here. (^_^)
+    pip3 install            \
+        pygame              \
+        appdirs             \
+        toml                \
+
 }
 
 get_rqmts(){
-    install_requirements;
+    install_requirements
+}
+
+get_deps(){
+    install_requirements
 }
 
 black79(){
