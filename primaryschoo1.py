@@ -20,7 +20,7 @@ _ = str
 
 parent_path = Path(__file__).parent
 pyproject_toml_path = parent_path / "pyproject.toml"
-pyproject0_toml_path = parent_path / "pyproject0.toml"
+pyproject0_toml_path = parent_path / "pypr0ject.toml"
 pyproject = None
 
 

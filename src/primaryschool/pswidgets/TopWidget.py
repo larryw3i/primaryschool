@@ -295,7 +295,7 @@ class TopWidget(WidgetABC):
         self.place_widgets()
         pass
 
-    def bind_rootw_enter(self, event = None):
+    def bind_rootw_enter(self, event=None):
         if not event:
             return
 
@@ -318,7 +318,7 @@ class TopWidget(WidgetABC):
         self.set_root_width_height()
         self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.close)
-        self.root_widget.bind("<Configure>",self.config)
+        self.root_widget.bind("<Configure>", self.config)
         self.root_widget.mainloop()
 
         pass
