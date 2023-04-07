@@ -88,6 +88,7 @@ install_requirements(){
         pygame              \
         appdirs             \
         toml                \
+        pygubu             
 
 }
 

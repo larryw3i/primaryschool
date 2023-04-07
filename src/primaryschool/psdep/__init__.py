@@ -73,6 +73,13 @@ def get_requirements_for_pypi():
             "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
         ),
         (
+            "pygubu",
+            None,
+            "https://github.com/alejandroautalan/pygubu",
+            "MIT License",
+            "https://github.com/alejandroautalan/pygubu/blob/master/LICENSE",
+        ),
+        (
             "toml",
             None,
             "https://github.com/uiri/toml",

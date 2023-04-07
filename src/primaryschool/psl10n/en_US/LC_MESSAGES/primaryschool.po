@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 22:23+0800\n"
+"POT-Creation-Date: 2023-04-08 01:41+0800\n"
 "PO-Revision-Date: 2022-03-24 13:44+0800\n"
 "Last-Translator: larry <larryw3i@163.com>\n"
 "Language-Team: Chinese (Simplified) <larryw3i@163.com>\n"
@@ -131,6 +131,7 @@ msgstr ""
 #: primaryschool/ready/__init__.py:374 primaryschool/pswidgets/TopWidget.py:190
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/ready/__init__.py:374
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:216
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:217
 msgid "Quit"
 msgstr ""
 
@@ -1360,6 +1361,7 @@ msgstr ""
 
 #: primaryschool/psdep/__init__.py:91
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psdep/__init__.py:92
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psdep/__init__.py:104
 msgid ""
 "Feel free to contribute the code at `https://github.com/larryw3i/"
 "primaryschool`."
@@ -1367,6 +1369,7 @@ msgstr ""
 
 #: primaryschool/pswidgets/TopWidget.py:191
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:217
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:218
 msgid "Do you want to quit?"
 msgstr ""
 
@@ -1379,17 +1382,29 @@ msgid "Run the testings."
 msgstr ""
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:31
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:34
 msgid "'parent_widget' is None."
 msgstr ""
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:244
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:250
 msgid "Get Help"
 msgstr ""
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:246
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:252
 msgid "About..."
 msgstr ""
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:247
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:253
 msgid "Help"
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:25
+msgid "primaryschool.pswidgets"
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:26
+msgid "The `pswidgets` module of primaryschool."
 msgstr ""
