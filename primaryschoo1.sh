@@ -87,7 +87,20 @@ msg_fmt(){
 install_requirements(){
     pypideps=""
     depindex=-1
+    breaked_line=""
     while IFS= read -r line; do
+        if [[ $line == *'\'* ]];
+        then
+            breaked_line+="${line::-1}"
+            continue
+        fi
+
+        if  [[ ${breaked_line} != "" ]];
+        then
+            line="${breaked_line}${line}"
+            breaked_line=""
+        fi
+
         if [[ $((depindex%6)) == 0 ]];
         then
             pypideps+=" ${line}"

@@ -17,7 +17,8 @@ https://github.com/alejandroautalan/pygubu
 MIT License
 https://github.com/alejandroautalan/pygubu/blob/master/LICENSE
 
-toml
+to\
+ml
 None
 https://github.com/uiri/toml
 MIT License
