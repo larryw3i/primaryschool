@@ -14,6 +14,9 @@ locale_path="${main_src_path}/psl10n"
 pot_path="${locale_path}/${app_name}.pot"
 po_lang0="en_US"
 po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
+psdep_path="${main_src_path}/psdep"
+pypitxt_path="${psdep_path}/pypi.txt"
+
 
 if ! [[ -v "venv_used" ]];
 then
@@ -82,14 +85,17 @@ msg_fmt(){
 }
 
 install_requirements(){
-    # If you add new requirement to src/primaryschool/psdep/__init__.py, repeat 
-    # it here. (^_^)
-    pip3 install            \
-        pygame              \
-        appdirs             \
-        toml                \
-        pygubu             
-
+    pypideps=""
+    depindex=-1
+    while IFS= read -r line; do
+        if [[ $((depindex%6)) == 0 ]];
+        then
+            pypideps+=" ${line}"
+        fi
+        depindex=$((depindex+1))
+    done < ${pypitxt_path}
+    pip3 install ${pypideps}        
+    depindex=-1
 }
 
 get_rqmts(){
