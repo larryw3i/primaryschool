@@ -120,8 +120,8 @@ get_deps(){
 }
 
 black79(){
-    [[ -f "$(which black)" ]] || pip3 install -U black
-    [[ -f "$(which isort)" ]] || pip3 install -U isort
+    [[ "$(which black)" == *"${venv_dir_path}"* ]] || pip3 install -U black
+    [[ "$(which isort)" == *"${venv_dir_path}"* ]] || pip3 install -U isort
     isort .
     black -l79 .
 }
@@ -139,11 +139,13 @@ cdfmt(){
 }
 
 psread(){
-    [[ -f "$(which ipython3)" ]] || pip3 install -U ipython
-    [[ -f "$(which jupyter-lab)" ]] || pip3 install -U jupyterlab
+    [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
+    [[ "$(which ipython3)" == *"${venv_dir_path}"* ]] || \
+    pip3 install -U ipython
+    [[ "$(which jupyter-lab)" == *"${venv_dir_path}"* ]] || \
+    pip3 install -U jupyterlab
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
-    [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
     [[ -d "${main_src_ln_path}" ]] || ln -sr ${main_src_path} \
     ${main_src_ln_path}
 }

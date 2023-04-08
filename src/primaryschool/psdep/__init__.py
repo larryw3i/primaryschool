@@ -5,6 +5,7 @@ from pathlib import *
 # from primaryschool.psl10n import _
 
 project_path = os.path.abspath(os.path.dirname(__file__))
+pypitxt_path = Path(__file__).parent / "pypi.txt"
 
 
 install_prefix = "python -m pip install "
@@ -52,41 +53,19 @@ def get_requirements_for_apt():
 
 
 def get_requirements_for_pypi():
-    '''
+    """
     Return the requirements for installing 'primaryschool' via 'pypi'.
-    Note: add the new requirement to the function 'install_requirements'
-    in 'primaryschoo1.sh'.
-    '''
-    requirements = [
-        (
-            "pygame",
-            None,
-            "https://github.com/pygame/pygame",
-            "LGPL v2",
-            "https://github.com/pygame/pygame/blob/main/docs/LGPL.txt",
-        ),
-        (
-            "appdirs",
-            None,
-            "https://github.com/ActiveState/appdirs",
-            "MIT",
-            "https://github.com/ActiveState/appdirs/blob/master/LICENSE.txt",
-        ),
-        (
-            "pygubu",
-            None,
-            "https://github.com/alejandroautalan/pygubu",
-            "MIT License",
-            "https://github.com/alejandroautalan/pygubu/blob/master/LICENSE",
-        ),
-        (
-            "toml",
-            None,
-            "https://github.com/uiri/toml",
-            "MIT License",
-            "https://github.com/uiri/toml/blob/master/LICENSE",
-        ),
-    ]
+    """
+    requirements = None
+    with open(str(pypitxt_path), "r") as f:
+        requirements = f.read()
+        pass
+    requirements = requirements.strip().replace("\\\n", "")
+    requirements = [rs for rs in requirements.split("\n\n")]
+    requirements = [r.split("\n") for r in requirements]
+    for r in requirements:
+        if r[1] == "None":
+            r[1] = None
     return requirements
     pass
 
