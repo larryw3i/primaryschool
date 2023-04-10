@@ -76,6 +76,7 @@ class TopWidget(WidgetABC):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
+        self.about_messagebox = None
 
         self.bind_config = False
 
@@ -241,7 +242,20 @@ class TopWidget(WidgetABC):
     def cmd_get_help(self):
         pass
 
+    def show_about_message(self): 
+        tk.messagebox.showinfo(
+                parent= self.root_widget,
+                title=_("About"),
+                message=_(
+                    "Funing:\n"+
+                    "The primary school knowledge games."          
+                )
+            )
+
+        pass
+
     def cmd_about(self):
+        self.show_about_message()
         pass
 
     def set_menubar_cascades(self):
