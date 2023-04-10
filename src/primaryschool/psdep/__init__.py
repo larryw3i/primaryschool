@@ -135,5 +135,6 @@ deps = (
     setup_reqs
 ) = req_names_with_version_pypi = get_requirements_name_with_version_for_pypi()
 
+deps_full  = deps_with_full_info = get_requirements_for_pypi()
 
 pass
