@@ -4,8 +4,8 @@ from primaryschool import *
 from primaryschool.pswidgets import *
 
 
-def test():
-    top_widget = TopWidget(mainloop=False)
+def test_scrolledframe():
+    top_widget = PsGameListWidget(mainloop=False)
     root_widget = top_widget.rootw
     mainframe = top_widget.mainframe
 
@@ -35,9 +35,13 @@ def test():
         bl.destroy()
 
 
-    top_widget.mainloop()
-    print_nl()
+    top_widget.mainloop()   
+
     pass
+
+
+def test():
+    test_scrolledframe()
 
 
 parser = argparse.ArgumentParser(

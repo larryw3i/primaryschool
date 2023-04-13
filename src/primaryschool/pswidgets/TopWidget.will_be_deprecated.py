@@ -8,12 +8,53 @@ from pygubu.widgets.scrolledframe import *
 
 import primaryschool
 from primaryschool import *
-from primaryschool.pswidgets import *
-from primaryschool.pswidgets.WidgetABC import *
 
 
+class WidgetABC(ABC):
+    def __init__(self):
+        self.set_ps_cp = self.set_ps_copy = set_ps_copy
+        self.pscp = pscp
+        self.subwidgets = []
+        pass
 
-class PsGameListWidget(PsWidget):
+    def save_ps_cp(self):
+        self.set_ps_cp(self.pscp)
+        pass
+
+    def save_ps_copy(self, *args, **kwargs):
+        self.save_ps_cp(*args, **kwargs)
+        pass
+
+    pass
+
+
+class SubWidget(WidgetABC):
+    def __init__(self, parent_widget=None):
+        if not parent_widget:
+            print(_("'parent_widget' is None."))
+        super().__init__()
+        self.parent_widget = parent_widget
+        self.psubwidgets = (
+            self.parent_subwidgets
+        ) = self.parent_widget.subwidgets
+        if not self in self.psubwidgets:
+            self.psubwidgets.append(self)
+            pass
+
+        pass
+
+    @abc.abstractmethod
+    def place(self):
+        pass
+
+    @abc.abstractmethod
+    def config(self):
+        pass
+
+    pass
+
+
+class TopWidget(WidgetABC):
     def __init__(
         self, root=None, frame=None, mainloop=True, title=None, menubar=None
     ):
@@ -236,6 +277,8 @@ class PsGameListWidget(PsWidget):
                 height=self.get_mainsclframe_height(),
             )
 
+        for sw in self.subwidgets:
+            sw.place()
         pass
 
     def get_root_x(self):

@@ -55,9 +55,9 @@ if len(sys.argv[1:]) < 1 or start_signal:
     if verbose > 0:
         print(f"Start program with verbose={verbose}.")
 
-    from primaryschool.pswidgets import TopWidget
+    from primaryschool.pswidgets import show_widget
 
-    TopWidget()
+    show_widget()
 
 
 pass
