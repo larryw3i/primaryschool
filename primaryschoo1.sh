@@ -144,6 +144,9 @@ psread(){
     pip3 install -U ipython
     [[ "$(which jupyter-lab)" == *"${venv_dir_path}"* ]] || \
     pip3 install -U jupyterlab
+    [[ "$(which pre-commit)" == *"${venv_dir_path}"* ]] || \
+    pip3 install -U pre-commit
+
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
     [[ -d "${main_src_ln_path}" ]] || ln -sr ${main_src_path} \

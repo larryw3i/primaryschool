@@ -297,4 +297,24 @@ class PsGameListWidget(PsWidget):
     pass
 
 
+def test_psgamewidget():
+    test_mainframe_grid()
+    pass
+
+def test_mainframe_grid():
+    psgamew = PsGameListWidget(mainloop = False)
+    for r in range(int(1000**0.5)+1):
+        for c in range(int(1000**0.5)+1): 
+            tk.Button(
+                psgamew.main_frame,
+                text=str(r)+" "+str(c))\
+                .grid(row=r,column=c)
+    psgamew.mainloop()
+    pass
+
+
+if __name__ == "__main__":
+    test_psgamewidget()
+    pass
+
 pass
