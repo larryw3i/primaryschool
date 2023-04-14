@@ -13,7 +13,7 @@ def test_scrolledframe():
     for i in range(20):
         buttons_l.append(ttk.Button(mainframe, text=str(i) * 5))
         pass
-    
+
     buttons_t = []
     for i in range(20):
         buttons_t.append(ttk.Button(mainframe, text=str(i) * 5))
@@ -29,13 +29,11 @@ def test_scrolledframe():
         bt.forget()
         bt.destroy()
 
-
     for bl in buttons_l:
         bl.forget()
         bl.destroy()
 
-
-    top_widget.mainloop()   
+    top_widget.mainloop()
 
     pass
 

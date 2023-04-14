@@ -1,5 +1,7 @@
-from primaryschool import *
 from abc import ABC
+
+from primaryschool import *
+
 
 class PsWidget(ABC):
     def __init__(self):
@@ -19,4 +21,3 @@ class PsWidget(ABC):
 
 
 pass
-

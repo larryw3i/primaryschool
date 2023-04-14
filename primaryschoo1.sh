@@ -120,8 +120,10 @@ get_deps(){
 }
 
 black79(){
-    [[ "$(which black)" == *"${venv_dir_path}"* ]] || pip3 install -U black
-    [[ "$(which isort)" == *"${venv_dir_path}"* ]] || pip3 install -U isort
+    [[ "$(which black)" == *"${venv_dir_path}"* ]] || \
+    pip3 install -U black jupyter-black
+    [[ "$(which isort)" == *"${venv_dir_path}"* ]] || \
+    pip3 install -U isort
     isort .
     black -l79 .
 }

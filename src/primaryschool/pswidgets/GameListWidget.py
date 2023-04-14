@@ -12,7 +12,6 @@ from primaryschool.pswidgets import *
 from primaryschool.pswidgets.WidgetABC import *
 
 
-
 class PsGameListWidget(PsWidget):
     def __init__(
         self, root=None, frame=None, mainloop=True, title=None, menubar=None
@@ -35,7 +34,10 @@ class PsGameListWidget(PsWidget):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
+
         self.about_messagebox = None
+        self.license_toplevel = None
+        self.about_toplevel = None
 
         self.bind_config = False
 
@@ -201,23 +203,40 @@ class PsGameListWidget(PsWidget):
     def cmd_help_gethelp(self):
         pass
 
-    def cmd_help_license(self):
+    def protocol_del_license_toplevel(self):
+        self.license_toplevel.destroy()
+        self.license_toplevel = None
         pass
 
-    def show_about_message(self): 
+    def trigger_license_toplevel(self):
+        if self.license_toplevel:
+            self.protocol_del_license_toplevel()
+            pass
+        self.license_toplevel = Toplevel(
+            self.root_widget,
+        )
+        self.license_toplevel.title(_("License"))
+        self.license_toplevel.resizable(0, 0)
+        self.license_toplevel.protocol(
+            "WM_DELETE_WINDOW", self.protocol_del_license_toplevel
+        )
+        pass
+
+    def cmd_help_license(self):
+        self.trigger_license_toplevel()
+        pass
+
+    def show_about_messagebox(self):
         tk.messagebox.showinfo(
-                parent= self.root_widget,
-                title=_("About"),
-                message=_(
-                    "Funing:\n"+
-                    "The primary school knowledge games."          
-                )
-            )
+            parent=self.root_widget,
+            title=_("About"),
+            message=_("Funing:\n" + "The primary school knowledge games."),
+        )
 
         pass
 
     def cmd_help_about(self):
-        self.show_about_message()
+        self.show_about_messagebox()
         pass
 
     def set_menubar_cascades(self):
@@ -226,11 +245,11 @@ class PsGameListWidget(PsWidget):
             label=_("Get Help"), command=self.cmd_help_gethelp
         )
         self.helpmenu.add_command(
-            label=_("About..."), 
-            command=self.cmd_help_about)
+            label=_("About..."), command=self.cmd_help_about
+        )
         self.helpmenu.add_command(
-            label=_("License"), 
-            command=self.cmd_help_license)
+            label=_("License"), command=self.cmd_help_license
+        )
         self.menubar.add_cascade(label=_("Help"), menu=self.helpmenu)
         self.root_widget.config(menu=self.menubar)
         pass
@@ -309,14 +328,15 @@ def test_psgamewidget():
     test_mainframe_grid()
     pass
 
+
 def test_mainframe_grid():
-    psgamew = PsGameListWidget(mainloop = False)
-    for r in range(int(1000**0.5)+1):
-        for c in range(int(1000**0.5)+1): 
-            tk.Button(
-                psgamew.main_frame,
-                text=str(r)+" "+str(c))\
-                .grid(row=r,column=c)
+    psgamew = PsGameListWidget(mainloop=False)
+    test_buttons_count = 200
+    for r in range(int(test_buttons_count**0.5) + 1):
+        for c in range(int(test_buttons_count**0.5) + 1):
+            tk.Button(psgamew.main_frame, text=str(r) + " " + str(c)).grid(
+                row=r, column=c
+            )
     psgamew.mainloop()
     pass
 

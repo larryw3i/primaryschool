@@ -242,15 +242,12 @@ class TopWidget(WidgetABC):
     def cmd_get_help(self):
         pass
 
-    def show_about_message(self): 
+    def show_about_message(self):
         tk.messagebox.showinfo(
-                parent= self.root_widget,
-                title=_("About"),
-                message=_(
-                    "Funing:\n"+
-                    "The primary school knowledge games."          
-                )
-            )
+            parent=self.root_widget,
+            title=_("About"),
+            message=_("Funing:\n" + "The primary school knowledge games."),
+        )
 
         pass
 

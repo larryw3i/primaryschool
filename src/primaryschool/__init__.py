@@ -4,6 +4,7 @@ import os
 import sys
 import tkinter
 from pathlib import *
+from tkinter import *
 from tkinter import messagebox, ttk
 
 import toml

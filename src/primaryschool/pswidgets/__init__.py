@@ -1,7 +1,6 @@
 from primaryschool import *
-from primaryschool.pswidgets.WidgetABC import *
 from primaryschool.pswidgets.GameListWidget import *
-
+from primaryschool.pswidgets.WidgetABC import *
 
 
 def show_widget(*args, **kwargs):
@@ -11,5 +10,6 @@ def show_widget(*args, **kwargs):
     # 2
     # 3
     pass
+
 
 pass
