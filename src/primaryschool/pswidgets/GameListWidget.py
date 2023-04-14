@@ -198,7 +198,10 @@ class PsGameListWidget(PsWidget):
         self.set_rootw_width_height_cp(*args, **kwargs)
         pass
 
-    def cmd_get_help(self):
+    def cmd_help_gethelp(self):
+        pass
+
+    def cmd_help_license(self):
         pass
 
     def show_about_message(self): 
@@ -213,16 +216,21 @@ class PsGameListWidget(PsWidget):
 
         pass
 
-    def cmd_about(self):
+    def cmd_help_about(self):
         self.show_about_message()
         pass
 
     def set_menubar_cascades(self):
         self.helpmenu = Menu(self.menubar, tearoff=0)
         self.helpmenu.add_command(
-            label=_("Get Help"), command=self.cmd_get_help
+            label=_("Get Help"), command=self.cmd_help_gethelp
         )
-        self.helpmenu.add_command(label=_("About..."), command=self.cmd_about)
+        self.helpmenu.add_command(
+            label=_("About..."), 
+            command=self.cmd_help_about)
+        self.helpmenu.add_command(
+            label=_("License"), 
+            command=self.cmd_help_license)
         self.menubar.add_cascade(label=_("Help"), menu=self.helpmenu)
         self.root_widget.config(menu=self.menubar)
         pass
