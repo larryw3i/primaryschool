@@ -17,6 +17,8 @@ po0_path="${locale_path}/${po_lang0}/LC_MESSAGES/${app_name}.po"
 psdep_path="${main_src_path}/psdep"
 pypitxt_path="${psdep_path}/pypi.txt"
 
+license0_path="${PWD}/LICENSE"
+license0n_paths=( "${main_src_path}/LICENSE" )
 
 if ! [[ -v "venv_used" ]];
 then
@@ -148,6 +150,14 @@ psread(){
     pip3 install -U jupyterlab
     [[ "$(which pre-commit)" == *"${venv_dir_path}"* ]] || \
     pip3 install -U pre-commit
+
+    if [[ -f $(which cmp) ]];
+    then
+        for i in "${license0n_paths[@]}";
+        do
+            cmp -s ${license0_path} ${i} || cp ${license0_path} ${i}
+        done
+    fi
 
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
