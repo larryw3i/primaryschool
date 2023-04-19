@@ -1,3 +1,4 @@
+# /bin/python3
 import abc
 from abc import ABC
 from tkinter import *
@@ -8,53 +9,11 @@ from pygubu.widgets.scrolledframe import *
 
 import primaryschool
 from primaryschool import *
+from primaryschool.pswidgets import *
+from primaryschool.pswidgets.WidgetABC import *
 
 
-class WidgetABC(ABC):
-    def __init__(self):
-        self.set_ps_cp = self.set_ps_copy = set_ps_copy
-        self.pscp = pscp
-        self.subwidgets = []
-        pass
-
-    def save_ps_cp(self):
-        self.set_ps_cp(self.pscp)
-        pass
-
-    def save_ps_copy(self, *args, **kwargs):
-        self.save_ps_cp(*args, **kwargs)
-        pass
-
-    pass
-
-
-class SubWidget(WidgetABC):
-    def __init__(self, parent_widget=None):
-        if not parent_widget:
-            print(_("'parent_widget' is None."))
-        super().__init__()
-        self.parent_widget = parent_widget
-        self.psubwidgets = (
-            self.parent_subwidgets
-        ) = self.parent_widget.subwidgets
-        if not self in self.psubwidgets:
-            self.psubwidgets.append(self)
-            pass
-
-        pass
-
-    @abc.abstractmethod
-    def place(self):
-        pass
-
-    @abc.abstractmethod
-    def config(self):
-        pass
-
-    pass
-
-
-class TopWidget(WidgetABC):
+class PsGameListWidget(PsWidget):
     def __init__(
         self, root=None, frame=None, mainloop=True, title=None, menubar=None
     ):
@@ -76,7 +35,10 @@ class TopWidget(WidgetABC):
         self.pscp_root_width_key = "rootw_width"
         self.pscp_root_height_key = "rootw_height"
         self.title = title or f"{app_name} ({app_version})"
+
         self.about_messagebox = None
+        self.license_toplevel = None
+        self.about_toplevel = None
 
         self.bind_config = False
 
@@ -239,10 +201,33 @@ class TopWidget(WidgetABC):
         self.set_rootw_width_height_cp(*args, **kwargs)
         pass
 
-    def cmd_get_help(self):
+    def cmd_help_gethelp(self):
         pass
 
-    def show_about_message(self):
+    def protocol_del_license_toplevel(self):
+        self.license_toplevel.destroy()
+        self.license_toplevel = None
+        pass
+
+    def trigger_license_toplevel(self):
+        if self.license_toplevel:
+            self.protocol_del_license_toplevel()
+            pass
+        self.license_toplevel = Toplevel(
+            self.root_widget,
+        )
+        self.license_toplevel.title(_("License"))
+        self.license_toplevel.resizable(0, 0)
+        self.license_toplevel.protocol(
+            "WM_DELETE_WINDOW", self.protocol_del_license_toplevel
+        )
+        pass
+
+    def cmd_help_license(self):
+        self.trigger_license_toplevel()
+        pass
+
+    def show_about_messagebox(self):
         tk.messagebox.showinfo(
             parent=self.root_widget,
             title=_("About"),
@@ -251,16 +236,21 @@ class TopWidget(WidgetABC):
 
         pass
 
-    def cmd_about(self):
-        self.show_about_message()
+    def cmd_help_about(self):
+        self.show_about_messagebox()
         pass
 
     def set_menubar_cascades(self):
         self.helpmenu = Menu(self.menubar, tearoff=0)
         self.helpmenu.add_command(
-            label=_("Get Help"), command=self.cmd_get_help
+            label=_("Get Help"), command=self.cmd_help_gethelp
         )
-        self.helpmenu.add_command(label=_("About..."), command=self.cmd_about)
+        self.helpmenu.add_command(
+            label=_("About..."), command=self.cmd_help_about
+        )
+        self.helpmenu.add_command(
+            label=_("License"), command=self.cmd_help_license
+        )
         self.menubar.add_cascade(label=_("Help"), menu=self.helpmenu)
         self.root_widget.config(menu=self.menubar)
         pass
@@ -274,8 +264,6 @@ class TopWidget(WidgetABC):
                 height=self.get_mainsclframe_height(),
             )
 
-        for sw in self.subwidgets:
-            sw.place()
         pass
 
     def get_root_x(self):
@@ -336,5 +324,26 @@ class TopWidget(WidgetABC):
 
     pass
 
+
+def test_psgamewidget():
+    test_mainframe_grid()
+    pass
+
+
+def test_mainframe_grid():
+    psgamew = PsGameListWidget(mainloop=False)
+    test_buttons_count = 200
+    for r in range(int(test_buttons_count**0.5) + 1):
+        for c in range(int(test_buttons_count**0.5) + 1):
+            tk.Button(psgamew.main_frame, text=str(r) + " " + str(c)).grid(
+                row=r, column=c
+            )
+    psgamew.mainloop()
+    pass
+
+
+if __name__ == "__main__":
+    test_psgamewidget()
+    pass
 
 pass
