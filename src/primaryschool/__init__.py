@@ -17,6 +17,8 @@ from primaryschool.psl10n import _
 from primaryschool.pssettings import *
 from primaryschool.pstest import *
 
+t = T = trans = Trans = tr = Tr = fanyi = FanYi = _
+
 project_path = str(Path(__file__).parent.parent.absolute())
 
 if not project_path in sys.path:
