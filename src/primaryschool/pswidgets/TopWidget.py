@@ -13,7 +13,7 @@ from primaryschool.pswidgets import *
 from primaryschool.pswidgets.WidgetABC import *
 
 
-class PsGameListWidget(PsWidget):
+class PsTopWidget(PsWidget):
     def __init__(
         self, root=None, frame=None, mainloop=True, title=None, menubar=None
     ):
@@ -42,6 +42,8 @@ class PsGameListWidget(PsWidget):
 
         self.bind_config = False
 
+        self.subwidgets = None
+
         if mainloop:
             self.mainloop()
 
@@ -50,11 +52,20 @@ class PsGameListWidget(PsWidget):
     def add_subwidgets(self, widgets=None):
         if not widgets:
             return False
+        if self.subwidgets == None:
+            self.subwidgets = []
         if not isinstance(widgets, list):
             self.subwidgets.append(widget)
         else:
             self.subwidgets += widgets
         return True
+        pass
+
+    def del_subwidgets(self, update_ui=True):
+        if update_widget:
+            for sw in self.subwidgets:
+                sw.destroy()
+        self.subwidgets = None
         pass
 
     def add_subwidget(self, widget=None):
@@ -264,6 +275,9 @@ class PsGameListWidget(PsWidget):
                 height=self.get_mainsclframe_height(),
             )
 
+        for w in self.subwidgets:
+            w.place()
+            pass
         pass
 
     def get_root_x(self):
@@ -331,7 +345,7 @@ def test_psgamewidget():
 
 
 def test_mainframe_grid():
-    psgamew = PsGameListWidget(mainloop=False)
+    psgamew = PsTopWidget(mainloop=False)
     test_buttons_count = 200
     for r in range(int(test_buttons_count**0.5) + 1):
         for c in range(int(test_buttons_count**0.5) + 1):
