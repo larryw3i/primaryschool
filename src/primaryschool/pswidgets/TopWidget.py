@@ -94,6 +94,15 @@ class PsTopWidget(PsWidget):
         return True
         pass
 
+    def get_subwidgets(self):
+        subwidgets = []
+        return subwidgets
+        pass
+
+    def get_subwidget_list(self):
+        return self.get_subwidgets()
+        pass
+
     def set_frame_padding(self, padding=8):
         self.frame_padding = padding
         sef.frame.config(padding=self.frame_padding)
@@ -274,8 +283,8 @@ class PsTopWidget(PsWidget):
                 width=self.get_mainsclframe_width(),
                 height=self.get_mainsclframe_height(),
             )
-
-        for w in self.subwidgets:
+        subwidgets = self.get_subwidgets()
+        for w in subwidgets:
             w.place()
             pass
         pass
