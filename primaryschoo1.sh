@@ -20,6 +20,9 @@ pypitxt_path="${psdep_path}/pypi.txt"
 license0_path="${PWD}/LICENSE"
 license0n_paths=( "${main_src_path}/LICENSE" )
 
+
+ask_installing_str_apt=" is not installed. Install it via 'apt'?"
+
 if ! [[ -v "venv_used" ]];
 then
     venv_used=0
@@ -32,14 +35,15 @@ echo_use_venv_y(){
 use_venv(){
     if ! [[ -d "${venv_dir_path}" ]];
     then
+        echo "Create virtualenv..."
         if [[ ${py_version} == *"3.11"* ]];
         then
-            python3 -m venv "${venv_dir_path}"
+            python3 -m venv --system-site-packages "${venv_dir_path}"
         elif [[ -f $(which virtualenv) ]];
         then
             virtualenv venv
         else
-            echo "'virtualenv' is not installed!"
+            echo "Unsuccessfully. 'virtualenv' is not installed!"
         fi
     fi
     
@@ -50,10 +54,10 @@ use_venv(){
 
     if [[ "$SHELL" == *"bash"* ]];
     then
-        . "${venv_dir_path}/bin/activate"
+        source "${venv_dir_path}/bin/activate"
         echo_use_venv_y
     else
-        . "${venv_dir_path}/bin/activate.fish"
+        source "${venv_dir_path}/bin/activate.fish"
         echo_use_venv_y
     fi
     venv_used=1
@@ -63,33 +67,22 @@ use_venv(){
 msg_get(){
     [[ -f $pot_path ]] || touch "${pot_path}"
     
-    find "${src_path}" \
-        -name "*.py" \
-        -exec \
-            xgettext \
-                -v \
-                -j \
-                -L Python \
-                --output="${pot_path}" \
-                {} +
+    py_files=$(find "${src_path}" -name "*.py")
 
-    # xgettext \
-    #        -v \
-    #        -j \
-    #        -L Python \
-    #        --output="${pot_path}" \
-    #        $(find "${src_path}" -name "*.py")
+    xgettext \
+           -v \
+           -j \
+           -L Python \
+           --output="${pot_path}" \
+           ${py_files}
 
     [[ -f $po0_path ]] || touch "$po0_path"
 
-    find "${locale_path}/" \
-        -name "*.po" \
-        -exec \
-            msgmerge -U -v {} \; "${pot_path}"
-    # for _po in $(find "${locale_path}/" -name "*.po")
-    # do
-    #     msgmerge -U -v "${_po}" "${pot_path}"
-    # done
+    po_files=$(find "${locale_path}/" -name "*.po")
+    for _po in ${po_files}
+    do
+        msgmerge -U -v "${_po}" "${pot_path}"
+    done
 
 }
 
@@ -138,10 +131,14 @@ get_deps(){
 }
 
 black79(){
-    [[ "$(which black)" == *"${venv_dir_path}"* ]] || \
-    pip3 install -U black jupyter-black
-    [[ "$(which isort)" == *"${venv_dir_path}"* ]] || \
-    pip3 install -U isort
+    [[ -f "$(which black)" ]] ||                                \
+    echo "'black' ${ask_installing_str_apt}"
+    sudo apt-get install black 
+    pip3 install -U jupyter-black
+    [[ -f "$(which isort)" ]] ||                                \
+    echo "'isort' ${ask_installing_str_apt}"
+    sudo apt-get install isort
+
     isort .
     black -l79 .
 }
@@ -159,13 +156,22 @@ cdfmt(){
 }
 
 psread(){
-    [[ $(which python3) == *"${venv_dir_path}"* ]] || use_venv
-    [[ "$(which ipython3)" == *"${venv_dir_path}"* ]] || \
-    pip3 install -U ipython
-    [[ "$(which jupyter-lab)" == *"${venv_dir_path}"* ]] || \
-    pip3 install -U jupyterlab
-    [[ "$(which pre-commit)" == *"${venv_dir_path}"* ]] || \
-    pip3 install -U pre-commit
+    if [[ -f "$(which python3)" ]];
+    then
+        use_venv
+    fi
+
+    if ! [[ -f "$(which ipython3)" ]];
+    then
+        echo "'ipython3' ${ask_installing_str_apt}"
+        sudo apt-get install ipython3
+    fi
+
+    if ! [[ -f "$(which jupyter-server)" ]];
+    then
+        echo "'jupyter-server' ${ask_installing_str_apt}"
+        sudo apt-get install jupyter*
+    fi
 
     if [[ -f $(which cmp) ]];
     then
@@ -175,10 +181,11 @@ psread(){
         done
     fi
 
-    [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
+    [[ $PYTHONPATH == *"${PWD}/src"* ]] ||                      \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
-    [[ -d "${main_src_ln_path}" ]] || ln -sr "${main_src_path}" \
-    "${main_src_ln_path}"
+
+    [[ -d "${main_src_ln_path}" ]] ||                           \
+    ln -sr "${main_src_path}" "${main_src_ln_path}"
 }
 
 build0(){

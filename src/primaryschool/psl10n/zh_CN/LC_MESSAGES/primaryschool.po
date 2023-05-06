@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-08 01:41+0800\n"
+"POT-Creation-Date: 2023-05-06 21:01+0800\n"
 "PO-Revision-Date: 2023-04-04 22:25+0800\n"
 "Last-Translator: larryw3i <larryw3i@163.com>\n"
 "Language-Team: Chinese - China <larryw3i@163.com>\n"
@@ -133,6 +133,9 @@ msgstr "开始"
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/ready/__init__.py:374
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:216
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:217
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:180
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:200
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:218
 msgid "Quit"
 msgstr "退出"
 
@@ -155,6 +158,8 @@ msgstr "中等"
 #: primaryschool/subjects/s_english/__init__.py:9
 #: primaryschool/subjects/english/__init__.py:7
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/__init__.py:7
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/__init__.py:7
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/__init__.py:7
 msgid "English"
 msgstr "英语"
 
@@ -199,6 +204,8 @@ msgstr "学科 :"
 #: primaryschool/subjects/s_yuwen/__init__.py:18
 #: primaryschool/subjects/yuwen/__init__.py:17
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/__init__.py:17
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/__init__.py:17
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/__init__.py:17
 msgid "Yuwen"
 msgstr "语文"
 
@@ -207,6 +214,8 @@ msgstr "语文"
 #: primaryschool/subjects/math/__init__.py:10
 #: primaryschool/subjects/math/__init__.py:9
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/__init__.py:9
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/__init__.py:9
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/__init__.py:9
 msgid "Math"
 msgstr "数学"
 
@@ -263,6 +272,9 @@ msgstr "返回主菜单"
 #: primaryschool/ready/__init__.py:110 primaryschool/ready/__init__.py:369
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/ready/__init__.py:110
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/ready/__init__.py:369
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:233
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:253
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:248
 msgid "About"
 msgstr "关于"
 
@@ -411,6 +423,8 @@ msgstr "六年级"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:47
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:47
 msgid "Low level"
 msgstr "低段"
 
@@ -424,6 +438,8 @@ msgstr "低段"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:48
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:48
 msgid "High level"
 msgstr "高段"
 
@@ -441,6 +457,10 @@ msgstr "高段"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:44
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:49
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:49
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:44
 msgid "All grades"
 msgstr "全小学"
 
@@ -454,6 +474,8 @@ msgstr "全小学"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:50
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:50
 msgid "All Chinese characters"
 msgstr "全汉字"
 
@@ -467,6 +489,8 @@ msgstr "全汉字"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:31
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:35
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:35
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:35
 msgid "Grade 1.1"
 msgstr "一年级（上）"
 
@@ -480,6 +504,8 @@ msgstr "一年级（上）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:36
 msgid "Grade 1.2"
 msgstr "一年级（下）"
 
@@ -493,6 +519,8 @@ msgstr "一年级（下）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:33
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:37
 msgid "Grade 2.1"
 msgstr "二年级（上）"
 
@@ -506,6 +534,8 @@ msgstr "二年级（上）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:34
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:38
 msgid "Grade 2.2"
 msgstr "二年级（下）"
 
@@ -523,6 +553,10 @@ msgstr "二年级（下）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:36
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:39
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:36
 msgid "Grade 3.1"
 msgstr "三年级（上）"
 
@@ -540,6 +574,10 @@ msgstr "三年级（上）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:37
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:40
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:37
 msgid "Grade 3.2"
 msgstr "三年级（下）"
 
@@ -557,6 +595,10 @@ msgstr "三年级（下）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:38
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:41
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:38
 msgid "Grade 4.1"
 msgstr "四年级（上）"
 
@@ -574,6 +616,10 @@ msgstr "四年级（上）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:39
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:42
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:39
 msgid "Grade 4.2"
 msgstr "四年级（下）"
 
@@ -591,6 +637,10 @@ msgstr "四年级（下）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:40
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:43
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:40
 msgid "Grade 5.1"
 msgstr "五年级（上）"
 
@@ -608,6 +658,10 @@ msgstr "五年级（上）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:41
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:44
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:41
 msgid "Grade 5.2"
 msgstr "五年级（下）"
 
@@ -625,6 +679,10 @@ msgstr "五年级（下）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:42
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:45
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:45
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:45
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:42
 msgid "Grade 6.1"
 msgstr "六年级（上）"
 
@@ -642,6 +700,10 @@ msgstr "六年级（上）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:43
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:46
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:46
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:43
 msgid "Grade 6.2"
 msgstr "六年级（下）"
 
@@ -666,6 +728,8 @@ msgstr "六年级（下）"
 #: primaryschool/subjects/_common_/shootingbase.py:610
 #: primaryschool/subjects/_common_/shootingbase.py:605
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:605
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:605
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:605
 msgid "win: "
 msgstr "胜利: "
 
@@ -690,6 +754,8 @@ msgstr "胜利: "
 #: primaryschool/subjects/_common_/shootingbase.py:613
 #: primaryschool/subjects/_common_/shootingbase.py:608
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:608
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:608
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:608
 msgid "lose: "
 msgstr "失败: "
 
@@ -714,6 +780,8 @@ msgstr "失败: "
 #: primaryschool/subjects/_common_/shootingbase.py:616
 #: primaryschool/subjects/_common_/shootingbase.py:611
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:611
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:611
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:611
 msgid "remain: "
 msgstr "剩余: "
 
@@ -738,6 +806,8 @@ msgstr "剩余: "
 #: primaryschool/subjects/_common_/shootingbase.py:619
 #: primaryschool/subjects/_common_/shootingbase.py:614
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:614
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:614
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:614
 msgid "total: "
 msgstr "总共: "
 
@@ -762,6 +832,8 @@ msgstr "总共: "
 #: primaryschool/subjects/_common_/shootingbase.py:720
 #: primaryschool/subjects/_common_/shootingbase.py:715
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:715
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:715
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:715
 msgid "Cost: "
 msgstr "耗时: "
 
@@ -786,6 +858,8 @@ msgstr "耗时: "
 #: primaryschool/subjects/_common_/shootingbase.py:741
 #: primaryschool/subjects/_common_/shootingbase.py:736
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:736
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:736
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:736
 msgid "Score: "
 msgstr "分数: "
 
@@ -857,6 +931,8 @@ msgstr "继续"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:26
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:29
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:29
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:29
 msgid "Mind hunter"
 msgstr "心灵算师"
 
@@ -865,6 +941,8 @@ msgstr "心灵算师"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:29
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:32
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:32
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:32
 msgid "< 10 + 10"
 msgstr "10以内相加"
 
@@ -873,6 +951,8 @@ msgstr "10以内相加"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:30
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:33
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:33
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:33
 msgid "< 50 + 50"
 msgstr "50以内相加"
 
@@ -881,6 +961,8 @@ msgstr "50以内相加"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:31
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:34
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:34
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:34
 msgid "< 100 + 100"
 msgstr "100以内相加"
 
@@ -889,6 +971,8 @@ msgstr "100以内相加"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:32
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:35
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:35
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:35
 msgid "< 10 - 10"
 msgstr "10以内相减"
 
@@ -897,6 +981,8 @@ msgstr "10以内相减"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:33
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:36
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:36
 msgid "< 50 - 50"
 msgstr "50以内相减"
 
@@ -905,6 +991,8 @@ msgstr "50以内相减"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:34
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:37
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:37
 msgid "< 100 - 100"
 msgstr "100以内相减"
 
@@ -913,6 +1001,8 @@ msgstr "100以内相减"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:35
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:38
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:38
 msgid "< 10 * 10"
 msgstr "10以内相乘"
 
@@ -921,6 +1011,8 @@ msgstr "10以内相乘"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:36
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:39
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:39
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:39
 msgid "< 50 * 50"
 msgstr "50以内相乘"
 
@@ -929,6 +1021,8 @@ msgstr "50以内相乘"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:37
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:40
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:40
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:40
 msgid "< 100 * 100"
 msgstr "100以内相乘"
 
@@ -937,6 +1031,8 @@ msgstr "100以内相乘"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:38
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:41
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:41
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:41
 msgid "< 10 / 10"
 msgstr "10以内相除"
 
@@ -945,6 +1041,8 @@ msgstr "10以内相除"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:39
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:42
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:42
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:42
 msgid "< 50 / 50"
 msgstr "50以内相除"
 
@@ -953,6 +1051,8 @@ msgstr "50以内相除"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:40
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:43
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:43
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:43
 msgid "< 100 / 100"
 msgstr "100以内相除"
 
@@ -961,6 +1061,8 @@ msgstr "100以内相除"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:41
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:44
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:44
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:44
 msgid "< 10 ? 10"
 msgstr "10以内加减乘除"
 
@@ -969,6 +1071,8 @@ msgstr "10以内加减乘除"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:42
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:45
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:45
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:45
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:45
 msgid "< 50 ? 50"
 msgstr "50以内加减乘除"
 
@@ -977,6 +1081,8 @@ msgstr "50以内加减乘除"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:43
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:46
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:46
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:46
 msgid "< 100 ? 100"
 msgstr "100以内加减乘除"
 
@@ -984,6 +1090,8 @@ msgstr "100以内加减乘除"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:28
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:32
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:32
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:32
 msgid "Pinyin Missile"
 msgstr "拼音导弹"
 
@@ -996,6 +1104,8 @@ msgstr "单词能手"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:65
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:70
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:70
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:70
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:70
 msgid ""
 "\n"
 "Enter the pinyin corresponding to the Chinese character, and enter the "
@@ -1029,6 +1139,8 @@ msgstr "贡献者和赞助者"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:46
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:51
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:51
 msgid "Grade 1.1 (30 characters)"
 msgstr "一年级上册（30字）"
 
@@ -1036,6 +1148,8 @@ msgstr "一年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:47
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:52
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:52
 msgid "Grade 1.2 (30 characters)"
 msgstr "一年级下册（30字）"
 
@@ -1043,6 +1157,8 @@ msgstr "一年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:48
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:53
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:53
 msgid "Grade 2.1 (30 characters)"
 msgstr "二年级上册（30字）"
 
@@ -1050,6 +1166,8 @@ msgstr "二年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:49
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:54
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:54
 msgid "Grade 2.2 (30 characters)"
 msgstr "二年级下册（30字）"
 
@@ -1057,6 +1175,8 @@ msgstr "二年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:50
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:55
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:55
 msgid "Grade 3.1 (30 characters)"
 msgstr "三年级上册（30字）"
 
@@ -1064,6 +1184,8 @@ msgstr "三年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:51
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:56
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:56
 msgid "Grade 3.2 (30 characters)"
 msgstr "三年级下册（30字）"
 
@@ -1071,6 +1193,8 @@ msgstr "三年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:52
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:57
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:57
 msgid "Grade 4.1 (30 characters)"
 msgstr "四年级上册（30字）"
 
@@ -1078,6 +1202,8 @@ msgstr "四年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:53
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:58
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:58
 msgid "Grade 4.2 (30 characters)"
 msgstr "四年级下册（30字）"
 
@@ -1085,6 +1211,8 @@ msgstr "四年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:54
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:59
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:59
 msgid "Grade 5.1 (30 characters)"
 msgstr "五年级上册（30字）"
 
@@ -1092,6 +1220,8 @@ msgstr "五年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:55
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:60
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:60
 msgid "Grade 5.2 (30 characters)"
 msgstr "五年级下册（30字）"
 
@@ -1099,6 +1229,8 @@ msgstr "五年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:56
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:61
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:61
 msgid "Grade 6.1 (30 characters)"
 msgstr "六年级上册（30字）"
 
@@ -1106,6 +1238,8 @@ msgstr "六年级上册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:57
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:62
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:62
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:62
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:62
 msgid "Grade 6.2 (30 characters)"
 msgstr "六年级下册（30字）"
 
@@ -1113,6 +1247,8 @@ msgstr "六年级下册（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:58
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:63
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:63
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:63
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:63
 msgid "Low level (30 characters)"
 msgstr "低段（30字）"
 
@@ -1120,6 +1256,8 @@ msgstr "低段（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:59
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:64
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:64
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:64
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:64
 msgid "High level (30 characters)"
 msgstr "高段（30字）"
 
@@ -1127,6 +1265,8 @@ msgstr "高段（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:60
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:65
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:65
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:65
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:65
 msgid "All grades (30 characters)"
 msgstr "全小学（30字）"
 
@@ -1134,6 +1274,8 @@ msgstr "全小学（30字）"
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:61
 #: primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:66
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/yuwen/g_pinyin_missile/__init__.py:66
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/yuwen/g_pinyin_missile/__init__.py:66
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/yuwen/g_pinyin_missile/__init__.py:66
 msgid "All Chinese characters (30 characters)"
 msgstr "全汉字（30字）"
 
@@ -1141,6 +1283,8 @@ msgstr "全汉字（30字）"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:28
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:33
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:33
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:33
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:33
 msgid "Chinese-English Missile"
 msgstr "单词能手"
 
@@ -1148,6 +1292,8 @@ msgstr "单词能手"
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:43
 #: primaryschool/subjects/english/g_chinese_english_missile/__init__.py:49
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/english/g_chinese_english_missile/__init__.py:49
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/english/g_chinese_english_missile/__init__.py:49
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/english/g_chinese_english_missile/__init__.py:49
 msgid ""
 "\n"
 "Enter the corresponding words of the Chinese characters.\n"
@@ -1174,6 +1320,8 @@ msgstr "小学"
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:46
 #: primaryschool/subjects/math/g_mind_hunter/__init__.py:51
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/math/g_mind_hunter/__init__.py:51
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/math/g_mind_hunter/__init__.py:51
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/math/g_mind_hunter/__init__.py:51
 msgid ""
 "\n"
 "Enter the calculation result, press Enter to confirm.\n"
@@ -1186,6 +1334,8 @@ msgstr ""
 #: primaryschool/subjects/_common_/shootingbase.py:735
 #: primaryschool/subjects/_common_/shootingbase.py:730
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:730
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:730
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:730
 #, python-format
 msgid "Success! Dear %s, you are so awesome!"
 msgstr "挑战成功，%s ，你真是太棒了！"
@@ -1195,6 +1345,8 @@ msgstr "挑战成功，%s ，你真是太棒了！"
 #: primaryschool/subjects/_common_/shootingbase.py:737
 #: primaryschool/subjects/_common_/shootingbase.py:732
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:732
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:732
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:732
 #, python-format
 msgid "Dear %s, practice makes perfect, keep trying!"
 msgstr "亲爱的 %s , 再加把劲! 努力!"
@@ -1221,6 +1373,8 @@ msgstr "截图"
 #: primaryschool/subjects/_common_/shootingbase.py:702
 #: primaryschool/subjects/_common_/shootingbase.py:697
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:697
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:697
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:697
 msgid "Screenshot path is not set."
 msgstr "截图路径未设置。"
 
@@ -1228,6 +1382,8 @@ msgstr "截图路径未设置。"
 #: primaryschool/subjects/_common_/shootingbase.py:705
 #: primaryschool/subjects/_common_/shootingbase.py:700
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:700
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:700
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:700
 msgid "Screenshot saved."
 msgstr "截图被保存。"
 
@@ -1235,6 +1391,8 @@ msgstr "截图被保存。"
 #: primaryschool/subjects/_common_/shootingbase.py:744
 #: primaryschool/subjects/_common_/shootingbase.py:739
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/subjects/_common_/shootingbase.py:739
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pssubjects/_common_/shootingbase.py:739
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/_common_/shootingbase.py:739
 msgid "Screenshot saved. Press Esc to RETURN"
 msgstr "截图被保存。按 Esc 返回。"
 
@@ -1373,6 +1531,7 @@ msgstr "打印通过 PYPI 安装时最新依赖名。"
 #: primaryschool/psdep/__init__.py:91
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psdep/__init__.py:92
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psdep/__init__.py:104
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psdep/__init__.py:83
 msgid ""
 "Feel free to contribute the code at `https://github.com/larryw3i/"
 "primaryschool`."
@@ -1381,6 +1540,9 @@ msgstr "期待你在 `https://github.com/larryw3i/primaryschool` 贡献代码。
 #: primaryschool/pswidgets/TopWidget.py:191
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:217
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:218
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:181
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:201
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:219
 msgid "Do you want to quit?"
 msgstr "确定退出？"
 
@@ -1394,30 +1556,80 @@ msgstr "运行测试。"
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:31
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:34
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:34
 msgid "'parent_widget' is None."
 msgstr "“parent_widget” 为空。"
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:244
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:250
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:246
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:266
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:261
 msgid "Get Help"
 msgstr "获取帮助"
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:246
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:252
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:249
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:269
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:263
 msgid "About..."
 msgstr "关于..."
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:247
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:253
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:254
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:274
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:264
 msgid "Help"
 msgstr "帮助"
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:25
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:46
 #, fuzzy
 msgid "primaryschool.pswidgets"
 msgstr "primaryschool 的副本"
 
 #: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:26
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/__main__.py:47
 #, fuzzy
 msgid "The `pswidgets` module of primaryschool."
 msgstr "primaryschool 的 pscopy 模块。"
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:219
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:252
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:239
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:272
+msgid "License"
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/GameListWidget.py:234
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.py:254
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/TopWidget.will_be_deprecated.py:249
+#, fuzzy
+msgid ""
+"Funing:\n"
+"The primary school knowledge games."
+msgstr "小学的知识游戏"
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/WidgetABC.py:29
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/WidgetABC.py:37
+#, fuzzy
+msgid "TopWidget is None."
+msgstr "“parent_widget” 为空。"
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/LicenseWidget.py:16
+msgid "Testing. . ."
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/pswidgets/AboutWidget.py:24
+msgid "Version:"
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/PsGame.py:44
+msgid "Hello!"
+msgstr ""
+
+#: /home/larry/fun/larryw3i/primaryschool/src/primaryschool/psgames/PsGame.py:70
+msgid "Testing . . ."
+msgstr ""
