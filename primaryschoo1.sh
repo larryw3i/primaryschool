@@ -1,11 +1,11 @@
-
+#!/bin/bash
 app_name="primaryschool"
 app_name_sh="${app_name/l/1}.sh"
 app_name_py="${app_name/l/1}.py"
 venv_dir_name="venv"
 venv_dir_path="${PWD}/${venv_dir_name}"
 py_version="$(python3 --version)"
-global_parameters=$@
+# global_parameters=$@
 
 src_path="${PWD}/src"
 main_src_path="${src_path}/${app_name}"
@@ -34,12 +34,12 @@ use_venv(){
     then
         if [[ ${py_version} == *"3.11"* ]];
         then
-            python3 -m venv ${venv_dir_path}
+            python3 -m venv "${venv_dir_path}"
         elif [[ -f $(which virtualenv) ]];
         then
             virtualenv venv
         else
-            echo "`virtualenv` is not installed!"
+            echo "'virtualenv' is not installed!"
         fi
     fi
     
@@ -50,10 +50,10 @@ use_venv(){
 
     if [[ "$SHELL" == *"bash"* ]];
     then
-        . ${venv_dir_path}/bin/activate
+        . "${venv_dir_path}/bin/activate"
         echo_use_venv_y
     else
-        . ${venv_dir_path}/bin/activate.fish
+        . "${venv_dir_path}/bin/activate.fish"
         echo_use_venv_y
     fi
     venv_used=1
@@ -61,28 +61,44 @@ use_venv(){
 }
 
 msg_get(){
-    [[ -f $pot_path ]] || touch $pot_path
+    [[ -f $pot_path ]] || touch "${pot_path}"
+    
+    find "${src_path}" \
+        -name "*.py" \
+        -exec \
+            xgettext \
+                -v \
+                -j \
+                -L Python \
+                --output="${pot_path}" \
+                {} +
 
-    xgettext \
-            -v \
-            -j \
-            -L Python \
-            --output=${pot_path} \
-            $(find ${src_path} -name "*.py")
+    # xgettext \
+    #        -v \
+    #        -j \
+    #        -L Python \
+    #        --output="${pot_path}" \
+    #        $(find "${src_path}" -name "*.py")
 
-    [[ -f $po0_path ]] || touch $po0_path
+    [[ -f $po0_path ]] || touch "$po0_path"
 
-    for _po in $(find ${locale_path}/ -name "*.po")
-    do
-        msgmerge -U -v $_po ${pot_path}
-    done
+    find "${locale_path}/" \
+        -name "*.po" \
+        -exec \
+            msgmerge -U -v {} \; "${pot_path}"
+    # for _po in $(find "${locale_path}/" -name "*.po")
+    # do
+    #     msgmerge -U -v "${_po}" "${pot_path}"
+    # done
+
 }
 
 msg_fmt(){
-    for _po in $(find ${locale_path} -name "*.po")
+    pos=$(find "${locale_path}" -name "*.po")
+    for _po in ${pos}
     do
         echo -e "$_po --> ${_po/.po/.mo}"
-        msgfmt -v -o ${_po/.po/.mo} $_po
+        msgfmt -v -o "${_po/.po/.mo}" "${_po}"
     done
 }
 
@@ -108,8 +124,8 @@ install_requirements(){
             pypideps+=" ${line}"
         fi
         depindex=$((depindex+1))
-    done < ${pypitxt_path}
-    pip3 install ${pypideps}        
+    done < "${pypitxt_path}"
+    pip3 install "${pypideps}"
     depindex=-1
 }
 
@@ -155,23 +171,23 @@ psread(){
     then
         for i in "${license0n_paths[@]}";
         do
-            cmp -s ${license0_path} ${i} || cp ${license0_path} ${i}
+            cmp -s "${license0_path}" "${i}" || cp "${license0_path}" "${i}"
         done
     fi
 
     [[ $PYTHONPATH == *"${PWD}/src"* ]] || \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src
-    [[ -d "${main_src_ln_path}" ]] || ln -sr ${main_src_path} \
-    ${main_src_ln_path}
+    [[ -d "${main_src_ln_path}" ]] || ln -sr "${main_src_path}" \
+    "${main_src_ln_path}"
 }
 
 build0(){
-    python3 ${app_name_py} --upptoml
+    python3 "${app_name_py}" --upptoml
     python3 -m build
 }
 build(){
     blk79
-    python3 ${app_name_py} --upptoml
+    python3 "${app_name_py}" --upptoml
     python3 -m build
 }
 
