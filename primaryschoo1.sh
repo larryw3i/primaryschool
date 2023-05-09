@@ -118,7 +118,8 @@ install_requirements(){
         fi
         depindex=$((depindex+1))
     done < "${pypitxt_path}"
-    pip3 install "${pypideps}"
+    echo "The requirements are: ${pypideps}"
+    pip3 install ${pypideps}
     depindex=-1
 }
 
@@ -131,13 +132,18 @@ get_deps(){
 }
 
 black79(){
-    [[ -f "$(which black)" ]] ||                                \
-    echo "'black' ${ask_installing_str_apt}"
-    sudo apt-get install black 
-    pip3 install -U jupyter-black
-    [[ -f "$(which isort)" ]] ||                                \
-    echo "'isort' ${ask_installing_str_apt}"
-    sudo apt-get install isort
+    if ! [[ -f "$(which black)" ]];
+    then
+        echo "'black' ${ask_installing_str_apt}"
+        sudo apt-get install black 
+        pip3 install -U jupyter-black
+    fi
+    
+    if ! [[ -f "$(which isort)" ]];
+    then
+        echo "'isort' ${ask_installing_str_apt}"
+        sudo apt-get install isort
+    fi
 
     isort .
     black -l79 .
@@ -173,13 +179,14 @@ psread(){
         sudo apt-get install jupyter*
     fi
 
-    if [[ -f $(which cmp) ]];
-    then
-        for i in "${license0n_paths[@]}";
-        do
-            cmp -s "${license0_path}" "${i}" || cp "${license0_path}" "${i}"
-        done
-    fi
+    # if [[ -f $(which cmp) ]];
+    # then
+    #     for i in "${license0n_paths[@]}";
+    #     do
+    #         cmp -s "${license0_path}" "${i}" || \
+    #         cp "${license0_path}" "${i}"
+    #     done
+    # fi
 
     [[ $PYTHONPATH == *"${PWD}/src"* ]] ||                      \
     export PYTHONPATH=${PYTHONPATH}:${PWD}/src

@@ -7,6 +7,8 @@ from appdirs import AppDirs
 
 from primaryschool.pssettings import app_author, app_name, app_version
 
+_ = str
+
 project_path = str(Path(__file__).parent.parent.parent.absolute())
 _dirs = AppDirs(app_name, app_author)
 

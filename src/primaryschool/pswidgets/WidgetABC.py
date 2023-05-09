@@ -39,3 +39,8 @@ class PsSubWidget(PsWidget):
         if not self in self.sibling_widgets:
             self.top_widget.add_subwidget(self)
         pass
+
+    pass
+
+
+pass

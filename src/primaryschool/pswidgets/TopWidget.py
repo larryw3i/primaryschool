@@ -15,9 +15,17 @@ from primaryschool.pswidgets.WidgetABC import *
 
 class PsTopWidget(PsWidget):
     def __init__(
-        self, root=None, frame=None, mainloop=True, title=None, menubar=None
+        self,
+        root=None,
+        frame=None,
+        mainloop=True,
+        title=None,
+        menubar=None,
+        _set_subwidgets=False,
+        add_game_widget=True,
     ):
         super().__init__()
+        self.add_game_widget = add_game_widget
         self.root_widget = self.rootw = self.root = root or Tk()
 
         self.menubar = menubar or Menu(self.root_widget)
@@ -40,12 +48,27 @@ class PsTopWidget(PsWidget):
         self.license_toplevel = None
         self.about_toplevel = None
 
+        # A configuration binding singal.
         self.bind_config = False
 
+        # subwidgets list.
         self.subwidgets = None
+
+        # Execute self.set_subwidgets() if true.
+        self._set_subwidgets = _set_subwidgets
+
+        # Initial subwidgets.
+        self.game_widget = None
 
         if mainloop:
             self.mainloop()
+
+        pass
+
+    def set_subwidgets(self):
+        if self.add_game_widget:
+            self.game_widget = None
+            pass
 
         pass
 
@@ -338,6 +361,8 @@ class PsTopWidget(PsWidget):
         self.root_widget.title(self.title)
         self.set_menubar_cascades()
         self.set_root_width_height()
+        if self._set_subwidgets:
+            self.set_subwidgets()
         self.place_widgets()
         self.root_widget.protocol("WM_DELETE_WINDOW", self.close)
         self.root_widget.bind("<Configure>", self.config)
