@@ -25,4 +25,11 @@ if not project_path in sys.path:
     sys.path.append(project_path)
 
 
+def get_verbose():
+    verbose = os.environ.get(f"{app_name}_verbose", 0)
+    verbose = verbose == 1
+    return verbose
+
+
+verbose = get_verbose
 pass

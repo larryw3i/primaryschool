@@ -57,7 +57,7 @@ if len(sys.argv[1:]) < 1 or start_signal:
 
     from primaryschool.pswidgets import show_widget
 
-    show_widget()
+    show_widget(verbose=verbose)
 
 
 pass

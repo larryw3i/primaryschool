@@ -9,6 +9,7 @@ from pygubu.widgets.scrolledframe import *
 
 import primaryschool
 from primaryschool import *
+from primaryschool.psgames import *
 from primaryschool.pswidgets import *
 from primaryschool.pswidgets.WidgetABC import *
 
@@ -22,12 +23,16 @@ class PsGameListWidget(PsSubWidget):
         pass
 
     def get_game_list(self):
-        game_list = None
+        game_list = get_game_list()
         return game_list
 
     def get_game_names(self):
-        game_names = None
+        game_names = get_game_names()
         return game_names
+
+    def get_game_difficulties(self):
+        game_difficulties = get_game_difficulties()
+        return game_difficulties
 
     def get_frame_x(self):
         _x = 0
