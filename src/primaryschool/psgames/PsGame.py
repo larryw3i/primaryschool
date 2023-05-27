@@ -68,6 +68,7 @@ def get_game_difficulties(name=None):
 
 if __name__ == "__main__":
     print(_("Testing . . ."))
+    print(_("Finished."))
     pass
 
 

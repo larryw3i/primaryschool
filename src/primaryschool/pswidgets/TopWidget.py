@@ -10,6 +10,7 @@ from pygubu.widgets.scrolledframe import *
 import primaryschool
 from primaryschool import *
 from primaryschool.pswidgets import *
+from primaryschool.pswidgets.GameListWidget import *
 from primaryschool.pswidgets.WidgetABC import *
 
 
@@ -21,10 +22,11 @@ class PsTopWidget(PsWidget):
         mainloop=True,
         title=None,
         menubar=None,
-        _set_subwidgets=False,
+        _set_subwidgets=True,
         add_game_widget=True,
+        verbose=False,
     ):
-        super().__init__()
+        super().__init__(verbose=verbose)
         self.add_game_widget = add_game_widget
         self.root_widget = self.rootw = self.root = root or Tk()
 
@@ -67,7 +69,7 @@ class PsTopWidget(PsWidget):
 
     def set_subwidgets(self):
         if self.add_game_widget:
-            self.game_widget = None
+            self.game_widget = PsGameListWidget(self)
             pass
 
         pass
@@ -78,7 +80,7 @@ class PsTopWidget(PsWidget):
         if self.subwidgets == None:
             self.subwidgets = []
         if not isinstance(widgets, list):
-            self.subwidgets.append(widget)
+            self.subwidgets.append(widgets)
         else:
             self.subwidgets += widgets
         return True
@@ -118,7 +120,11 @@ class PsTopWidget(PsWidget):
         pass
 
     def get_subwidgets(self):
-        subwidgets = []
+        subwidgets = None
+        if self.subwidgets is None:
+            subwidgets = []
+        else:
+            subwidgets = self.subwidgets
         return subwidgets
         pass
 
@@ -299,16 +305,18 @@ class PsTopWidget(PsWidget):
         pass
 
     def place_widgets(self):
-        if self.mainsclframe:
-            self.mainsclframe.place(
-                x=self.get_mainsclframe_x(),
-                y=self.get_mainsclframe_y(),
-                width=self.get_mainsclframe_width(),
-                height=self.get_mainsclframe_height(),
-            )
+        # if self.mainsclframe:
+        #     self.mainsclframe.place(
+        #         x=self.get_mainsclframe_x(),
+        #         y=self.get_mainsclframe_y(),
+        #         width=self.get_mainsclframe_width(),
+        #         height=self.get_mainsclframe_height(),
+        #     )
         subwidgets = self.get_subwidgets()
-        for w in subwidgets:
-            w.place()
+        if len(subwidgets) > 0:
+            for w in subwidgets:
+                w.place()
+                pass
             pass
         pass
 
@@ -373,20 +381,36 @@ class PsTopWidget(PsWidget):
     pass
 
 
-def test_psgamewidget():
-    test_mainframe_grid()
+def test_psgamewidget(button_count=200):
+    print(_("Run testing..."))
+    test_mainframe_grid(button_count=button_count)
+    print(_("Finished."))
     pass
 
 
-def test_mainframe_grid():
-    psgamew = PsTopWidget(mainloop=False)
-    test_buttons_count = 200
+def test_mainframe_grid(button_count=200):
+    print(_("Test 'psgamew.scrolledframe'......"))
+    psgamew = PsTopWidget(mainloop=False, verbose=True)
+    rootw = psgamew.root_widget
+    test_buttons_count = button_count
+    _frame = None
+    if psgamew.game_widget:
+        print(_("'psgamew.game_widget.frame' is used."))
+        _frame = psgamew.game_widget.frame
+    else:
+        print(_("'psgamew.scrolledframe' is used."))
+        _frame = psgamew.sclframe
+
     for r in range(int(test_buttons_count**0.5) + 1):
         for c in range(int(test_buttons_count**0.5) + 1):
             tk.Button(psgamew.main_frame, text=str(r) + " " + str(c)).grid(
                 row=r, column=c
             )
     psgamew.mainloop()
+
+    print(_("Test 'psgamew.game_widget.frame'......"))
+    psgamew0 = PsTopWidget(verbose=True)
+
     pass
 
 
