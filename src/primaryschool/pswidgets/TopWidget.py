@@ -24,10 +24,12 @@ class PsTopWidget(PsWidget):
         menubar=None,
         _set_subwidgets=True,
         add_game_widget=True,
+        add_player_info_widget=True,
         verbose=False,
     ):
         super().__init__(verbose=verbose)
         self.add_game_widget = add_game_widget
+        self.add_player_info_widget = add_player_info_widget
         self.root_widget = self.rootw = self.root = root or Tk()
 
         self.menubar = menubar or Menu(self.root_widget)
@@ -61,6 +63,7 @@ class PsTopWidget(PsWidget):
 
         # Initial subwidgets.
         self.game_widget = None
+        self.player_info_widget = None
 
         if mainloop:
             self.mainloop()
@@ -69,7 +72,16 @@ class PsTopWidget(PsWidget):
 
     def set_subwidgets(self):
         if self.add_game_widget:
+            from primaryschool.pswidgets.GameListWidget import PsGameListWidget
+
             self.game_widget = PsGameListWidget(self)
+            pass
+        if self.add_player_info_widget:
+            from primaryschool.pswidgets.PlayerInfoWidget import (
+                PsPlayerInfoWidget,
+            )
+
+            self.player_info_widget = PsPlayerInfoWidget(self)
             pass
 
         pass
