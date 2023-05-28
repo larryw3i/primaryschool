@@ -6,6 +6,7 @@ import tkinter
 from pathlib import *
 from tkinter import *
 from tkinter import messagebox, ttk
+from pathlib import Path
 
 import toml
 from toml import *
