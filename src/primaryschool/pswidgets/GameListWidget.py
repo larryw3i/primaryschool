@@ -19,20 +19,38 @@ class PsGameListWidget(PsSubWidget):
         super().__init__(top_widget)
 
         self.frame = self.top_widget.sclframe
+        self._game_list = None
+        self._game_name_list = None
 
         pass
 
-    def get_game_list(self):
-        game_list = get_game_list()
-        return game_list
+    def get_game_list(self, newest=False):
+        if newest:
+            self._game_list = get_game_list()
+            return _game_list
+
+        if self._game_list:
+            return self._game_list
+
+        self._game_list = get_game_list()
+        return self._game_list
 
     def get_game_names(self):
         game_names = get_game_names()
         return game_names
 
-    def get_game_difficulties(self):
-        game_difficulties = get_game_difficulties()
-        return game_difficulties
+    def get_game_list(self, newest=False):
+        if newest:
+            self._game_name_list = get_game_name_list()
+            return self._game_name_list
+        if self._game_name_list:
+            return self._game_name_list
+        self._game_name_list = get_game_name_list()
+        return self._game_name_list
+
+    def get_game_difficulty_list(self, game_name=None, newest=False):
+        game_difficulty_list = get_game_difficulty_list(game_name=game_name)
+        return game_difficulty_list
 
     def get_frame_x(self):
         _x = 0

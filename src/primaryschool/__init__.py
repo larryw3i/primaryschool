@@ -4,9 +4,9 @@ import os
 import sys
 import tkinter
 from pathlib import *
+from pathlib import Path
 from tkinter import *
 from tkinter import messagebox, ttk
-from pathlib import Path
 
 import toml
 from toml import *
