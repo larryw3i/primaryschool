@@ -36,12 +36,16 @@ use_venv(){
     if ! [[ -d "${venv_dir_path}" ]];
     then
         echo "Create virtualenv..."
-        if [[ ${py_version} == *"3.11"* ]];
+        if [[ ${py_version} == *"3.10"* ]];
         then
-            python3 -m venv --system-site-packages "${venv_dir_path}"
-        elif [[ -f $(which virtualenv) ]];
-        then
+            if ! [[ -f $(which virtualenv) ]];
+            then
+                pip3 install -U --user virtualenv
+            fi
+
             virtualenv venv
+        elif [[ -d "/lib/python3.11/venv/" ]]
+            python3 -m venv --system-site-packages "${venv_dir_path}"
         else
             echo "Unsuccessfully. 'virtualenv' is not installed!"
         fi
@@ -60,6 +64,7 @@ use_venv(){
         source "${venv_dir_path}/bin/activate.fish"
         echo_use_venv_y
     fi
+    get_rqmts
     venv_used=1
     return 1        
 }
