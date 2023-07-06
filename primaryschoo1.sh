@@ -45,6 +45,7 @@ use_venv(){
 
             virtualenv venv
         elif [[ -d "/lib/python3.11/venv/" ]]
+        then
             python3 -m venv --system-site-packages "${venv_dir_path}"
         else
             echo "Unsuccessfully. 'virtualenv' is not installed!"
