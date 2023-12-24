@@ -17,12 +17,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk
 
-@Gtk.Template(resource_path='/net/yeah/larryw3i/primaryschool/window.ui')
+
+@Gtk.Template(resource_path="/net/yeah/larryw3i/primaryschool/window.ui")
 class PrimaryschoolWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'PrimaryschoolWindow'
+    __gtype_name__ = "PrimaryschoolWindow"
 
     label = Gtk.Template.Child()
 
