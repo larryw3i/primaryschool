@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@gitee.com:larryw3i/primaryschool.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[branch "daily"]
+	remote = origin
+	merge = refs/heads/daily
+[user]
+	name = larryw3i
+	email = larryw3i@163.com

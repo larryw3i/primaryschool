@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=primaryschool
+Exec=primaryschool
+Icon=net.yeah.larryw3i.primaryschool
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

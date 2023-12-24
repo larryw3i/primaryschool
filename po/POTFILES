@@ -1,0 +1,6 @@
+data/net.yeah.larryw3i.primaryschool.desktop.in
+data/net.yeah.larryw3i.primaryschool.metainfo.xml.in
+data/net.yeah.larryw3i.primaryschool.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
