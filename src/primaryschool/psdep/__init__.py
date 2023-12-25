@@ -1,6 +1,6 @@
 import importlib
 import os
-from pathlib import *
+from pathlib import Path
 
 # from primaryschool.psl10n import _
 
@@ -138,5 +138,3 @@ deps = (
 deps_full = deps_with_full_info = get_requirements_for_pypi()
 
 pass
-
-

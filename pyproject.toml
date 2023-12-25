@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "primaryschool"
+dynamic = ["version"]
+description = "A primaryschool knowledge game set."
+readme = "README.md"
+requires-python = ">=3.6"
+license = {file = "LICENSE"}
+keywords = [ "education", "game"]
+authors = [
+    {name = "larryw3i", email = "larryw3i@yeah.net" },
+]
+maintainers = [
+    {name = "larryw3i", email = "larryw3i@yeah.net" }
+]
+
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Students",
+  "Topic :: Games",
+]
+dependencies = [
+    
+]
+
+
+[project.urls]
+Homepage = "https://github.com/larryw3i/primaryschool"
+Documentation = "https://github.com/larryw3i/primaryschool/Documentation"
+Repository = "https://github.com/larryw3i/primaryschool.git"
+Issues = "https://github.com/larryw3i/primaryschool/issues"
+Changelog = "https://github.com/larryw3i/primaryschool/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.setuptools.exclude-package-data]
+"*" = ["*.pot", "*.po"]
+
+[project.scripts]
+primaryschool-cli="primaryschool.hey_cli"
+
+[project.gui-scripts]
+primaryschool-gui = "primaryschool:hey_gui"
+
+# [project.entry-points."primaryschool"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = [ "*.mo",]
