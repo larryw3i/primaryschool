@@ -645,9 +645,7 @@ class ScoreSurface(InfoSurface):
         )
 
         self.datetime_diff_font_size = 50
-        self.datetime_diff_font = get_default_font(
-            self.datetime_diff_font_size
-        )
+        self.datetime_diff_font = get_default_font(self.datetime_diff_font_size)
         self.datetime_diff_font_color = None
 
         self.score_surface = None

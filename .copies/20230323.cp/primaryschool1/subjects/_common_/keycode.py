@@ -9,9 +9,9 @@ class PsKeyCode:
         return 97 <= code <= 122
 
     def keycode_in_alpha(self, code):
-        return self.keycode_in_alpha_lower(
+        return self.keycode_in_alpha_lower(code) or self.keycode_in_alpha_upper(
             code
-        ) or self.keycode_in_alpha_upper(code)
+        )
 
     def keycode_in_num_neg(self, code):
         return self.keycode_in_pure_num(code) or self.keycode_in_hyphen(code)

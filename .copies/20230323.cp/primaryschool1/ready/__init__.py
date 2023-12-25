@@ -113,9 +113,7 @@ class AboutMenu:
         self.app_version_font = get_default_font(20)
         self.app_description_font = get_default_font(22)
         self.app_url_font = get_default_font(20)
-        self.app_author_font = self.app_contributors_font = get_default_font(
-            20
-        )
+        self.app_author_font = self.app_contributors_font = get_default_font(20)
         self.contributors_menu = ContributorsMenu(self.ps)
         self._label_font = get_default_font(32)
 
@@ -246,9 +244,7 @@ class PlayMenu:
             font_name=self.ps.font_path,
         )
 
-        self.help_lael = self._menu.add.label(
-            "", font_name=self.help_lael_font
-        )
+        self.help_lael = self._menu.add.label("", font_name=self.help_lael_font)
         self.update_help_lael()
 
         self._menu.add.label(

@@ -151,6 +151,8 @@ primaryschool/data/snapshots/
 # # main source code link
 # primaryschool/
 
+# compile directory
+complie/
 
 ###############################################################################
 ###############################################################################

@@ -4,7 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "primaryschool"
-dynamic = ["version"]
+# dynamic = ["version"]
+version = "20231225.22.16"
 description = "A primaryschool knowledge game set."
 readme = "README.md"
 requires-python = ">=3.6"
@@ -30,9 +31,16 @@ classifiers = [
   "Topic :: Games",
 ]
 dependencies = [
-    
+   "toml",
+   "pygame",
+   "appdirs",
+   "pygubu",
+   "typer[all]",
 ]
 
+[project.optional-dependencies]
+gui=[]
+cli=[]
 
 [project.urls]
 Homepage = "https://github.com/larryw3i/primaryschool"
@@ -49,7 +57,7 @@ where = ["src"]
 "*" = ["*.pot", "*.po"]
 
 [project.scripts]
-primaryschool-cli="primaryschool.hey_cli"
+primaryschool-cli="primaryschool:hey_cli"
 
 [project.gui-scripts]
 primaryschool-gui = "primaryschool:hey_gui"
