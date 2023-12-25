@@ -36,6 +36,7 @@ dependencies = [
    "appdirs",
    "pygubu",
    "typer[all]",
+   "Babel",
 ]
 
 [project.optional-dependencies]

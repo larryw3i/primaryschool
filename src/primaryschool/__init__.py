@@ -10,6 +10,7 @@ from tkinter import messagebox, ttk
 
 import toml
 from toml import *
+from babel.messages import frontend as babel
 
 from primaryschool.pscopy import *
 from primaryschool.psdep import *
