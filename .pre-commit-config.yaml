@@ -13,7 +13,22 @@ repos:
     hooks:
       - id: black
         args:
-          - --line-length=80
+          - --line-length=79
+
+  - repo: https://github.com/syntaqx/git-hooks
+    rev: v0.0.18
+    hooks:
+      - id: circleci-config-validate
+      - id: forbid-binary
+      - id: go-fmt
+      - id: go-test
+      - id: go-mod-tidy
+      - id: go-generate
+      - id: shellcheck
+      - id: shfmt
+
+
+
 
   # - repo: https://github.com/PyCQA/flake8
   #   rev: 6.1.0
